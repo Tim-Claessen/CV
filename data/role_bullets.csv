@@ -1,0 +1,19 @@
+role_id,order,text,personas,visible
+ey-director,1,"Built Power BI reporting and payroll monitoring solutions for Tier 1 mining clients, giving leaders ongoing compliance visibility across the hire to retire process.",business,TRUE
+ey-director,2,"Developed payroll monitoring backed by SAP ECP, SuccessFactors and Pronto, integrated through Snowflake, improving how workforce compliance risks are surfaced and managed.",business|data,TRUE
+ey-director,3,"Led 20+ superannuation compliance reviews, identifying material exposure and guiding remediation alongside the ATO and Fair Work Commission.",business,TRUE
+ey-director,4,"Implemented continuous controls monitoring across payroll, master data, leave and rostering, strengthening data integrity and audit readiness.",business|data,TRUE
+ey-director,5,"Established digital analytics capability for a global internal audit program spanning 100+ countries and 50+ audits a year, setting strategy, standardising methods and deploying scalable tooling.",business,TRUE
+ey-director,6,"Designed and delivered analytics on Azure SQL with Power BI, embedding data governance and validated findings processes.",business|data,TRUE
+ey-director,7,"Built a modular risk and controls analytics platform on Azure SQL using a layered ref / active / archive design, reusable across multiple client engagements.",data,TRUE
+ey-director,8,"Designed reusable data models and ETL pipelines integrating SAP, Snowflake and Power BI, cutting per engagement build effort and improving data quality.",data,TRUE
+ey-director,9,"Grew the Oceania practice from 3 to 16; designed the operating model, built a structured training program and led the AI adoption and responsible use program.",business|data,TRUE
+unified-honey,1,"Lead go to market strategy, product positioning, sales collateral and competitive analysis for a Snowflake Native App targeting mining sector data governance.",data,TRUE
+unified-honey,2,"Contribute to data governance framework design including lineage, quality rules and semantic definitions for agent ready data products.",data,TRUE
+unified-honey,3,"Bridge ERP systems (SAP, Pronto, Oracle) with modern data platforms, drawing on mining industry domain expertise.",data,TRUE
+ey-manager,1,"Managed a 5 year workforce analytics partnership with a major healthcare provider covering rostering compliance, overtime, leave and superannuation.",business,TRUE
+ey-manager,2,"Built analytics on SAP HCM, SuccessFactors, Kronos and RITEQ, analysing workforce patterns including turnover, churn and rostering efficiency.",business|data,TRUE
+ey-manager,3,"Delivered payroll compliance reviews across ASX listed clients, engaging stakeholders across HR, Payroll, Legal, Tax and Finance.",business,TRUE
+mindfields,1,"Managed a large scale UiPath RPA implementation for a major WA mining company, delivering 6 automated processes across Finance, HR, Safety and Tax.",business,TRUE
+mindfields,2,"Led end to end delivery: process assessment, business case development, solution architecture, UAT and post production validation.",business,TRUE
+ey-consultant,1,"Delivered hire to retire process reviews and workforce analytics, identifying compliance gaps and remediation opportunities across multiple ASX listed clients.",business,TRUE

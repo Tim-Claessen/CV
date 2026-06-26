@@ -1,0 +1,14 @@
+---
+---
+
+<div class="web-chrome no-print">
+  <div class="chrome-inner chrome-inner--print-only">
+    <button class="print-btn" type="button" id="print-btn" title="Print or save as PDF">
+      ↓ Print / PDF
+    </button>
+  </div>
+</div>
+
+<script>
+  document.getElementById('print-btn')?.addEventListener('click', () => window.print());
+</script>

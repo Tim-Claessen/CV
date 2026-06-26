@@ -1,0 +1,27 @@
+---
+import type { Config } from '../lib/data';
+
+interface Props {
+  config: Config;
+}
+
+const { config } = Astro.props;
+---
+
+<header class="header">
+  <div>
+    <h1 class="name">{config.name}</h1>
+    <div class="tagline">{config.tagline}</div>
+  </div>
+  <div class="contact">
+    <div class="contact-row">{config.location}</div>
+    <div class="contact-row">{config.phone}</div>
+    <div class="contact-row"><a href={`mailto:${config.email}`}>{config.email}</a></div>
+    <div class="contact-row">
+      <a href={config.linkedin_url} target="_blank" rel="noopener noreferrer">{config.linkedin}</a>
+    </div>
+    <div class="contact-row">
+      <a href={config.github_url} target="_blank" rel="noopener noreferrer">{config.github}</a>
+    </div>
+  </div>
+</header>

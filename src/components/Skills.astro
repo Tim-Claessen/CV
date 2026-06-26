@@ -1,0 +1,38 @@
+---
+import SectionHead from './SectionHead.astro';
+import { proficiencySegments, type SkillDomain } from '../lib/data';
+
+interface Props {
+  skillDomains: SkillDomain[];
+}
+
+const { skillDomains } = Astro.props;
+---
+
+<section class="section" aria-labelledby="capabilities-heading">
+  <SectionHead num="04" title="Capabilities" />
+  <div id="capabilities-heading" class="visually-hidden">Capabilities</div>
+  {skillDomains.map((domain) => (
+    <div class="cap-group">
+      <div class="cap-group-title">{domain.domain}</div>
+      <div class="cap-list cap-list--compact">
+        {domain.categories.flatMap((cat) =>
+          cat.skills.map((skill) => {
+            const filled = proficiencySegments(skill.proficiency);
+            return (
+              <div class="cap-item cap-item--compact">
+                <span class="cap-name">{skill.skill}</span>
+                <span class="cap-level">{skill.proficiency}</span>
+                <span class="cap-meter" aria-hidden="true">
+                  {[1, 2, 3].map((n) => (
+                    <span class:list={['cap-seg', { on: n <= filled }]} />
+                  ))}
+                </span>
+              </div>
+            );
+          })
+        )}
+      </div>
+    </div>
+  ))}
+</section>

@@ -1,0 +1,41 @@
+---
+import WebChrome from '../components/WebChrome.astro';
+import Header from '../components/Header.astro';
+import Profile from '../components/Profile.astro';
+import Skills from '../components/Skills.astro';
+import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
+import Education from '../components/Education.astro';
+import { config, cv } from '../lib/data';
+import '../styles/cv-theme.css';
+
+const title = `${config.name} — CV`;
+const fontUrl =
+  'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={config.tagline} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={fontUrl} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <WebChrome />
+    <main class="page">
+      <Header config={config} />
+      <Profile profile={cv.profile} />
+      <Experience roles={cv.roles} config={config} />
+      <Projects projects={cv.projects} />
+      <Skills skillDomains={cv.skillDomains} />
+      <Education />
+    </main>
+  </body>
+</html>

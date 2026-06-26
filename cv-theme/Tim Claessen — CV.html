@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tim Claessen — CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="cv-theme.css" />
+
+    <!-- ========================================================================
+         RESUME DATA  —  edit only the JSON below to update the CV.
+         Styling lives entirely in cv-theme.css; structure is fixed.
+         ======================================================================== -->
+
+    <!-- ── PERSONAL DETAILS ─────────────────────────────────────────────── -->
+    <script id="resume-person" type="application/json">
+      {
+        "name": "Tim Claessen",
+        "tagline": "People Analytics · Workforce Data · Compliance",
+        "phone": "+61 431 666 341",
+        "email": "timclaessen96@gmail.com",
+        "linkedin": "linkedin.com/in/tim-claessen",
+        "linkedinUrl": "https://www.linkedin.com/in/tim-claessen/"
+      }
+    </script>
+
+    <!-- ── LENS PROFILES (one summary per filter) ───────────────────────── -->
+    <script id="resume-lenses" type="application/json">
+      {
+        "all": {
+          "label": "All",
+          "description": "Full breadth of skills and experience",
+          "profile": "Data and analytics professional with 9+ years of experience designing and delivering people analytics, payroll compliance and continuous controls solutions for Australia's largest mining and resources companies. I build end-to-end — from data pipelines and modelling through to reporting, governance and the operating models that make analytics capability sustainable. My technical foundation spans Power BI, SQL, Python and modern data platforms including Snowflake, Azure SQL and Microsoft Fabric, paired with deep domain knowledge of SAP people systems and payroll compliance. I currently lead EY's national Risk Analytics team across Oceania, with concurrent product work on a Snowflake Native App."
+        },
+        "people": {
+          "label": "People",
+          "description": "Workforce, payroll, HR analytics and compliance",
+          "profile": "People analytics and workforce data professional with 9+ years of experience delivering fit-for-purpose reporting, analytics and compliance solutions for Australia's largest mining and resources companies. I specialise in designing and building people analytics capability from the ground up — data pipelines, data models, visualisation and reporting, and the governance structures that make them sustainable. My technical foundation spans Power BI, SQL, Python and data platforms including Snowflake, Azure SQL and Microsoft Fabric, paired with deep expertise in SAP SuccessFactors, ECP and HCM. I translate complex workforce data into actionable insights for HR, Finance, Payroll and executive stakeholders, with a strong track record of embedding analytics into operational decision-making."
+        },
+        "data": {
+          "label": "Data",
+          "description": "Platforms, modelling, governance and engineering",
+          "profile": "Data engineering and platform professional with 9+ years of experience designing, building and governing analytics solutions across Australia's largest enterprises. I specialise in modern data architecture — medallion and lakehouse design, dimensional modelling, ETL pipeline development, and the governance frameworks (lineage, quality rules, semantic definitions) that make data products trustworthy and reusable. My technical stack spans Snowflake, Azure SQL, Python, SQL and Power BI, with hands-on exposure to Microsoft Fabric and Databricks. I currently co-build a Snowflake Native App focused on agent-ready, governed data products, alongside leading enterprise data platform engagements at EY."
+        },
+        "business": {
+          "label": "Business",
+          "description": "Risk, controls, audit and decision intelligence",
+          "profile": "Risk and business analytics professional with 9+ years of experience designing analytics-led solutions that enable confident decision-making at scale. I specialise in continuous controls monitoring, internal audit analytics, and reusable analytics platforms that embed risk insight directly into operational and assurance processes. I have led digital capability for a global internal audit program (100+ countries, 50+ audits annually) and designed modular risk and controls platforms reused across multiple clients. I currently lead EY's national Risk Analytics team across Oceania, blending technical delivery with strategy, operating-model design and capability uplift."
+        }
+      }
+    </script>
+
+    <!-- ── ROLES ────────────────────────────────────────────────────────── -->
+    <script id="resume-roles" type="application/json">
+      [
+        {
+          "id": "ey-director",
+          "title": "Director, Risk Analytics",
+          "company": "EY",
+          "location": "Perth",
+          "start": "Mar 2022",
+          "end": "Present",
+          "summary": "Lead EY's national Risk Analytics team across Oceania (grown from 3 to 16), with direct delivery responsibility on the largest people analytics, payroll compliance and continuous controls engagements in Australia's mining and resources sector.",
+          "bullets": [
+            { "text": "Built Power BI–based people analytics and payroll monitoring solutions for Tier 1 mining clients, enabling ongoing compliance visibility across hire-to-retire processes.", "lenses": ["people"] },
+            { "text": "Developed payroll monitoring reporting backed by SAP ECP, SuccessFactors and Pronto, integrated via Snowflake, improving identification and management of workforce compliance risks.", "lenses": ["people", "data"] },
+            { "text": "Led 20+ superannuation compliance reviews, identifying material exposure areas and guiding remediation in collaboration with the ATO and Fair Work Commission.", "lenses": ["people", "business"] },
+            { "text": "Implemented continuous controls monitoring across payroll, employee master data, leave and rostering, strengthening data integrity and supporting audit readiness.", "lenses": ["people", "business"] },
+            { "text": "Established digital analytics capability for a global internal audit program (100+ countries, 50+ audits annually), defining strategy, standardising methodologies and deploying scalable tooling.", "lenses": ["business"] },
+            { "text": "Designed and delivered analytics solutions on Azure SQL with Power BI reporting, embedding data governance frameworks and validated findings processes.", "lenses": ["data", "business"] },
+            { "text": "Built a modular risk and controls analytics platform on Azure SQL using medallion-layer architecture (ref / active / archive), reusable across multiple client engagements.", "lenses": ["data"] },
+            { "text": "Designed reusable data models and ETL pipelines integrating SAP, Snowflake and Power BI, reducing per-engagement build effort and improving data quality outcomes.", "lenses": ["data"] },
+            { "text": "Grew Oceania Risk Analytics team 5x; designed operating model, structured training program, and led AI adoption and responsible use program.", "lenses": ["people", "data", "business"] }
+          ],
+          "clients": "South32 · Fortescue · Rio Tinto · Northern Star · Chevron · Worley · Ampol"
+        },
+        {
+          "id": "unified-honey",
+          "title": "Senior Account Executive",
+          "company": "Unified Honey",
+          "location": "Concurrent",
+          "start": "Jun 2025",
+          "end": "Present",
+          "summary": "Contributor to a Snowflake Native App in the Snowflake Startup Accelerator, focused on agent-ready, governed data products bridging ERP systems with modern data platforms.",
+          "bullets": [
+            { "text": "Led go-to-market strategy, product positioning, sales collateral and competitive analysis for a Snowflake Native App targeting mining sector data governance.", "lenses": ["data", "business"] },
+            { "text": "Contributed to data governance framework design including lineage, quality rules and semantic definitions for agent-ready data products.", "lenses": ["data"] },
+            { "text": "Bridged ERP systems (SAP, Pronto, Oracle) with modern data platforms, drawing on mining industry domain expertise.", "lenses": ["people", "data"] }
+          ]
+        },
+        {
+          "id": "ey-manager",
+          "title": "Manager, People Advisory Services",
+          "company": "EY",
+          "location": "Perth",
+          "start": "Feb 2020",
+          "end": "Mar 2022",
+          "summary": "Led the Perth data analytics and automation team within People Advisory, delivering payroll, remuneration, superannuation and employment tax analytics for major Australian employers.",
+          "bullets": [
+            { "text": "Managed a 5-year workforce analytics partnership with a major healthcare provider covering rostering compliance, overtime, leave management and superannuation.", "lenses": ["people", "business"] },
+            { "text": "Built analytics solutions leveraging SAP HCM, SuccessFactors, Kronos and RITEQ, analysing workforce patterns including turnover, churn and rostering efficiency.", "lenses": ["people", "data"] },
+            { "text": "Delivered payroll compliance reviews across ASX-listed clients, engaging stakeholders across HR, Payroll, Legal, Tax and Finance.", "lenses": ["people", "business"] }
+          ]
+        },
+        {
+          "id": "mindfields",
+          "title": "Senior Consultant",
+          "company": "Mindfields",
+          "location": "Perth",
+          "start": "Jul 2019",
+          "end": "Feb 2020",
+          "summary": "Specialist consulting in process improvement, governance and intelligent automation.",
+          "bullets": [
+            { "text": "Managed a large-scale UiPath RPA implementation for a major WA mining company, delivering 6 automated processes across Finance, HR, Safety and Tax.", "lenses": ["business", "data"] },
+            { "text": "Led end-to-end delivery: process assessment, business case development, solution architecture, UAT and post-production validation.", "lenses": ["business"] }
+          ]
+        },
+        {
+          "id": "ey-consultant",
+          "title": "Consultant, People Advisory Services",
+          "company": "EY",
+          "location": "Perth",
+          "start": "Jan 2017",
+          "end": "Jun 2019",
+          "summary": "Data analytics and process improvement projects across payroll, workforce planning and HR compliance.",
+          "bullets": [
+            { "text": "Delivered hire-to-retire process reviews and workforce analytics, identifying compliance gaps and remediation opportunities across multiple ASX-listed clients.", "lenses": ["people", "business"] }
+          ]
+        }
+      ]
+    </script>
+
+    <!-- ── EARLIER ROLES (one-liner) ────────────────────────────────────── -->
+    <script id="resume-earlier" type="application/json">
+      "Research Assistant, Curtin University (2015–2016) · Sports Coach, Wesley and Penrhos (2014–2016)"
+    </script>
+
+    <!-- ── PROJECTS ─────────────────────────────────────────────────────── -->
+    <script id="resume-projects" type="application/json">
+      [
+        { "id": "P003", "client": "Fortescue", "title": "Payroll continuous controls monitoring", "description": "Designed and delivered an enterprise-grade CCM solution integrating SAP ECP and SuccessFactors, surfaced via SAP Analytics Cloud and Power BI — providing ongoing assurance over payroll accuracy and compliance.", "stack": ["SAP ECP", "SuccessFactors", "Power BI", "SAP Analytics Cloud"], "lenses": ["people", "business"] },
+        { "id": "P006", "client": "Northern Star", "title": "Payroll monitoring on Snowflake", "description": "End-to-end payroll monitoring solution with Snowflake back-end and Power BI front-end, integrating SAP ECP, SuccessFactors and Pronto. Established repeatable monitoring across heterogeneous source systems.", "stack": ["Snowflake", "Power BI", "SAP ECP", "SuccessFactors", "Pronto"], "lenses": ["people", "data"] },
+        { "id": "P011", "client": "Worley", "title": "Global internal audit digital capability", "description": "Led digital capability for a global internal audit program spanning 100+ countries and 50+ audits per annum. Set digital strategy, deployed analytics tooling and uplifted maturity from a low base.", "stack": ["Power BI", "SQL", "Analytics platforms"], "lenses": ["business"] },
+        { "id": "P012", "client": "Worley", "title": "Enterprise data quality & governance review", "description": "Led the largest data quality, governance and validation review undertaken at Worley — enterprise-scale quality assessment, governance framework design and validation across global operations.", "stack": ["Data governance", "Data quality", "Validation"], "lenses": ["data", "business"] },
+        { "id": "P015", "client": "Healthcare Provider", "title": "5-year workforce analytics partnership", "description": "Sustained workforce analytics partnership covering rostering compliance, late rostering changes, overtime payments, superannuation compliance and breaks rostering for a major Australian healthcare provider.", "stack": ["SAP HCM", "SuccessFactors", "Kronos"], "lenses": ["people", "business"] },
+        { "id": "P026", "client": "20+ organisations", "title": "Superannuation compliance reviews", "description": "Led superannuation compliance reviews across 20+ organisations covering both SG Act compliance and contractual obligations under EBAs and individual agreements. Identified material under-payment exposures.", "stack": ["SAP", "Payroll systems"], "lenses": ["people", "business"] },
+        { "id": "P027", "client": "EY", "title": "Modular risk & controls platform", "description": "Designed a modular analytics platform on Azure SQL using a medallion-layer architecture (ref/active/archive) with Power BI front-end — reusable across clients, reducing per-engagement build effort.", "stack": ["Azure SQL", "Power BI", "Medallion"], "lenses": ["data", "business"] },
+        { "id": "P031", "client": "Unified Honey", "title": "Snowflake Native App", "description": "Snowflake Native App in the Snowflake Startup Accelerator. Led go-to-market and contributed to data governance framework design — lineage, quality rules and semantic definitions for governed, agent-ready data products.", "stack": ["Snowflake", "Data governance", "Native Apps"], "lenses": ["data"] }
+      ]
+    </script>
+
+    <!-- ── CAPABILITIES (level 1–5 drives the meter) ────────────────────── -->
+    <script id="resume-skills" type="application/json">
+      [
+        {
+          "name": "Data Technical",
+          "alwaysVisible": true,
+          "items": [
+            { "name": "Power BI", "level": 5, "detail": "DAX · Power Query · RLS · paginated" },
+            { "name": "SQL", "level": 5, "detail": "Azure SQL · Snowflake · T-SQL" },
+            { "name": "Snowflake", "level": 5, "detail": "Implementation · governance · Native Apps" },
+            { "name": "Python", "level": 4, "detail": "Analysis · automation · widgets" },
+            { "name": "ETL & pipelines", "level": 5, "detail": "Design · build · monitoring" },
+            { "name": "Dimensional modelling", "level": 5, "detail": "Star/snowflake · SCD patterns" },
+            { "name": "Medallion / lakehouse", "level": 4, "detail": "Bronze/silver/gold design" },
+            { "name": "Microsoft Fabric", "level": 3, "detail": "Exposure via project work" }
+          ]
+        },
+        {
+          "name": "Data Management",
+          "alwaysVisible": true,
+          "items": [
+            { "name": "Data governance", "level": 5, "detail": "Ownership · stewardship · policy" },
+            { "name": "Data quality & validation", "level": 5, "detail": "Enterprise-scale rule-based" },
+            { "name": "Data lineage & cataloguing", "level": 4, "detail": "Source-to-consumption mapping" }
+          ]
+        },
+        {
+          "name": "Risk & Controls",
+          "alwaysVisible": false,
+          "items": [
+            { "name": "Continuous controls monitoring", "level": 5, "detail": "Payroll · finance · HR", "lenses": ["business", "people"] },
+            { "name": "Internal audit analytics", "level": 5, "detail": "Global IA program", "lenses": ["business"] },
+            { "name": "Controls design & testing", "level": 5, "detail": "Preventive & detective", "lenses": ["business", "people"] },
+            { "name": "Dynamic risk assessment", "level": 4, "detail": "Scenario-based tooling", "lenses": ["business"] }
+          ]
+        },
+        {
+          "name": "People Systems",
+          "alwaysVisible": false,
+          "items": [
+            { "name": "SAP SuccessFactors", "level": 5, "detail": "Config · implementation", "lenses": ["people"] },
+            { "name": "SAP ECP", "level": 5, "detail": "Employee Central Payroll", "lenses": ["people"] },
+            { "name": "SAP HCM", "level": 5, "detail": "Infotypes · payroll clusters", "lenses": ["people"] },
+            { "name": "Kronos", "level": 5, "detail": "Time & attendance", "lenses": ["people"] },
+            { "name": "RITEQ", "level": 4, "detail": "Rostering & T&A", "lenses": ["people"] },
+            { "name": "Pronto", "level": 4, "detail": "Mid-market ERP", "lenses": ["people", "data"] }
+          ]
+        },
+        {
+          "name": "Domain Expertise",
+          "alwaysVisible": false,
+          "items": [
+            { "name": "Payroll compliance", "level": 5, "detail": "Leave · tax · wages · hours", "lenses": ["people", "business"] },
+            { "name": "Superannuation compliance", "level": 5, "detail": "SG Act & contractual at scale", "lenses": ["people", "business"] },
+            { "name": "EBA & award interpretation", "level": 5, "detail": "Pay outcome testing", "lenses": ["people", "business"] },
+            { "name": "Rostering analytics", "level": 5, "detail": "Patterns · overtime · compliance", "lenses": ["people"] },
+            { "name": "FIFO & remote workforce", "level": 5, "detail": "Rostering · leave · fatigue", "lenses": ["people"] },
+            { "name": "Workforce planning", "level": 5, "detail": "Scenario · turnover/churn", "lenses": ["people", "business"] }
+          ]
+        },
+        {
+          "name": "Solutions & Automation",
+          "alwaysVisible": true,
+          "items": [
+            { "name": "UiPath (RPA)", "level": 5, "detail": "Assess · build · UAT · validate" },
+            { "name": "AI in analytics", "level": 4, "detail": "Practical delivery integration" },
+            { "name": "Power Automate", "level": 4, "detail": "Workflow across M365" },
+            { "name": "Power Apps", "level": 4, "detail": "Low-code apps" },
+            { "name": "Copilot Studio", "level": 3, "detail": "Low-code agents" }
+          ]
+        }
+      ]
+    </script>
+
+    <!-- ── EDUCATION ────────────────────────────────────────────────────── -->
+    <script id="resume-education" type="application/json">
+      [
+        {
+          "qualification": "Bachelor of Commerce — Economics and Finance",
+          "institution": "University of Western Australia",
+          "detail": "GPA 6.5 · WAM 78.9"
+        }
+      ]
+    </script>
+
+    <!-- ── COMMUNITY ────────────────────────────────────────────────────── -->
+    <script id="resume-community" type="application/json">
+      [
+        "Consultative Committee Member — Edith Cowan University",
+        "Public Speaker & Fundraiser — WA Police Legacy",
+        "Mental Health First Aid Officer — EY",
+        "Plasma Donor — Red Cross Lifeblood"
+      ]
+    </script>
+  </head>
+
+  <body>
+    <!-- Web-only filter chrome -->
+    <div class="web-chrome no-print">
+      <div class="chrome-inner">
+        <div class="lens-group" role="group" aria-label="Lens filter">
+          <span class="lens-label">Lens</span>
+          <button class="lens-btn" data-lens="all" aria-pressed="true">All</button>
+          <button class="lens-btn" data-lens="people" aria-pressed="false">People</button>
+          <button class="lens-btn" data-lens="data" aria-pressed="false">Data</button>
+          <button class="lens-btn" data-lens="business" aria-pressed="false">Business</button>
+        </div>
+        <button class="print-btn" onclick="window.print()" title="Print or save as PDF">↓ Print / PDF</button>
+      </div>
+      <div class="lens-description" id="lens-desc">Full breadth of skills and experience</div>
+    </div>
+
+    <main class="page" id="resume"></main>
+
+    <script>
+      // ======================================================================
+      // RENDER LOGIC — reads the JSON blocks above, paints the CV, and
+      // re-paints whenever a lens is chosen. No build step, no dependencies.
+      // ======================================================================
+      (function () {
+        const $ = (id) => JSON.parse(document.getElementById(id).textContent);
+        const data = {
+          person: $("resume-person"),
+          lenses: $("resume-lenses"),
+          roles: $("resume-roles"),
+          earlierRoles: $("resume-earlier"),
+          projects: $("resume-projects"),
+          skillGroups: $("resume-skills"),
+          education: $("resume-education"),
+          community: $("resume-community"),
+        };
+        const root = document.getElementById("resume");
+        let activeLens = "all";
+
+        // 5-point proficiency → word
+        const LEVELS = { 5: "Expert", 4: "Advanced", 3: "Proficient", 2: "Working", 1: "Familiar" };
+
+        const el = (tag, opts = {}) => {
+          const n = document.createElement(tag);
+          if (opts.cls) n.className = opts.cls;
+          if (opts.text) n.textContent = opts.text;
+          if (opts.html) n.innerHTML = opts.html;
+          if (opts.attrs) Object.entries(opts.attrs).forEach(([k, v]) => n.setAttribute(k, v));
+          return n;
+        };
+
+        // items without a lenses array are always visible
+        const lensMatch = (lenses) => {
+          if (activeLens === "all") return true;
+          if (!lenses || lenses.length === 0) return true;
+          return lenses.includes(activeLens);
+        };
+
+        const sectionHead = (num, title) => {
+          const s = el("div", { cls: "section-head" });
+          s.appendChild(el("span", { cls: "section-num", text: num }));
+          s.appendChild(el("h2", { cls: "section-title", text: title }));
+          s.appendChild(el("div", { cls: "section-rule" }));
+          return s;
+        };
+
+        const renderHeader = () => {
+          const h = el("header", { cls: "header" });
+          const left = el("div");
+          left.appendChild(el("h1", { cls: "name", text: data.person.name }));
+          left.appendChild(el("div", { cls: "tagline", text: data.person.tagline }));
+          const right = el("div", { cls: "contact" });
+          right.innerHTML = `
+            <div class="contact-row">${data.person.phone}</div>
+            <div class="contact-row"><a href="mailto:${data.person.email}">${data.person.email}</a></div>
+            <div class="contact-row"><a href="${data.person.linkedinUrl}" target="_blank" rel="noopener">${data.person.linkedin}</a></div>`;
+          h.appendChild(left);
+          h.appendChild(right);
+          return h;
+        };
+
+        const renderProfile = () => {
+          const s = el("section", { cls: "section" });
+          s.appendChild(sectionHead("01", "Profile"));
+          const wrap = el("div", { cls: "profile-wrap" });
+          const text = data.lenses[activeLens].profile;
+          const p = el("p", { cls: "profile" });
+          p.innerHTML = `<span class="dropcap">${text.charAt(0)}</span>${text.slice(1)}`;
+          wrap.appendChild(p);
+          s.appendChild(wrap);
+          return s;
+        };
+
+        const renderExperience = () => {
+          const s = el("section", { cls: "section" });
+          s.appendChild(sectionHead("02", "Experience"));
+          data.roles.forEach((role) => {
+            const r = el("article", { cls: "role", attrs: { "data-role": role.id } });
+            const meta = el("div", { cls: "role-meta" });
+            meta.innerHTML = `
+              <div class="role-dates">${role.start} <span class="date-sep">→</span> ${role.end}</div>
+              <div class="role-location">${role.location}</div>`;
+            r.appendChild(meta);
+
+            const body = el("div", { cls: "role-body" });
+            const title = el("h3", { cls: "role-title" });
+            title.innerHTML = `${role.title} <span class="role-company">· ${role.company}</span>`;
+            body.appendChild(title);
+            if (role.summary) body.appendChild(el("p", { cls: "role-summary", text: role.summary }));
+
+            const visible = (role.bullets || []).filter((b) => lensMatch(b.lenses));
+            if (visible.length) {
+              const ul = el("ul", { cls: "role-bullets" });
+              visible.forEach((b) => ul.appendChild(el("li", { text: b.text })));
+              body.appendChild(ul);
+            }
+            if (role.clients) {
+              const c = el("div", { cls: "role-clients" });
+              c.innerHTML = `<span class="role-clients-label">Key clients</span> &nbsp;${role.clients}`;
+              body.appendChild(c);
+            }
+            r.appendChild(body);
+            s.appendChild(r);
+          });
+          if (data.earlierRoles) {
+            const e = el("div", { cls: "earlier-roles" });
+            e.innerHTML = `<span class="earlier-label">Earlier</span>${data.earlierRoles}`;
+            s.appendChild(e);
+          }
+          return s;
+        };
+
+        const renderProjects = () => {
+          const s = el("section", { cls: "section page-break-before" });
+          s.appendChild(sectionHead("03", "Selected projects"));
+          const visible = data.projects.filter((p) => lensMatch(p.lenses));
+          const grid = el("div", { cls: "projects" });
+          visible.forEach((p) => {
+            const card = el("div", { cls: "project-card", attrs: { "data-project": p.id } });
+            card.innerHTML = `
+              <div class="project-head">
+                <span class="project-client">${p.client}</span>
+                <span class="project-id">${p.id}</span>
+              </div>
+              <div class="project-title">${p.title}</div>
+              <div class="project-desc">${p.description}</div>
+              <div class="project-stack">${p.stack.map((t) => `<span class="stack-chip">${t}</span>`).join("")}</div>`;
+            grid.appendChild(card);
+          });
+          s.appendChild(grid);
+          return s;
+        };
+
+        const renderCapabilities = () => {
+          const s = el("section", { cls: "section" });
+          s.appendChild(sectionHead("04", "Capabilities"));
+          data.skillGroups.forEach((group) => {
+            const items = group.alwaysVisible ? group.items : group.items.filter((i) => lensMatch(i.lenses));
+            if (!items.length) return;
+            const g = el("div", { cls: "cap-group" });
+            const gt = el("div", { cls: "cap-group-title" });
+            gt.innerHTML = `${group.name}<span class="cap-group-count">${items.length}</span>`;
+            g.appendChild(gt);
+            const list = el("div", { cls: "cap-list" });
+            items.forEach((it) => {
+              const item = el("div", { cls: "cap-item" });
+              let segs = "";
+              for (let i = 1; i <= 5; i++) {
+                segs += `<span class="cap-seg${i <= it.level ? " on" : ""}" style="animation-delay:${i * 60}ms"></span>`;
+              }
+              item.innerHTML = `
+                <div class="cap-head">
+                  <span class="cap-name">${it.name}</span>
+                  <span class="cap-level">${LEVELS[it.level] || ""}</span>
+                </div>
+                <div class="cap-meter">${segs}</div>
+                ${it.detail ? `<div class="cap-detail">${it.detail}</div>` : ""}`;
+              list.appendChild(item);
+            });
+            g.appendChild(list);
+            s.appendChild(g);
+          });
+          return s;
+        };
+
+        const renderFooter = () => {
+          const s = el("section", { cls: "section" });
+          s.appendChild(sectionHead("05", "Education & community"));
+          const grid = el("div", { cls: "footer-grid" });
+          const eduCol = el("div");
+          eduCol.appendChild(el("div", { cls: "footer-col-title", text: "Education" }));
+          data.education.forEach((e) => {
+            const item = el("div", { cls: "edu-item" });
+            item.innerHTML = `
+              <div class="edu-qual">${e.qualification}</div>
+              <div class="edu-inst">${e.institution}</div>
+              <div class="edu-detail">${e.detail}</div>`;
+            eduCol.appendChild(item);
+          });
+          const commCol = el("div");
+          commCol.appendChild(el("div", { cls: "footer-col-title", text: "Community" }));
+          const ul = el("ul", { cls: "community-list" });
+          data.community.forEach((c) => ul.appendChild(el("li", { text: c })));
+          commCol.appendChild(ul);
+          grid.appendChild(eduCol);
+          grid.appendChild(commCol);
+          s.appendChild(grid);
+          return s;
+        };
+
+        const render = () => {
+          root.innerHTML = "";
+          root.appendChild(renderHeader());
+          root.appendChild(renderProfile());
+          root.appendChild(renderExperience());
+          root.appendChild(renderProjects());
+          root.appendChild(renderCapabilities());
+          root.appendChild(renderFooter());
+          const desc = document.getElementById("lens-desc");
+          if (desc) desc.textContent = data.lenses[activeLens].description;
+        };
+
+        document.querySelectorAll(".lens-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            activeLens = btn.dataset.lens;
+            document.querySelectorAll(".lens-btn").forEach((b) =>
+              b.setAttribute("aria-pressed", b === btn ? "true" : "false")
+            );
+            render();
+          });
+        });
+
+        render();
+      })();
+    </script>
+  </body>
+</html>

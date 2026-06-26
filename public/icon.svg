@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="Tim Claessen">
+  <rect width="180" height="180" rx="36" fill="#FAF7F1"/>
+  <rect x="4" y="4" width="172" height="172" rx="32" fill="none" stroke="#A14A33" stroke-width="4"/>
+  <text
+    x="90"
+    y="118"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="72"
+    font-weight="600"
+    letter-spacing="-0.05em"
+    fill="#1F1A16"
+  >TC</text>
+  <text
+    x="90"
+    y="148"
+    text-anchor="middle"
+    font-family="Georgia, serif"
+    font-style="italic"
+    font-size="14"
+    fill="#A14A33"
+  >CV</text>
+</svg>

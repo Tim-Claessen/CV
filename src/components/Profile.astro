@@ -1,0 +1,20 @@
+---
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+  profile: string;
+}
+
+const { profile } = Astro.props;
+const first = profile.charAt(0);
+const rest = profile.slice(1);
+---
+
+<section class="section" aria-labelledby="profile-heading">
+  <SectionHead num="01" title="Profile" />
+  <div class="profile-wrap">
+    <p class="profile" id="profile-heading">
+      <span class="dropcap">{first}</span>{rest}
+    </p>
+  </div>
+</section>

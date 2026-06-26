@@ -1,0 +1,49 @@
+---
+import SectionHead from './SectionHead.astro';
+import type { Role, Config } from '../lib/data';
+
+interface Props {
+  roles: Role[];
+  config: Config;
+}
+
+const { roles, config } = Astro.props;
+---
+
+<section class="section" aria-labelledby="experience-heading">
+  <SectionHead num="02" title="Experience" />
+  <div id="experience-heading" class="visually-hidden">Experience</div>
+  {roles.map((role) => (
+    <article class="role" data-role={role.roleId}>
+      <div class="role-meta">
+        <div class="role-dates">
+          {role.start} <span class="date-sep">→</span> {role.end}
+        </div>
+        <div class="role-location">{role.location}</div>
+      </div>
+      <div class="role-body">
+        <h3 class="role-title">
+          {role.title} <span class="role-company">· {role.company}</span>
+        </h3>
+        {role.summary && <p class="role-summary">{role.summary}</p>}
+        {role.bullets.length > 0 && (
+          <ul class="role-bullets">
+            {role.bullets.map((bullet) => (
+              <li>{bullet.text}</li>
+            ))}
+          </ul>
+        )}
+        {role.clients && (
+          <div class="role-clients">
+            <span class="role-clients-label">Key clients</span>&nbsp;{role.clients}
+          </div>
+        )}
+      </div>
+    </article>
+  ))}
+  {config.earlier && (
+    <div class="earlier-roles">
+      <span class="earlier-label">Earlier</span>{config.earlier}
+    </div>
+  )}
+</section>

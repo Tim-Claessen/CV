@@ -1,0 +1,394 @@
+/* ============================================================================
+   THE LEDGER — a CV theme for Tim Claessen
+   Editorial single-column · numbered sections · scored capability meters
+   ----------------------------------------------------------------------------
+   One stylesheet, three jobs:
+     · screen view (920px reading column + lens filter chrome)
+     · print / save-as-PDF (A4, 2 pages, forced break before Projects)
+     · a token layer (:root) you can re-skin in seconds
+   Pair it with the matching HTML example and feed both to Claude.
+   ============================================================================ */
+
+/* ---------------------------------------------------------------------------
+   1 · DESIGN TOKENS  — change the brand here, nothing else
+   --------------------------------------------------------------------------- */
+:root {
+  /* Ink & paper — warm neutral, low saturation */
+  --ink:        #1F1A16;   /* headlines, primary text            */
+  --ink-soft:   #3A332C;   /* body copy                          */
+  --mid:        #6A6056;   /* secondary / summaries              */
+  --muted:      #9A8F82;   /* meta, captions, empty meter ticks  */
+  --line:       #E5DCCD;   /* hairlines                          */
+  --paper:      #FAF7F1;   /* page background                    */
+  --paper-warm: #F1EADD;   /* chips, soft fills                  */
+
+  /* Accent — the single brand colour. Swap these three to re-theme.
+     Default: clay / burnt sienna.  (Teal alt in the guide.)        */
+  --accent:      #A14A33;
+  --accent-soft: #F2E2D9;
+  --accent-dark: #7C3621;
+
+  /* Type */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:    "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    "IBM Plex Mono", "SF Mono", Consolas, monospace;
+
+  /* Rhythm */
+  --reading-width: 920px;
+  --section-gap:   34px;
+}
+
+/* ---------------------------------------------------------------------------
+   2 · RESET
+   --------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+  background:
+    radial-gradient(120% 80% at 100% 0%, #FBF9F4 0%, var(--paper) 55%) fixed;
+  font-weight: 400;
+}
+
+/* ---------------------------------------------------------------------------
+   3 · WEB-ONLY CHROME  (lens filter + print button) — hidden in print
+   --------------------------------------------------------------------------- */
+.web-chrome {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250, 247, 241, 0.86);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border-bottom: 1px solid var(--line);
+}
+.chrome-inner {
+  max-width: var(--reading-width); margin: 0 auto;
+  padding: 13px 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+}
+.lens-group { display: flex; align-items: center; gap: 5px; }
+.lens-label {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted); margin-right: 10px;
+}
+.lens-btn {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  color: var(--mid); background: transparent;
+  border: 1px solid transparent; padding: 6px 13px; border-radius: 2px;
+  cursor: pointer; transition: all 0.18s ease; letter-spacing: 0.02em;
+}
+.lens-btn:hover { color: var(--ink); background: var(--paper-warm); }
+.lens-btn[aria-pressed="true"] {
+  color: var(--paper); background: var(--accent); border-color: var(--accent);
+}
+.print-btn {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--paper); background: var(--ink); border: 1px solid var(--ink);
+  padding: 8px 16px; border-radius: 2px; cursor: pointer;
+  transition: all 0.18s ease; display: inline-flex; align-items: center; gap: 7px;
+}
+.print-btn:hover { background: var(--accent); border-color: var(--accent); }
+.lens-description {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 13px; color: var(--mid); text-align: center;
+  padding: 9px 32px 0;
+}
+
+/* ---------------------------------------------------------------------------
+   4 · PAGE CONTAINER
+   --------------------------------------------------------------------------- */
+.page {
+  max-width: var(--reading-width); margin: 0 auto;
+  padding: 60px 64px 90px;
+}
+
+/* ---------------------------------------------------------------------------
+   5 · HEADER
+   --------------------------------------------------------------------------- */
+.header {
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 22px; margin-bottom: var(--section-gap);
+  display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: end;
+}
+.name {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: 56px; line-height: 0.92; letter-spacing: -0.025em;
+  color: var(--ink); font-variation-settings: "opsz" 144;
+}
+.tagline {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-top: 14px;
+}
+.contact { text-align: right; font-size: 12.5px; color: var(--mid); line-height: 1.85; }
+.contact a {
+  color: var(--mid); text-decoration: none;
+  border-bottom: 1px solid var(--line); transition: all 0.15s;
+}
+.contact a:hover { color: var(--accent); border-color: var(--accent); }
+.contact-row { white-space: nowrap; font-family: var(--font-mono); font-size: 11.5px; }
+
+/* ---------------------------------------------------------------------------
+   6 · SECTION HEADINGS  — mono index number + italic display title
+   --------------------------------------------------------------------------- */
+.section { margin-bottom: var(--section-gap); }
+.section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
+.section-num {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; color: var(--accent);
+  align-self: center; padding-top: 2px;
+}
+.section-title {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 22px; font-weight: 500; letter-spacing: -0.01em; color: var(--ink);
+}
+.section-rule { flex: 1; height: 1px; background: var(--line); align-self: center; }
+
+/* ---------------------------------------------------------------------------
+   7 · PROFILE  — drop cap
+   --------------------------------------------------------------------------- */
+.profile-wrap { max-width: 800px; }
+.profile { font-size: 14.5px; line-height: 1.72; color: var(--ink-soft); }
+.profile .dropcap {
+  font-family: var(--font-display); font-weight: 600; font-size: 66px;
+  line-height: 0.8; float: left; padding: 9px 14px 0 0; margin-top: 2px;
+  color: var(--accent); font-variation-settings: "opsz" 144;
+}
+
+/* ---------------------------------------------------------------------------
+   8 · EXPERIENCE
+   --------------------------------------------------------------------------- */
+.role {
+  display: grid; grid-template-columns: 138px 1fr; gap: 30px;
+  margin-bottom: 24px; break-inside: avoid; page-break-inside: avoid;
+}
+.role-meta { padding-top: 6px; position: relative; }
+.role-meta::before {
+  content: ""; position: absolute; left: 0; top: 11px;
+  width: 18px; height: 2px; background: var(--accent);
+}
+.role-dates {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 500;
+  color: var(--ink); letter-spacing: 0.01em; line-height: 1.5;
+  white-space: nowrap; padding-top: 14px;
+}
+.role-dates .date-sep { color: var(--accent); margin: 0 3px; }
+.role-location {
+  font-family: var(--font-mono); font-size: 9px; color: var(--muted);
+  letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px;
+}
+.role-body { min-width: 0; }
+.role-title {
+  font-family: var(--font-display); font-size: 18px; font-weight: 500;
+  color: var(--ink); line-height: 1.25; margin-bottom: 3px;
+}
+.role-title .role-company { font-style: italic; color: var(--accent); }
+.role-summary { font-size: 13px; color: var(--mid); margin: 6px 0 10px; line-height: 1.55; }
+.role-bullets { list-style: none; }
+.role-bullets li {
+  font-size: 13px; line-height: 1.55; padding-left: 19px; margin-bottom: 5px;
+  position: relative; color: var(--ink-soft);
+}
+.role-bullets li::before {
+  content: ""; position: absolute; left: 0; top: 7px;
+  width: 6px; height: 6px; border: 1.3px solid var(--accent);
+  border-radius: 50%;
+}
+.role-clients {
+  font-family: var(--font-mono); font-size: 10.5px; color: var(--mid);
+  margin-top: 11px; padding-top: 9px; border-top: 1px dashed var(--line);
+  letter-spacing: 0.01em;
+}
+.role-clients-label {
+  color: var(--accent); font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; font-size: 9.5px;
+}
+
+/* ---------------------------------------------------------------------------
+   9 · SELECTED PROJECTS  — cards with accent keyline
+   --------------------------------------------------------------------------- */
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.project-card {
+  border: 1px solid var(--line); border-top: 2px solid var(--accent);
+  border-radius: 0 0 3px 3px; padding: 15px 17px 14px; background: var(--paper);
+  break-inside: avoid; page-break-inside: avoid;
+  display: flex; flex-direction: column; transition: box-shadow .18s, border-color .18s;
+}
+.project-card:hover { box-shadow: 0 6px 22px rgba(120, 70, 40, .10); }
+.project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 7px; }
+.project-client {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+}
+.project-id { font-family: var(--font-mono); font-size: 9px; color: var(--muted); letter-spacing: 0.06em; }
+.project-title {
+  font-family: var(--font-display); font-size: 15px; font-weight: 500;
+  line-height: 1.25; color: var(--ink); margin-bottom: 6px;
+}
+.project-desc { font-size: 12px; line-height: 1.5; color: var(--ink-soft); flex: 1; }
+.project-stack { margin-top: 11px; display: flex; flex-wrap: wrap; gap: 4px; }
+.stack-chip {
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.03em;
+  color: var(--mid); background: var(--paper-warm); padding: 3px 8px; border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   10 · CAPABILITIES  — the scored centrepiece
+        Each item: name · level word · 5-segment meter · detail
+   --------------------------------------------------------------------------- */
+.cap-group { margin-bottom: 20px; break-inside: avoid; page-break-inside: avoid; }
+.cap-group-title {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 12px; padding-bottom: 5px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: baseline; gap: 10px;
+}
+.cap-group-count { color: var(--muted); letter-spacing: 0.06em; font-size: 9px; }
+.cap-list { display: grid; grid-template-columns: 1fr 1fr; gap: 13px 30px; }
+.cap-item { min-width: 0; }
+.cap-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 5px; }
+.cap-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.cap-level {
+  font-family: var(--font-mono); font-size: 8.5px; font-weight: 500;
+  letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent);
+  white-space: nowrap;
+}
+.cap-meter { display: flex; gap: 3px; margin-bottom: 5px; }
+.cap-seg {
+  flex: 1; height: 6px; border-radius: 1px; background: var(--line);
+  transform-origin: left center;
+}
+.cap-seg.on {
+  background: var(--accent);
+  animation: capfill 0.5s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes capfill { from { transform: scaleX(0); opacity: .3; } to { transform: scaleX(1); opacity: 1; } }
+.cap-detail { font-family: var(--font-mono); font-size: 9.5px; line-height: 1.4; color: var(--muted); letter-spacing: 0.01em; }
+
+/* ---------------------------------------------------------------------------
+   11 · EDUCATION + COMMUNITY
+   --------------------------------------------------------------------------- */
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 38px; }
+.footer-col-title {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 13px; padding-bottom: 5px; border-bottom: 1px solid var(--line);
+}
+.edu-item { margin-bottom: 10px; }
+.edu-qual { font-family: var(--font-display); font-size: 15px; font-weight: 500; color: var(--ink); line-height: 1.25; }
+.edu-inst { font-size: 12.5px; color: var(--mid); font-style: italic; margin-top: 3px; }
+.edu-detail { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); margin-top: 4px; }
+.community-list { list-style: none; font-size: 12.5px; color: var(--ink-soft); line-height: 1.85; }
+.community-list li { padding-left: 16px; position: relative; }
+.community-list li::before {
+  content: ""; position: absolute; left: 3px; top: 9px;
+  width: 5px; height: 5px; background: var(--accent); transform: rotate(45deg);
+}
+.earlier-roles {
+  font-size: 12px; color: var(--mid); margin-top: 10px;
+  padding-top: 9px; border-top: 1px dashed var(--line);
+}
+.earlier-label {
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent); margin-right: 8px;
+}
+
+/* ---------------------------------------------------------------------------
+   12 · MOBILE
+   --------------------------------------------------------------------------- */
+@media (max-width: 720px) {
+  .page { padding: 34px 22px 56px; }
+  .chrome-inner { padding: 12px 18px; }
+  .header { grid-template-columns: 1fr; }
+  .name { font-size: 40px; }
+  .contact { text-align: left; }
+  .role { grid-template-columns: 1fr; gap: 8px; }
+  .role-meta { padding-top: 0; }
+  .role-meta::before { display: none; }
+  .role-dates { padding-top: 0; }
+  .projects, .cap-list, .footer-grid { grid-template-columns: 1fr; }
+  .profile .dropcap { font-size: 52px; }
+}
+
+/* ---------------------------------------------------------------------------
+   13 · PRINT  —  A4 · 2 pages · forced break before Projects
+   --------------------------------------------------------------------------- */
+@page { size: A4; margin: 13mm 14mm; }
+
+@media print {
+  :root { --paper: #ffffff; --paper-warm: #f6f1e9; }
+  html, body { background: #fff !important; }
+  body { font-size: 9.4pt; line-height: 1.4; }
+
+  .web-chrome, .lens-description, .no-print { display: none !important; }
+  .page { max-width: none; margin: 0; padding: 0; }
+
+  .page-break-before { page-break-before: always; break-before: page; }
+
+  .header { padding-bottom: 9pt; margin-bottom: 12pt; border-bottom-width: 1.2pt; }
+  .name { font-size: 27pt; }
+  .tagline { font-size: 7.5pt; margin-top: 4pt; }
+  .contact { font-size: 8.5pt; line-height: 1.55; }
+  .contact-row { font-size: 8pt; }
+  .contact a { border-bottom: none; color: var(--ink); }
+
+  .section { margin-bottom: 11pt; }
+  .section-head { margin-bottom: 7pt; }
+  .section-title { font-size: 13pt; }
+  .section-num { font-size: 8pt; }
+
+  .profile { font-size: 9pt; line-height: 1.5; }
+  .profile .dropcap { font-size: 40pt; padding: 4pt 8pt 0 0; }
+
+  .role { grid-template-columns: 96pt 1fr; gap: 14pt; margin-bottom: 8pt; }
+  .role-meta::before { top: 8pt; width: 12pt; }
+  .role-dates { font-size: 7.5pt; padding-top: 9pt; }
+  .role-location { font-size: 6.5pt; margin-top: 4pt; }
+  .role-title { font-size: 11.5pt; }
+  .role-summary { font-size: 8.4pt; margin: 2pt 0 4pt; line-height: 1.4; }
+  .role-bullets li { font-size: 8.4pt; line-height: 1.4; padding-left: 11pt; margin-bottom: 2.5pt; }
+  .role-bullets li::before { width: 4pt; height: 4pt; top: 4.5pt; }
+  .role-clients { font-size: 7.4pt; margin-top: 4pt; padding-top: 3pt; }
+  .role-clients-label { font-size: 6.8pt; }
+
+  .projects { gap: 7pt; }
+  .project-card { padding: 7pt 9pt; border-top-width: 1.5pt; }
+  .project-client { font-size: 6.8pt; }
+  .project-id { font-size: 6pt; }
+  .project-title { font-size: 9.5pt; margin-bottom: 3pt; }
+  .project-desc { font-size: 7.6pt; line-height: 1.36; }
+  .project-stack { margin-top: 4pt; gap: 2.5pt; }
+  .stack-chip { font-size: 6pt; padding: 1pt 4pt; }
+
+  .cap-group { margin-bottom: 8pt; }
+  .cap-group-title { font-size: 7.5pt; margin-bottom: 5pt; padding-bottom: 2.5pt; }
+  .cap-list { grid-template-columns: 1fr 1fr 1fr; gap: 6pt 16pt; }
+  .cap-head { margin-bottom: 2.5pt; }
+  .cap-name { font-size: 8.2pt; }
+  .cap-level { font-size: 6pt; }
+  .cap-meter { gap: 2pt; margin-bottom: 2.5pt; }
+  .cap-seg { height: 3.6pt; }
+  .cap-seg.on { animation: none; }
+  .cap-detail { font-size: 6.4pt; line-height: 1.3; }
+
+  .footer-grid { gap: 26pt; }
+  .footer-col-title { font-size: 7.5pt; margin-bottom: 6pt; padding-bottom: 2.5pt; }
+  .edu-qual { font-size: 10pt; }
+  .edu-inst { font-size: 8.5pt; }
+  .edu-detail { font-size: 7.5pt; }
+  .community-list { font-size: 8.5pt; line-height: 1.6; }
+  .earlier-roles { font-size: 8pt; margin-top: 5pt; padding-top: 3pt; }
+  .earlier-label { font-size: 6.8pt; }
+
+  a { color: var(--ink) !important; text-decoration: none; }
+}

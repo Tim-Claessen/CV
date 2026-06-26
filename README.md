@@ -1,231 +1,270 @@
-# Tim Claessen — Resume
+# Tim Claessen — CV site
 
-A single-file, code-driven resume. One `index.html` contains the structure, styles, content and render logic. Interactive on the web with three lens filters; prints cleanly to a 2-page A4 PDF, with each lens producing what feels like a tailored CV.
+A lightweight, CSV-driven CV that builds into a static site and exports to PDF. Edit the CSVs in `/data`, push, and the site rebuilds. Deployed at [cv.timclaessen.com](https://cv.timclaessen.com).
 
----
+## Features
+
+- **Single source of truth** — plain CSV files in `/data` open in Excel or Sheets and diff cleanly in git.
+- **Persona views** — three lenses (`all`, `business`, `data`) filter roles, bullets, projects, skills, and the profile summary. The active lens is chosen at build time.
+- **Visibility toggles** — every record has a `visible` flag so content can be hidden without deleting it.
+- **Skills with verbal levels** — Expert / Proficient / Familiar, each with a subtle 3-segment indicator, grouped by domain.
+- **PDF export** — a Python script renders the built page to PDF and archives a dated copy when content changes.
+
+## Stack
+
+| Layer | Choice |
+| --- | --- |
+| Site | [Astro](https://docs.astro.build) (static output) |
+| Hosting | [Cloudflare Pages](https://pages.cloudflare.com/) |
+| Data | CSV parsed at build time with [papaparse](https://www.papaparse.com/) |
+| PDF | [Playwright](https://playwright.dev/python/) (Python) |
+| Interactivity | Vanilla JS (print button only) — no React or UI kit |
+
+Node **22+** (see `.node-version` and `package.json` engines).
 
 ## Quick start
 
-```bash
-git clone <repo-url>
-cd resume
-open index.html        # macOS — or just double-click
+```sh
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # output to dist/
+npm run preview   # serve the production build locally
 ```
 
-No build step. No dependencies. No framework.
+## Project structure
 
----
-
-## The lens model
-
-Three lenses, each producing a distinct CV variant:
-
-| Lens | Audience |
-|---|---|
-| **People Analytics** | Workforce, payroll, HR analytics and compliance roles |
-| **Data Management** | Data platform, engineering, governance roles |
-| **Business Analytics** | Risk, controls, audit, decision intelligence roles |
-| **All** | Full view for browsing (not intended for print) |
-
-When a lens is active, the resume changes in three ways:
-
-1. **Profile paragraph** — completely different opener for that audience
-2. **Role bullets** — bullets tagged for that lens are shown; others are hidden
-3. **Projects and skills** — filtered to those tagged for that lens
-
-Roles themselves are always shown — career chronology should not have unexplained gaps.
-
----
-
-## Editing content
-
-All content lives in a single JSON block near the top of `index.html`:
-
-```html
-<script id="resume-data" type="application/json">
-{ ... }
-</script>
+```text
+data/                   # SOURCE OF TRUTH — edit these day to day
+  config.csv
+  personas.csv
+  roles.csv
+  role_bullets.csv
+  projects.csv
+  skills.csv
+scripts/
+  export_pdf.py         # render built site → PDF, archive dated copy
+cv/                   # committed PDF output (created on first export)
+  cv-latest.pdf
+  archive/cv-YYYY-MM-DD.pdf
+src/
+  lib/data.ts           # load + parse CSVs, filter by lens, expose typed records
+  components/         # Header, Profile, Experience, Projects, Skills, Education, …
+  pages/index.astro     # single page
+  styles/cv-theme.css
+public/                 # favicons and static assets
+astro.config.mjs
+package.json
 ```
 
-Edit, save, reload.
+## Updating content
 
-### Schema
+| Task | What to do |
+| --- | --- |
+| Add a role | Row in `roles.csv` + bullets in `role_bullets.csv` |
+| Add a project or skill | One row in the relevant CSV |
+| Hide anything | Set `visible` to `FALSE` |
+| Re-tag for a persona | Edit the `personas` cell (`business`, `data`, or `business\|data`) |
+| Change which lens the site shows | Set `publish_lens` in `config.csv` to `all`, `business`, or `data` |
+| Refresh the PDF | `npm run pdf` (or `python scripts/export_pdf.py --lens business`) |
 
-```
-person        — name, tagline, contact details
-lenses        — for each lens: label, description, profile paragraph
-roles[]       — career history, newest first
-  ├─ bullets[].lenses[]  ← which lenses this bullet should show under
-  └─ clients              ← optional "key clients" line
-earlierRoles  — single-line earlier history string
-projects[]    — project cards, each tagged with lenses[]
-skillGroups[] — your 5 skill groups:
-                  • Data Technical (alwaysVisible: true)
-                  • Risk (alwaysVisible: false)
-                  • Systems (alwaysVisible: false)
-                  • Domain Expertise (alwaysVisible: false)
-                  • Solutions & Automation (alwaysVisible: true)
-education[]
-community[]
-```
+Do not hard-code CV content in components. If a field is missing from the CSVs, add it to the data model first.
 
-### Lens tagging
+## Data model
 
-Three values: `people`, `data`, `business`.
+Lens keys are `all`, `business`, and `data`.
 
-```json
-{ "lenses": ["people", "data"] }   // shows under People and Data
-{ "lenses": ["business"] }          // shows under Business only
-```
+### Persona tagging
 
-Items in **always-visible skill groups** (Data Technical, Solutions & Automation) don't need a `lenses` array — they show under every lens. Tag only the items in **lens-filtered groups** (Risk, Systems, Domain Expertise).
+Applies to roles, role bullets, projects, and skills. The `personas` column is a pipe-delimited subset of `{business, data}`.
 
-### Skill levels
+- `all` view shows every visible record.
+- A persona view shows records whose `personas` list includes that persona.
+- `business|data` means the record appears in both persona views.
+- An empty `personas` value means the record only appears in the `all` view.
 
-Dots are 1–5. `1` = familiar, `3` = proficient, `5` = expert. Detail subtitles (the small grey text under the skill name) show on web only; print hides them automatically.
+`visible` is `TRUE`/`FALSE`. `FALSE` excludes the record everywhere, including PDF output.
 
----
+### config.csv — `key,value`
 
-## Generating the PDF
+Single-row-per-key settings: `name`, `tagline`, `location`, `email`, `phone`, `linkedin`, `linkedin_url`, `github`, `github_url`, `publish_lens`, `earlier` (a one-line footnote of pre-2017 roles).
 
-1. Open `index.html` in **Chrome or Edge** (best print fidelity).
-2. Select your lens. Profile, bullets, projects and lens-filtered skills all update.
-3. `Cmd/Ctrl + P` → Destination: *Save as PDF*.
-4. Settings:
-   - Layout: **Portrait**
-   - Paper size: **A4**
-   - Margins: **Default** (the `@page` CSS rule controls actual margins — 14mm all round)
-   - Scale: **100%** (not "Fit to page")
-   - **Uncheck** "Headers and footers"
-   - **Check** "Background graphics"
-5. Save.
+### personas.csv — `key,label,description,profile`
 
-Verified page counts:
-- **People** lens: 2 pages ✓
-- **Data** lens: 2 pages ✓
-- **Business** lens: 2 pages ✓
-- **All** lens: 4 pages (browse view — not intended for print)
+One row per lens. `label` is display text, `description` the sub-label, `profile` the summary paragraph shown for that lens.
 
-The print layout forces a page break before *Selected projects*, so page 1 = header + profile + experience, page 2 = projects + capabilities + education/community. Identical structure across lenses.
+### roles.csv — `role_id,title,company,location,start,end,clients,summary,personas,visible`
 
----
+Career history, newest first by file order. `clients` is an optional inline list. `summary` is the role's opening line; bullet points live in `role_bullets.csv`.
 
-## Hosting on GitHub Pages
+### role_bullets.csv — `role_id,order,text,personas,visible`
 
-1. Push `index.html` to a GitHub repo.
-2. Settings → Pages → Source: *Deploy from branch* → `main` → `/ (root)`.
-3. Live at `https://<username>.github.io/<repo>/`.
+One row per bullet. Joined to roles on `role_id`, sorted by `order`. A bullet is hidden if its own `personas` does not match the active lens, even when its parent role is shown.
 
-Custom domain optional. Nothing to build.
+### projects.csv — `project_id,client,title,summary,systems,personas,featured,visible`
 
----
+Selected projects. `systems` is a `|`-separated list rendered as tags/chips.
 
-## VS Code workflow
+### skills.csv — `skill_id,domain,category,skill,description,proficiency,personas,featured,visible`
 
-- Install **Live Server** (Ritwick Dey) — auto-reload on save.
-- Right-click `index.html` → *Open with Live Server*.
+`proficiency` is one of `Expert`, `Proficient`, or `Familiar`. Grouped by `domain` then `category`. `featured = Y` skills can surface in a compact strip; the full grouped set appears in the Capabilities section.
 
----
+## Persona / lens behaviour
 
-## Customising
+The site renders **one lens per build**. Filtering happens in `src/lib/data.ts` at build time — there is no client-side lens switcher.
 
-### Colour
+1. Set `publish_lens` in `config.csv` (`all`, `business`, or `data`).
+2. Or override for a single build with the `CV_LENS` environment variable (used by the PDF script's `--lens` flag).
 
-In `index.html`, the `:root` block:
+The profile paragraph, roles, bullets, projects, and skills all reflect the chosen lens. To produce persona-specific PDFs, run `python scripts/export_pdf.py --lens business`.
 
-```css
---accent: #0F766E;        /* deep teal */
---accent-soft: #d9eae8;
---accent-dark: #0a544e;
-```
+## Page layout
 
-Change all three together to recolour. The greyscale base (`--ink`, `--mid`, `--paper`) is intentionally restrained.
+Single page, in order:
 
-### Fonts
+1. Header (name, contact, links)
+2. Profile (per-lens summary)
+3. Experience (roles + bullets)
+4. Selected projects
+5. Capabilities (skills grouped by domain)
+6. Education (static: UWA, Bachelor of Commerce, Economics and Finance, GPA 6.5 / WAM 78.9)
+7. Earlier roles footnote (from `config.earlier`)
 
-- **Fraunces** — display serif for name, drop cap, section titles
-- **IBM Plex Sans** — body
-- **IBM Plex Mono** — labels, dates, meta
+A print button in the web chrome triggers the browser print dialog. Print CSS hides controls and fits cleanly to A4.
 
-Swap by changing the Google Fonts URL and the `--font-display` / `--font-body` / `--font-mono` variables in `:root`.
+## Design
 
----
+- **Type** — Fraunces (display), IBM Plex Sans (body), IBM Plex Mono (meta, dates, tags).
+- **Palette** — warm off-white background, near-black ink, restrained teal accent. Single column, max width ~820px.
+- **Skills** — verbal level plus a 3-segment indicator: Expert = 3/3, Proficient = 2/3, Familiar = 1/3.
+- **Print** — lens bar and controls hidden; content fits A4 with the selected lens preserved.
 
-## Troubleshooting
+## Commands
 
-### A lens overflows to 3 pages
+| Command | Action |
+| --- | --- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Start dev server at `localhost:4321` |
+| `npm run build` | Build production site to `./dist/` |
+| `npm run preview` | Preview the build locally |
+| `npm run pdf` | Build and export `cv/cv-latest.pdf` |
+| `npm run astro -- --help` | Astro CLI help |
 
-Most likely culprits:
+## PDF export
 
-1. You added a long new role bullet — split or shorten it.
-2. You added a new project — check whether to demote an older one.
-3. You expanded the profile paragraph — keep around 5 sentences.
+One-time Playwright setup:
 
-To tighten globally, in the `@media print` block:
-- Reduce `.role { margin-bottom }` from `7pt` to `5pt`
-- Reduce `.section { margin-bottom }` from `10pt` to `8pt`
-
-### Print colours look washed out
-
-Make sure **Background graphics** is checked in the print dialog.
-
-### Dates overlapping role titles
-
-If you add a longer date range, widen the date column. In the `@media print` block, increase the first value in `.role { grid-template-columns: 92pt 1fr; }`.
-
-### Different browsers render differently
-
-Chrome/Edge most consistent. Use Chrome for the canonical PDF.
-
----
-
-## Roadmap / parked ideas
-
-Things considered but deliberately not built — listed so they're not lost:
-
-### Profile-based "named exports"
-Beyond the three lenses, define named configs (e.g. "MinRes Senior Analyst", "Snowflake Native App PM") that pick a lens plus an override profile paragraph plus a curated project subset.
-
-### Filter-aware PDF export button
-A dedicated *Export* button that takes the current lens, locks state, optionally adds a target-role-specific opening line, then triggers print — making the PDF a deliberate artifact rather than a snapshot of browsing state.
-
-### Client logos
-Quiet logo strip under the "Key clients" line on web only. Source from a `logos/` folder, grayscale by default, full colour on hover. Skipped for portability and ATS safety.
-
-### ATS-friendly export mode
-A second print stylesheet that strips colour, columns and decorative elements — pure single-column text — for ATS pipelines. Toggle via `?ats` query parameter.
-
-### Per-role skill highlights
-Optional `highlightSkills: ["SAP ECP", "Power BI"]` per role — renders as small chips below the role summary. Tailoring without rewriting bullets.
-
-### Paged.js for advanced print
-If pagination ever gets fiddly, [Paged.js](https://pagedjs.org/) gives proper print typography in-browser. Adds ~50KB.
-
-### Theme variants
-Light + dark for web, print always light. Currently light only.
-
-### Auto-sync from Google Sheets
-A small Python script pulling from the Skills_and_Experience spreadsheet to regenerate the JSON block. Useful if the sheet becomes the source of truth.
-
-### Multiple targets in one repo
-Folder per target (`/minres/`, `/snowflake/`, `/in-house/`) sharing an extracted `style.css`. Trade-off: loses single-file portability.
-
----
-
-## File structure
-
-```
-resume/
-├── index.html      ← everything: HTML, CSS, JSON data, JS render logic
-└── README.md       ← this file
+```sh
+pip install playwright && playwright install chromium
 ```
 
-Deliberately flat.
+Then:
 
----
+```sh
+npm run pdf
+```
 
-## Credits
+- Always overwrites `cv/cv-latest.pdf`.
+- Computes a hash of all `/data/*.csv`. If the hash differs from the last run **and** no archive exists for today, also writes `cv/archive/cv-YYYY-MM-DD.pdf` (at most one per day).
+- Persona-specific: `python scripts/export_pdf.py --lens business`
+- Skip rebuild: `python scripts/export_pdf.py --no-build`
 
-- Fonts: [Fraunces](https://fonts.google.com/specimen/Fraunces) by Undercase Type · [IBM Plex](https://www.ibm.com/plex/) by IBM
-- Hosting: GitHub Pages
-- Built with Claude
+`/cv/.last_data_hash` is gitignored; the PDFs themselves remain tracked.
+
+## TODO: Set up auto-publish (GitHub → Cloudflare)
+
+Do this once. When it is done, every time you push changes to GitHub, Cloudflare will rebuild your CV and put it live on the web. You will not need to upload files by hand.
+
+### Part 2 — Connect Cloudflare Pages to GitHub
+
+- [ ] **5. Create a free Cloudflare account** (if you do not have one) at [dash.cloudflare.com](https://dash.cloudflare.com/).
+
+- [ ] **6. Open Workers & Pages.** In the left menu, click **Workers & Pages**.
+
+- [ ] **7. Create a Pages project.** Click **Create** → **Pages** → **Connect to Git**.
+
+- [ ] **8. Authorise GitHub.** Cloudflare will ask to connect to your GitHub account. Click **Connect GitHub** and approve access. You can limit access to just this one repo if you prefer.
+
+- [ ] **9. Select your repository.** Pick the CV repo you created in Part 1. Click **Begin setup**.
+
+- [ ] **10. Fill in the build settings** exactly like this:
+
+  | Setting | Value |
+  | --- | --- |
+  | **Production branch** | `main` |
+  | **Framework preset** | None (or Astro if offered) |
+  | **Build command** | `npm run build` |
+  | **Build output directory** | `dist` |
+
+  Cloudflare should pick up Node 22 from the `.node-version` file in this repo. You do not need to change anything else.
+
+- [ ] **11. Click Save and Deploy.** Cloudflare will install packages, run the build, and publish your site. The first build takes a few minutes.
+
+- [ ] **12. Check the live site.** When the build finishes, Cloudflare shows a link like `https://something.pages.dev`. Click it — your CV should appear.
+
+### Part 3 — Use your own domain (optional)
+
+Skip this if you are happy with the `.pages.dev` link for now.
+
+- [ ] **13. Add a custom domain.** In your Pages project, go to **Custom domains** → **Set up a custom domain**.
+
+- [ ] **14. Enter your domain.** For example: `cv.timclaessen.com`.
+
+- [ ] **15. Follow Cloudflare’s DNS instructions.**
+  - If your domain is already on Cloudflare, it usually sets up DNS for you.
+  - If not, you add a **CNAME** record: name `cv`, target the `.pages.dev` address Cloudflare gives you.
+
+- [ ] **16. Wait for DNS.** It can take a few minutes (sometimes up to an hour) before `cv.timclaessen.com` works.
+
+### After setup — how updates work
+
+Once the steps above are done:
+
+1. Edit a file (usually something in `data/`).
+2. Save and push to GitHub:
+
+   ```sh
+   git add .
+   git commit -m "Update CV"
+   git push
+   ```
+
+3. Cloudflare notices the push, runs `npm run build` again, and updates the live site. No extra steps needed.
+
+You can watch builds in the Cloudflare dashboard under your Pages project → **Deployments**. If a build fails, open the build log — it usually shows what went wrong (often a typo in a CSV file).
+
+### Notes
+
+- The site is **static** — Cloudflare just hosts the built files in `dist/`. There is no server to manage.
+- To publish a specific persona view on the live site, set `publish_lens` in `config.csv` before you push (`all`, `business`, or `data`).
+
+## For AI agents
+
+When working on this repo:
+
+- **Do not invent CV content.** Everything renders from `/data`. If a field is missing, stop and ask rather than hard-coding.
+- **Keep dependencies minimal** — Astro, papaparse, and TypeScript only. Static output (`output: 'static'`).
+- **Respect the persona tagging rules** above when adding or filtering records.
+- **Match existing conventions** — read surrounding components and `data.ts` before changing structure.
+
+### Development server
+
+When starting the dev server in an agent session, prefer background mode:
+
+```sh
+astro dev --background
+```
+
+Manage it with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+
+### Astro reference
+
+Full documentation: https://docs.astro.build
+
+Useful guides:
+
+- [Routing](https://docs.astro.build/en/guides/routing/)
+- [Astro components](https://docs.astro.build/en/basics/astro-components/)
+- [Framework components](https://docs.astro.build/en/guides/framework-components/)
+- [Content collections](https://docs.astro.build/en/guides/content-collections/)
+- [Styling](https://docs.astro.build/en/guides/styling/)
+- [Internationalization](https://docs.astro.build/en/guides/internationalization/)
