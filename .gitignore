@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # PDF export state (PDFs in cv/ remain tracked)
 /cv/.last_data_hash
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
