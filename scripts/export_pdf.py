@@ -2,12 +2,11 @@
 """Render the built CV site to PDF.
 
 - Always writes cv/cv-latest.pdf
-- Archives cv/archive/cv-YYYY-MM-DD.pdf only when /data has changed since the
-  last run, and at most one file per day.
+- Archives cv/archive/cv-YYYY-MM-DD.pdf (one file per day; overwrites today's)
 
 Setup (once):
-    pip install playwright
-    playwright install chromium
+    pip install -r requirements.txt
+    python -m playwright install chromium
 
 Usage:
     python scripts/export_pdf.py                 # build + render 'all'
@@ -15,28 +14,27 @@ Usage:
     python scripts/export_pdf.py --no-build      # skip 'npm run build'
 """
 from __future__ import annotations
-import argparse, datetime, functools, hashlib, http.server, os, socket
+import argparse, datetime, functools, http.server, os, shutil, socket
 import socketserver, subprocess, sys, threading
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
-DATA = ROOT / "data"
 CV = ROOT / "cv"
 ARCHIVE = CV / "archive"
-STATE = CV / ".last_data_hash"
+
+
+def npm() -> str:
+    exe = "npm.cmd" if sys.platform == "win32" else "npm"
+    path = shutil.which(exe)
+    if not path:
+        raise RuntimeError("npm not found — install Node.js and ensure npm is on PATH")
+    return path
 
 
 def sh(cmd: list[str], env: dict[str, str] | None = None) -> None:
     print("+", " ".join(cmd))
     subprocess.run(cmd, cwd=ROOT, check=True, env=env)
-
-
-def data_hash() -> str:
-    h = hashlib.sha256()
-    for f in sorted(DATA.glob("*.csv")):
-        h.update(f.read_bytes())
-    return h.hexdigest()
 
 
 def free_port() -> int:
@@ -78,7 +76,7 @@ def main() -> int:
 
     if not args.no_build:
         build_env = {**os.environ, "CV_LENS": args.lens}
-        sh(["npm", "run", "build"], env=build_env)
+        sh([npm(), "run", "build"], env=build_env)
     if not DIST.exists():
         print("dist/ not found — run a build first.", file=sys.stderr)
         return 1
@@ -90,17 +88,9 @@ def main() -> int:
         url = f"http://127.0.0.1:{port}/"
         render(url, CV / "cv-latest.pdf")
 
-        current = data_hash()
-        previous = STATE.read_text().strip() if STATE.exists() else ""
         today = datetime.date.today().isoformat()
         dated = ARCHIVE / f"cv-{today}.pdf"
-        if current != previous and not dated.exists():
-            render(url, dated)
-            STATE.write_text(current)
-        elif current == previous:
-            print("data unchanged since last run — no dated archive written")
-        else:
-            print(f"archive for {today} already exists — skipping")
+        render(url, dated)
     finally:
         httpd.shutdown()
     return 0

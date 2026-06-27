@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "deploy": "wrangler deploy --autoconfig=false",
     "pdf": "python scripts/export_pdf.py",
     "astro": "astro"
   },
@@ -17,6 +18,7 @@
     "papaparse": "^5.5.4"
   },
   "devDependencies": {
-    "@types/papaparse": "^5.5.2"
+    "@types/papaparse": "^5.5.2",
+    "wrangler": "^4.105.0"
   }
 }

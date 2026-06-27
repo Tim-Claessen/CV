@@ -119,7 +119,7 @@ body {
 .header {
   border-bottom: 2px solid var(--ink);
   padding-bottom: 22px; margin-bottom: var(--section-gap);
-  display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: end;
+  display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: start;
 }
 .name {
   font-family: var(--font-display); font-weight: 500;
@@ -323,7 +323,7 @@ body {
 /* ---------------------------------------------------------------------------
    12 · MOBILE
    --------------------------------------------------------------------------- */
-@media (max-width: 720px) {
+@media screen and (max-width: 720px) {
   .page { padding: 34px 22px 56px; }
   .chrome-inner { padding: 12px 18px; }
   .header { grid-template-columns: 1fr; }
@@ -353,10 +353,16 @@ body {
 
   .page-break-before { page-break-before: always; break-before: page; }
 
-  .header { padding-bottom: 9pt; margin-bottom: 12pt; border-bottom-width: 1.2pt; }
+  .header {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    padding-bottom: 9pt;
+    margin-bottom: 12pt;
+    border-bottom-width: 1.2pt;
+  }
   .name { font-size: 27pt; }
   .tagline { font-size: 7.5pt; margin-top: 4pt; }
-  .contact { font-size: 8.5pt; line-height: 1.55; }
+  .contact { font-size: 8.5pt; line-height: 1.55; text-align: right; }
   .contact-row { font-size: 8pt; }
   .contact a { border-bottom: none; color: var(--ink); }
 
@@ -379,7 +385,7 @@ body {
   .role-clients { font-size: 7.4pt; margin-top: 4pt; padding-top: 3pt; }
   .role-clients-label { font-size: 6.8pt; }
 
-  .projects { gap: 7pt; }
+  .projects { grid-template-columns: 1fr 1fr; gap: 7pt; }
   .project-card { padding: 7pt 9pt; border-top-width: 1.5pt; }
   .project-client { font-size: 6.8pt; }
   .project-id { font-size: 6pt; }

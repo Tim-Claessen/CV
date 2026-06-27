@@ -8,7 +8,7 @@ A lightweight, CSV-driven CV that builds into a static site and exports to PDF. 
 - **Persona views** — three lenses (`all`, `business`, `data`) filter roles, bullets, projects, skills, and the profile summary. The active lens is chosen at build time.
 - **Visibility toggles** — every record has a `visible` flag so content can be hidden without deleting it.
 - **Skills with verbal levels** — Expert / Proficient / Familiar, each with a subtle 3-segment indicator, grouped by domain.
-- **PDF export** — a Python script renders the built page to PDF and archives a dated copy when content changes.
+- **PDF export** — a Python script renders the built page to PDF and archives a dated copy (one per day).
 
 ## Stack
 
@@ -154,7 +154,8 @@ A print button in the web chrome triggers the browser print dialog. Print CSS hi
 One-time Playwright setup:
 
 ```sh
-pip install playwright && playwright install chromium
+pip install -r requirements.txt
+python -m playwright install chromium
 ```
 
 Then:
@@ -164,11 +165,11 @@ npm run pdf
 ```
 
 - Always overwrites `cv/cv-latest.pdf`.
-- Computes a hash of all `/data/*.csv`. If the hash differs from the last run **and** no archive exists for today, also writes `cv/archive/cv-YYYY-MM-DD.pdf` (at most one per day).
+- Also writes `cv/archive/cv-YYYY-MM-DD.pdf` (one file per calendar day; re-running overwrites today's file).
 - Persona-specific: `python scripts/export_pdf.py --lens business`
 - Skip rebuild: `python scripts/export_pdf.py --no-build`
 
-`/cv/.last_data_hash` is gitignored; the PDFs themselves remain tracked.
+On push to `main`, a GitHub Action builds the site, exports the PDF, and commits updated files under `cv/` back to the repo (pushes that only change `cv/` do not retrigger the workflow).
 
 ## TODO: Set up auto-publish (GitHub → Cloudflare)
 
