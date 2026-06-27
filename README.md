@@ -169,7 +169,7 @@ npm run pdf
 - Persona-specific: `python scripts/export_pdf.py --lens business`
 - Skip rebuild: `python scripts/export_pdf.py --no-build`
 
-On push to `main`, a GitHub Action builds the site, exports the PDF, and commits updated files under `cv/` back to the repo (pushes that only change `cv/` do not retrigger the workflow).
+On push to `main`, a GitHub Action builds the site, exports the PDF, and commits updated files under `cv/` back to the repo (pushes that only change `cv/` do not retrigger the workflow). Those bot commits use `[skip ci]` so Cloudflare Pages does not rebuild for PDF-only updates.
 
 ## TODO: Set up auto-publish (GitHub → Cloudflare)
 
@@ -198,23 +198,27 @@ Do this once. When it is done, every time you push changes to GitHub, Cloudflare
 
   Cloudflare should pick up Node 22 from the `.node-version` file in this repo. You do not need to change anything else.
 
-- [ ] **11. Click Save and Deploy.** Cloudflare will install packages, run the build, and publish your site. The first build takes a few minutes.
+- [ ] **11. Skip builds for non-site changes.** In your Pages project, go to **Settings → Build → Build watch paths**. Keep **Include paths** as `*` and add these **Exclude paths**:
+  - `cv/*` — PDF archive commits from GitHub Actions
+  - `.github/*` — workflow-only changes
 
-- [ ] **12. Check the live site.** When the build finishes, Cloudflare shows a link like `https://something.pages.dev`. Click it — your CV should appear.
+- [ ] **12. Click Save and Deploy.** Cloudflare will install packages, run the build, and publish your site. The first build takes a few minutes.
+
+- [ ] **13. Check the live site.** When the build finishes, Cloudflare shows a link like `https://something.pages.dev`. Click it — your CV should appear.
 
 ### Part 3 — Use your own domain (optional)
 
 Skip this if you are happy with the `.pages.dev` link for now.
 
-- [ ] **13. Add a custom domain.** In your Pages project, go to **Custom domains** → **Set up a custom domain**.
+- [ ] **14. Add a custom domain.** In your Pages project, go to **Custom domains** → **Set up a custom domain**.
 
-- [ ] **14. Enter your domain.** For example: `cv.timclaessen.com`.
+- [ ] **15. Enter your domain.** For example: `cv.timclaessen.com`.
 
-- [ ] **15. Follow Cloudflare’s DNS instructions.**
+- [ ] **16. Follow Cloudflare’s DNS instructions.**
   - If your domain is already on Cloudflare, it usually sets up DNS for you.
   - If not, you add a **CNAME** record: name `cv`, target the `.pages.dev` address Cloudflare gives you.
 
-- [ ] **16. Wait for DNS.** It can take a few minutes (sometimes up to an hour) before `cv.timclaessen.com` works.
+- [ ] **17. Wait for DNS.** It can take a few minutes (sometimes up to an hour) before `cv.timclaessen.com` works.
 
 ### After setup — how updates work
 

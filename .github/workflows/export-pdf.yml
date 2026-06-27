@@ -41,6 +41,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No PDF changes to commit"
           else
-            git commit -m "chore: update CV PDF archive"
+            git commit -m "[skip ci] chore: update CV PDF archive"
             git push
           fi
