@@ -1,0 +1,270 @@
+/* ============================================================================
+   BUILDER — checklist on the left, live A4 sheet on the right
+   ----------------------------------------------------------------------------
+   Print rules matter as much as screen ones here: printing this page must yield
+   the CV alone, with the picker and all chrome gone.
+   ========================================================================== */
+
+.builder {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* --- picker --------------------------------------------------------------- */
+
+.picker {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+.picker-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.picker-hint { font-size: 13px; color: var(--mid); margin-top: 6px; }
+
+.picker-section { display: flex; flex-direction: column; gap: 8px; }
+
+.picker-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.picker-actions { display: flex; align-items: baseline; gap: 8px; }
+
+.picker-count { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+
+.mini {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--mid);
+  cursor: pointer;
+}
+.mini:hover { border-color: var(--accent); color: var(--accent-dark); }
+
+.picker-select,
+.picker-search {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.picker-list { display: flex; flex-direction: column; }
+.picker-list--scroll { max-height: 240px; overflow-y: auto; padding-right: 4px; }
+
+.pick {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 9px;
+  align-items: baseline;
+  padding: 5px 4px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.pick:hover { background: var(--paper-warm); }
+.pick input { margin-top: 3px; accent-color: var(--accent); }
+.pick-label { line-height: 1.35; }
+.pick-meta { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+
+.picker-foot { display: flex; flex-wrap: wrap; gap: 8px; }
+.picker-note { font-size: 12px; color: var(--muted); }
+
+/* --- preview -------------------------------------------------------------- */
+
+.preview-wrap { display: flex; flex-direction: column; gap: 10px; }
+
+.preview-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.sheet {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 42px 46px;
+  box-shadow: 0 1px 3px rgba(31, 26, 22, 0.06);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.sheet [contenteditable]:hover { background: var(--accent-soft); border-radius: 3px; }
+.sheet [contenteditable]:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.sheet-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 20px;
+}
+
+.sheet-name {
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.sheet-tagline {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  margin-top: 3px;
+}
+
+.sheet-contact {
+  font-size: 11.5px;
+  text-align: right;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+.sheet-section { margin-bottom: 20px; }
+
+.sheet-h {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-dark);
+  padding-bottom: 5px;
+  margin-bottom: 11px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sheet-role, .sheet-project { margin-bottom: 13px; }
+.sheet-role:last-child, .sheet-project:last-child { margin-bottom: 0; }
+
+.sheet-role-head, .sheet-project-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+  color: var(--ink);
+}
+
+.sheet-dates {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.sheet-role-summary { margin: 3px 0 5px; color: var(--mid); }
+.sheet-role ul { margin: 4px 0 0 17px; }
+.sheet-role li { margin-bottom: 3px; }
+
+.sheet-clients {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.sheet-project p { margin-top: 2px; color: var(--mid); }
+
+.sheet-caps {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--paper-warm);
+}
+.sheet-caps:last-child { border-bottom: 0; }
+
+.sheet-cap-cat {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.sheet-earlier {
+  font-size: 11.5px;
+  color: var(--muted);
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 900px) {
+  .builder { grid-template-columns: 1fr; }
+  .picker { position: static; max-height: none; }
+}
+
+/* --- print ---------------------------------------------------------------- */
+
+@media print {
+  @page { size: A4; margin: 14mm; }
+
+  .site-head, .site-foot, .picker, .preview-note, .mode-banner, .skip-link {
+    display: none !important;
+  }
+
+  .site-main, .site-main.wide { max-width: none; padding: 0; margin: 0; }
+  .builder { display: block; }
+  .preview-wrap { gap: 0; }
+
+  body { background: #fff; }
+
+  .sheet {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: 10.5pt;
+    line-height: 1.42;
+  }
+
+  .sheet-name { font-size: 21pt; }
+  .sheet-h { font-size: 8pt; }
+  .sheet-contact { font-size: 8.5pt; }
+  .sheet-dates, .sheet-cap-cat, .sheet-clients, .sheet-earlier { font-size: 8pt; }
+
+  /* Never split a role or project across a page break. */
+  .sheet-role, .sheet-project, .sheet-caps { break-inside: avoid; }
+  .sheet-section { break-inside: auto; }
+  .sheet-h { break-after: avoid; }
+
+  .sheet [contenteditable]:hover,
+  .sheet [contenteditable]:focus { background: transparent; outline: 0; }
+}

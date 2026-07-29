@@ -1,0 +1,464 @@
+---
+import Site from '../layouts/Site.astro';
+import {
+  config,
+  roles,
+  projects,
+  allCapabilities,
+  personas,
+  resolveMode,
+} from '../lib/career';
+import '../styles/portfolio.css';
+import '../styles/builder.css';
+
+const mode = resolveMode();
+
+// Everything the builder can offer, serialised once. The page is static: all the
+// selecting, previewing and editing happens client-side against this payload.
+// It inherits the build's mode, so a public deploy can only ever offer
+// anonymised clients — the real names exist solely in a local private build.
+const payload = {
+  mode,
+  config,
+  personas,
+  roles: roles('all', mode).map((role) => ({
+    slug: role.slug,
+    title: role.title,
+    employer: role.employer,
+    start: role.start,
+    end: role.end,
+    clients: role.clients,
+    summary: role.summary,
+    bullets: role.bullets,
+  })),
+  projects: projects(mode).map((project) => ({
+    slug: project.slug,
+    title: project.title,
+    client: project.client,
+    year: project.year,
+    summary: project.summary,
+    skills: project.skills,
+    technologies: project.technologies,
+    featured: project.featured,
+  })),
+  capabilities: allCapabilities(mode).map((item) => ({
+    slug: item.slug,
+    name: item.name,
+    kind: item.kind,
+    category: item.category,
+    proficiency: item.proficiency,
+    evidenceCount: item.evidenceCount,
+  })),
+};
+---
+
+<Site title={`${config.name} — Build a CV`} active="build" wide>
+  <div class="builder">
+    <aside class="picker no-print" aria-label="CV contents">
+      <div class="picker-head">
+        <h1 class="picker-title">Build a CV</h1>
+        <p class="picker-hint">
+          Start from a persona, then tick what belongs. Edit any text in the preview
+          before printing.
+        </p>
+      </div>
+
+      <div class="picker-section">
+        <label class="filter-label" for="persona">Start from</label>
+        <select id="persona" class="picker-select">
+          {personas.map((item) => <option value={item.key}>{item.label} — {item.description}</option>)}
+        </select>
+      </div>
+
+      <div class="picker-section">
+        <div class="picker-bar">
+          <span class="filter-label">Roles</span>
+          <span class="picker-count" data-count="roles"></span>
+        </div>
+        <div id="pick-roles" class="picker-list"></div>
+      </div>
+
+      <div class="picker-section">
+        <div class="picker-bar">
+          <span class="filter-label">Projects</span>
+          <span class="picker-actions">
+            <button type="button" class="mini" data-all="projects">All</button>
+            <button type="button" class="mini" data-none="projects">None</button>
+            <span class="picker-count" data-count="projects"></span>
+          </span>
+        </div>
+        <input type="search" id="project-search" class="picker-search" placeholder="Filter projects…" />
+        <div id="pick-projects" class="picker-list picker-list--scroll"></div>
+      </div>
+
+      <div class="picker-section">
+        <div class="picker-bar">
+          <span class="filter-label">Capabilities</span>
+          <span class="picker-actions">
+            <button type="button" class="mini" data-all="capabilities">All</button>
+            <button type="button" class="mini" data-none="capabilities">None</button>
+            <span class="picker-count" data-count="capabilities"></span>
+          </span>
+        </div>
+        <div id="pick-capabilities" class="picker-list picker-list--scroll"></div>
+      </div>
+
+      <div class="picker-foot">
+        <button type="button" class="btn btn-primary" id="print">Print / save PDF</button>
+        <button type="button" class="btn" id="copy-link">Copy link</button>
+        <button type="button" class="btn" id="reset">Reset</button>
+      </div>
+      <p class="picker-note">
+        Selections save in this browser and in the link, so you can come back to
+        exactly the CV you sent.
+      </p>
+    </aside>
+
+    <div class="preview-wrap">
+      <div class="preview-note no-print">
+        Preview — click any text to edit it. Edits apply to this printout only and
+        aren't saved back to lore.
+      </div>
+      <article class="sheet" id="sheet" aria-label="CV preview"></article>
+    </div>
+  </div>
+
+  <script type="application/json" id="payload" set:html={JSON.stringify(payload)} />
+</Site>
+
+<script>
+  interface Bullet { text: string; personas: string[] }
+  interface Role {
+    slug: string; title: string; employer: string; start: string; end: string;
+    clients: string; summary: string; bullets: Bullet[];
+  }
+  interface Project {
+    slug: string; title: string; client: string | null; year: number | null;
+    summary: string; skills: string[]; technologies: string[]; featured: boolean;
+  }
+  interface Capability {
+    slug: string; name: string; kind: string; category: string | null;
+    proficiency: string | null; evidenceCount: number;
+  }
+  interface Persona {
+    key: string; label: string; description: string; profile: string;
+    skills?: string[]; technologies?: string[]; projects?: string[];
+  }
+  interface Payload {
+    mode: string;
+    config: Record<string, string>;
+    personas: Persona[];
+    roles: Role[];
+    projects: Project[];
+    capabilities: Capability[];
+  }
+
+  const node = document.getElementById('payload');
+  const data: Payload = JSON.parse(node?.textContent ?? '{}');
+  const sheet = document.getElementById('sheet')!;
+  const personaSelect = document.getElementById('persona') as HTMLSelectElement;
+
+  const STORAGE_KEY = 'cv-builder-selection';
+
+  interface Selection {
+    persona: string;
+    roles: string[];
+    projects: string[];
+    capabilities: string[];
+  }
+
+  /** A persona is just a saved tick-list — selecting one seeds the boxes. */
+  function fromPersona(key: string): Selection {
+    const persona = data.personas.find((p) => p.key === key);
+    const wanted = new Set([...(persona?.skills ?? []), ...(persona?.technologies ?? [])]);
+
+    const capabilities = wanted.size
+      ? data.capabilities.filter((c) => wanted.has(c.name))
+      : data.capabilities.filter((c) => c.evidenceCount > 0);
+
+    const chosenProjects = persona?.projects?.length
+      ? data.projects.filter((p) => persona.projects!.includes(p.title))
+      : wanted.size
+        ? data.projects.filter((p) =>
+            [...p.skills, ...p.technologies].some((item) => wanted.has(item)),
+          )
+        : data.projects.filter((p) => p.featured);
+
+    return {
+      persona: key,
+      roles: data.roles.map((r) => r.slug),
+      projects: chosenProjects.map((p) => p.slug),
+      capabilities: capabilities.map((c) => c.slug),
+    };
+  }
+
+  function load(): Selection {
+    const params = new URLSearchParams(location.search);
+    const encoded = params.get('s');
+    if (encoded) {
+      try {
+        return JSON.parse(atob(encoded)) as Selection;
+      } catch {
+        /* fall through to storage */
+      }
+    }
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      try {
+        return JSON.parse(stored) as Selection;
+      } catch {
+        /* fall through to default */
+      }
+    }
+    return fromPersona(data.personas[0]?.key ?? 'all');
+  }
+
+  let selection = load();
+
+  const has = (list: string[], value: string) => list.includes(value);
+  const toggle = (list: string[], value: string) =>
+    has(list, value) ? list.filter((v) => v !== value) : [...list, value];
+
+  // --- pickers -------------------------------------------------------------
+
+  function renderPickers() {
+    const search = (document.getElementById('project-search') as HTMLInputElement)?.value
+      .trim()
+      .toLowerCase();
+
+    const rows = (
+      items: { id: string; label: string; meta?: string }[],
+      key: keyof Selection,
+    ) =>
+      items
+        .map(
+          (item) => `
+        <label class="pick">
+          <input type="checkbox" data-key="${key}" value="${item.id}" ${
+            has(selection[key] as string[], item.id) ? 'checked' : ''
+          } />
+          <span class="pick-label">${item.label}</span>
+          ${item.meta ? `<span class="pick-meta">${item.meta}</span>` : ''}
+        </label>`,
+        )
+        .join('');
+
+    document.getElementById('pick-roles')!.innerHTML = rows(
+      data.roles.map((r) => ({ id: r.slug, label: r.title, meta: r.employer })),
+      'roles',
+    );
+
+    const visibleProjects = search
+      ? data.projects.filter((p) =>
+          `${p.title} ${p.summary} ${p.client ?? ''}`.toLowerCase().includes(search),
+        )
+      : data.projects;
+
+    document.getElementById('pick-projects')!.innerHTML = rows(
+      visibleProjects.map((p) => ({
+        id: p.slug,
+        label: p.title,
+        meta: p.year ? String(p.year) : '',
+      })),
+      'projects',
+    );
+
+    document.getElementById('pick-capabilities')!.innerHTML = rows(
+      data.capabilities.map((c) => ({
+        id: c.slug,
+        label: c.name,
+        meta: c.evidenceCount ? `${c.evidenceCount}` : '',
+      })),
+      'capabilities',
+    );
+
+    for (const key of ['roles', 'projects', 'capabilities'] as const) {
+      const el = document.querySelector(`[data-count="${key}"]`);
+      if (el) el.textContent = `${selection[key].length}/${data[key].length}`;
+    }
+  }
+
+  // --- preview -------------------------------------------------------------
+
+  const escape = (value: string) =>
+    value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  function renderSheet() {
+    const persona = data.personas.find((p) => p.key === selection.persona);
+    const chosenRoles = data.roles.filter((r) => has(selection.roles, r.slug));
+    const chosenProjects = data.projects.filter((p) => has(selection.projects, p.slug));
+    const chosenCaps = data.capabilities.filter((c) => has(selection.capabilities, c.slug));
+
+    const byCategory = new Map<string, Capability[]>();
+    for (const cap of chosenCaps) {
+      const key = cap.category ?? 'Other';
+      if (!byCategory.has(key)) byCategory.set(key, []);
+      byCategory.get(key)!.push(cap);
+    }
+
+    const bulletsFor = (role: Role) =>
+      role.bullets.filter(
+        (b) => selection.persona === 'all' || b.personas.includes(selection.persona),
+      );
+
+    sheet.innerHTML = `
+      <header class="sheet-head">
+        <div>
+          <h2 class="sheet-name" contenteditable>${escape(data.config.name ?? '')}</h2>
+          <div class="sheet-tagline" contenteditable>${escape(data.config.tagline ?? '')}</div>
+        </div>
+        <div class="sheet-contact">
+          <div>${escape(data.config.location ?? '')}</div>
+          <div>${escape(data.config.phone ?? '')}</div>
+          <div>${escape(data.config.email ?? '')}</div>
+          <div>${escape(data.config.linkedin ?? '')}</div>
+        </div>
+      </header>
+
+      ${
+        persona
+          ? `<section class="sheet-section">
+               <h3 class="sheet-h">Profile</h3>
+               <p contenteditable>${escape(persona.profile)}</p>
+             </section>`
+          : ''
+      }
+
+      ${
+        chosenRoles.length
+          ? `<section class="sheet-section">
+        <h3 class="sheet-h">Experience</h3>
+        ${chosenRoles
+          .map(
+            (role) => `
+          <div class="sheet-role">
+            <div class="sheet-role-head">
+              <span contenteditable><strong>${escape(role.title)}</strong> · ${escape(role.employer)}</span>
+              <span class="sheet-dates">${escape(role.start)} – ${escape(role.end)}</span>
+            </div>
+            ${role.summary ? `<p class="sheet-role-summary" contenteditable>${escape(role.summary)}</p>` : ''}
+            ${
+              bulletsFor(role).length
+                ? `<ul>${bulletsFor(role)
+                    .map((b) => `<li contenteditable>${escape(b.text)}</li>`)
+                    .join('')}</ul>`
+                : ''
+            }
+            ${role.clients ? `<div class="sheet-clients" contenteditable>Key clients: ${escape(role.clients)}</div>` : ''}
+          </div>`,
+          )
+          .join('')}
+      </section>`
+          : ''
+      }
+
+      ${
+        chosenProjects.length
+          ? `<section class="sheet-section">
+        <h3 class="sheet-h">Selected projects</h3>
+        ${chosenProjects
+          .map(
+            (project) => `
+          <div class="sheet-project">
+            <div class="sheet-project-head">
+              <span contenteditable><strong>${escape(project.title)}</strong></span>
+              <span class="sheet-dates">${project.client ? escape(project.client) : ''}${
+                project.year ? ` · ${project.year}` : ''
+              }</span>
+            </div>
+            <p contenteditable>${escape(project.summary)}</p>
+          </div>`,
+          )
+          .join('')}
+      </section>`
+          : ''
+      }
+
+      ${
+        chosenCaps.length
+          ? `<section class="sheet-section">
+        <h3 class="sheet-h">Capabilities</h3>
+        ${[...byCategory.entries()]
+          .map(
+            ([category, items]) => `
+          <div class="sheet-caps">
+            <span class="sheet-cap-cat">${escape(category)}</span>
+            <span contenteditable>${items.map((i) => escape(i.name)).join(' · ')}</span>
+          </div>`,
+          )
+          .join('')}
+      </section>`
+          : ''
+      }
+
+      ${
+        data.config.earlier
+          ? `<div class="sheet-earlier" contenteditable>Earlier: ${escape(data.config.earlier)}</div>`
+          : ''
+      }
+    `;
+  }
+
+  function persist() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(selection));
+  }
+
+  function render() {
+    renderPickers();
+    renderSheet();
+    persist();
+  }
+
+  // --- events --------------------------------------------------------------
+
+  personaSelect.value = selection.persona;
+  personaSelect.addEventListener('change', () => {
+    selection = fromPersona(personaSelect.value);
+    render();
+  });
+
+  document.querySelector('.picker')!.addEventListener('change', (event) => {
+    const target = event.target as HTMLInputElement;
+    if (target.type !== 'checkbox') return;
+    const key = target.dataset.key as keyof Selection;
+    selection = { ...selection, [key]: toggle(selection[key] as string[], target.value) };
+    render();
+  });
+
+  document.getElementById('project-search')?.addEventListener('input', renderPickers);
+
+  for (const button of document.querySelectorAll<HTMLElement>('[data-all]')) {
+    button.addEventListener('click', () => {
+      const key = button.dataset.all as 'projects' | 'capabilities';
+      selection = { ...selection, [key]: data[key].map((item) => item.slug) };
+      render();
+    });
+  }
+  for (const button of document.querySelectorAll<HTMLElement>('[data-none]')) {
+    button.addEventListener('click', () => {
+      const key = button.dataset.none as 'projects' | 'capabilities';
+      selection = { ...selection, [key]: [] };
+      render();
+    });
+  }
+
+  document.getElementById('print')?.addEventListener('click', () => window.print());
+
+  document.getElementById('copy-link')?.addEventListener('click', async () => {
+    const url = `${location.origin}${location.pathname}?s=${btoa(JSON.stringify(selection))}`;
+    await navigator.clipboard.writeText(url);
+    const button = document.getElementById('copy-link')!;
+    const original = button.textContent;
+    button.textContent = 'Copied';
+    setTimeout(() => (button.textContent = original), 1400);
+  });
+
+  document.getElementById('reset')?.addEventListener('click', () => {
+    localStorage.removeItem(STORAGE_KEY);
+    history.replaceState(null, '', location.pathname);
+    selection = fromPersona(personaSelect.value);
+    render();
+  });
+
+  render();
+</script>

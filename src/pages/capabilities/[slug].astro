@@ -1,0 +1,112 @@
+---
+import Site from '../../layouts/Site.astro';
+import {
+  allCapabilities,
+  evidenceFor,
+  proficiencySegments,
+  resolveMode,
+  slugify,
+} from '../../lib/career';
+import '../../styles/portfolio.css';
+
+export function getStaticPaths() {
+  return allCapabilities().map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const mode = resolveMode();
+
+// The evidence list is lore's backlink rule made visible: a skill never stores its
+// projects, so this is derived from the projects that claim it.
+const evidence = evidenceFor(item.kind, item.name, mode);
+
+const alsoUsed = new Map<string, number>();
+for (const project of evidence) {
+  for (const name of [...project.skills, ...project.technologies]) {
+    if (name !== item.name) alsoUsed.set(name, (alsoUsed.get(name) ?? 0) + 1);
+  }
+}
+const companions = [...alsoUsed.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 10);
+---
+
+<Site title={`${item.name} — Capability`} description={item.description || item.name}>
+  <div class="detail-head">
+    <a class="crumb" href="/">← All work</a>
+    <h1 class="detail-title">{item.name}</h1>
+    <dl class="detail-facts">
+      <div><dt>Kind</dt><dd>{item.kind === 'skill' ? 'Skill' : 'Technology'}</dd></div>
+      {item.category && <div><dt>Category</dt><dd>{item.category}</dd></div>}
+      {item.vendor && <div><dt>Vendor</dt><dd>{item.vendor}</dd></div>}
+      {item.proficiency && (
+        <div>
+          <dt>Proficiency</dt>
+          <dd>
+            {item.proficiency}
+            <span class="meter" style="margin-left:8px">
+              {[1, 2, 3].map((n) => (
+                <span class:list={['seg', { on: n <= proficiencySegments(item.proficiency) }]} />
+              ))}
+            </span>
+          </dd>
+        </div>
+      )}
+      <div><dt>Evidence</dt><dd>{evidence.length} project{evidence.length === 1 ? '' : 's'}</dd></div>
+    </dl>
+  </div>
+
+  {item.description && (
+    <div class="prose">
+      {item.description.split('\n\n').map((para) => <p>{para.replace(/\n/g, ' ')}</p>)}
+    </div>
+  )}
+
+  {item.enables && item.enables.length > 0 && (
+    <section class="block">
+      <h2 class="section-title"><span>Enables</span></h2>
+      <div class="chips">
+        {item.enables.map((skill) => (
+          <a class="chip" href={`/capabilities/${slugify(skill)}`}>{skill}</a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="block">
+    <h2 class="section-title">
+      <span>Where I've used it</span>
+      <span>{evidence.length}</span>
+    </h2>
+    {evidence.length > 0 ? (
+      <div class="grid">
+        {evidence.map((project) => (
+          <a class="card" href={`/projects/${project.slug}`}>
+            <div class="card-meta">
+              <span class="card-client">{project.client ?? 'Multiple organisations'}</span>
+              <span>{project.year}</span>
+            </div>
+            <div class="card-title">{project.title}</div>
+            <p class="card-desc">{project.summary}</p>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="empty">
+        No published project claims this yet — it's held at role level, or the projects
+        that used it aren't public.
+      </p>
+    )}
+  </section>
+
+  {companions.length > 0 && (
+    <section class="block">
+      <h2 class="section-title"><span>Usually alongside</span></h2>
+      <div class="chips">
+        {companions.map(([name, count]) => (
+          <a class="chip" href={`/capabilities/${slugify(name)}`}>{name} · {count}</a>
+        ))}
+      </div>
+    </section>
+  )}
+</Site>

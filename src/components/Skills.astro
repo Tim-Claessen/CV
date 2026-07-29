@@ -1,28 +1,28 @@
 ---
 import SectionHead from './SectionHead.astro';
-import { proficiencySegments, type SkillDomain } from '../lib/data';
+import { proficiencySegments, type CapabilityGroup } from '../lib/career';
 
 interface Props {
-  skillDomains: SkillDomain[];
+  groups: CapabilityGroup[];
 }
 
-const { skillDomains } = Astro.props;
+const { groups } = Astro.props;
 ---
 
 <section class="section" aria-labelledby="capabilities-heading">
   <SectionHead num="04" title="Capabilities" />
   <div id="capabilities-heading" class="visually-hidden">Capabilities</div>
-  {skillDomains.map((domain) => (
+  {groups.map((group) => (
     <div class="cap-group">
-      <div class="cap-group-title">{domain.domain}</div>
+      <div class="cap-group-title">{group.domain}</div>
       <div class="cap-list cap-list--compact">
-        {domain.categories.flatMap((cat) =>
-          cat.skills.map((skill) => {
-            const filled = proficiencySegments(skill.proficiency);
+        {group.categories.flatMap((cat) =>
+          cat.items.map((item) => {
+            const filled = proficiencySegments(item.proficiency);
             return (
               <div class="cap-item cap-item--compact">
-                <span class="cap-name">{skill.skill}</span>
-                <span class="cap-level">{skill.proficiency}</span>
+                <span class="cap-name">{item.name}</span>
+                <span class="cap-level">{item.proficiency}</span>
                 <span class="cap-meter" aria-hidden="true">
                   {[1, 2, 3].map((n) => (
                     <span class:list={['cap-seg', { on: n <= filled }]} />

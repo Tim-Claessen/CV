@@ -1,0 +1,91 @@
+---
+import Site from '../../layouts/Site.astro';
+import { projects, resolveMode, slugify } from '../../lib/career';
+import '../../styles/portfolio.css';
+
+export function getStaticPaths() {
+  // Built in the current mode, so a public build never emits a page for a
+  // project that mode is withholding.
+  return projects().map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const mode = resolveMode();
+const related = projects(mode)
+  .filter((other) => other.slug !== project.slug)
+  .map((other) => ({
+    other,
+    shared: [
+      ...other.technologies.filter((t) => project.technologies.includes(t)),
+      ...other.skills.filter((s) => project.skills.includes(s)),
+    ],
+  }))
+  .filter((entry) => entry.shared.length > 0)
+  .sort((a, b) => b.shared.length - a.shared.length)
+  .slice(0, 4);
+---
+
+<Site title={`${project.title} — ${project.client ?? 'Project'}`} description={project.summary}>
+  <div class="detail-head">
+    <a class="crumb" href="/">← All work</a>
+    <h1 class="detail-title">{project.title}</h1>
+    <dl class="detail-facts">
+      {project.client && (
+        <div><dt>Client</dt><dd>{project.client}</dd></div>
+      )}
+      {project.industry && (
+        <div><dt>Industry</dt><dd>{project.industry}</dd></div>
+      )}
+      {project.projectType && (
+        <div><dt>Type</dt><dd>{project.projectType}</dd></div>
+      )}
+      <div><dt>When</dt><dd>{project.start}{project.end && project.end !== project.start && <> → {project.end}</>}</dd></div>
+    </dl>
+  </div>
+
+  <div class="prose">
+    <p>{project.summary}</p>
+    {project.story
+      ? project.story.split('\n\n').map((para) => <p set:html={para.replace(/\n/g, ' ')} />)
+      : (
+        <p class="callout">
+          The full write-up names the client, so it isn't published here. It's in the
+          private build and in any CV sent directly.
+        </p>
+      )}
+  </div>
+
+  {(project.skills.length > 0 || project.technologies.length > 0) && (
+    <section class="block">
+      <h2 class="section-title"><span>What it used</span></h2>
+      <div class="chips">
+        {project.skills.map((skill) => (
+          <a class="chip" href={`/capabilities/${slugify(skill)}`}>{skill}</a>
+        ))}
+        {project.technologies.map((tech) => (
+          <a class="chip" href={`/capabilities/${slugify(tech)}`}>{tech}</a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {related.length > 0 && (
+    <section class="block">
+      <h2 class="section-title"><span>Related work</span></h2>
+      <div class="grid">
+        {related.map(({ other, shared }) => (
+          <a class="card" href={`/projects/${other.slug}`}>
+            <div class="card-meta">
+              <span class="card-client">{other.client ?? 'Multiple organisations'}</span>
+              <span>{other.year}</span>
+            </div>
+            <div class="card-title">{other.title}</div>
+            <div class="chips">
+              {shared.slice(0, 3).map((item) => <span class="chip">{item}</span>)}
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+</Site>

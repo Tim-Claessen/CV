@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
-"""Render the built CV site to PDF.
+"""Render the built CV page to PDF.
 
+- Renders /cv (the printable one-pager), not / (the browsable portfolio)
 - Always writes cv/cv-latest.pdf
 - Archives cv/archive/cv-YYYY-MM-DD.pdf (one file per day; overwrites today's)
+
+These PDFs are committed to a public repo, so this refuses to run against a
+private-mode build. A CV with real client names is produced locally from /build
+and never checked in.
 
 Setup (once):
     pip install -r requirements.txt
@@ -74,6 +79,14 @@ def main() -> int:
     ap.add_argument("--no-build", action="store_true")
     args = ap.parse_args()
 
+    if os.environ.get("CV_MODE") == "private":
+        print(
+            "refusing to export: CV_MODE=private names real clients, and these PDFs are "
+            "committed to a public repo. Print from /build instead.",
+            file=sys.stderr,
+        )
+        return 1
+
     if not args.no_build:
         build_env = {**os.environ, "CV_LENS": args.lens}
         sh([npm(), "run", "build"], env=build_env)
@@ -85,7 +98,7 @@ def main() -> int:
     port = free_port()
     httpd = serve(DIST, port)
     try:
-        url = f"http://127.0.0.1:{port}/"
+        url = f"http://127.0.0.1:{port}/cv/"
         render(url, CV / "cv-latest.pdf")
 
         today = datetime.date.today().isoformat()

@@ -1,0 +1,138 @@
+# Role overrides — CV presentation for lore's role entities.
+#
+# lore holds each role as prose (what the job was). A CV wants bullets (what you
+# achieved). Those bullets are CV writing and live here, keyed by lore role name.
+# Carried over from the retired data/role_bullets.csv.
+#
+#   summary        replaces lore's opening line
+#   clients        named client list — PRIVATE MODE ONLY (exported CVs)
+#   publicClients  anonymised equivalent, shown on the public site
+#   bullets        text + personas; a bullet with no personas shows only in `all`
+
+roles:
+  "EY Director, Risk Analytics":
+    clients: South32 · Fortescue · Rio Tinto · Northern Star · Chevron · Worley · Ampol
+    publicClients: >-
+      Tier 1 miners and global resources, energy and engineering groups
+    summary: >-
+      I lead EY's national Risk Analytics practice across Oceania, grown from 3 to
+      16, owning practice strategy, commercial performance, capability and the
+      delivery of our largest analytics, payroll compliance and continuous controls
+      engagements in the mining and resources sector.
+    bullets:
+      - text: >-
+          Built Power BI reporting and payroll monitoring solutions for Tier 1
+          mining clients, giving leaders ongoing compliance visibility across the
+          hire to retire process.
+        personas: [business]
+      - text: >-
+          Developed payroll monitoring backed by SAP ECP, SuccessFactors and
+          Pronto, integrated through Snowflake, improving how workforce compliance
+          risks are surfaced and managed.
+        personas: [business, data]
+      - text: >-
+          Led 20+ superannuation compliance reviews, identifying material exposure
+          and guiding remediation alongside the ATO and Fair Work Commission.
+        personas: [business]
+      - text: >-
+          Implemented continuous controls monitoring across payroll, master data,
+          leave and rostering, strengthening data integrity and audit readiness.
+        personas: [business, data]
+      - text: >-
+          Established digital analytics capability for a global internal audit
+          program spanning 100+ countries and 50+ audits a year, setting strategy,
+          standardising methods and deploying scalable tooling.
+        personas: [business]
+      - text: >-
+          Designed and delivered analytics on Azure SQL with Power BI, embedding
+          data governance and validated findings processes.
+        personas: [business, data]
+      - text: >-
+          Built a modular risk and controls analytics platform on Azure SQL using a
+          layered ref / active / archive design, reusable across multiple client
+          engagements.
+        personas: [data]
+      - text: >-
+          Designed reusable data models and ETL pipelines integrating SAP,
+          Snowflake and Power BI, cutting per engagement build effort and improving
+          data quality.
+        personas: [data]
+      - text: >-
+          Grew the Oceania practice from 3 to 16; designed the operating model,
+          built a structured training program and led the AI adoption and
+          responsible use program.
+        personas: [business, data]
+
+  "Unified Honey Senior Account Executive":
+    summary: >-
+      Founding contributor to a Snowflake Native App in the Snowflake Startup
+      Accelerator, focused on governed, agent ready data products that bridge ERP
+      systems with modern data platforms. I work across product strategy, go to
+      market and data governance framework design.
+    bullets:
+      - text: >-
+          Lead go to market strategy, product positioning, sales collateral and
+          competitive analysis for a Snowflake Native App targeting mining sector
+          data governance.
+        personas: [data]
+      - text: >-
+          Contribute to data governance framework design including lineage, quality
+          rules and semantic definitions for agent ready data products.
+        personas: [data]
+      - text: >-
+          Bridge ERP systems (SAP, Pronto, Oracle) with modern data platforms,
+          drawing on mining industry domain expertise.
+        personas: [data]
+
+  "EY Manager, People Advisory Services":
+    summary: >-
+      Led the Perth data analytics and automation team within People Advisory,
+      delivering payroll, remuneration, superannuation and employment tax analytics
+      for major Australian clients.
+    bullets:
+      - text: >-
+          Managed a 5 year workforce analytics partnership with a major healthcare
+          provider covering rostering compliance, overtime, leave and
+          superannuation.
+        personas: [business]
+      - text: >-
+          Built analytics on SAP HCM, SuccessFactors, Kronos and RITEQ, analysing
+          workforce patterns including turnover, churn and rostering efficiency.
+        personas: [business, data]
+      - text: >-
+          Delivered payroll compliance reviews across ASX listed clients, engaging
+          stakeholders across HR, Payroll, Legal, Tax and Finance.
+        personas: [business]
+
+  "Mindfields Senior Consultant":
+    summary: >-
+      Specialist consulting in process improvement, governance and intelligent
+      automation for large enterprise clients.
+    bullets:
+      - text: >-
+          Managed a large scale UiPath RPA implementation for a major WA mining
+          company, delivering 6 automated processes across Finance, HR, Safety and
+          Tax.
+        personas: [business]
+      - text: >-
+          Led end to end delivery: process assessment, business case development,
+          solution architecture, UAT and post production validation.
+        personas: [business]
+
+  "EY Consultant, People Advisory Services":
+    summary: >-
+      Data analytics and process improvement across payroll, workforce planning and
+      HR compliance for ASX listed clients.
+    bullets:
+      - text: >-
+          Delivered hire to retire process reviews and workforce analytics,
+          identifying compliance gaps and remediation opportunities across multiple
+          ASX listed clients.
+        personas: [business]
+
+# Roles held but not shown as CV entries — summarised in config.yaml's `earlier`.
+hidden:
+  - Curtin University Research Assistant
+  - Wesley College Sports Coach
+  - Penrhos College Sports Coach
+  - Grill'd Team Leader

@@ -1,0 +1,20 @@
+# Site config — owned by this repo, not by lore.
+#
+# Contact details are deliberately NOT in lore: there is no `Tim Claessen` person
+# entity, and people/ is private by default anyway. These are CV facts.
+
+name: Tim Claessen
+tagline: Data Analytics · BI · Data Strategy
+location: Perth, WA
+email: timclaessen96@gmail.com
+phone: "+61 431 666 341"
+linkedin: linkedin.com/in/tim-claessen
+linkedinUrl: https://www.linkedin.com/in/tim-claessen/
+github: github.com/Tim-Claessen
+githubUrl: https://github.com/Tim-Claessen
+
+# Pre-2017 roles, shown as a one-line footnote. lore holds these as real role
+# entities (Curtin, Wesley, Penrhos); this is just how they're summarised on a CV.
+earlier: >-
+  Research Assistant, Curtin University (2015 to 2016)  ·  Sports Coach, Wesley
+  and Penrhos (2014 to 2016)

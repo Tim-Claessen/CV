@@ -1,0 +1,90 @@
+# Personas — saved selections, not a separate mechanism.
+#
+# A persona is a named tick-list plus a profile paragraph. The CV builder loads
+# one as a starting point and lets you adjust from there, so "pick a persona" and
+# "tick what you want" are the same feature.
+#
+# `skills` / `technologies` / `projects` list lore entity names. Empty means "all".
+
+personas:
+  all:
+    label: All
+    description: Full breadth of experience
+    profile: >-
+      Data and analytics leader with 9+ years designing and delivering analytics,
+      reporting and data platform solutions for Australia's largest mining and
+      resources clients. I work end to end, from data pipelines and modelling
+      through to reporting, governance and the operating models that keep
+      analytics capability sustainable. My foundation spans Power BI, SQL, Python
+      and modern platforms including Snowflake, Azure SQL and Microsoft Fabric. I
+      currently lead EY's national Risk Analytics practice across Oceania, with
+      concurrent product work on a Snowflake Native App.
+
+  business:
+    label: Business Analytics
+    description: Analytics, BI and decision support inside a business team
+    profile: >-
+      Analytics professional who turns complex data into decisions a business team
+      can act on. I design reporting, BI and continuous monitoring solutions that
+      put insight in front of the people making operational and strategic calls,
+      with a track record of embedding analytics into day to day decision making
+      across HR, Finance, Payroll and executive stakeholders. I pair hands on
+      delivery in Power BI, SQL and Python with the stakeholder skills to translate
+      between technical teams and the business.
+    skills:
+      - Payroll
+      - HR
+      - Risk
+      - Controls Analytics
+      - Procurement
+      - Accounts Payable
+      - Data Visualisation
+      - User Access Management
+      - AI in Analytics
+    technologies:
+      - Power BI
+      - Microsoft Excel
+      - SAP Analytics Cloud
+      - SAP HCM
+      - SAP SuccessFactors
+      - Kronos
+      - RITEQ
+      - UiPath
+      - Power Automate
+      - Power Apps
+
+  data:
+    label: Data Management
+    description: Platforms, modelling, governance and data strategy
+    profile: >-
+      Data professional focused on the architecture, modelling and governance that
+      make analytics trustworthy and reusable. I design modern data solutions,
+      dimensional and layered models, ETL pipelines, and the governance frameworks
+      (ownership, quality rules, lineage and semantic definitions) that turn raw
+      source data into governed, reusable products. My stack spans Snowflake, Azure
+      SQL, Python and Power BI, with hands on work in Microsoft Fabric and
+      Databricks, and I currently co-build a Snowflake Native App focused on
+      governed, agent ready data products.
+    skills:
+      - Data Governance Frameworks
+      - Data Quality & Validation
+      - Data Lineage & Cataloguing
+      - Data Privacy & Protection
+      - Dimensional Modelling
+      - Entity-Relationship Modelling
+      - Medallion Lakehouse Architecture
+      - ETL & Pipeline Design
+      - Reusable Component Development
+      - Data Visualisation
+      - Responsible AI Frameworks
+    technologies:
+      - Snowflake
+      - Azure SQL
+      - Microsoft Fabric
+      - Databricks
+      - SQL
+      - Python
+      - Power BI
+      - SAP ECP
+      - SAP SuccessFactors
+      - Microsoft Azure

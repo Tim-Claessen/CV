@@ -1,6 +1,6 @@
 ---
 import SectionHead from './SectionHead.astro';
-import type { Project } from '../lib/data';
+import type { Project } from '../lib/career';
 
 interface Props {
   projects: Project[];
@@ -14,17 +14,17 @@ const { projects } = Astro.props;
   <div id="projects-heading" class="visually-hidden">Selected projects</div>
   <div class="projects">
     {projects.map((project) => (
-      <div class="project-card" data-project={project.projectId}>
+      <div class="project-card" data-project={project.slug}>
         <div class="project-head">
           <span class="project-client">{project.client}</span>
-          <span class="project-id">{project.projectId}</span>
+          <span class="project-id">{project.year}</span>
         </div>
         <div class="project-title">{project.title}</div>
         <p class="project-desc">{project.summary}</p>
-        {project.systems.length > 0 && (
+        {project.technologies.length > 0 && (
           <div class="project-stack" aria-label="Systems">
-            {project.systems.map((system) => (
-              <span class="stack-chip">{system}</span>
+            {project.technologies.map((technology) => (
+              <span class="stack-chip">{technology}</span>
             ))}
           </div>
         )}

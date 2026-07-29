@@ -1,8 +1,8 @@
 ---
-import type { Config } from '../lib/data';
+import type { SiteConfig } from '../lib/career';
 
 interface Props {
-  config: Config;
+  config: SiteConfig;
 }
 
 const { config } = Astro.props;
@@ -18,10 +18,10 @@ const { config } = Astro.props;
     <div class="contact-row">{config.phone}</div>
     <div class="contact-row"><a href={`mailto:${config.email}`}>{config.email}</a></div>
     <div class="contact-row">
-      <a href={config.linkedin_url} target="_blank" rel="noopener noreferrer">{config.linkedin}</a>
+      <a href={config.linkedinUrl} target="_blank" rel="noopener noreferrer">{config.linkedin}</a>
     </div>
     <div class="contact-row">
-      <a href={config.github_url} target="_blank" rel="noopener noreferrer">{config.github}</a>
+      <a href={config.githubUrl} target="_blank" rel="noopener noreferrer">{config.github}</a>
     </div>
   </div>
 </header>

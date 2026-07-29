@@ -28,6 +28,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Backstop against a real client name reaching the public site. Runs before
+      # the PDF step so a leak fails the workflow rather than getting archived.
+      - name: Check public build for client name leaks
+        run: python scripts/check_public.py
+
       - run: pip install -r requirements.txt
       - run: playwright install chromium
 

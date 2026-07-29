@@ -1,0 +1,3795 @@
+{
+  "generated": "2026-07-29",
+  "source": {
+    "repo": "lore",
+    "commit": "e24ea5f"
+  },
+  "counts": {
+    "projects": 59,
+    "roles": 9,
+    "skills": 19,
+    "technologies": 32,
+    "clients": 38,
+    "projectTypes": 6,
+    "credentials": 1,
+    "community": 3
+  },
+  "roles": [
+    {
+      "name": "Curtin University Research Assistant",
+      "slug": "curtin-university-research-assistant",
+      "title": "Research Assistant",
+      "employer": "Curtin University",
+      "start": "2015",
+      "end": "2016",
+      "skills": [],
+      "technologies": [],
+      "tags": [],
+      "body": "Pre-career role.",
+      "bodyLeaks": []
+    },
+    {
+      "name": "EY Consultant, People Advisory Services",
+      "slug": "ey-consultant-people-advisory-services",
+      "title": "Consultant, People Advisory Services",
+      "employer": "EY",
+      "start": "2017-01",
+      "end": "2019-06",
+      "skills": [],
+      "technologies": [],
+      "tags": [],
+      "body": "Data analytics and process improvement projects across payroll, workforce planning and HR compliance. Delivered hire-to-retire process reviews and workforce analytics, identifying compliance gaps and remediation opportunities across multiple ASX-listed clients.\n\nClient work delivered under this role arrives via backlinks — not listed here.",
+      "bodyLeaks": []
+    },
+    {
+      "name": "EY Director, Risk Analytics",
+      "slug": "ey-director-risk-analytics",
+      "title": "Director, Risk Analytics",
+      "employer": "EY",
+      "start": "2022-03",
+      "end": "present",
+      "skills": [
+        "AI in Analytics",
+        "Responsible AI Frameworks"
+      ],
+      "technologies": [],
+      "tags": [
+        "leadership"
+      ],
+      "body": "Lead EY's national Risk Analytics team across Oceania, with direct delivery responsibility on the largest people analytics, payroll compliance and continuous controls engagements in Australia's mining and resources sector.\n\nGrew the team from 3 to 16 across multiple cities: designed the operating model, structured the training program, and led AI adoption and the team's responsible AI use program. Co-led lateral, graduate and senior recruitment for the national Risk Analytics team — defining role requirements, case-study interviews and capability criteria to support the practice's growth.\n\n**Community & wellbeing (EY):** Perth Consulting Group Wellbeing Pillar Lead; Wellbeing Exchange Network Perth Lead; Mental Health First Aid Officer.\n\nClient work delivered under this role arrives via backlinks — not listed here.",
+      "bodyLeaks": []
+    },
+    {
+      "name": "EY Manager, People Advisory Services",
+      "slug": "ey-manager-people-advisory-services",
+      "title": "Manager, People Advisory Services",
+      "employer": "EY",
+      "start": "2020-02",
+      "end": "2022-03",
+      "skills": [],
+      "technologies": [],
+      "tags": [
+        "leadership"
+      ],
+      "body": "Led the Perth data analytics and automation team within People Advisory Services, delivering payroll, remuneration, superannuation and employment tax analytics for major Australian employers.\n\nClient work delivered under this role arrives via backlinks — not listed here.",
+      "bodyLeaks": []
+    },
+    {
+      "name": "Grill'd Team Leader",
+      "slug": "grill-d-team-leader",
+      "title": "Team Leader",
+      "employer": "Grill'd",
+      "start": "2014",
+      "end": "2015",
+      "skills": [],
+      "technologies": [],
+      "tags": [],
+      "body": "Pre-career role.",
+      "bodyLeaks": []
+    },
+    {
+      "name": "Mindfields Senior Consultant",
+      "slug": "mindfields-senior-consultant",
+      "title": "Senior Consultant",
+      "employer": "Mindfields",
+      "start": "2019-07",
+      "end": "2020-02",
+      "skills": [],
+      "technologies": [],
+      "tags": [],
+      "body": "Specialist consulting in process improvement, governance and intelligent automation.\n\nClient work delivered under this role arrives via backlinks — not listed here.",
+      "bodyLeaks": []
+    },
+    {
+      "name": "Penrhos College Sports Coach",
+      "slug": "penrhos-college-sports-coach",
+      "title": "Sports Coach",
+      "employer": "Penrhos College",
+      "start": "2014",
+      "end": "2016",
+      "skills": [],
+      "technologies": [],
+      "tags": [],
+      "body": "Pre-career role.",
+      "bodyLeaks": []
+    },
+    {
+      "name": "Unified Honey Senior Account Executive",
+      "slug": "unified-honey-senior-account-executive",
+      "title": "Senior Account Executive",
+      "employer": "Unified Honey",
+      "start": "2025-06",
+      "end": "present",
+      "skills": [],
+      "technologies": [],
+      "tags": [
+        "concurrent"
+      ],
+      "body": "Concurrent role (alongside [[EY Director, Risk Analytics]]). Contributor to a Snowflake Native App in the Snowflake Startup Accelerator, focused on agent-ready, governed data products bridging ERP systems with modern data platforms — drawing on mining industry domain expertise to bridge SAP, Pronto and Oracle with modern data platforms.\n\nClient work delivered under this role arrives via backlinks — not listed here.",
+      "bodyLeaks": []
+    },
+    {
+      "name": "Wesley College Sports Coach",
+      "slug": "wesley-college-sports-coach",
+      "title": "Sports Coach",
+      "employer": "Wesley College",
+      "start": "2014",
+      "end": "2016",
+      "skills": [],
+      "technologies": [],
+      "tags": [],
+      "body": "Pre-career role.",
+      "bodyLeaks": []
+    }
+  ],
+  "projects": [
+    {
+      "name": "Ampol Rostering Review",
+      "slug": "ampol-rostering-review",
+      "client": "Ampol",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "HR"
+      ],
+      "technologies": [
+        "Kronos"
+      ],
+      "start": "2025",
+      "end": "2025",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "rostering"
+      ],
+      "body": "Rostering pattern and compliance review using Kronos data.\n\n*P018 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — thin in the source data, enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "ampol"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Chevron Analytics Engagement",
+      "slug": "chevron-analytics-engagement",
+      "client": "Chevron",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "Payroll"
+      ],
+      "technologies": [],
+      "start": "2023",
+      "end": "2024",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "payroll",
+        "compliance"
+      ],
+      "body": "Payroll compliance analytics engagement (2023–2024). Specifics of what was delivered still to be enriched.\n\n*P025.*",
+      "leaks": {
+        "title": [
+          "chevron"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Chevron Long Service Leave Review",
+      "slug": "chevron-long-service-leave-review",
+      "client": "Chevron",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "Payroll"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Identified LSL non-compliance across legacy and current systems after a system migration",
+      "featured": false,
+      "tags": [
+        "payroll",
+        "long-service-leave"
+      ],
+      "body": "Engagement lead on long service leave analysis following migration of payroll and HR systems. Identified non-compliance within legacy and current systems, and supported process improvements, entitlement recalculation and historical remediation. Distinct from the [[Chevron Analytics Engagement]] (payroll compliance analytics, 2023–2024).",
+      "leaks": {
+        "title": [
+          "chevron"
+        ],
+        "outcome": [],
+        "body": [
+          "chevron"
+        ]
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Comcare Data Quality, Governance & Validation Review",
+      "slug": "comcare-data-quality-governance-validation-review",
+      "client": "Comcare",
+      "clientPublic": false,
+      "projectType": "Data Governance & Quality",
+      "employment": null,
+      "skills": [
+        "Data Governance Frameworks",
+        "Data Quality & Validation"
+      ],
+      "technologies": [],
+      "start": "2024",
+      "end": "2024",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "data-governance",
+        "government"
+      ],
+      "body": "Enterprise data quality, governance and validation review for a federal regulator.\n\n*P024 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — thin in the source data, enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "comcare"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Compliance IQ Contract Compliance Analytics",
+      "slug": "compliance-iq-contract-compliance-analytics",
+      "client": "Australian Government Infrastructure Program",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Controls Analytics"
+      ],
+      "technologies": [
+        "Snowflake"
+      ],
+      "start": "2026",
+      "end": "present",
+      "outcome": "Shaped a repeatable contract-compliance analytics proposition and proof-of-concept",
+      "featured": false,
+      "tags": [
+        "contract-compliance",
+        "commercial-assurance",
+        "pursuit"
+      ],
+      "body": "Opportunity and Solution Lead developing a contract-compliance analytics proposition (Compliance IQ) covering contract interpretation, data mapping, test design and exception follow-up. Shaped deployment, data-security and operating-model options to suit client technology requirements, developed the proof-of-concept approach, and articulated how analytics, automation and AI could support repeatable commercial assurance. Built around [[Snowflake]] with AI-enabled analysis.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "Data Modelling for Risk Analytics Training",
+      "slug": "data-modelling-for-risk-analytics-training",
+      "client": "EY",
+      "clientPublic": true,
+      "projectType": "Data Platforms & Engineering",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Dimensional Modelling",
+        "Entity-Relationship Modelling",
+        "ETL & Pipeline Design",
+        "AI in Analytics"
+      ],
+      "technologies": [],
+      "start": "2026-06",
+      "end": "2026-06",
+      "outcome": "A working toolkit framing data modelling as the reliability layer for risk analytics",
+      "featured": false,
+      "tags": [
+        "training",
+        "data-modelling",
+        "internal"
+      ],
+      "body": "Training Sponsor and co-author of practical training explaining data modelling as the reliability layer for risk analytics. Created case-based guidance on row-level definition, joins, historical context and defensible exceptions, positioning the material as a working toolkit rather than theoretical data architecture training, with AI-assisted content development.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "DEECA Assurance Mapping & Reporting Dashboard",
+      "slug": "deeca-assurance-mapping-reporting-dashboard",
+      "client": "Victorian Department of Energy, Environment and Climate Action",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Risk",
+        "Data Visualisation"
+      ],
+      "technologies": [
+        "Power BI",
+        "Microsoft Excel"
+      ],
+      "start": "2025",
+      "end": "2026-03",
+      "outcome": "Handed over a maintainable assurance-mapping solution linking assurance activity to risks and processes",
+      "featured": false,
+      "tags": [
+        "assurance-mapping",
+        "controls",
+        "government"
+      ],
+      "body": "Analytics oversight for the refinement and handover of an assurance-mapping dashboard and its supporting data model, linking assurance activities to risks and business processes across the lines of defence. Directed updates to make the solution easier for the client to maintain, refresh and operate after handover, reviewing Power Query logic, file-path configuration, branding and technical documentation. The broader multi-client assurance-mapping body of work is captured separately at [[Digital Assurance Mapping (Multiple Clients)]].",
+      "leaks": {
+        "title": [
+          "deeca"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "DEECA Superannuation Remediation",
+      "slug": "deeca-superannuation-remediation",
+      "client": "Victorian Department of Energy, Environment and Climate Action",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Payroll"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Quantified and supported remediation of historical superannuation variances",
+      "featured": false,
+      "tags": [
+        "superannuation",
+        "remediation",
+        "government"
+      ],
+      "body": "Superannuation analytics and remediation lead assessing employee superannuation calculations and payment outcomes. Recalculated expected entitlements, quantified identified variances, and supported investigation and remediation of historical exceptions. Separate from the [[DEECA Assurance Mapping & Reporting Dashboard]] engagement for the same client.",
+      "leaks": {
+        "title": [
+          "deeca"
+        ],
+        "outcome": [],
+        "body": [
+          "deeca"
+        ]
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Diamond Offshore Shadow Payroll Automation",
+      "slug": "diamond-offshore-shadow-payroll-automation",
+      "client": "Diamond Offshore",
+      "clientPublic": false,
+      "projectType": "Intelligent Automation",
+      "employment": null,
+      "skills": [
+        "Payroll"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Automated shadow-payroll calculations with exception testing for inbound transfers",
+      "featured": false,
+      "tags": [
+        "payroll",
+        "automation"
+      ],
+      "body": "Automation and payroll analytics lead developing an automated shadow-payroll process for employees transferred into Australia. Automated salary, wage and Australian employment-tax calculations, and implemented exception testing and reporting.",
+      "leaks": {
+        "title": [
+          "diamond",
+          "offshore"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Digital Assurance Mapping (Multiple Clients)",
+      "slug": "digital-assurance-mapping-multiple-clients",
+      "client": null,
+      "clientPublic": true,
+      "projectType": "Risk & Controls",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Risk",
+        "Data Visualisation"
+      ],
+      "technologies": [
+        "Power BI"
+      ],
+      "start": "",
+      "end": "",
+      "outcome": "Reusable assurance-mapping data model and tailored visual solutions across multiple organisations",
+      "featured": false,
+      "tags": [
+        "assurance-mapping",
+        "controls",
+        "aggregate"
+      ],
+      "body": "Assurance mapping solution lead across multiple organisations. Oversaw development of assurance maps linking assurance activity to key risks and business processes, defined reusable data models covering assurance providers across the lines of defence, and designed tailored visual solutions based on stakeholder requirements. Aggregate node — the named [[DEECA Assurance Mapping & Reporting Dashboard]] engagement is captured separately.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "Domino's Payroll & Accounts Payable Internal Audit",
+      "slug": "domino-s-payroll-accounts-payable-internal-audit",
+      "client": "Domino's Pizza Enterprises",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Payroll",
+        "Accounts Payable",
+        "Controls Analytics"
+      ],
+      "technologies": [
+        "Power BI"
+      ],
+      "start": "2026",
+      "end": "2026",
+      "outcome": "Analytics-led assurance over payroll and accounts payable controls",
+      "featured": false,
+      "tags": [
+        "payroll",
+        "accounts-payable",
+        "internal-audit"
+      ],
+      "body": "Directed analytics-led internal audits across payroll and accounts payable processes. Reviewed the audit approach and reporting with a focus on control design, execution and clear communication of risk, and oversaw quality review and preparation of client-ready reporting.",
+      "leaks": {
+        "title": [
+          "dominos"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Dulux Continuous Controls Monitoring (Hire-to-Retire)",
+      "slug": "dulux-continuous-controls-monitoring-hire-to-retire",
+      "client": "Dulux",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": null,
+      "skills": [
+        "Controls Analytics"
+      ],
+      "technologies": [
+        "SAP SuccessFactors"
+      ],
+      "start": "2019",
+      "end": "2026",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "controls",
+        "hr"
+      ],
+      "body": "Implemented CCM over the hire-to-retire process using SuccessFactors as the primary data source.\n\n*P014 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "dulux"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Employee Entitlements Remediation (Multiple Clients)",
+      "slug": "employee-entitlements-remediation-multiple-clients",
+      "client": null,
+      "clientPublic": true,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "Payroll"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Regulator-reviewed entitlement recalculation models delivered under FWO Enforceable Undertakings",
+      "featured": false,
+      "tags": [
+        "payroll",
+        "remediation",
+        "aggregate"
+      ],
+      "body": "Engagement lead and employee-entitlements specialist across multiple clients spanning banking, retail, mining and healthcare. Led entitlement recalculation and remediation, interpreted industrial awards and enterprise-agreement provisions, and delivered engagements under Fair Work Ombudsman Enforceable Undertakings, including regulator-reviewed analytic models. Aggregate node — split into named clients as they are confirmed.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "Endeavour Group Delegation of Authority Review",
+      "slug": "endeavour-group-delegation-of-authority-review",
+      "client": "Endeavour Group",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "Controls Analytics",
+        "Accounts Payable"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Identified delegation non-compliance and supported optimisation of the delegation structure",
+      "featured": false,
+      "tags": [
+        "delegation-of-authority",
+        "controls"
+      ],
+      "body": "Analytics lead analysing payment, approval and ERP delegation configuration data. Identified actual and potential non-compliance with the delegation of authority framework, and supported optimisation of the delegation structure using historical payment activity.",
+      "leaks": {
+        "title": [
+          "endeavour"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Fortescue Payroll Continuous Controls Monitoring",
+      "slug": "fortescue-payroll-continuous-controls-monitoring",
+      "client": "Fortescue",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Controls Analytics"
+      ],
+      "technologies": [
+        "SAP ECP",
+        "SAP SuccessFactors",
+        "SAP Analytics Cloud",
+        "Power BI"
+      ],
+      "start": "2022",
+      "end": "present",
+      "outcome": "Provided ongoing assurance over payroll accuracy and compliance",
+      "featured": true,
+      "tags": [
+        "payroll",
+        "compliance",
+        "ccm"
+      ],
+      "body": "Designed and delivered a payroll CCM solution integrating SAP ECP and SuccessFactors data, surfaced via SAP Analytics Cloud and Power BI. The engagement has continued to broaden: as Analytics and CCM Lead, directed the design and execution of data testing and the integration of analytics into audit reporting, extending continuous controls monitoring and analytics-enabled internal audit work and contributing credentials and methods for establishing sustainable continuous monitoring capabilities in the mining sector.\n\n*P003 — the 2026 \"Continuous Monitoring and Internal Audit Analytics\" extraction entry was confirmed as the same, ongoing Fortescue CCM engagement and folded in here (end extended to present).*",
+      "leaks": {
+        "title": [
+          "fortescue"
+        ],
+        "outcome": [],
+        "body": [
+          "fortescue"
+        ]
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Fortescue UiPath RPA Implementation",
+      "slug": "fortescue-uipath-rpa-implementation",
+      "client": "Fortescue",
+      "clientPublic": false,
+      "projectType": "Intelligent Automation",
+      "employment": "Mindfields Senior Consultant",
+      "skills": [],
+      "technologies": [
+        "UiPath"
+      ],
+      "start": "",
+      "end": "",
+      "outcome": "Six processes automated with sustained post-production performance",
+      "featured": true,
+      "tags": [
+        "rpa",
+        "automation"
+      ],
+      "body": "Large-scale RPA implementation covering 6 automated processes across Finance, HR, Safety and Tax — as business analyst, solution architect, developer, test manager and project manager. Supported the client's RPA team to scale automation delivery across business functions, designing and implementing automations for invoice processing and employee change-of-condition letters, and supporting automations for fringe benefits tax analysis and journal posting and reversal. Led process assessment, business case, solution architecture, UAT and post-production validation.\n\n*P032 — originally recorded against a confidential label (\"Major WA Mining Company\"); confirmed the real client is Fortescue. Dates still TODO.*",
+      "leaks": {
+        "title": [
+          "fortescue"
+        ],
+        "outcome": [],
+        "body": [
+          "fortescue"
+        ]
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Fortescue Workforce Analytics Review",
+      "slug": "fortescue-workforce-analytics-review",
+      "client": "Fortescue",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "HR"
+      ],
+      "technologies": [
+        "SAP SuccessFactors"
+      ],
+      "start": "2022",
+      "end": "2022",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "workforce"
+      ],
+      "body": "Workforce analytics review using SuccessFactors as the primary data source.\n\n*P004 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — thin in the source data, enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "fortescue"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Greencross Payroll Remediation",
+      "slug": "greencross-payroll-remediation",
+      "client": "Greencross",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "Payroll"
+      ],
+      "technologies": [],
+      "start": "2022",
+      "end": "2022",
+      "outcome": "Quantified underpayments across 2,000+ employees nationally",
+      "featured": false,
+      "tags": [
+        "payroll",
+        "remediation"
+      ],
+      "body": "Payroll analytics and remediation lead developing analytic models to recalculate employee pay entitlements. Assessed contractual obligations against the Veterinary Services Award and the General Retail Industry Award, and quantified underpayments across more than 2,000 employees nationally. Distinct from the [[Greencross Rostering Review]]; dates approximate (evidence identified from 2022).",
+      "leaks": {
+        "title": [
+          "greencross"
+        ],
+        "outcome": [],
+        "body": [
+          "greencross"
+        ]
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Greencross Rostering Review",
+      "slug": "greencross-rostering-review",
+      "client": "Greencross",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "HR"
+      ],
+      "technologies": [
+        "Kronos",
+        "RITEQ"
+      ],
+      "start": "2021",
+      "end": "2021",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "rostering"
+      ],
+      "body": "Rostering pattern and compliance review, drawing on Kronos and RITEQ data.\n\n*P017 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — merged with the former P019 (\"Confidential client\" RITEQ rostering analysis), which the brain dump confirmed was the same Greencross engagement, originally split across two source rows. Confirm whether both Kronos and RITEQ were genuinely in scope, or just one.*",
+      "leaks": {
+        "title": [
+          "greencross"
+        ],
+        "outcome": [],
+        "body": [
+          "greencross"
+        ]
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Griffith University Finance & Payroll Controls Monitoring",
+      "slug": "griffith-university-finance-payroll-controls-monitoring",
+      "client": "Griffith University",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": null,
+      "skills": [
+        "Controls Analytics",
+        "Risk"
+      ],
+      "technologies": [
+        "SQL",
+        "Power BI",
+        "Microsoft Fabric",
+        "Microsoft Azure",
+        "GitHub",
+        "GitHub Copilot"
+      ],
+      "start": "2026",
+      "end": "present",
+      "outcome": "Standing continuous controls monitoring across finance processes, decision-useful by design",
+      "featured": true,
+      "tags": [
+        "controls",
+        "ccm"
+      ],
+      "body": "Engagement Lead and Solution Design Lead for an ongoing continuous controls monitoring program covering the operating model, analytics framework, exception lifecycle and technology architecture. Directed project planning, process onboarding and the design of monitoring across finance processes including payroll and wage entitlement calculations, and reviewed analysis, reporting roadmaps and project documentation with a focus on clear, decision-useful outputs. Built on a [[Microsoft Fabric]] / [[Microsoft Azure]] data platform with [[SQL]] and [[Power BI]], versioned in [[GitHub]] with [[GitHub Copilot]]-assisted development.",
+      "leaks": {
+        "title": [
+          "griffith"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Home Affairs Recommendation Follow-up Dashboard",
+      "slug": "home-affairs-recommendation-follow-up-dashboard",
+      "client": "Department of Home Affairs",
+      "clientPublic": false,
+      "projectType": "Data Platforms & Engineering",
+      "employment": null,
+      "skills": [
+        "Data Visualisation"
+      ],
+      "technologies": [
+        "ServiceNow",
+        "Power BI"
+      ],
+      "start": "",
+      "end": "",
+      "outcome": "Enhanced monitoring of outstanding recommendations beyond standard ServiceNow reporting",
+      "featured": false,
+      "tags": [
+        "reporting",
+        "follow-up",
+        "government"
+      ],
+      "body": "Solution lead developing a bespoke recommendation follow-up dashboard using data maintained in [[ServiceNow]]. Worked with stakeholders to define reporting and follow-up requirements, and enhanced monitoring of outstanding recommendations beyond standard ServiceNow reporting.",
+      "leaks": {
+        "title": [
+          "affairs",
+          "home"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Macmahon Leading Safety Indicator Review",
+      "slug": "macmahon-leading-safety-indicator-review",
+      "client": "Macmahon",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Data Quality & Validation",
+        "Risk"
+      ],
+      "technologies": [],
+      "start": "2026-06",
+      "end": "2026-07",
+      "outcome": "Delivered a validated analytics view of leading safety indicators under controlled data handling",
+      "featured": false,
+      "tags": [
+        "safety",
+        "analytics",
+        "mining"
+      ],
+      "body": "Risk Analytics Lead overseeing the analytics component of a safety-focused review — methodology development, data validation and delivery management. Guided escalation of data-access and transfer dependencies affecting the delivery plan, and developed a controlled data-handling and destruction approach covering approved collaboration and analytics environments.",
+      "leaks": {
+        "title": [
+          "macmahon"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Melbourne Water Complaints Management Review",
+      "slug": "melbourne-water-complaints-management-review",
+      "client": "Melbourne Water",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "Controls Analytics"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Independent view of complaints handling, timeliness and control gaps",
+      "featured": false,
+      "tags": [
+        "complaints",
+        "controls"
+      ],
+      "body": "Independent review and analytics lead on a review of complaints processes and controls. Directed analytics covering anomalies, trends and control gaps, and assessed resolution timeliness, approval authority and data integrity.",
+      "leaks": {
+        "title": [
+          "melbourne",
+          "water"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "nbn IT General Controls Identity Reconciliation",
+      "slug": "nbn-it-general-controls-identity-reconciliation",
+      "client": "nbn",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": null,
+      "skills": [
+        "User Access Management",
+        "Controls Analytics"
+      ],
+      "technologies": [
+        "Active Directory",
+        "Oracle",
+        "Chris21",
+        "Workday"
+      ],
+      "start": "2020",
+      "end": "2023",
+      "outcome": "Recurring assurance that terminated-user access was removed effectively across critical systems",
+      "featured": false,
+      "tags": [
+        "access-management",
+        "itgc"
+      ],
+      "body": "Risk Analytics Lead on the annual reconciliation of HR records against account existence and last-login information across critical systems (2020–2023). Designed the analysis to assess whether terminated-user access was removed effectively, and worked through data-quality challenges arising from inconsistent employee identifiers across [[Active Directory]], [[Oracle]], [[Chris21]] and [[Workday]].",
+      "leaks": {
+        "title": [
+          "nbn"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Northern Star Inventory Management Analytics",
+      "slug": "northern-star-inventory-management-analytics",
+      "client": "Northern Star Resources",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": null,
+      "skills": [
+        "Controls Analytics",
+        "Procurement",
+        "Risk"
+      ],
+      "technologies": [
+        "Power BI",
+        "SQL",
+        "Snowflake",
+        "Pronto"
+      ],
+      "start": "2026",
+      "end": "2026",
+      "outcome": "Practical improvement roadmap for inventory governance, master data and warehouse processes",
+      "featured": false,
+      "tags": [
+        "internal-audit",
+        "inventory"
+      ],
+      "body": "Director and Analytics & Internal Audit Lead overseeing an internal audit of inventory governance, master data, planning, warehouse processes and management reporting. Integrated data analytics into the review to assess inventory movements, master data quality and process risks, drawing on [[Pronto]] and [[Power BI]], and supported stakeholder validation, reporting and development of a practical improvement roadmap.",
+      "leaks": {
+        "title": [
+          "northern",
+          "star"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Northern Star Payroll Monitoring (Snowflake + Power BI)",
+      "slug": "northern-star-payroll-monitoring-snowflake-power-bi",
+      "client": "Northern Star Resources",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Controls Analytics"
+      ],
+      "technologies": [
+        "Power BI",
+        "SQL",
+        "Snowflake",
+        "SAP ECP",
+        "SAP SuccessFactors",
+        "Pronto"
+      ],
+      "start": "2024",
+      "end": "2024",
+      "outcome": "Established repeatable monitoring across heterogeneous source systems",
+      "featured": true,
+      "tags": [
+        "payroll",
+        "ccm",
+        "snowflake"
+      ],
+      "body": "End-to-end payroll monitoring solution with Snowflake back-end and Power BI front-end, integrating SAP ECP, SuccessFactors and Pronto. Framed as a payroll visibility capability focused on payroll accuracy and processing efficiency: facilitated stakeholder workshops covering business drivers, datasets, metrics and business impacts, and delivered real-time reporting to support data-driven decisions by business leaders.\n\n*P006 — the anonymised \"WA Mining real-time payroll monitoring\" CV entry was confirmed as this same Northern Star engagement and folded in here.*",
+      "leaks": {
+        "title": [
+          "northern",
+          "star"
+        ],
+        "outcome": [],
+        "body": [
+          "northern",
+          "star"
+        ]
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Northern Star SuccessFactors Implementation Support",
+      "slug": "northern-star-successfactors-implementation-support",
+      "client": "Northern Star Resources",
+      "clientPublic": false,
+      "projectType": null,
+      "employment": null,
+      "skills": [],
+      "technologies": [
+        "SAP SuccessFactors"
+      ],
+      "start": "2024",
+      "end": "2024",
+      "outcome": "",
+      "featured": false,
+      "tags": [],
+      "body": "Provided implementation and configuration support for a SAP SuccessFactors deployment.\n\n*P008 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — no capability from the source list fits cleanly (systems implementation, not analytics); thin, enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "northern",
+          "star"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Northern Star User Access Management Review",
+      "slug": "northern-star-user-access-management-review",
+      "client": "Northern Star Resources",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "User Access Management",
+        "Risk"
+      ],
+      "technologies": [
+        "SAP ECP",
+        "SAP SuccessFactors"
+      ],
+      "start": "2026-11",
+      "end": "2026-11",
+      "outcome": "Assessed whether access across HR and payroll systems remained appropriate",
+      "featured": false,
+      "tags": [
+        "access-management"
+      ],
+      "body": "Led the analytics supporting a review of access within HR and payroll systems. Directed testing of privileged access, third-party access and segregation of duties, applying employment and system-access data to assess whether access remained appropriate. Distinct from the [[Water Corporation User Access Management Solution]] engagement.",
+      "leaks": {
+        "title": [
+          "northern",
+          "star"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Payroll Internal Audit (Multiple Clients)",
+      "slug": "payroll-internal-audit-multiple-clients",
+      "client": null,
+      "clientPublic": true,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "Payroll",
+        "Controls Analytics"
+      ],
+      "technologies": [
+        "Power BI"
+      ],
+      "start": "",
+      "end": "",
+      "outcome": "Recurring analytics-led payroll internal audits across multiple industries",
+      "featured": false,
+      "tags": [
+        "payroll",
+        "internal-audit",
+        "aggregate"
+      ],
+      "body": "Payroll internal audit and analytics lead across multiple clients spanning mining, aviation, retail and healthcare (evidence identified 2022–2026). Reviewed payroll governance, processes, system configuration and key controls; used payroll and timesheet analytics to test pay accuracy, unusual transactions and compliance; and developed practical recommendations addressing control and data-quality weaknesses. Aggregate node — split into named clients as they are confirmed.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "Procurement Internal Audit (Multiple Clients)",
+      "slug": "procurement-internal-audit-multiple-clients",
+      "client": null,
+      "clientPublic": true,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "Procurement",
+        "Controls Analytics"
+      ],
+      "technologies": [
+        "Power BI"
+      ],
+      "start": "",
+      "end": "",
+      "outcome": "Identified procure-to-pay control exceptions across multiple industries",
+      "featured": false,
+      "tags": [
+        "procurement",
+        "internal-audit",
+        "aggregate"
+      ],
+      "body": "Procurement internal audit and analytics lead across multiple clients spanning government, healthcare, hospitality and infrastructure. Reviewed procure-to-pay governance, controls and compliance; analysed purchase orders, invoices, payments, vendor master data and employee records; and identified potential control exceptions relating to approvals, duplicate or unusual transactions and supplier governance. Aggregate node — split into named clients as they are confirmed.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "RACV Rostering Review",
+      "slug": "racv-rostering-review",
+      "client": "RACV",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "HR"
+      ],
+      "technologies": [
+        "Kronos"
+      ],
+      "start": "2020",
+      "end": "2022",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "rostering"
+      ],
+      "body": "Rostering pattern and compliance review using Kronos data.\n\n*P016 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — thin in the source data, enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "racv"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Ramelius Resources Workforce Analytics & Reporting",
+      "slug": "ramelius-resources-workforce-analytics-reporting",
+      "client": "Ramelius Resources",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "HR"
+      ],
+      "technologies": [
+        "Oracle EPM",
+        "JobAdder",
+        "Power Apps",
+        "Power Automate"
+      ],
+      "start": "2026",
+      "end": "present",
+      "outcome": "Established the data foundation for a broader workforce analytics capability",
+      "featured": false,
+      "tags": [
+        "workforce"
+      ],
+      "body": "Engagement Lead for the analytics workstream establishing data foundations for workforce planning, workforce management and recruitment reporting. Shaped a phased delivery approach, positioning the initial workforce tracker as the foundation for a broader workforce analytics capability, and defined the discovery questions across HR, recruitment, planning, integration, reporting and workflow requirements. Draws on [[Oracle EPM]], [[JobAdder]] and the Microsoft Power Platform.",
+      "leaks": {
+        "title": [
+          "ramelius"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Rio Tinto Payroll Accuracy Dashboards",
+      "slug": "rio-tinto-payroll-accuracy-dashboards",
+      "client": "Rio Tinto",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [],
+      "technologies": [
+        "Power BI"
+      ],
+      "start": "2022",
+      "end": "2022",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "payroll"
+      ],
+      "body": "Designed and built payroll accuracy dashboards in Power BI.\n\n*P009 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — thin in the source data, enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "rio",
+          "tinto"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Risk Analytics Knowledge Management & Engagement Repository",
+      "slug": "risk-analytics-knowledge-management-engagement-repository",
+      "client": "EY",
+      "clientPublic": true,
+      "projectType": "Data Governance & Quality",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Data Governance Frameworks"
+      ],
+      "technologies": [],
+      "start": "2025",
+      "end": "present",
+      "outcome": "A structured repository so teams discover prior solutions and avoid rebuilding assets",
+      "featured": false,
+      "tags": [
+        "knowledge-management",
+        "internal"
+      ],
+      "body": "Program Sponsor for a structured SharePoint repository of proposals, credentials, methods, tools and reusable engagement content. Directed work to improve how teams discover prior solutions and avoid rebuilding existing assets, and promoted consistent documentation and capture of engagement experience for future delivery and business development.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "Risk Analytics Learning & Capability Program",
+      "slug": "risk-analytics-learning-capability-program",
+      "client": "EY",
+      "clientPublic": true,
+      "projectType": "Data Platforms & Engineering",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "ETL & Pipeline Design",
+        "Dimensional Modelling",
+        "Data Visualisation"
+      ],
+      "technologies": [
+        "Power BI"
+      ],
+      "start": "2024",
+      "end": "present",
+      "outcome": "Practical learning pathways spanning analytics, risk, process and consulting skills",
+      "featured": false,
+      "tags": [
+        "learning",
+        "capability",
+        "internal"
+      ],
+      "body": "Program Lead designing learning pathways spanning analytics, risk, business processes and consulting skills. Developed and delivered practical training in data modelling, ETL, visualisation and analytics-enabled assurance, and promoted peer learning, reusable training assets and integration with broader Risk Consulting development programs.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "Risk Analytics Methodology & Delivery Toolset",
+      "slug": "risk-analytics-methodology-delivery-toolset",
+      "client": "EY",
+      "clientPublic": true,
+      "projectType": "Risk & Controls",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Controls Analytics",
+        "Risk",
+        "Data Quality & Validation"
+      ],
+      "technologies": [
+        "Microsoft Excel"
+      ],
+      "start": "2024",
+      "end": "present",
+      "outcome": "A consistent, repeatable Risk Analytics delivery methodology aligned to the internal audit lifecycle",
+      "featured": false,
+      "tags": [
+        "methodology",
+        "internal",
+        "quality-assurance"
+      ],
+      "body": "Methodology Lead developing a consistent Risk Analytics methodology aligned to the internal audit lifecycle. Created and curated reusable workpapers, data-integrity checks, review checklists, testing templates and standard operating procedures, embedding requirements definition, analysis, validation and communication steps into a repeatable delivery process.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "Risk Analytics Pipeline Reporting",
+      "slug": "risk-analytics-pipeline-reporting",
+      "client": "EY",
+      "clientPublic": true,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Data Visualisation"
+      ],
+      "technologies": [
+        "Power BI"
+      ],
+      "start": "2026-01",
+      "end": "present",
+      "outcome": "Structured visibility of opportunities and practice activity for the national practice",
+      "featured": false,
+      "tags": [
+        "reporting",
+        "practice-management",
+        "internal"
+      ],
+      "body": "Product Owner creating and maintaining pipeline reporting for the Risk Analytics practice. Supported structured visibility of opportunities and practice activity, and integrated the reporting solution into the national Risk Analytics workspace.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "Risk Analytics Resourcing & Capability Tracking",
+      "slug": "risk-analytics-resourcing-capability-tracking",
+      "client": "EY",
+      "clientPublic": true,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "HR"
+      ],
+      "technologies": [
+        "Power BI"
+      ],
+      "start": "2026-07",
+      "end": "present",
+      "outcome": "Matched people to engagements using capabilities, tools and prior experience",
+      "featured": false,
+      "tags": [
+        "workforce-planning",
+        "resourcing",
+        "internal"
+      ],
+      "body": "Program Sponsor defining an approach for matching people to engagements using capabilities, tools, technologies and prior experience. Promoted more consistent use of practitioner profiles and skills data (via ProFinda) in resourcing decisions, and guided development of capability taxonomies and expectations for maintaining current experience records. Conceptually adjacent to what Lore itself is building.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "Silverchain Payroll Analytics & Remediation",
+      "slug": "silverchain-payroll-analytics-remediation",
+      "client": "Silverchain",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "Payroll"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Recalculated pay entitlements and supported FWO disclosure",
+      "featured": false,
+      "tags": [
+        "payroll",
+        "remediation",
+        "healthcare"
+      ],
+      "body": "Payroll analytics and remediation lead recalculating pay entitlements using timesheet data and the Health Professionals and Support Services Award. Supported on-cost calculations, assurance reviews and employee communications, and assisted with disclosures to the Fair Work Ombudsman.",
+      "leaks": {
+        "title": [
+          "silverchain"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Silverchain Workforce Analytics Partnership",
+      "slug": "silverchain-workforce-analytics-partnership",
+      "client": "Silverchain",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Manager, People Advisory Services",
+      "skills": [
+        "HR",
+        "Payroll"
+      ],
+      "technologies": [
+        "SAP HCM",
+        "SAP SuccessFactors",
+        "Kronos"
+      ],
+      "start": "",
+      "end": "",
+      "outcome": "Sustained 5+ year client relationship; ongoing compliance assurance across complex healthcare rosters",
+      "featured": true,
+      "tags": [
+        "workforce",
+        "healthcare",
+        "rostering"
+      ],
+      "body": "Multi-year workforce analytics partnership covering rostering compliance, late rostering changes, overtime payments, superannuation compliance and breaks rostering. The related [[Silverchain Payroll Analytics & Remediation]] engagement sits alongside it.\n\n*P015 — originally recorded against the confidential label \"Healthcare Provider\"; confirmed as Silverchain.*",
+      "leaks": {
+        "title": [
+          "silverchain"
+        ],
+        "outcome": [],
+        "body": [
+          "silverchain"
+        ]
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "South32 Leave Entitlement Analytics",
+      "slug": "south32-leave-entitlement-analytics",
+      "client": "South32",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "Payroll"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Reconciled expected vs recorded leave balances across Australia and South Africa",
+      "featured": false,
+      "tags": [
+        "payroll",
+        "leave",
+        "entitlements"
+      ],
+      "body": "Analytics lead recalculating annual and personal leave entitlements for employee populations in Australia and South Africa. Compared expected leave balances against recorded balances over time, and worked with business specialists to identify root causes and support remediation.",
+      "leaks": {
+        "title": [
+          "south32"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "South32 Payroll Compliance Monitoring",
+      "slug": "south32-payroll-compliance-monitoring",
+      "client": "South32",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Payroll"
+      ],
+      "technologies": [
+        "SAP HCM",
+        "SAP SuccessFactors",
+        "SAP ECP"
+      ],
+      "start": "2019",
+      "end": "present",
+      "outcome": "Discrete reviews grown into an embedded analytics function; compliance exposures identified and remediated across multiple award and EBA scenarios",
+      "featured": true,
+      "tags": [
+        "payroll",
+        "compliance",
+        "people-analytics"
+      ],
+      "body": "Multi-year payroll and workforce compliance analytics partnership covering EBA compliance; annual, personal and public holiday leave deductions, accruals and payments; superannuation; payroll tax; and wage code configuration.\n\nWhat started as discrete reviews became an embedded analytics function.\n\n*P001 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — enrich with STAR detail from the brain dump.*",
+      "leaks": {
+        "title": [
+          "south32"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "South32 Training & Competency Analysis",
+      "slug": "south32-training-competency-analysis",
+      "client": "South32",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "HR"
+      ],
+      "technologies": [
+        "SAP SuccessFactors"
+      ],
+      "start": "2023",
+      "end": "2023",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "workforce"
+      ],
+      "body": "Workforce training and competency analysis using SuccessFactors data.\n\n*P002 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — thin in the source data, enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "south32"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "South32 Wage Entitlement Analytics",
+      "slug": "south32-wage-entitlement-analytics",
+      "client": "South32",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "Payroll"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Recalculated entitlements across eight enterprise agreements and multiple awards",
+      "featured": false,
+      "tags": [
+        "payroll",
+        "wages",
+        "entitlements"
+      ],
+      "body": "Payroll analytics and remediation lead recalculating salary and leave entitlements across eight enterprise agreements and multiple industrial awards. Compared calculated payroll outcomes with amounts paid and leave accrued, investigated root causes of variances, and supported remediation planning.",
+      "leaks": {
+        "title": [
+          "south32"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Superannuation Compliance Reviews (20+ Organisations)",
+      "slug": "superannuation-compliance-reviews-20-organisations",
+      "client": null,
+      "clientPublic": true,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Payroll"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Identified material under-payment exposures across multiple clients",
+      "featured": true,
+      "tags": [
+        "superannuation",
+        "compliance"
+      ],
+      "body": "Led superannuation compliance reviews across more than 20 large Australian employers, testing whether employers had paid the correct superannuation amounts and assessing compliance against legislation, enterprise agreements and employee contracts. Supported remediation of identified underpayments with the Australian Taxation Office.\n\n*P026 — kept as an aggregate; per the brain dump this legacy CV entry is to be split into named clients over time. The [[Government Agency Superannuation Remediation]] engagement has been separated out; name further clients as they are confirmed.*",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "Together Trustee Fund Recalculations in Python",
+      "slug": "together-trustee-fund-recalculations-in-python",
+      "client": "Together Trustee",
+      "clientPublic": false,
+      "projectType": "Data Platforms & Engineering",
+      "employment": null,
+      "skills": [],
+      "technologies": [
+        "Python"
+      ],
+      "start": "2024",
+      "end": "2025",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "python",
+        "superannuation"
+      ],
+      "body": "Python-based fund recalculations supporting trustee operations.\n\n*P022 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — thin in the source data, enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "together"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Transurban Incident Management Internal Audit",
+      "slug": "transurban-incident-management-internal-audit",
+      "client": "Transurban",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": null,
+      "skills": [
+        "Controls Analytics",
+        "Risk",
+        "Data Visualisation"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Recommendations on response times, SLA adherence and incident governance",
+      "featured": false,
+      "tags": [
+        "incident-management",
+        "internal-audit"
+      ],
+      "body": "Internal audit and analytics lead on a review of the incident management framework for the NSW toll-road network — effectiveness, compliance and operational arrangements. Analysed incident logs, escalation workflows and post-incident review data to identify recurring event types, trends and operational patterns; assessed timeliness of response, escalation and closure; and developed recommendations focused on response times, SLA adherence and governance. (Consolidates two overlapping source entries: an incident-management internal audit and an incident-management analytics engagement.)",
+      "leaks": {
+        "title": [
+          "transurban"
+        ],
+        "outcome": [],
+        "body": [
+          "nsw"
+        ]
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Unified Honey Snowflake Native App",
+      "slug": "unified-honey-snowflake-native-app",
+      "client": "Unified Honey",
+      "clientPublic": true,
+      "projectType": "Data Platforms & Engineering",
+      "employment": "Unified Honey Senior Account Executive",
+      "skills": [
+        "Data Governance Frameworks",
+        "Data Lineage & Cataloguing"
+      ],
+      "technologies": [
+        "Snowflake"
+      ],
+      "start": "",
+      "end": "",
+      "outcome": "Selected into the Snowflake Startup Accelerator",
+      "featured": true,
+      "tags": [
+        "startup",
+        "go-to-market"
+      ],
+      "body": "Contributor to Unified Honey, a Snowflake Native App in the Snowflake Startup Accelerator. Led go-to-market strategy, product positioning, sales collateral, competitive analysis and demo guides; contributed to data governance framework design (lineage, quality rules, semantic definitions).\n\n*P031 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — enrich with STAR detail and dates from brain dump.*",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
+      "name": "UNSW Data Quality, Governance & Validation Review",
+      "slug": "unsw-data-quality-governance-validation-review",
+      "client": "UNSW",
+      "clientPublic": false,
+      "projectType": "Data Governance & Quality",
+      "employment": null,
+      "skills": [
+        "Data Governance Frameworks",
+        "Data Quality & Validation"
+      ],
+      "technologies": [],
+      "start": "2022",
+      "end": "2022",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "data-governance"
+      ],
+      "body": "Internal audit lead assessing the university's data and information governance arrangements. Conducted stakeholder interviews, process walkthroughs and policy and documentation reviews, identified risk areas, and developed recommendations and practical next steps.",
+      "leaks": {
+        "title": [
+          "unsw"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Victorian Department of Education IA Follow-up Dashboards",
+      "slug": "victorian-department-of-education-ia-follow-up-dashboards",
+      "client": "Victorian Department of Education",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Controls Analytics",
+        "ETL & Pipeline Design"
+      ],
+      "technologies": [
+        "Power BI",
+        "Microsoft Excel"
+      ],
+      "start": "2025-07",
+      "end": "2026-04",
+      "outcome": "Transitioned internal audit follow-up reporting from a temporary arrangement to a repeatable process",
+      "featured": false,
+      "tags": [
+        "internal-audit",
+        "reporting",
+        "government"
+      ],
+      "body": "Analytics Engagement Lead for the ongoing development and transition of dashboards and paginated reports used for internal audit follow-up reporting. Managed resourcing, delivery priorities and the transition from temporary reporting arrangements toward a repeatable process, and oversaw reconciliation, report-date parameters, data refreshes and client-requested reporting changes. Built with [[Power BI]] and Power BI Report Builder over an Excel/ETL back-end.",
+      "leaks": {
+        "title": [
+          "education"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Victorian Department of Jobs & Skills Risk Analytics into IA Planning",
+      "slug": "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
+      "client": "Victorian Department of Jobs, Skills, Industry and Regions",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Risk",
+        "Controls Analytics"
+      ],
+      "technologies": [],
+      "start": "2024-03",
+      "end": "2024-04",
+      "outcome": "Embedded data discovery into the internal audit planning process",
+      "featured": false,
+      "tags": [
+        "internal-audit",
+        "risk",
+        "government"
+      ],
+      "body": "Risk Analytics Lead developing an approach to embed data discovery within the internal audit planning process. Shaped analytics opportunities for grants assurance across internal audit and second-line monitoring, and shared reusable approaches from recurring location and project audits to support repeatable, analytics-enabled assurance.",
+      "leaks": {
+        "title": [
+          "jobs",
+          "skills"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "WA Mental Health Commission KPI Data Validation Audit",
+      "slug": "wa-mental-health-commission-kpi-data-validation-audit",
+      "client": "WA Mental Health Commission",
+      "clientPublic": false,
+      "projectType": "Data Governance & Quality",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Data Quality & Validation"
+      ],
+      "technologies": [],
+      "start": "2026-03",
+      "end": "2026-06",
+      "outcome": "Assessed the reliability of externally reported service-performance information",
+      "featured": false,
+      "tags": [
+        "data-governance",
+        "government",
+        "assurance"
+      ],
+      "body": "Engagement Lead on a data-validation audit assessing the reliability of externally reported service-performance information. Oversaw the audit approach, fieldwork planning, evidence validation and reporting requirements, and managed engagement setup, commercial arrangements and delivery governance under the relevant government panel.",
+      "leaks": {
+        "title": [
+          "health",
+          "mental"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Water Corporation User Access Management Solution",
+      "slug": "water-corporation-user-access-management-solution",
+      "client": "Water Corporation",
+      "clientPublic": false,
+      "projectType": "Data Governance & Quality",
+      "employment": null,
+      "skills": [
+        "Data Privacy & Protection"
+      ],
+      "technologies": [
+        "Power BI"
+      ],
+      "start": "2025",
+      "end": "2025",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "access-management"
+      ],
+      "body": "User access management monitoring and reporting solution built in Power BI.\n\n*P020 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — thin in the source data, enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "water"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Water Corporation Workforce Planning Scenario Analysis",
+      "slug": "water-corporation-workforce-planning-scenario-analysis",
+      "client": "Water Corporation",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": null,
+      "skills": [
+        "HR"
+      ],
+      "technologies": [],
+      "start": "2024",
+      "end": "2024",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "workforce-planning"
+      ],
+      "body": "Workforce planning scenario modelling supporting strategic workforce decisions.\n\n*P021 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — thin in the source data, enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "water"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Woodside End-to-End Payroll Review",
+      "slug": "woodside-end-to-end-payroll-review",
+      "client": "Woodside",
+      "clientPublic": false,
+      "projectType": "Business Process Analytics",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Payroll",
+        "Controls Analytics"
+      ],
+      "technologies": [
+        "SAP ECP",
+        "SAP SuccessFactors",
+        "Snowflake",
+        "Power BI"
+      ],
+      "start": "2026",
+      "end": "2026",
+      "outcome": "Identified control weaknesses and payment exceptions across the end-to-end payroll process",
+      "featured": false,
+      "tags": [
+        "payroll",
+        "oil-and-gas"
+      ],
+      "body": "Payroll review and analytics lead assessing payroll processes, controls and calculation accuracy from source HR data through to employee payment. Applied analytics and targeted testing to identify control weaknesses and payment exceptions, and supported recommendations for payroll governance, process and monitoring improvements across [[SAP ECP]], [[SAP SuccessFactors]] and [[Snowflake]].",
+      "leaks": {
+        "title": [
+          "woodside"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Worley Control Self-Assessment Program",
+      "slug": "worley-control-self-assessment-program",
+      "client": "Worley",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": null,
+      "skills": [
+        "Risk"
+      ],
+      "technologies": [
+        "Qualtrics",
+        "Microsoft Forms"
+      ],
+      "start": "2024",
+      "end": "2024",
+      "outcome": "",
+      "featured": false,
+      "tags": [
+        "controls",
+        "survey"
+      ],
+      "body": "Designed and ran a global control self-assessment program leveraging Qualtrics and Microsoft Forms for distribution and response capture.\n\n*P013 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — enrich from brain dump.*",
+      "leaks": {
+        "title": [
+          "worley"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Worley Data Quality, Governance & Validation Review",
+      "slug": "worley-data-quality-governance-validation-review",
+      "client": "Worley",
+      "clientPublic": false,
+      "projectType": "Data Governance & Quality",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Data Governance Frameworks",
+        "Data Quality & Validation",
+        "Data Lineage & Cataloguing"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "",
+      "featured": true,
+      "tags": [
+        "data-governance"
+      ],
+      "body": "Led a data quality, governance and validation review across the global enterprise — described internally as the largest of its type undertaken at Worley.\n\n*P012 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — enrich with STAR detail and dates from brain dump.*",
+      "leaks": {
+        "title": [
+          "worley"
+        ],
+        "outcome": [],
+        "body": [
+          "worley"
+        ]
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Worley Global Internal Audit Digital Capability",
+      "slug": "worley-global-internal-audit-digital-capability",
+      "client": "Worley",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Controls Analytics"
+      ],
+      "technologies": [],
+      "start": "",
+      "end": "",
+      "outcome": "Embedded analytics into a global IA function; uplifted maturity from a low base",
+      "featured": true,
+      "tags": [
+        "internal-audit",
+        "leadership"
+      ],
+      "body": "Digital capability lead for a global internal audit function spanning 100+ countries and 50+ audits per annum. Defined the Internal Audit digital strategy and roadmap, deployed technology and designed custom analytics tools to augment audit delivery, and managed day-to-day analytics delivery across the function. See also the related [[Worley Global Location & Project Audit Analytics]] and [[Worley Control Self-Assessment Program]] engagements.",
+      "leaks": {
+        "title": [
+          "worley"
+        ],
+        "outcome": [],
+        "body": [
+          "worley"
+        ]
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Worley Global Location & Project Audit Analytics",
+      "slug": "worley-global-location-project-audit-analytics",
+      "client": "Worley",
+      "clientPublic": false,
+      "projectType": "Risk & Controls",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Controls Analytics",
+        "Risk"
+      ],
+      "technologies": [
+        "VIA"
+      ],
+      "start": "2024",
+      "end": "2024",
+      "outcome": "Integrated repeatable analytics into recurring location and project audits",
+      "featured": false,
+      "tags": [
+        "internal-audit",
+        "analytics"
+      ],
+      "body": "Risk Analytics Lead integrating analytics into Worley's recurring location and project audits. Supported alignment of analytics procedures with audit risks, controls and standard audit work programs using [[VIA]] and risk and control matrices, and contributed to the design of repeatable, technology-enabled internal audit and continuous risk-monitoring approaches. Distinct from the [[Worley Control Self-Assessment Program]] and the [[Worley Global Internal Audit Digital Capability]] leadership role.",
+      "leaks": {
+        "title": [
+          "worley"
+        ],
+        "outcome": [],
+        "body": [
+          "worley"
+        ]
+      },
+      "publicSafe": false
+    }
+  ],
+  "skills": [
+    {
+      "name": "Accounts Payable",
+      "slug": "accounts-payable",
+      "kind": "skill",
+      "category": "Business Process",
+      "proficiency": "Expert",
+      "featured": false,
+      "aliases": [
+        "AP",
+        "Procure-to-Pay",
+        "P2P"
+      ],
+      "description": "Accounts payable and procure-to-pay analytics — invoice, payment, duplicate and approval testing, vendor master data quality. Kept generic; engagement-specific detail lives in project prose.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "AI in Analytics",
+      "slug": "ai-in-analytics",
+      "kind": "skill",
+      "category": "AI",
+      "proficiency": "Proficient",
+      "featured": true,
+      "aliases": [],
+      "description": "Practical integration of AI tooling into day-to-day analytics delivery.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Controls Analytics",
+      "slug": "controls-analytics",
+      "kind": "skill",
+      "category": "Business Process",
+      "proficiency": "Expert",
+      "featured": true,
+      "aliases": [],
+      "description": "Continuous controls monitoring and internal audit analytics — turning controls and audit programs into repeatable, data-driven monitoring. Kept deliberately generic; the specific disciplines live as detail in project prose rather than as separate skill nodes.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Data Governance Frameworks",
+      "slug": "data-governance-frameworks",
+      "kind": "skill",
+      "category": "Data Management",
+      "proficiency": "Expert",
+      "featured": true,
+      "aliases": [],
+      "description": "Designing frameworks covering ownership, stewardship, policy and standards.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Data Lineage & Cataloguing",
+      "slug": "data-lineage-cataloguing",
+      "kind": "skill",
+      "category": "Data Management",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [],
+      "description": "Mapping data flow source-to-consumption; semantic definitions and governed data products.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Data Privacy & Protection",
+      "slug": "data-privacy-protection",
+      "kind": "skill",
+      "category": "Data Management",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [],
+      "description": "Access controls, de-identification and privacy considerations for HR/payroll data.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Data Quality & Validation",
+      "slug": "data-quality-validation",
+      "kind": "skill",
+      "category": "Data Management",
+      "proficiency": "Expert",
+      "featured": true,
+      "aliases": [],
+      "description": "Enterprise-scale data quality reviews and rule-based validation.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Data Visualisation",
+      "slug": "data-visualisation",
+      "kind": "skill",
+      "category": "BI & Visualisation",
+      "proficiency": "Expert",
+      "featured": false,
+      "aliases": [],
+      "description": "Designing and building visual analytics — dashboards, monitoring front-ends, exception surfacing.\n\nNot in the original skills register — kept from the worked example as a genuinely useful generic skill alongside the more specific disciplines below.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Dimensional Modelling",
+      "slug": "dimensional-modelling",
+      "kind": "skill",
+      "category": "Data Modelling",
+      "proficiency": "Expert",
+      "featured": true,
+      "aliases": [],
+      "description": "Star/snowflake schemas, fact/dimension design, SCD patterns.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Entity-Relationship Modelling",
+      "slug": "entity-relationship-modelling",
+      "kind": "skill",
+      "category": "Data Modelling",
+      "proficiency": "Expert",
+      "featured": true,
+      "aliases": [],
+      "description": "Logical and physical ER design for transactional and analytical systems.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "ETL & Pipeline Design",
+      "slug": "etl-pipeline-design",
+      "kind": "skill",
+      "category": "Data Engineering",
+      "proficiency": "Expert",
+      "featured": true,
+      "aliases": [],
+      "description": "End-to-end pipeline design, build, management and monitoring.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "HR",
+      "slug": "hr",
+      "kind": "skill",
+      "category": "Business Process",
+      "proficiency": "Expert",
+      "featured": true,
+      "aliases": [],
+      "description": "Workforce and HR analytics — rostering, leave, FIFO arrangements, workforce planning. Kept deliberately generic; the specific disciplines live as detail in project prose rather than as separate skill nodes.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Medallion Lakehouse Architecture",
+      "slug": "medallion-lakehouse-architecture",
+      "kind": "skill",
+      "category": "Data Modelling",
+      "proficiency": "Proficient",
+      "featured": true,
+      "aliases": [
+        "Medallion / lakehouse architecture"
+      ],
+      "description": "Bronze/silver/gold layered architecture for scalable analytics.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Payroll",
+      "slug": "payroll",
+      "kind": "skill",
+      "category": "Business Process",
+      "proficiency": "Expert",
+      "featured": true,
+      "aliases": [],
+      "description": "Payroll compliance and processing — leave, tax, wages, hours, superannuation, EBA and award interpretation. Kept deliberately generic; the specific disciplines (superannuation testing, award interpretation, etc.) live as detail in project prose rather than as separate skill nodes.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Procurement",
+      "slug": "procurement",
+      "kind": "skill",
+      "category": "Business Process",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [
+        "Procure-to-Pay",
+        "Supply Chain"
+      ],
+      "description": "Procurement and supply-chain analytics — purchase order, vendor governance, contract and spend analysis, procure-to-pay compliance. Kept generic; the detail lives in project prose.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Responsible AI Frameworks",
+      "slug": "responsible-ai-frameworks",
+      "kind": "skill",
+      "category": "AI",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [],
+      "description": "Framework design for responsible AI use within analytics teams.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Reusable Component Development",
+      "slug": "reusable-component-development",
+      "kind": "skill",
+      "category": "Custom Development",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [],
+      "description": "Reusable Python widgets (e.g. temporal/interval joins, data quality checks) to accelerate analytics delivery.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Risk",
+      "slug": "risk",
+      "kind": "skill",
+      "category": "Business Process",
+      "proficiency": "Expert",
+      "featured": true,
+      "aliases": [],
+      "description": "Risk identification, assessment and controls ontology — dynamic risk assessment, risk-and-control frameworks. Kept deliberately generic; the specific disciplines live as detail in project prose rather than as separate skill nodes.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "User Access Management",
+      "slug": "user-access-management",
+      "kind": "skill",
+      "category": "Business Process",
+      "proficiency": "Expert",
+      "featured": false,
+      "aliases": [
+        "UAM",
+        "Identity & Access Management",
+        "IAM",
+        "Identity Reconciliation",
+        "Segregation of Duties",
+        "SoD"
+      ],
+      "description": "Access and identity analytics — reconciling HR records against system accounts, testing privileged and third-party access, segregation of duties, terminated-user access removal and IT general controls. Kept generic; the detail lives in project prose.",
+      "descriptionLeaks": []
+    }
+  ],
+  "technologies": [
+    {
+      "name": "Active Directory",
+      "slug": "active-directory",
+      "kind": "technology",
+      "category": "Identity & Access",
+      "proficiency": "Proficient",
+      "vendor": "Microsoft",
+      "featured": false,
+      "aliases": [
+        "AD",
+        "Azure AD",
+        "Entra ID"
+      ],
+      "enables": [
+        "User Access Management"
+      ],
+      "description": "Directory and account source for access reconciliation — account existence, last-login and privileged-access data matched against HR records in IT general controls testing.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Azure SQL",
+      "slug": "azure-sql",
+      "kind": "technology",
+      "category": "Data Platforms",
+      "proficiency": "Expert",
+      "vendor": "Microsoft",
+      "featured": true,
+      "aliases": [],
+      "enables": [
+        "Dimensional Modelling"
+      ],
+      "description": "Cloud-hosted relational database — design, build, operate.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Chris21",
+      "slug": "chris21",
+      "kind": "technology",
+      "category": "People Systems",
+      "proficiency": "Familiar",
+      "vendor": "Frontier Software",
+      "featured": false,
+      "aliases": [
+        "chris21",
+        "iChris"
+      ],
+      "enables": [],
+      "description": "HR and payroll system used as an employee-record source in identity reconciliation and IT general controls work.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Copilot Studio",
+      "slug": "copilot-studio",
+      "kind": "technology",
+      "category": "AI",
+      "proficiency": "Familiar",
+      "vendor": "Microsoft",
+      "featured": false,
+      "aliases": [],
+      "enables": [
+        "AI in Analytics"
+      ],
+      "description": "Low-code agent and copilot development on the Microsoft stack.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Databricks",
+      "slug": "databricks",
+      "kind": "technology",
+      "category": "Data Platforms",
+      "proficiency": "Familiar",
+      "vendor": "Databricks",
+      "featured": false,
+      "aliases": [],
+      "enables": [],
+      "description": "Conceptual exposure through recent project work.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "GitHub Copilot",
+      "slug": "github-copilot",
+      "kind": "technology",
+      "category": "AI",
+      "proficiency": "Proficient",
+      "vendor": "GitHub",
+      "featured": false,
+      "aliases": [
+        "Copilot"
+      ],
+      "enables": [
+        "AI in Analytics"
+      ],
+      "description": "AI pair-programming assistant used to accelerate development of analytics and controls-monitoring solutions. Distinct from [[Copilot Studio]].",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "GitHub",
+      "slug": "github",
+      "kind": "technology",
+      "category": "DevOps & Source Control",
+      "proficiency": "Proficient",
+      "vendor": "GitHub",
+      "featured": false,
+      "aliases": [],
+      "enables": [],
+      "description": "Source control and collaboration platform used to version and manage analytics and controls-monitoring code.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "JobAdder",
+      "slug": "jobadder",
+      "kind": "technology",
+      "category": "Recruitment Systems",
+      "proficiency": "Familiar",
+      "vendor": "JobAdder",
+      "featured": false,
+      "aliases": [],
+      "enables": [],
+      "description": "Recruitment and applicant-tracking system — a source for recruitment reporting in workforce analytics work.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Kronos",
+      "slug": "kronos",
+      "kind": "technology",
+      "category": "Workforce Management",
+      "proficiency": "Expert",
+      "vendor": null,
+      "featured": true,
+      "aliases": [],
+      "enables": [
+        "HR"
+      ],
+      "description": "Workforce management / time and attendance platform.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Microsoft Azure",
+      "slug": "microsoft-azure",
+      "kind": "technology",
+      "category": "Data Platforms",
+      "proficiency": "Proficient",
+      "vendor": "Microsoft",
+      "featured": false,
+      "aliases": [
+        "Azure"
+      ],
+      "enables": [],
+      "description": "Cloud platform underpinning data and analytics solutions — hosting, storage and compute for controls monitoring and reporting workloads. See also [[Azure SQL]].",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Microsoft Excel",
+      "slug": "microsoft-excel",
+      "kind": "technology",
+      "category": "BI & Visualisation",
+      "proficiency": "Expert",
+      "vendor": "Microsoft",
+      "featured": false,
+      "aliases": [
+        "Advanced Excel"
+      ],
+      "enables": [],
+      "description": "Complex formulas, Power Query, pivots, modelling.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Microsoft Fabric",
+      "slug": "microsoft-fabric",
+      "kind": "technology",
+      "category": "Data Platforms",
+      "proficiency": "Familiar",
+      "vendor": "Microsoft",
+      "featured": false,
+      "aliases": [],
+      "enables": [],
+      "description": "Conceptual exposure through recent project work.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Microsoft Forms",
+      "slug": "microsoft-forms",
+      "kind": "technology",
+      "category": "Survey & Forms Tools",
+      "proficiency": "Proficient",
+      "vendor": "Microsoft",
+      "featured": false,
+      "aliases": [],
+      "enables": [],
+      "description": "Forms tooling used alongside [[Qualtrics]] for global control self-assessment distribution (see [[Worley Control Self-Assessment Program]]).\n\nNot in the original skills register — added to cover a technology named in Projects.csv Systems that had no home.",
+      "descriptionLeaks": [
+        "Worley"
+      ]
+    },
+    {
+      "name": "Oracle EPM",
+      "slug": "oracle-epm",
+      "kind": "technology",
+      "category": "Enterprise Performance Management",
+      "proficiency": "Familiar",
+      "vendor": "Oracle",
+      "featured": false,
+      "aliases": [
+        "Oracle Enterprise Performance Management",
+        "EPM"
+      ],
+      "enables": [],
+      "description": "Enterprise performance management platform — relevant as a data source in workforce planning and reporting foundations.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Oracle",
+      "slug": "oracle",
+      "kind": "technology",
+      "category": "Enterprise Systems",
+      "proficiency": "Familiar",
+      "vendor": "Oracle",
+      "featured": false,
+      "aliases": [
+        "Oracle ERP",
+        "Oracle E-Business Suite",
+        "Oracle Database"
+      ],
+      "enables": [],
+      "description": "Enterprise system and database used as a critical-system source in identity reconciliation and IT general controls work.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Power Apps",
+      "slug": "power-apps",
+      "kind": "technology",
+      "category": "Low-code & Workflow",
+      "proficiency": "Proficient",
+      "vendor": "Microsoft",
+      "featured": false,
+      "aliases": [],
+      "enables": [],
+      "description": "Low-code app development on the Microsoft Power Platform.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Power Automate",
+      "slug": "power-automate",
+      "kind": "technology",
+      "category": "Low-code & Workflow",
+      "proficiency": "Proficient",
+      "vendor": "Microsoft",
+      "featured": false,
+      "aliases": [],
+      "enables": [],
+      "description": "Workflow automation across Microsoft 365 and line-of-business systems.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Power BI",
+      "slug": "power-bi",
+      "kind": "technology",
+      "category": "Data Visualisation Tools",
+      "proficiency": "Expert",
+      "vendor": "Microsoft",
+      "featured": true,
+      "aliases": [
+        "PowerBI",
+        "Microsoft Power BI"
+      ],
+      "enables": [
+        "Data Visualisation",
+        "Dimensional Modelling"
+      ],
+      "description": "Deep expertise across DAX, Power Query/M, dataflows, workspaces, row-level security and paginated reports. My primary front-end for monitoring and analytics solutions.\n\nProjects that used it arrive via backlinks — never listed here.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Pronto",
+      "slug": "pronto",
+      "kind": "technology",
+      "category": "ERP",
+      "proficiency": "Proficient",
+      "vendor": null,
+      "featured": false,
+      "aliases": [],
+      "enables": [],
+      "description": "Mid-market ERP — finance, inventory, HR modules.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Python",
+      "slug": "python",
+      "kind": "technology",
+      "category": "Data Engineering",
+      "proficiency": "Proficient",
+      "vendor": null,
+      "featured": true,
+      "aliases": [],
+      "enables": [
+        "Reusable Component Development",
+        "ETL & Pipeline Design"
+      ],
+      "description": "Analysis, automation, reusable widget development, fund recalculations.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Qualtrics",
+      "slug": "qualtrics",
+      "kind": "technology",
+      "category": "Survey & Forms Tools",
+      "proficiency": "Proficient",
+      "vendor": "Qualtrics",
+      "featured": false,
+      "aliases": [],
+      "enables": [],
+      "description": "Survey tooling used for global control self-assessment distribution and response capture (see [[Worley Control Self-Assessment Program]]).\n\nNot in the original skills register — added to cover a technology named in Projects.csv Systems that had no home.",
+      "descriptionLeaks": [
+        "Worley"
+      ]
+    },
+    {
+      "name": "RITEQ",
+      "slug": "riteq",
+      "kind": "technology",
+      "category": "Workforce Management",
+      "proficiency": "Proficient",
+      "vendor": null,
+      "featured": false,
+      "aliases": [],
+      "enables": [
+        "HR"
+      ],
+      "description": "Rostering and time & attendance platform.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "SAP Analytics Cloud",
+      "slug": "sap-analytics-cloud",
+      "kind": "technology",
+      "category": "Data Visualisation Tools",
+      "proficiency": "Proficient",
+      "vendor": "SAP",
+      "featured": false,
+      "aliases": [
+        "SAC"
+      ],
+      "enables": [
+        "Data Visualisation"
+      ],
+      "description": "Reporting and visualisation platform used for finance and HR analytics.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "SAP ECP",
+      "slug": "sap-ecp",
+      "kind": "technology",
+      "category": "People Systems",
+      "proficiency": "Expert",
+      "vendor": "SAP",
+      "featured": true,
+      "aliases": [
+        "Employee Central Payroll"
+      ],
+      "enables": [],
+      "description": "Employee Central Payroll — payroll engine configuration and data.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "SAP HCM",
+      "slug": "sap-hcm",
+      "kind": "technology",
+      "category": "People Systems",
+      "proficiency": "Expert",
+      "vendor": "SAP",
+      "featured": true,
+      "aliases": [],
+      "enables": [],
+      "description": "On-premise HR/payroll module — schema, infotypes, payroll clusters.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "SAP SuccessFactors",
+      "slug": "sap-successfactors",
+      "kind": "technology",
+      "category": "People Systems",
+      "proficiency": "Expert",
+      "vendor": "SAP",
+      "featured": true,
+      "aliases": [
+        "SuccessFactors",
+        "SF"
+      ],
+      "enables": [],
+      "description": "Back-end, configuration, implementation and user-level expertise.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "ServiceNow",
+      "slug": "servicenow",
+      "kind": "technology",
+      "category": "ITSM & Workflow",
+      "proficiency": "Proficient",
+      "vendor": "ServiceNow",
+      "featured": false,
+      "aliases": [],
+      "enables": [],
+      "description": "Used as a data source and workflow platform for recommendation follow-up and audit-action tracking, feeding bespoke reporting beyond native ServiceNow capability.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Snowflake",
+      "slug": "snowflake",
+      "kind": "technology",
+      "category": "Data Platforms",
+      "proficiency": "Expert",
+      "vendor": "Snowflake",
+      "featured": true,
+      "aliases": [],
+      "enables": [
+        "Medallion Lakehouse Architecture",
+        "Data Governance Frameworks"
+      ],
+      "description": "Implementation, management, governance, pipelines and native app development.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "SQL",
+      "slug": "sql",
+      "kind": "technology",
+      "category": "Data Engineering",
+      "proficiency": "Expert",
+      "vendor": null,
+      "featured": true,
+      "aliases": [],
+      "enables": [
+        "ETL & Pipeline Design",
+        "Dimensional Modelling"
+      ],
+      "description": "Advanced query writing, optimisation and analysis across multiple dialects.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "UiPath",
+      "slug": "uipath",
+      "kind": "technology",
+      "category": "RPA",
+      "proficiency": "Expert",
+      "vendor": "UiPath",
+      "featured": true,
+      "aliases": [],
+      "enables": [],
+      "description": "Enterprise RPA — assessment, build, UAT, post-production validation.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "VIA",
+      "slug": "via",
+      "kind": "technology",
+      "category": "Audit & Analytics",
+      "proficiency": "Proficient",
+      "vendor": "EY",
+      "featured": false,
+      "aliases": [],
+      "enables": [
+        "Controls Analytics"
+      ],
+      "description": "EY's internal audit analytics platform — used to embed analytics into recurring location and project audits, aligned to risk and control matrices and standard audit work programs.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Workday",
+      "slug": "workday",
+      "kind": "technology",
+      "category": "People Systems",
+      "proficiency": "Familiar",
+      "vendor": "Workday",
+      "featured": false,
+      "aliases": [],
+      "enables": [],
+      "description": "HR/HCM source system — used as one of the employee-record sources in identity reconciliation and IT general controls work.",
+      "descriptionLeaks": []
+    }
+  ],
+  "clients": [
+    {
+      "name": "Ampol",
+      "slug": "ampol",
+      "publicSlug": "asx-listed-fuel-and-convenience-retailer",
+      "publicName": "ASX-listed fuel and convenience retailer",
+      "public": false,
+      "industry": "Energy / Retail",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Rostering review engagement. Projects arrive via backlinks."
+    },
+    {
+      "name": "Australian Government Infrastructure Program",
+      "slug": "australian-government-infrastructure-program",
+      "publicSlug": "federal-infrastructure-investment-programme",
+      "publicName": "Federal infrastructure investment programme",
+      "public": false,
+      "industry": "Government",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Contract-compliance analytics proposition (Compliance IQ) — opportunity and solution development. The underlying client is to remain confidential; this descriptive label is deliberate and should not be resolved to a named entity. Projects arrive via backlinks."
+    },
+    {
+      "name": "Chevron",
+      "slug": "chevron",
+      "publicSlug": "global-energy-major",
+      "publicName": "Global energy major",
+      "public": false,
+      "industry": "Energy / Resources",
+      "location": "Western Australia",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Analytics engagement — thin in the source data (\"further detail to be added\"). Needs brain dump Part 0.\n\nProjects arrive via backlinks."
+    },
+    {
+      "name": "Comcare",
+      "slug": "comcare",
+      "publicSlug": "federal-work-health-and-safety-regulator",
+      "publicName": "Federal work health and safety regulator",
+      "public": false,
+      "industry": "Government / Regulatory",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Data quality, governance and validation review for this federal regulator. Projects arrive via backlinks."
+    },
+    {
+      "name": "Curtin University",
+      "slug": "curtin-university",
+      "publicSlug": "curtin-university",
+      "publicName": "Curtin University",
+      "public": true,
+      "industry": "Higher Education",
+      "location": "Western Australia",
+      "relationship": "employer",
+      "aliases": [],
+      "summary": "Pre-career employer."
+    },
+    {
+      "name": "Department of Home Affairs",
+      "slug": "department-of-home-affairs",
+      "publicSlug": "federal-government-department",
+      "publicName": "Federal government department",
+      "public": false,
+      "industry": "Government",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [
+        "Home Affairs",
+        "DHA"
+      ],
+      "summary": "ServiceNow-based recommendation follow-up dashboard. Projects arrive via backlinks."
+    },
+    {
+      "name": "Diamond Offshore",
+      "slug": "diamond-offshore",
+      "publicSlug": "offshore-drilling-contractor",
+      "publicName": "Offshore drilling contractor",
+      "public": false,
+      "industry": "Oil & Gas",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [
+        "Diamond Offshore Drilling"
+      ],
+      "summary": "Shadow payroll automation for employees transferred into Australia. Projects arrive via backlinks."
+    },
+    {
+      "name": "Domino's Pizza Enterprises",
+      "slug": "domino-s-pizza-enterprises",
+      "publicSlug": "asx-listed-quick-service-restaurant-group",
+      "publicName": "ASX-listed quick-service restaurant group",
+      "public": false,
+      "industry": "Retail & Hospitality",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [
+        "Dominos, DPE"
+      ],
+      "summary": "Analytics-led internal audits across payroll and accounts payable. Projects arrive via backlinks."
+    },
+    {
+      "name": "Dulux",
+      "slug": "dulux",
+      "publicSlug": "asx-listed-coatings-manufacturer",
+      "publicName": "ASX-listed coatings manufacturer",
+      "public": false,
+      "industry": "Manufacturing",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Hire-to-retire CCM engagement. Projects arrive via backlinks."
+    },
+    {
+      "name": "Endeavour Group",
+      "slug": "endeavour-group",
+      "publicSlug": "asx-listed-retail-and-hospitality-group",
+      "publicName": "ASX-listed retail and hospitality group",
+      "public": false,
+      "industry": "Retail & Hospitality",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [
+        "Endeavour"
+      ],
+      "summary": "Delegation of authority review across payment, approval and ERP delegation data. Projects arrive via backlinks."
+    },
+    {
+      "name": "EY",
+      "slug": "ey",
+      "publicSlug": "ey",
+      "publicName": "EY",
+      "public": true,
+      "industry": "Professional Services",
+      "location": "Oceania",
+      "relationship": "employer",
+      "aliases": [
+        "Ernst & Young"
+      ],
+      "summary": "Employer. Organisations of every flavour live in `clients/` — the `relationship:` field and the edge pointing at them (`employer:` on roles, `client:` on projects) carry the meaning."
+    },
+    {
+      "name": "Fortescue",
+      "slug": "fortescue",
+      "publicSlug": "tier-1-iron-ore-producer",
+      "publicName": "Tier 1 iron ore producer",
+      "public": false,
+      "industry": "Mining & Resources",
+      "location": "Western Australia",
+      "relationship": "client",
+      "aliases": [
+        "FMG"
+      ],
+      "summary": "Payroll CCM, workforce analytics and FIFO leave engagements. Projects arrive via backlinks."
+    },
+    {
+      "name": "Greencross",
+      "slug": "greencross",
+      "publicSlug": "national-veterinary-and-pet-care-group",
+      "publicName": "National veterinary and pet care group",
+      "public": false,
+      "industry": "Healthcare / Veterinary",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Rostering review engagement. Projects arrive via backlinks."
+    },
+    {
+      "name": "Griffith University",
+      "slug": "griffith-university",
+      "publicSlug": "australian-university",
+      "publicName": "Australian university",
+      "public": false,
+      "industry": "Higher Education",
+      "location": "Queensland",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Finance and payroll controls monitoring engagement. Projects arrive via backlinks."
+    },
+    {
+      "name": "Grill'd",
+      "slug": "grill-d",
+      "publicSlug": "grill-d",
+      "publicName": "Grill'd",
+      "public": true,
+      "industry": "Hospitality",
+      "location": "Western Australia",
+      "relationship": "employer",
+      "aliases": [],
+      "summary": "Pre-career employer."
+    },
+    {
+      "name": "Macmahon",
+      "slug": "macmahon",
+      "publicSlug": "asx-listed-mining-contractor",
+      "publicName": "ASX-listed mining contractor",
+      "public": false,
+      "industry": "Mining & Resources",
+      "location": "Western Australia",
+      "relationship": "client",
+      "aliases": [
+        "Macmahon Holdings"
+      ],
+      "summary": "Analytics component of a leading safety indicator review. Projects arrive via backlinks."
+    },
+    {
+      "name": "Melbourne Water",
+      "slug": "melbourne-water",
+      "publicSlug": "victorian-water-utility",
+      "publicName": "Victorian water utility",
+      "public": false,
+      "industry": "Utilities",
+      "location": "Victoria",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Independent complaints management review. Projects arrive via backlinks."
+    },
+    {
+      "name": "Mindfields",
+      "slug": "mindfields",
+      "publicSlug": "mindfields",
+      "publicName": "Mindfields",
+      "public": true,
+      "industry": "Professional Services",
+      "location": "Western Australia",
+      "relationship": "employer",
+      "aliases": [],
+      "summary": "Specialist consultancy in process improvement, governance and intelligent automation."
+    },
+    {
+      "name": "nbn",
+      "slug": "nbn",
+      "publicSlug": "national-telecommunications-infrastructure-provider",
+      "publicName": "National telecommunications infrastructure provider",
+      "public": false,
+      "industry": "Telecommunications",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [
+        "NBN",
+        "NBN Co",
+        "nbn Co"
+      ],
+      "summary": "Annual IT general controls identity reconciliation across critical systems (2020–2023). Projects arrive via backlinks."
+    },
+    {
+      "name": "Northern Star Resources",
+      "slug": "northern-star-resources",
+      "publicSlug": "top-10-asx-gold-producer",
+      "publicName": "Top-10 ASX gold producer",
+      "public": false,
+      "industry": "Mining & Resources",
+      "location": "Western Australia",
+      "relationship": "client",
+      "aliases": [
+        "NST"
+      ],
+      "summary": "Payroll monitoring, inventory analytics and SuccessFactors support engagements. Projects arrive via backlinks."
+    },
+    {
+      "name": "Penrhos College",
+      "slug": "penrhos-college",
+      "publicSlug": "penrhos-college",
+      "publicName": "Penrhos College",
+      "public": true,
+      "industry": "Education",
+      "location": "Western Australia",
+      "relationship": "employer",
+      "aliases": [],
+      "summary": "Pre-career employer — casual sports coaching."
+    },
+    {
+      "name": "RACV",
+      "slug": "racv",
+      "publicSlug": "victorian-motoring-and-membership-organisation",
+      "publicName": "Victorian motoring and membership organisation",
+      "public": false,
+      "industry": "Membership / Services",
+      "location": "Victoria",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Rostering review engagement. Projects arrive via backlinks."
+    },
+    {
+      "name": "Ramelius Resources",
+      "slug": "ramelius-resources",
+      "publicSlug": "mid-tier-wa-gold-producer",
+      "publicName": "Mid-tier WA gold producer",
+      "public": false,
+      "industry": "Mining & Resources",
+      "location": "Western Australia",
+      "relationship": "client",
+      "aliases": [
+        "Ramelius"
+      ],
+      "summary": "Workforce analytics and reporting engagement establishing data foundations for workforce planning, management and recruitment. Projects arrive via backlinks."
+    },
+    {
+      "name": "Rio Tinto",
+      "slug": "rio-tinto",
+      "publicSlug": "global-mining-major",
+      "publicName": "Global mining major",
+      "public": false,
+      "industry": "Mining & Resources",
+      "location": "Western Australia",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Payroll accuracy dashboards engagement. Projects arrive via backlinks."
+    },
+    {
+      "name": "Silverchain",
+      "slug": "silverchain",
+      "publicSlug": "national-home-care-and-health-provider",
+      "publicName": "National home care and health provider",
+      "public": false,
+      "industry": "Healthcare",
+      "location": "Western Australia",
+      "relationship": "client",
+      "aliases": [
+        "Silverchain Group",
+        "Silver Chain"
+      ],
+      "summary": "Home-care and health provider. A 5+ year workforce analytics partnership (rostering, overtime and superannuation compliance) alongside payroll analytics and remediation under the Health Professionals and Support Services Award. Projects arrive via backlinks."
+    },
+    {
+      "name": "South32",
+      "slug": "south32",
+      "publicSlug": "global-diversified-miner",
+      "publicName": "Global diversified miner",
+      "public": false,
+      "industry": "Mining & Resources",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Long-running payroll and workforce compliance analytics client. Engagements arrive via backlinks."
+    },
+    {
+      "name": "Together Trustee",
+      "slug": "together-trustee",
+      "publicSlug": "superannuation-trustee",
+      "publicName": "Superannuation trustee",
+      "public": false,
+      "industry": "Financial Services",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Fund recalculations engagement. Projects arrive via backlinks."
+    },
+    {
+      "name": "Transurban",
+      "slug": "transurban",
+      "publicSlug": "asx-listed-toll-road-operator",
+      "publicName": "ASX-listed toll road operator",
+      "public": false,
+      "industry": "Transport & Infrastructure",
+      "location": "Australia",
+      "relationship": "client",
+      "aliases": [
+        "Transurban NSW"
+      ],
+      "summary": "Incident management internal audit and analytics for the NSW toll-road network. Projects arrive via backlinks."
+    },
+    {
+      "name": "Unified Honey",
+      "slug": "unified-honey",
+      "publicSlug": "unified-honey",
+      "publicName": "Unified Honey",
+      "public": true,
+      "industry": "Software / Data",
+      "location": "Australia",
+      "relationship": "partner",
+      "aliases": [],
+      "summary": "Snowflake Native App in the Snowflake Startup Accelerator — contributor role (go-to-market, data governance), not a standard delivery client.\n\nProjects arrive via backlinks."
+    },
+    {
+      "name": "UNSW",
+      "slug": "unsw",
+      "publicSlug": "group-of-eight-university",
+      "publicName": "Group of Eight university",
+      "public": false,
+      "industry": "Higher Education",
+      "location": "New South Wales",
+      "relationship": "client",
+      "aliases": [
+        "University of New South Wales"
+      ],
+      "summary": "Data quality, governance and validation review. Projects arrive via backlinks."
+    },
+    {
+      "name": "Victorian Department of Education",
+      "slug": "victorian-department-of-education",
+      "publicSlug": "victorian-government-department-education",
+      "publicName": "Victorian government department (education)",
+      "public": false,
+      "industry": "Government",
+      "location": "Victoria",
+      "relationship": "client",
+      "aliases": [
+        "Vic DoE",
+        "DE"
+      ],
+      "summary": "Internal audit follow-up dashboards and automated paginated reporting. Projects arrive via backlinks."
+    },
+    {
+      "name": "Victorian Department of Energy, Environment and Climate Action",
+      "slug": "victorian-department-of-energy-environment-and-climate-action",
+      "publicSlug": "victorian-government-department-energy-and-environment",
+      "publicName": "Victorian government department (energy and environment)",
+      "public": false,
+      "industry": "Government",
+      "location": "Victoria",
+      "relationship": "client",
+      "aliases": [
+        "DEECA"
+      ],
+      "summary": "Assurance mapping and reporting dashboard work, including refinement and handover of the supporting data model. Projects arrive via backlinks."
+    },
+    {
+      "name": "Victorian Department of Jobs, Skills, Industry and Regions",
+      "slug": "victorian-department-of-jobs-skills-industry-and-regions",
+      "publicSlug": "victorian-government-department-jobs-and-skills",
+      "publicName": "Victorian government department (jobs and skills)",
+      "public": false,
+      "industry": "Government",
+      "location": "Victoria",
+      "relationship": "client",
+      "aliases": [
+        "DJSIR"
+      ],
+      "summary": "Risk analytics integration into internal audit planning, including grants assurance. Projects arrive via backlinks."
+    },
+    {
+      "name": "WA Mental Health Commission",
+      "slug": "wa-mental-health-commission",
+      "publicSlug": "wa-government-health-commission",
+      "publicName": "WA government health commission",
+      "public": false,
+      "industry": "Government",
+      "location": "Western Australia",
+      "relationship": "client",
+      "aliases": [
+        "Mental Health Commission",
+        "MHC"
+      ],
+      "summary": "KPI data-validation audit over externally reported service-performance information, delivered under a government panel. Projects arrive via backlinks."
+    },
+    {
+      "name": "Water Corporation",
+      "slug": "water-corporation",
+      "publicSlug": "wa-state-water-utility",
+      "publicName": "WA state water utility",
+      "public": false,
+      "industry": "Utilities",
+      "location": "Western Australia",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "User access management and workforce planning engagements. Projects arrive via backlinks."
+    },
+    {
+      "name": "Wesley College",
+      "slug": "wesley-college",
+      "publicSlug": "wesley-college",
+      "publicName": "Wesley College",
+      "public": true,
+      "industry": "Education",
+      "location": "Western Australia",
+      "relationship": "employer",
+      "aliases": [],
+      "summary": "Pre-career employer — casual sports coaching."
+    },
+    {
+      "name": "Woodside",
+      "slug": "woodside",
+      "publicSlug": "asx-listed-lng-producer",
+      "publicName": "ASX-listed LNG producer",
+      "public": false,
+      "industry": "Oil & Gas",
+      "location": "Western Australia",
+      "relationship": "client",
+      "aliases": [
+        "Woodside Energy"
+      ],
+      "summary": "End-to-end payroll review from source HR data through to employee payment. Projects arrive via backlinks."
+    },
+    {
+      "name": "Worley",
+      "slug": "worley",
+      "publicSlug": "global-engineering-and-professional-services-firm",
+      "publicName": "Global engineering and professional services firm",
+      "public": false,
+      "industry": "Engineering / Resources",
+      "location": "Global",
+      "relationship": "client",
+      "aliases": [],
+      "summary": "Global internal audit digital capability lead, data quality/governance review, and control self-assessment engagements. Projects arrive via backlinks."
+    }
+  ],
+  "projectTypes": [
+    {
+      "name": "AI Enablement",
+      "slug": "ai-enablement",
+      "category": null,
+      "description": "Integrating AI tooling into analytics delivery and building the responsible-use frameworks that govern it.\n\nDraft capability proposed during ingest — confirm, rename or cut in the brain dump (Part 0).",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Business Process Analytics",
+      "slug": "business-process-analytics",
+      "category": null,
+      "description": "Analytics and compliance testing across core business processes — payroll, HR/workforce, and adjacent operational domains (accounts payable, etc. as they come up). Merges the former Payroll Compliance Analytics and Workforce Analytics capabilities, which were too specific for a first-cut ontology.\n\nProjects that demonstrate this capability arrive via backlinks.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Data Governance & Quality",
+      "slug": "data-governance-quality",
+      "category": null,
+      "description": "Data governance framework design, data quality and validation reviews, lineage and cataloguing at enterprise scale.\n\nDraft capability proposed during ingest — confirm, rename or cut in the brain dump (Part 0).",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Data Platforms & Engineering",
+      "slug": "data-platforms-engineering",
+      "category": null,
+      "description": "Platform builds and pipeline engineering — Snowflake, Azure SQL, medallion architectures and the ETL underneath them.\n\nDraft capability proposed during ingest — confirm, rename or cut in the brain dump (Part 0).",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Intelligent Automation",
+      "slug": "intelligent-automation",
+      "category": null,
+      "description": "RPA and tooling that removes manual effort from analytics and business processes — UiPath builds, reusable Python widgets.\n\nDraft capability proposed during ingest — confirm, rename or cut in the brain dump (Part 0).",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Risk & Controls",
+      "slug": "risk-controls",
+      "category": null,
+      "description": "Risk assessment and continuous controls/audit analytics. Merges the former Controls Monitoring & Assurance and Internal Audit Analytics capabilities, which were too specific for a first-cut ontology.\n\nProjects that demonstrate this capability arrive via backlinks.",
+      "descriptionLeaks": []
+    }
+  ],
+  "credentials": [
+    {
+      "name": "Bachelor of Commerce (Economics and Finance)",
+      "slug": "bachelor-of-commerce-economics-and-finance",
+      "issuer": "University of Western Australia",
+      "obtained": "2016",
+      "skills": [],
+      "technologies": [],
+      "body": "Studied 2014–2016. GPA 6.5, WAM 78.9.",
+      "bodyLeaks": []
+    }
+  ],
+  "community": [
+    {
+      "name": "Edith Cowan University Consultative Committee",
+      "slug": "edith-cowan-university-consultative-committee",
+      "organisation": "Edith Cowan University",
+      "kind": "committee",
+      "start": "",
+      "end": "",
+      "body": "Consultative committee member at [[Edith Cowan University]], contributing an industry perspective on curriculum and capability.",
+      "bodyLeaks": []
+    },
+    {
+      "name": "Red Cross Lifeblood Plasma Donor",
+      "slug": "red-cross-lifeblood-plasma-donor",
+      "organisation": "Red Cross Lifeblood",
+      "kind": "volunteering",
+      "start": "",
+      "end": "present",
+      "body": "Regular plasma donor with [[Red Cross Lifeblood]].",
+      "bodyLeaks": []
+    },
+    {
+      "name": "WA Police Legacy Public Speaker & Fundraiser",
+      "slug": "wa-police-legacy-public-speaker-fundraiser",
+      "organisation": "WA Police Legacy",
+      "kind": "speaking",
+      "start": "",
+      "end": "",
+      "body": "Public speaker and fundraiser for [[WA Police Legacy]], supporting families of police officers.",
+      "bodyLeaks": []
+    }
+  ],
+  "evidence": {
+    "skill": {
+      "HR": [
+        "ampol-rostering-review",
+        "fortescue-workforce-analytics-review",
+        "greencross-rostering-review",
+        "racv-rostering-review",
+        "ramelius-resources-workforce-analytics-reporting",
+        "risk-analytics-resourcing-capability-tracking",
+        "silverchain-workforce-analytics-partnership",
+        "south32-training-competency-analysis",
+        "water-corporation-workforce-planning-scenario-analysis"
+      ],
+      "Payroll": [
+        "chevron-analytics-engagement",
+        "chevron-long-service-leave-review",
+        "deeca-superannuation-remediation",
+        "diamond-offshore-shadow-payroll-automation",
+        "domino-s-payroll-accounts-payable-internal-audit",
+        "employee-entitlements-remediation-multiple-clients",
+        "greencross-payroll-remediation",
+        "payroll-internal-audit-multiple-clients",
+        "silverchain-payroll-analytics-remediation",
+        "silverchain-workforce-analytics-partnership",
+        "south32-leave-entitlement-analytics",
+        "south32-payroll-compliance-monitoring",
+        "south32-wage-entitlement-analytics",
+        "superannuation-compliance-reviews-20-organisations",
+        "woodside-end-to-end-payroll-review"
+      ],
+      "Data Governance Frameworks": [
+        "comcare-data-quality-governance-validation-review",
+        "risk-analytics-knowledge-management-engagement-repository",
+        "unified-honey-snowflake-native-app",
+        "unsw-data-quality-governance-validation-review",
+        "worley-data-quality-governance-validation-review"
+      ],
+      "Data Quality & Validation": [
+        "comcare-data-quality-governance-validation-review",
+        "macmahon-leading-safety-indicator-review",
+        "risk-analytics-methodology-delivery-toolset",
+        "unsw-data-quality-governance-validation-review",
+        "wa-mental-health-commission-kpi-data-validation-audit",
+        "worley-data-quality-governance-validation-review"
+      ],
+      "Controls Analytics": [
+        "compliance-iq-contract-compliance-analytics",
+        "domino-s-payroll-accounts-payable-internal-audit",
+        "dulux-continuous-controls-monitoring-hire-to-retire",
+        "endeavour-group-delegation-of-authority-review",
+        "fortescue-payroll-continuous-controls-monitoring",
+        "griffith-university-finance-payroll-controls-monitoring",
+        "melbourne-water-complaints-management-review",
+        "nbn-it-general-controls-identity-reconciliation",
+        "northern-star-inventory-management-analytics",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "payroll-internal-audit-multiple-clients",
+        "procurement-internal-audit-multiple-clients",
+        "risk-analytics-methodology-delivery-toolset",
+        "transurban-incident-management-internal-audit",
+        "victorian-department-of-education-ia-follow-up-dashboards",
+        "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
+        "woodside-end-to-end-payroll-review",
+        "worley-global-internal-audit-digital-capability",
+        "worley-global-location-project-audit-analytics"
+      ],
+      "Dimensional Modelling": [
+        "data-modelling-for-risk-analytics-training",
+        "risk-analytics-learning-capability-program"
+      ],
+      "Entity-Relationship Modelling": [
+        "data-modelling-for-risk-analytics-training"
+      ],
+      "ETL & Pipeline Design": [
+        "data-modelling-for-risk-analytics-training",
+        "risk-analytics-learning-capability-program",
+        "victorian-department-of-education-ia-follow-up-dashboards"
+      ],
+      "AI in Analytics": [
+        "data-modelling-for-risk-analytics-training"
+      ],
+      "Risk": [
+        "deeca-assurance-mapping-reporting-dashboard",
+        "digital-assurance-mapping-multiple-clients",
+        "griffith-university-finance-payroll-controls-monitoring",
+        "macmahon-leading-safety-indicator-review",
+        "northern-star-inventory-management-analytics",
+        "northern-star-user-access-management-review",
+        "risk-analytics-methodology-delivery-toolset",
+        "transurban-incident-management-internal-audit",
+        "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
+        "worley-control-self-assessment-program",
+        "worley-global-location-project-audit-analytics"
+      ],
+      "Data Visualisation": [
+        "deeca-assurance-mapping-reporting-dashboard",
+        "digital-assurance-mapping-multiple-clients",
+        "home-affairs-recommendation-follow-up-dashboard",
+        "risk-analytics-learning-capability-program",
+        "risk-analytics-pipeline-reporting",
+        "transurban-incident-management-internal-audit"
+      ],
+      "Accounts Payable": [
+        "domino-s-payroll-accounts-payable-internal-audit",
+        "endeavour-group-delegation-of-authority-review"
+      ],
+      "User Access Management": [
+        "nbn-it-general-controls-identity-reconciliation",
+        "northern-star-user-access-management-review"
+      ],
+      "Procurement": [
+        "northern-star-inventory-management-analytics",
+        "procurement-internal-audit-multiple-clients"
+      ],
+      "Data Lineage & Cataloguing": [
+        "unified-honey-snowflake-native-app",
+        "worley-data-quality-governance-validation-review"
+      ],
+      "Data Privacy & Protection": [
+        "water-corporation-user-access-management-solution"
+      ]
+    },
+    "technology": {
+      "Kronos": [
+        "ampol-rostering-review",
+        "greencross-rostering-review",
+        "racv-rostering-review",
+        "silverchain-workforce-analytics-partnership"
+      ],
+      "Snowflake": [
+        "compliance-iq-contract-compliance-analytics",
+        "northern-star-inventory-management-analytics",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "unified-honey-snowflake-native-app",
+        "woodside-end-to-end-payroll-review"
+      ],
+      "Power BI": [
+        "deeca-assurance-mapping-reporting-dashboard",
+        "digital-assurance-mapping-multiple-clients",
+        "domino-s-payroll-accounts-payable-internal-audit",
+        "fortescue-payroll-continuous-controls-monitoring",
+        "griffith-university-finance-payroll-controls-monitoring",
+        "home-affairs-recommendation-follow-up-dashboard",
+        "northern-star-inventory-management-analytics",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "payroll-internal-audit-multiple-clients",
+        "procurement-internal-audit-multiple-clients",
+        "rio-tinto-payroll-accuracy-dashboards",
+        "risk-analytics-learning-capability-program",
+        "risk-analytics-pipeline-reporting",
+        "risk-analytics-resourcing-capability-tracking",
+        "victorian-department-of-education-ia-follow-up-dashboards",
+        "water-corporation-user-access-management-solution",
+        "woodside-end-to-end-payroll-review"
+      ],
+      "Microsoft Excel": [
+        "deeca-assurance-mapping-reporting-dashboard",
+        "risk-analytics-methodology-delivery-toolset",
+        "victorian-department-of-education-ia-follow-up-dashboards"
+      ],
+      "SAP SuccessFactors": [
+        "dulux-continuous-controls-monitoring-hire-to-retire",
+        "fortescue-payroll-continuous-controls-monitoring",
+        "fortescue-workforce-analytics-review",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "northern-star-successfactors-implementation-support",
+        "northern-star-user-access-management-review",
+        "silverchain-workforce-analytics-partnership",
+        "south32-payroll-compliance-monitoring",
+        "south32-training-competency-analysis",
+        "woodside-end-to-end-payroll-review"
+      ],
+      "SAP ECP": [
+        "fortescue-payroll-continuous-controls-monitoring",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "northern-star-user-access-management-review",
+        "south32-payroll-compliance-monitoring",
+        "woodside-end-to-end-payroll-review"
+      ],
+      "SAP Analytics Cloud": [
+        "fortescue-payroll-continuous-controls-monitoring"
+      ],
+      "UiPath": [
+        "fortescue-uipath-rpa-implementation"
+      ],
+      "RITEQ": [
+        "greencross-rostering-review"
+      ],
+      "SQL": [
+        "griffith-university-finance-payroll-controls-monitoring",
+        "northern-star-inventory-management-analytics",
+        "northern-star-payroll-monitoring-snowflake-power-bi"
+      ],
+      "Microsoft Fabric": [
+        "griffith-university-finance-payroll-controls-monitoring"
+      ],
+      "Microsoft Azure": [
+        "griffith-university-finance-payroll-controls-monitoring"
+      ],
+      "GitHub": [
+        "griffith-university-finance-payroll-controls-monitoring"
+      ],
+      "GitHub Copilot": [
+        "griffith-university-finance-payroll-controls-monitoring"
+      ],
+      "ServiceNow": [
+        "home-affairs-recommendation-follow-up-dashboard"
+      ],
+      "Active Directory": [
+        "nbn-it-general-controls-identity-reconciliation"
+      ],
+      "Oracle": [
+        "nbn-it-general-controls-identity-reconciliation"
+      ],
+      "Chris21": [
+        "nbn-it-general-controls-identity-reconciliation"
+      ],
+      "Workday": [
+        "nbn-it-general-controls-identity-reconciliation"
+      ],
+      "Pronto": [
+        "northern-star-inventory-management-analytics",
+        "northern-star-payroll-monitoring-snowflake-power-bi"
+      ],
+      "Oracle EPM": [
+        "ramelius-resources-workforce-analytics-reporting"
+      ],
+      "JobAdder": [
+        "ramelius-resources-workforce-analytics-reporting"
+      ],
+      "Power Apps": [
+        "ramelius-resources-workforce-analytics-reporting"
+      ],
+      "Power Automate": [
+        "ramelius-resources-workforce-analytics-reporting"
+      ],
+      "SAP HCM": [
+        "silverchain-workforce-analytics-partnership",
+        "south32-payroll-compliance-monitoring"
+      ],
+      "Python": [
+        "together-trustee-fund-recalculations-in-python"
+      ],
+      "Qualtrics": [
+        "worley-control-self-assessment-program"
+      ],
+      "Microsoft Forms": [
+        "worley-control-self-assessment-program"
+      ],
+      "VIA": [
+        "worley-global-location-project-audit-analytics"
+      ]
+    },
+    "client": {
+      "Ampol": [
+        "ampol-rostering-review"
+      ],
+      "Chevron": [
+        "chevron-analytics-engagement",
+        "chevron-long-service-leave-review"
+      ],
+      "Comcare": [
+        "comcare-data-quality-governance-validation-review"
+      ],
+      "Australian Government Infrastructure Program": [
+        "compliance-iq-contract-compliance-analytics"
+      ],
+      "EY": [
+        "data-modelling-for-risk-analytics-training",
+        "risk-analytics-knowledge-management-engagement-repository",
+        "risk-analytics-learning-capability-program",
+        "risk-analytics-methodology-delivery-toolset",
+        "risk-analytics-pipeline-reporting",
+        "risk-analytics-resourcing-capability-tracking"
+      ],
+      "Victorian Department of Energy, Environment and Climate Action": [
+        "deeca-assurance-mapping-reporting-dashboard",
+        "deeca-superannuation-remediation"
+      ],
+      "Diamond Offshore": [
+        "diamond-offshore-shadow-payroll-automation"
+      ],
+      "Domino's Pizza Enterprises": [
+        "domino-s-payroll-accounts-payable-internal-audit"
+      ],
+      "Dulux": [
+        "dulux-continuous-controls-monitoring-hire-to-retire"
+      ],
+      "Endeavour Group": [
+        "endeavour-group-delegation-of-authority-review"
+      ],
+      "Fortescue": [
+        "fortescue-payroll-continuous-controls-monitoring",
+        "fortescue-uipath-rpa-implementation",
+        "fortescue-workforce-analytics-review"
+      ],
+      "Greencross": [
+        "greencross-payroll-remediation",
+        "greencross-rostering-review"
+      ],
+      "Griffith University": [
+        "griffith-university-finance-payroll-controls-monitoring"
+      ],
+      "Department of Home Affairs": [
+        "home-affairs-recommendation-follow-up-dashboard"
+      ],
+      "Macmahon": [
+        "macmahon-leading-safety-indicator-review"
+      ],
+      "Melbourne Water": [
+        "melbourne-water-complaints-management-review"
+      ],
+      "nbn": [
+        "nbn-it-general-controls-identity-reconciliation"
+      ],
+      "Northern Star Resources": [
+        "northern-star-inventory-management-analytics",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "northern-star-successfactors-implementation-support",
+        "northern-star-user-access-management-review"
+      ],
+      "RACV": [
+        "racv-rostering-review"
+      ],
+      "Ramelius Resources": [
+        "ramelius-resources-workforce-analytics-reporting"
+      ],
+      "Rio Tinto": [
+        "rio-tinto-payroll-accuracy-dashboards"
+      ],
+      "Silverchain": [
+        "silverchain-payroll-analytics-remediation",
+        "silverchain-workforce-analytics-partnership"
+      ],
+      "South32": [
+        "south32-leave-entitlement-analytics",
+        "south32-payroll-compliance-monitoring",
+        "south32-training-competency-analysis",
+        "south32-wage-entitlement-analytics"
+      ],
+      "Together Trustee": [
+        "together-trustee-fund-recalculations-in-python"
+      ],
+      "Transurban": [
+        "transurban-incident-management-internal-audit"
+      ],
+      "Unified Honey": [
+        "unified-honey-snowflake-native-app"
+      ],
+      "UNSW": [
+        "unsw-data-quality-governance-validation-review"
+      ],
+      "Victorian Department of Education": [
+        "victorian-department-of-education-ia-follow-up-dashboards"
+      ],
+      "Victorian Department of Jobs, Skills, Industry and Regions": [
+        "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning"
+      ],
+      "WA Mental Health Commission": [
+        "wa-mental-health-commission-kpi-data-validation-audit"
+      ],
+      "Water Corporation": [
+        "water-corporation-user-access-management-solution",
+        "water-corporation-workforce-planning-scenario-analysis"
+      ],
+      "Woodside": [
+        "woodside-end-to-end-payroll-review"
+      ],
+      "Worley": [
+        "worley-control-self-assessment-program",
+        "worley-data-quality-governance-validation-review",
+        "worley-global-internal-audit-digital-capability",
+        "worley-global-location-project-audit-analytics"
+      ]
+    },
+    "projectType": {
+      "Business Process Analytics": [
+        "ampol-rostering-review",
+        "chevron-analytics-engagement",
+        "chevron-long-service-leave-review",
+        "compliance-iq-contract-compliance-analytics",
+        "deeca-superannuation-remediation",
+        "employee-entitlements-remediation-multiple-clients",
+        "endeavour-group-delegation-of-authority-review",
+        "fortescue-payroll-continuous-controls-monitoring",
+        "fortescue-workforce-analytics-review",
+        "greencross-payroll-remediation",
+        "greencross-rostering-review",
+        "macmahon-leading-safety-indicator-review",
+        "melbourne-water-complaints-management-review",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "payroll-internal-audit-multiple-clients",
+        "procurement-internal-audit-multiple-clients",
+        "racv-rostering-review",
+        "ramelius-resources-workforce-analytics-reporting",
+        "rio-tinto-payroll-accuracy-dashboards",
+        "risk-analytics-pipeline-reporting",
+        "risk-analytics-resourcing-capability-tracking",
+        "silverchain-payroll-analytics-remediation",
+        "silverchain-workforce-analytics-partnership",
+        "south32-leave-entitlement-analytics",
+        "south32-payroll-compliance-monitoring",
+        "south32-training-competency-analysis",
+        "south32-wage-entitlement-analytics",
+        "superannuation-compliance-reviews-20-organisations",
+        "water-corporation-workforce-planning-scenario-analysis",
+        "woodside-end-to-end-payroll-review"
+      ],
+      "Data Governance & Quality": [
+        "comcare-data-quality-governance-validation-review",
+        "risk-analytics-knowledge-management-engagement-repository",
+        "unsw-data-quality-governance-validation-review",
+        "wa-mental-health-commission-kpi-data-validation-audit",
+        "water-corporation-user-access-management-solution",
+        "worley-data-quality-governance-validation-review"
+      ],
+      "Data Platforms & Engineering": [
+        "data-modelling-for-risk-analytics-training",
+        "home-affairs-recommendation-follow-up-dashboard",
+        "risk-analytics-learning-capability-program",
+        "together-trustee-fund-recalculations-in-python",
+        "unified-honey-snowflake-native-app"
+      ],
+      "Risk & Controls": [
+        "deeca-assurance-mapping-reporting-dashboard",
+        "digital-assurance-mapping-multiple-clients",
+        "domino-s-payroll-accounts-payable-internal-audit",
+        "dulux-continuous-controls-monitoring-hire-to-retire",
+        "griffith-university-finance-payroll-controls-monitoring",
+        "nbn-it-general-controls-identity-reconciliation",
+        "northern-star-inventory-management-analytics",
+        "northern-star-user-access-management-review",
+        "risk-analytics-methodology-delivery-toolset",
+        "transurban-incident-management-internal-audit",
+        "victorian-department-of-education-ia-follow-up-dashboards",
+        "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
+        "worley-control-self-assessment-program",
+        "worley-global-internal-audit-digital-capability",
+        "worley-global-location-project-audit-analytics"
+      ],
+      "Intelligent Automation": [
+        "diamond-offshore-shadow-payroll-automation",
+        "fortescue-uipath-rpa-implementation"
+      ]
+    },
+    "role": {
+      "EY Director, Risk Analytics": [
+        "compliance-iq-contract-compliance-analytics",
+        "data-modelling-for-risk-analytics-training",
+        "deeca-assurance-mapping-reporting-dashboard",
+        "deeca-superannuation-remediation",
+        "digital-assurance-mapping-multiple-clients",
+        "domino-s-payroll-accounts-payable-internal-audit",
+        "fortescue-payroll-continuous-controls-monitoring",
+        "macmahon-leading-safety-indicator-review",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "northern-star-user-access-management-review",
+        "ramelius-resources-workforce-analytics-reporting",
+        "risk-analytics-knowledge-management-engagement-repository",
+        "risk-analytics-learning-capability-program",
+        "risk-analytics-methodology-delivery-toolset",
+        "risk-analytics-pipeline-reporting",
+        "risk-analytics-resourcing-capability-tracking",
+        "south32-payroll-compliance-monitoring",
+        "superannuation-compliance-reviews-20-organisations",
+        "victorian-department-of-education-ia-follow-up-dashboards",
+        "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
+        "wa-mental-health-commission-kpi-data-validation-audit",
+        "woodside-end-to-end-payroll-review",
+        "worley-data-quality-governance-validation-review",
+        "worley-global-internal-audit-digital-capability",
+        "worley-global-location-project-audit-analytics"
+      ],
+      "Mindfields Senior Consultant": [
+        "fortescue-uipath-rpa-implementation"
+      ],
+      "EY Manager, People Advisory Services": [
+        "silverchain-workforce-analytics-partnership"
+      ],
+      "Unified Honey Senior Account Executive": [
+        "unified-honey-snowflake-native-app"
+      ]
+    }
+  },
+  "warnings": {
+    "unresolved": [
+      "community 'Edith Cowan University Consultative Committee' -> [[Edith Cowan University]]",
+      "community 'Red Cross Lifeblood Plasma Donor' -> [[Red Cross Lifeblood]]",
+      "community 'WA Police Legacy Public Speaker & Fundraiser' -> [[WA Police Legacy]]"
+    ],
+    "notes": []
+  }
+}

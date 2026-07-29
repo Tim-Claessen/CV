@@ -6,8 +6,19 @@ import Skills from '../components/Skills.astro';
 import Experience from '../components/Experience.astro';
 import Projects from '../components/Projects.astro';
 import Education from '../components/Education.astro';
-import { config, cv } from '../lib/data';
+import { config, roles, projects, capabilities, persona, resolveMode } from '../lib/career';
 import '../styles/cv-theme.css';
+
+// One lens per build, as before: CV_LENS picks it, defaulting to the full view.
+// CV_MODE=private swaps anonymised client descriptors back for real names —
+// used when exporting a CV for a named application, never for the public site.
+const lens = process.env.CV_LENS ?? 'all';
+const mode = resolveMode();
+const profile = persona(lens)?.profile ?? persona('all')?.profile ?? '';
+
+// The CV is the two-page version, so it carries lore's `featured:` projects only.
+// The full 59 live on the portfolio at /, and /build picks any subset of them.
+const selected = projects(mode, lens).filter((project) => project.featured);
 
 const title = `${config.name} — CV`;
 const fontUrl =
@@ -31,10 +42,10 @@ const fontUrl =
     <WebChrome />
     <main class="page">
       <Header config={config} />
-      <Profile profile={cv.profile} />
-      <Experience roles={cv.roles} config={config} />
-      <Projects projects={cv.projects} />
-      <Skills skillDomains={cv.skillDomains} />
+      <Profile profile={profile} />
+      <Experience roles={roles(lens)} config={config} />
+      <Projects projects={selected} />
+      <Skills groups={capabilities(lens)} />
       <Education />
     </main>
   </body>

@@ -1,5 +1,6 @@
 ---
 import SectionHead from './SectionHead.astro';
+import { credentials, community } from '../lib/career';
 ---
 
 <section class="section" aria-labelledby="education-heading">
@@ -7,11 +8,24 @@ import SectionHead from './SectionHead.astro';
   <div class="footer-grid">
     <div>
       <div class="footer-col-title" id="education-heading">Education</div>
-      <div class="edu-item">
-        <div class="edu-qual">Bachelor of Commerce — Economics and Finance</div>
-        <div class="edu-inst">University of Western Australia</div>
-        <div class="edu-detail">GPA 6.5 · WAM 78.9</div>
-      </div>
+      {credentials.map((credential) => (
+        <div class="edu-item">
+          <div class="edu-qual">{credential.name}</div>
+          <div class="edu-inst">{credential.issuer}</div>
+          {credential.body && <div class="edu-detail">{credential.body}</div>}
+        </div>
+      ))}
     </div>
+    {community.length > 0 && (
+      <div>
+        <div class="footer-col-title">Community</div>
+        {community.map((entry) => (
+          <div class="edu-item">
+            <div class="edu-qual">{entry.name}</div>
+            {entry.organisation && <div class="edu-inst">{entry.organisation}</div>}
+          </div>
+        ))}
+      </div>
+    )}
   </div>
 </section>

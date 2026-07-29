@@ -10,15 +10,17 @@
     "build": "astro build",
     "preview": "astro preview",
     "deploy": "wrangler deploy --autoconfig=false",
+    "check:public": "python scripts/check_public.py",
+    "seed:overrides": "python scripts/seed_overrides.py",
     "pdf": "python scripts/export_pdf.py",
     "astro": "astro"
   },
   "dependencies": {
     "astro": "^7.0.3",
-    "papaparse": "^5.5.4"
+    "js-yaml": "^5.2.2"
   },
   "devDependencies": {
-    "@types/papaparse": "^5.5.2",
+    "@types/js-yaml": "^4.0.9",
     "wrangler": "^4.105.0"
   }
 }

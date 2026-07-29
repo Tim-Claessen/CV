@@ -1,0 +1,74 @@
+---
+/**
+ * Shared shell for the portfolio and builder pages. The printable CV keeps its
+ * own page-level markup, because its whole job is to be one A4 document.
+ */
+import { config, resolveMode } from '../lib/career';
+
+interface Props {
+  title: string;
+  description?: string;
+  active?: 'work' | 'cv' | 'build';
+  wide?: boolean;
+}
+
+const { title, description = config.tagline, active, wide = false } = Astro.props;
+const mode = resolveMode();
+
+const nav = [
+  { href: '/', label: 'Work', key: 'work' },
+  { href: '/cv', label: 'CV', key: 'cv' },
+  { href: '/build', label: 'Build a CV', key: 'build' },
+];
+
+const fontUrl =
+  'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap';
+---
+
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={fontUrl} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-head no-print">
+      <a class="site-brand" href="/">
+        <span class="site-name">{config.name}</span>
+        <span class="site-tagline">{config.tagline}</span>
+      </a>
+      <nav class="site-nav" aria-label="Sections">
+        {nav.map((item) => (
+          <a href={item.href} class:list={['site-nav-link', { on: active === item.key }]}>
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </header>
+
+    {mode === 'private' && (
+      <div class="mode-banner no-print">
+        Private build — real client names. Do not deploy.
+      </div>
+    )}
+
+    <main id="main" class:list={['site-main', { wide }]}>
+      <slot />
+    </main>
+
+    <footer class="site-foot no-print">
+      <span>{config.location}</span>
+      <a href={`mailto:${config.email}`}>{config.email}</a>
+      <a href={config.linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href={config.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+    </footer>
+  </body>
+</html>
