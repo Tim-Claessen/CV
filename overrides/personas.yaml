@@ -1,4 +1,4 @@
-# Personas — saved selections, not a separate mechanism.
+# Personas - saved selections, not a separate mechanism.
 #
 # A persona is a named tick-list plus a profile paragraph. The CV builder loads
 # one as a starting point and lets you adjust from there, so "pick a persona" and

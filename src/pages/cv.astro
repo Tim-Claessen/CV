@@ -10,7 +10,7 @@ import { config, roles, projects, capabilities, persona, resolveMode } from '../
 import '../styles/cv-theme.css';
 
 // One lens per build, as before: CV_LENS picks it, defaulting to the full view.
-// CV_MODE=private swaps anonymised client descriptors back for real names —
+// CV_MODE=private swaps anonymised client descriptors back for real names,
 // used when exporting a CV for a named application, never for the public site.
 const lens = process.env.CV_LENS ?? 'all';
 const mode = resolveMode();
@@ -20,7 +20,7 @@ const profile = persona(lens)?.profile ?? persona('all')?.profile ?? '';
 // The full 59 live on the portfolio at /, and /build picks any subset of them.
 const selected = projects(mode, lens).filter((project) => project.featured);
 
-const title = `${config.name} — CV`;
+const title = `${config.name} · CV`;
 const fontUrl =
   'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap';
 ---
@@ -31,7 +31,7 @@ const fontUrl =
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={config.tagline} />
     {/* Unlisted: nothing public links here and search engines are asked to skip
-        it. Unlisted is not private — anyone with the URL can still read it. */}
+        it. Unlisted is not private - anyone with the URL can still read it. */}
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />

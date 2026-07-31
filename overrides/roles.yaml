@@ -1,11 +1,11 @@
-# Role overrides — CV presentation for lore's role entities.
+# Role overrides - CV presentation for lore's role entities.
 #
 # lore holds each role as prose (what the job was). A CV wants bullets (what you
 # achieved). Those bullets are CV writing and live here, keyed by lore role name.
 # Carried over from the retired data/role_bullets.csv.
 #
 #   summary        replaces lore's opening line
-#   clients        named client list — PRIVATE MODE ONLY (exported CVs)
+#   clients        named client list - PRIVATE MODE ONLY (exported CVs)
 #   publicClients  anonymised equivalent, shown on the public site
 #   bullets        text + personas; a bullet with no personas shows only in `all`
 
@@ -130,7 +130,7 @@ roles:
           ASX listed clients.
         personas: [business]
 
-# Roles held but not shown as CV entries — summarised in config.yaml's `earlier`.
+# Roles held but not shown as CV entries - summarised in config.yaml's `earlier`.
 hidden:
   - Curtin University Research Assistant
   - Wesley College Sports Coach

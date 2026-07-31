@@ -28,11 +28,11 @@ const {
 } = Astro.props;
 const mode = resolveMode();
 
-const nav = [
-  { href: '/work', label: 'Work', key: 'work' },
-  { href: '/work#capabilities', label: 'Capabilities', key: 'capabilities' },
-  { href: '/#contact', label: 'Contact', key: 'contact' },
-];
+// Every nav item goes to a page. Mixing page links with same-page anchors made
+// the bar behave two different ways depending on where you already were, so the
+// section links live in the page body instead: the hero has "Get in touch", each
+// section has its own "All N ..." link, and the footer carries the contacts.
+const nav = [{ href: '/work', label: 'Work', key: 'work' }];
 
 // The unlisted pair appears only once you are already on one of them, so the two
 // stay navigable between without any public page advertising either.
@@ -79,7 +79,7 @@ const fontUrl =
 
     {mode === 'private' && (
       <div class="mode-banner no-print">
-        Private build — real client names. Do not deploy.
+        Private build: real client names. Do not deploy.
       </div>
     )}
 

@@ -16,7 +16,7 @@ const mode = resolveMode();
 // Everything the builder can offer, serialised once. The page is static: all the
 // selecting, previewing and editing happens client-side against this payload.
 // It inherits the build's mode, so a public deploy can only ever offer
-// anonymised clients — the real names exist solely in a local private build.
+// anonymised clients - the real names exist solely in a local private build.
 const payload = {
   mode,
   config,
@@ -52,7 +52,7 @@ const payload = {
 };
 ---
 
-<Site title={`${config.name} — Build a CV`} active="build" wide unlisted>
+<Site title={`${config.name} · Build a CV`} active="build" wide unlisted>
   <div class="builder">
     <aside class="picker no-print" aria-label="CV contents">
       <div class="picker-head">
@@ -66,7 +66,7 @@ const payload = {
       <div class="picker-section">
         <label class="filter-label" for="persona">Start from</label>
         <select id="persona" class="picker-select">
-          {personas.map((item) => <option value={item.key}>{item.label} — {item.description}</option>)}
+          {personas.map((item) => <option value={item.key}>{item.label}: {item.description}</option>)}
         </select>
       </div>
 
@@ -116,7 +116,7 @@ const payload = {
 
     <div class="preview-wrap">
       <div class="preview-note no-print">
-        Preview — click any text to edit it. Edits apply to this printout only and
+        Preview. Click any text to edit it. Edits apply to this printout only and
         aren't saved back to lore.
       </div>
       <article class="sheet" id="sheet" aria-label="CV preview"></article>
@@ -167,7 +167,7 @@ const payload = {
     capabilities: string[];
   }
 
-  /** A persona is just a saved tick-list — selecting one seeds the boxes. */
+  /** A persona is just a saved tick-list - selecting one seeds the boxes. */
   function fromPersona(key: string): Selection {
     const persona = data.personas.find((p) => p.key === key);
     const wanted = new Set([...(persona?.skills ?? []), ...(persona?.technologies ?? [])]);

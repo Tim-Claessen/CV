@@ -1,12 +1,12 @@
 /* ============================================================================
-   HOME — the front door
+   HOME - the front door
    ----------------------------------------------------------------------------
    Layered on portfolio.css, which owns the tokens and the site chrome. This file
    owns the homepage only: the editorial voice of the printable CV (display type,
    numbered sections, accent hairlines) at web scale and web rhythm.
 
    Section heads deliberately use their own class names rather than cv-theme's
-   .section-* — portfolio.css already means something else by .section-title, and
+   .section-* - portfolio.css already means something else by .section-title, and
    the two stylesheets load together here.
    ========================================================================== */
 
@@ -26,22 +26,37 @@
   color: var(--accent);
 }
 
-.hero-statement {
+/* The hero states the job, not a slogan: current roles, straight from lore. */
+.hero-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 18px;
   font-family: var(--font-display);
-  font-size: clamp(28px, 4.2vw, 44px);
+  font-size: clamp(26px, 3.6vw, 38px);
   font-weight: 500;
-  line-height: 1.14;
+  line-height: 1.16;
   letter-spacing: -0.022em;
   color: var(--ink);
-  margin-top: 20px;
-  text-wrap: balance;
+}
+
+.hero-employer { font-style: italic; color: var(--accent); }
+.hero-employer::before { content: "· "; font-style: normal; color: var(--muted); }
+
+.hero-where {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 14px;
 }
 
 /* The 2px ink rule under the CV's masthead, doing the same job here. */
 .hero-rule {
   height: 2px;
   background: var(--ink);
-  margin: 30px 0 22px;
+  margin: 22px 0 22px;
 }
 
 .hero-lede {
@@ -126,78 +141,6 @@
 }
 .more::after { content: " →"; }
 .more:hover { border-color: var(--accent); }
-
-/* --- selected work -------------------------------------------------------- */
-
-.entries { list-style: none; }
-
-.entry { border-top: 1px solid var(--line); }
-.entry:last-child { border-bottom: 1px solid var(--line); }
-
-.entry-link {
-  display: grid;
-  grid-template-columns: 86px 1fr;
-  gap: 24px;
-  padding: 22px 12px 22px 0;
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.18s ease, padding 0.18s ease;
-}
-.entry-link:hover { background: var(--paper-warm); padding-left: 14px; padding-right: 14px; }
-
-.entry-when {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  padding-top: 5px;
-  position: relative;
-}
-/* The accent tick that marks a role on the printed CV. */
-.entry-when::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: -4px;
-  width: 18px;
-  height: 2px;
-  background: var(--accent);
-}
-
-.entry-body { display: block; min-width: 0; }
-
-.entry-client {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-.entry-type { color: var(--muted); }
-
-.entry-title {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  margin-top: 6px;
-}
-.entry-link:hover .entry-title { color: var(--accent-dark); }
-
-.entry-summary {
-  display: block;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--mid);
-  margin-top: 7px;
-  max-width: 66ch;
-}
-
-.entry-stack { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
 
 /* --- what I do ------------------------------------------------------------ */
 
@@ -358,24 +301,10 @@
 .contact-grid a { text-decoration: none; border-bottom: 1px solid var(--line); }
 .contact-grid a:hover { color: var(--accent-dark); border-color: var(--accent); }
 
-.colophon {
-  margin-top: 40px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  line-height: 1.7;
-  color: var(--muted);
-  max-width: 70ch;
-}
-
 /* --- mobile --------------------------------------------------------------- */
 
 @media (max-width: 700px) {
   .home-section { margin-top: 56px; }
-  .entry-link { grid-template-columns: 1fr; gap: 10px; padding: 20px 0; }
-  .entry-when { padding-top: 12px; }
-  .entry-link:hover { padding-left: 0; padding-right: 0; }
   .record-role { grid-template-columns: 1fr; gap: 6px; }
   .record-when { padding-top: 0; }
   .cap-columns { gap: 26px; }

@@ -1,11 +1,11 @@
-# Project overrides — CV presentation layer.
+# Project overrides - CV presentation layer.
 #
 # lore owns the facts (client, dates, technologies, outcome). This file owns how
 # they READ. Keys are lore project names; re-running /cv-sync never touches it.
 #
 #   publicTitle    replaces the lore name on public surfaces (required where the
 #                  lore name quotes a client that isn't public). Say what the work
-#                  was, not who it was for — every surface prints the client
+#                  was, not who it was for - every surface prints the client
 #                  descriptor beside the title, so "Rostering review for an
 #                  ASX-listed fuel and convenience retailer" reads it back twice.
 #   publicOutcome  same, for the outcome line

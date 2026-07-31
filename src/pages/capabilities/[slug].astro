@@ -31,7 +31,7 @@ const companions = [...alsoUsed.entries()]
   .slice(0, 10);
 ---
 
-<Site title={`${item.name} — Capability`} description={item.description || item.name}>
+<Site title={`${item.name} · Capability`} description={item.description || item.name}>
   <div class="detail-head">
     <a class="crumb" href="/work#capabilities">← All capabilities</a>
     <h1 class="detail-title">{item.name}</h1>
@@ -93,7 +93,7 @@ const companions = [...alsoUsed.entries()]
       </div>
     ) : (
       <p class="empty">
-        No published project claims this yet — it's held at role level, or the projects
+        No published project claims this yet. It's held at role level, or the projects
         that used it aren't public.
       </p>
     )}

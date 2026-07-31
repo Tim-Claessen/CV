@@ -25,7 +25,7 @@ const related = projects(mode)
   .slice(0, 4);
 ---
 
-<Site title={`${project.title} — ${project.client ?? 'Project'}`} description={project.summary}>
+<Site title={`${project.title} · ${project.client ?? 'Project'}`} description={project.summary}>
   <div class="detail-head">
     <a class="crumb" href="/work">← All work</a>
     <h1 class="detail-title">{project.title}</h1>
@@ -45,7 +45,7 @@ const related = projects(mode)
 
   <div class="prose">
     <p class="prose-lead">{project.summary}</p>
-    {/* Already escaped and anonymised by career.ts — see renderProse there. */}
+    {/* Already escaped and anonymised by career.ts - see renderProse there. */}
     {project.story.map((para) => <p set:html={para} />)}
   </div>
 

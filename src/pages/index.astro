@@ -1,8 +1,8 @@
 ---
 /**
- * The front door. Editorial in the same language as the printable CV — display
- * type, numbered sections, hairlines — but built as a web page: a statement, a
- * selection of work, what it adds up to, and a way to get in touch. The full
+ * The front door. Editorial in the same language as the printable CV (display
+ * type, numbered sections, hairlines) but built as a web page: what Tim does
+ * now, selected work, the role history, and a way to get in touch. The full
  * filterable record lives at /work.
  */
 import Site from '../layouts/Site.astro';
@@ -15,7 +15,6 @@ import {
   focuses,
   proficiencySegments,
   resolveMode,
-  meta,
 } from '../lib/career';
 import '../styles/portfolio.css';
 import '../styles/home.css';
@@ -26,13 +25,9 @@ const timeline = roles('all', mode);
 const capabilities = allCapabilities(mode);
 const areas = focuses(mode);
 
-// The profile paragraph, promoted typographically: its opening sentence is the
-// hero statement and the rest is the lede. Tim's own CV wording either way — the
-// homepage never invents copy. A sentence ends at a full stop before a capital.
+// The hero states the job rather than a slogan: whatever lore says is current.
+const current = timeline.filter((role) => role.end === 'present');
 const profile = persona('all')?.profile ?? '';
-const opening = /^(.+?\.)\s+([\s\S]*)$/.exec(profile);
-const statement = opening?.[1] ?? profile;
-const lede = opening?.[2] ?? '';
 
 const selected = allProjects.filter((project) => project.featured).slice(0, 6);
 
@@ -48,12 +43,22 @@ const highlights = (kind: 'skill' | 'technology') =>
     .slice(0, 8);
 ---
 
-<Site title={`${config.name} — ${config.tagline}`} description={statement}>
+<Site title={`${config.name} · ${config.tagline}`} description={profile.split('. ')[0]}>
   <section class="hero">
     <p class="hero-eyebrow">{config.tagline}</p>
-    <h1 class="hero-statement">{statement}</h1>
+
+    <h1 class="hero-roles">
+      {current.map((role) => (
+        <span class="hero-role">
+          {role.title} <span class="hero-employer">{role.employer}</span>
+        </span>
+      ))}
+    </h1>
+
+    <p class="hero-where">{config.location}</p>
     <div class="hero-rule" aria-hidden="true"></div>
-    {lede && <p class="hero-lede">{lede}</p>}
+    <p class="hero-lede">{profile}</p>
+
     <div class="hero-actions">
       <a class="action action-primary" href="/work">See the work</a>
       <a class="action" href={`mailto:${config.email}`}>Get in touch</a>
@@ -67,37 +72,55 @@ const highlights = (kind: 'skill' | 'technology') =>
       <span class="home-rule" aria-hidden="true"></span>
     </div>
 
-    <ol class="entries">
+    <div class="grid">
       {selected.map((project) => (
-        <li class="entry">
-          <a class="entry-link" href={`/projects/${project.slug}`}>
-            <span class="entry-when">{project.year}</span>
-            <span class="entry-body">
-              <span class="entry-client">
-                {project.client ?? 'Multiple organisations'}
-                {project.projectType && <span class="entry-type"> · {project.projectType}</span>}
-              </span>
-              <span class="entry-title">{project.title}</span>
-              <span class="entry-summary">{project.summary}</span>
-              {project.technologies.length > 0 && (
-                <span class="entry-stack">
-                  {project.technologies.slice(0, 4).map((tech) => (
-                    <span class="chip">{tech}</span>
-                  ))}
-                </span>
+        <a class="card" href={`/projects/${project.slug}`}>
+          <div class="card-meta">
+            <span class="card-client">{project.client ?? 'Multiple organisations'}</span>
+            <span>{project.year}</span>
+          </div>
+          <div class="card-title">{project.title}</div>
+          <p class="card-desc">{project.summary}</p>
+          {project.technologies.length > 0 && (
+            <div class="chips">
+              {project.technologies.slice(0, 4).map((tech) => <span class="chip">{tech}</span>)}
+              {project.technologies.length > 4 && (
+                <span class="chip">+{project.technologies.length - 4}</span>
               )}
-            </span>
-          </a>
-        </li>
+            </div>
+          )}
+        </a>
       ))}
-    </ol>
+    </div>
 
     <a class="more" href="/work">All {allProjects.length} projects</a>
   </section>
 
-  <section class="home-section" aria-labelledby="focus-heading">
+  <section class="home-section" aria-labelledby="record-heading">
     <div class="home-head">
       <span class="home-num">02</span>
+      <h2 class="home-title" id="record-heading">Track record</h2>
+      <span class="home-rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="record">
+      {timeline.map((role) => (
+        <article class="record-role">
+          <div class="record-when">{role.start} → {role.end}</div>
+          <div>
+            <h3 class="record-title">
+              {role.title} <span class="record-employer">{role.employer}</span>
+            </h3>
+            {role.summary && <p class="record-summary">{role.summary}</p>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="home-section" aria-labelledby="focus-heading">
+    <div class="home-head">
+      <span class="home-num">03</span>
       <h2 class="home-title" id="focus-heading">What I do</h2>
       <span class="home-rule" aria-hidden="true"></span>
     </div>
@@ -115,7 +138,7 @@ const highlights = (kind: 'skill' | 'technology') =>
 
   <section class="home-section" aria-labelledby="caps-heading">
     <div class="home-head">
-      <span class="home-num">03</span>
+      <span class="home-num">04</span>
       <h2 class="home-title" id="caps-heading">Capabilities</h2>
       <span class="home-rule" aria-hidden="true"></span>
     </div>
@@ -148,28 +171,6 @@ const highlights = (kind: 'skill' | 'technology') =>
     <a class="more" href="/work#capabilities">All {capabilities.length} capabilities</a>
   </section>
 
-  <section class="home-section" aria-labelledby="record-heading">
-    <div class="home-head">
-      <span class="home-num">04</span>
-      <h2 class="home-title" id="record-heading">Track record</h2>
-      <span class="home-rule" aria-hidden="true"></span>
-    </div>
-
-    <div class="record">
-      {timeline.map((role) => (
-        <article class="record-role">
-          <div class="record-when">{role.start} → {role.end}</div>
-          <div>
-            <h3 class="record-title">
-              {role.title} <span class="record-employer">{role.employer}</span>
-            </h3>
-            {role.summary && <p class="record-summary">{role.summary}</p>}
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
-
   <section class="home-section" id="contact" aria-labelledby="contact-heading">
     <div class="home-head">
       <span class="home-num">05</span>
@@ -183,10 +184,5 @@ const highlights = (kind: 'skill' | 'technology') =>
       <div><dt>GitHub</dt><dd><a href={config.githubUrl} rel="noopener noreferrer">{config.github}</a></dd></div>
       <div><dt>Based in</dt><dd>{config.location}</dd></div>
     </dl>
-
-    <p class="colophon">
-      Facts generated from lore on {meta.generated}{meta.source.commit && <> · {meta.source.commit}</>}.
-      Client names are withheld where the engagement isn't mine to name.
-    </p>
   </section>
 </Site>
