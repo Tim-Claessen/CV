@@ -26,6 +26,7 @@ To refresh from lore, run `/cv-sync` in the lore repo. It writes `content/career
 - **Fed from lore** — 59 projects, 9 roles, 19 skills and 32 technologies, with their full link graph, instead of hand-maintained CSVs.
 - **Persona views** — lenses (`all`, `business`, `data`) filter roles, bullets, projects and skills. A persona is a saved selection of lore entity names, so one list drives both the skills shown and the projects selected.
 - **Client anonymisation** — the public site never names a client marked `public: false` in lore. See below.
+- **Published write-ups** — lore's project bodies render on the public site with client names swapped for "the client" and `[[wikilinks]]` resolved into real links, rather than being withheld.
 - **Skills with verbal levels** — Expert / Proficient / Familiar, each with a 3-segment indicator.
 - **PDF export** — a Python script renders the built page to PDF and archives a dated copy.
 
@@ -40,13 +41,37 @@ lore marks each client `public: true` (employers and partners) or `public: false
 
 The hard part isn't the client node — it's that lore names projects after their clients ("Silverchain Payroll Analytics & Remediation"). So `/cv-sync` flags those, and the build **fails closed**: a flagged project doesn't render publicly until `overrides/projects.yaml` supplies a `publicTitle`.
 
-Three separate mechanisms have to agree for anonymisation to hold, so there's a backstop that reads the built HTML:
+Four separate mechanisms have to agree for anonymisation to hold — lore's `public:` flags,
+cv-sync's leak detection, this repo's overrides, and the prose scrubber below — so there's
+a backstop that reads the built HTML:
 
 ```sh
 npm run build && npm run check:public
 ```
 
 It fails on any non-public client name in the output, whatever the upstream logic thought. It also runs in CI.
+
+### Publishing lore prose
+
+Project write-ups and capability descriptions are lore bodies. They are written for lore,
+not for the web: they name clients outright, cross-reference other entities as
+`[[wikilinks]]`, and carry lore's own margin notes. `renderProse()` in
+[`src/lib/career.ts`](src/lib/career.ts) resolves all three, so the write-up publishes
+instead of being withheld:
+
+| In lore | On the public site |
+| --- | --- |
+| The project's own non-public client, by name | `the client` — "analytics into Worley's audits" becomes "analytics into the client's audits" |
+| Any other non-public client, by name | Its public descriptor, with an article — `a global energy major` |
+| `[[Another Project]]` | A link, titled with that project's public wording. Plain text where the target isn't publishable |
+| `[[Snowflake]]` | A link to `/capabilities/snowflake` |
+| A wholly italicised paragraph | Dropped. These are lore's ingest bookkeeping ("P003 — the 2026 extraction entry was folded in here"), not the engagement |
+
+Identifier matching mirrors `check_public.py` exactly: full client names and aliases of
+four characters or more, on word boundaries. Anything shorter is left alone, because
+"VIA" would match the word "via" — which means a *fragment* of an alias can survive
+(`Transurban NSW` is scrubbed; a bare "NSW" is not). `check_public.py` defines the policy;
+the scrubber implements it, and the check is the backstop if it misses one.
 
 ## Stack
 
@@ -87,8 +112,17 @@ cv/                     # committed PDF output
 src/
   lib/career.ts         # merge career.json + overrides, expose typed records
   components/           # Header, Profile, Experience, Projects, Skills, Education
-  pages/index.astro
-  styles/cv-theme.css
+  layouts/Site.astro    # shared shell: nav, footer, unlisted-route handling
+  pages/
+    index.astro         # homepage
+    work.astro          # the full filterable record
+    cv.astro            # printable CV (unlisted)
+    build.astro         # CV builder (unlisted)
+  styles/
+    cv-theme.css        # the printable CV — print-first
+    portfolio.css       # tokens + site chrome, shared by every screen page
+    home.css            # the homepage only
+    builder.css
 public/
 ```
 
@@ -131,7 +165,7 @@ Private layers are absent by construction: `/cv-sync` uses a hard allowlist, and
 
 | Field | Effect |
 | --- | --- |
-| `publicTitle` | Replaces the lore name publicly — required where the name quotes a non-public client |
+| `publicTitle` | Replaces the lore name publicly — required where the name quotes a non-public client. Say what the work *was*, not who it was for: every surface prints the client descriptor beside the title, so "Rostering review for an ASX-listed fuel and convenience retailer" reads it back twice. Titles therefore repeat across clients, and the public URL is composed from the title plus the client's `publicSlug` to stay unique |
 | `publicOutcome` | Same, for the outcome line |
 | `headline` | Short label, any mode |
 | `bullet` | CV wording, overriding lore's `outcome:` |
@@ -146,11 +180,25 @@ Private layers are absent by construction: `/cv-sync` uses a hard allowlist, and
 
 | Route | What it is |
 | --- | --- |
-| `/` | **Portfolio** — every project, filterable by client, industry, type of work, technology, skill and year. Filters are reflected in the URL, so a filtered view can be linked |
-| `/projects/<slug>` | Project detail: facts, what it used, related work sharing a skill or technology |
+| `/` | **Homepage** — a statement, selected work, what the work adds up to, the role history and a way to get in touch |
+| `/work` | **The full record** — every project, filterable by client, industry, type of work, technology, skill and year, plus every capability. Filters are reflected in the URL, so a filtered view can be linked |
+| `/projects/<slug>` | Project detail: the write-up, facts, what it used, related work sharing a skill or technology |
 | `/capabilities/<slug>` | A skill or technology, with the projects that evidence it — derived from lore's backlinks, not hand-maintained |
-| `/cv` | The printable two-page CV. Carries lore's `featured:` projects only |
-| `/build` | **CV builder** — tick roles, projects and capabilities, edit the preview inline, print to PDF |
+| `/cv` | *Unlisted.* The printable two-page CV. Carries lore's `featured:` projects only |
+| `/build` | *Unlisted.* **CV builder** — tick roles, projects and capabilities, edit the preview inline, print to PDF |
+
+### Unlisted routes
+
+`/cv` and `/build` still build and deploy, but no public page links to either and both
+send `noindex, nofollow`. The nav offers them only once you are already on one of them,
+so the two stay navigable between each other without the homepage or `/work` advertising
+them.
+
+**Unlisted is not private.** Anyone with the URL can read either page. `/cv` is anonymised
+and passes `check:public` like everything else; `/build` embeds the whole project payload
+in the page, still anonymised but complete. If these ever need to be genuinely private,
+the fix is to stop emitting them — move both out of `src/pages/` and inject the routes
+from `astro.config.mjs` only when a local env flag is set — not to obscure them further.
 
 ### The builder
 
@@ -186,9 +234,23 @@ A print button triggers the browser print dialog. Print CSS hides controls and f
 
 ## Design
 
+One visual language across the site, in three stylesheets that layer rather than compete:
+
+| Stylesheet | Owns |
+| --- | --- |
+| `cv-theme.css` | The printable CV. Print-first, A4, its own token layer |
+| `portfolio.css` | The `:root` tokens and the site chrome — header, nav, footer, cards, chips, meters |
+| `home.css` | The homepage alone |
+
+The homepage borrows the CV's voice — display type, numbered sections, the 2px ink rule
+under the masthead, the accent tick beside a date — at web scale. It deliberately uses its
+own class names (`.home-title`, not `.section-title`), because `portfolio.css` already
+means something else by `.section-title` and both load on the same page.
+
 - **Type** — Fraunces (display), IBM Plex Sans (body), IBM Plex Mono (meta, dates, tags).
-- **Palette** — warm off-white background, near-black ink, restrained teal accent. Single column, max width ~820px.
+- **Palette** — warm off-white paper, near-black ink, a single clay accent.
 - **Skills** — verbal level plus a 3-segment indicator: Expert = 3/3, Proficient = 2/3, Familiar = 1/3.
+- **Homepage copy is never invented.** The hero is the `all` persona's profile paragraph, split at its first sentence: the opening becomes the display statement, the rest the lede. Everything else on the page is lore data.
 - **Print** — lens bar and controls hidden; content fits A4 with the selected lens preserved.
 
 ## Commands
@@ -228,77 +290,31 @@ Renders `/cv`, not `/`.
 
 On push to `main`, a GitHub Action builds the site, exports the PDF, and commits updated files under `cv/` back to the repo (pushes that only change `cv/` do not retrigger the workflow). Those bot commits use `[skip ci]` so Cloudflare Pages does not rebuild for PDF-only updates.
 
-## TODO: Set up auto-publish (GitHub → Cloudflare)
+## Deployment
 
-Do this once. When it is done, every time you push changes to GitHub, Cloudflare will rebuild your CV and put it live on the web. You will not need to upload files by hand.
+Live at [cv.timclaessen.com](https://cv.timclaessen.com) on Cloudflare Pages, connected to
+this repo's `main` branch. Push and it rebuilds — there is nothing to upload by hand.
 
-### Part 2 — Connect Cloudflare Pages to GitHub
+| Setting | Value |
+| --- | --- |
+| Production branch | `main` |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Node | 22, picked up from `.node-version` |
 
-- [ ] **5. Create a free Cloudflare account** (if you do not have one) at [dash.cloudflare.com](https://dash.cloudflare.com/).
+Two things are worth knowing if you touch the Pages project:
 
-- [ ] **6. Open Workers & Pages.** In the left menu, click **Workers & Pages**.
+- **Build watch paths.** Include `*`, exclude `cv/*` (PDF commits from the GitHub Action)
+  and `.github/*` (workflow-only changes). Without those excludes the PDF bot triggers a
+  site rebuild on every push.
+- **Environment variables.** `CV_LENS` picks the persona to publish (`all`, `business`,
+  `data`); leave it unset for the full view. **Leave `CV_MODE` unset.** The default is
+  `public`, which anonymises clients. `private` is for local CV exports only and must
+  never be set on the deployed site.
 
-- [ ] **7. Create a Pages project.** Click **Create** → **Pages** → **Connect to Git**.
-
-- [ ] **8. Authorise GitHub.** Cloudflare will ask to connect to your GitHub account. Click **Connect GitHub** and approve access. You can limit access to just this one repo if you prefer.
-
-- [ ] **9. Select your repository.** Pick the CV repo you created in Part 1. Click **Begin setup**.
-
-- [ ] **10. Fill in the build settings** exactly like this:
-
-  | Setting | Value |
-  | --- | --- |
-  | **Production branch** | `main` |
-  | **Framework preset** | None (or Astro if offered) |
-  | **Build command** | `npm run build` |
-  | **Build output directory** | `dist` |
-
-  Cloudflare should pick up Node 22 from the `.node-version` file in this repo. You do not need to change anything else.
-
-- [ ] **11. Skip builds for non-site changes.** In your Pages project, go to **Settings → Build → Build watch paths**. Keep **Include paths** as `*` and add these **Exclude paths**:
-  - `cv/*` — PDF archive commits from GitHub Actions
-  - `.github/*` — workflow-only changes
-
-- [ ] **12. Click Save and Deploy.** Cloudflare will install packages, run the build, and publish your site. The first build takes a few minutes.
-
-- [ ] **13. Check the live site.** When the build finishes, Cloudflare shows a link like `https://something.pages.dev`. Click it — your CV should appear.
-
-### Part 3 — Use your own domain (optional)
-
-Skip this if you are happy with the `.pages.dev` link for now.
-
-- [ ] **14. Add a custom domain.** In your Pages project, go to **Custom domains** → **Set up a custom domain**.
-
-- [ ] **15. Enter your domain.** For example: `cv.timclaessen.com`.
-
-- [ ] **16. Follow Cloudflare’s DNS instructions.**
-  - If your domain is already on Cloudflare, it usually sets up DNS for you.
-  - If not, you add a **CNAME** record: name `cv`, target the `.pages.dev` address Cloudflare gives you.
-
-- [ ] **17. Wait for DNS.** It can take a few minutes (sometimes up to an hour) before `cv.timclaessen.com` works.
-
-### After setup — how updates work
-
-Once the steps above are done:
-
-1. Edit a file (usually something in `data/`).
-2. Save and push to GitHub:
-
-   ```sh
-   git add .
-   git commit -m "Update CV"
-   git push
-   ```
-
-3. Cloudflare notices the push, runs `npm run build` again, and updates the live site. No extra steps needed.
-
-You can watch builds in the Cloudflare dashboard under your Pages project → **Deployments**. If a build fails, open the build log — usually a YAML syntax error in `overrides/`.
-
-### Notes
-
-- The site is **static** — Cloudflare just hosts the built files in `dist/`. There is no server to manage.
-- To publish a specific persona view, set `CV_LENS` in the Cloudflare Pages environment variables (`all`, `business`, or `data`).
-- Leave `CV_MODE` unset. The default is `public`, which anonymises clients; `private` is for local CV exports only and must never be set on the deployed site.
+The site is static — Cloudflare just hosts the files in `dist/`. There is no server. If a
+build fails, open the build log: it is usually a YAML syntax error in `overrides/`, or the
+npm lockfile problem described in [CLAUDE.md](CLAUDE.md).
 
 ## For AI agents
 

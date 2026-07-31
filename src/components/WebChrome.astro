@@ -1,8 +1,18 @@
 ---
+/**
+ * Screen-only chrome for the printable CV. The CV is unlisted — no public page
+ * links to it — so it carries its own way back to the site and across to the
+ * builder, which the shared nav can't provide here.
+ */
 ---
 
 <div class="web-chrome no-print">
-  <div class="chrome-inner chrome-inner--print-only">
+  <div class="chrome-inner">
+    <nav class="chrome-nav" aria-label="Site">
+      <a class="chrome-link" href="/">← Site</a>
+      <a class="chrome-link" href="/work">Work</a>
+      <a class="chrome-link" href="/build">Build a CV</a>
+    </nav>
     <button class="print-btn" type="button" id="print-btn" title="Print or save as PDF">
       ↓ Print / PDF
     </button>

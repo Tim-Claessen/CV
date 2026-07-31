@@ -4,7 +4,10 @@
 # they READ. Keys are lore project names; re-running /cv-sync never touches it.
 #
 #   publicTitle    replaces the lore name on public surfaces (required where the
-#                  lore name quotes a client that isn't public)
+#                  lore name quotes a client that isn't public). Say what the work
+#                  was, not who it was for — every surface prints the client
+#                  descriptor beside the title, so "Rostering review for an
+#                  ASX-listed fuel and convenience retailer" reads it back twice.
 #   publicOutcome  same, for the outcome line
 #   headline       short label for the CV builder, any surface
 #   bullet         CV wording, overriding outcome:
@@ -13,140 +16,140 @@
 
 projects:
   "Ampol Rostering Review":
-    publicTitle: "Rostering review for an ASX-listed fuel and convenience retailer"
+    publicTitle: "Rostering review"
     draft: true
   "Chevron Analytics Engagement":
-    publicTitle: "Analytics engagement for a global energy major"
+    publicTitle: "Analytics engagement"
     draft: true
   "Chevron Long Service Leave Review":
-    publicTitle: "Long service leave review for a global energy major"
+    publicTitle: "Long service leave review"
     draft: true
   "Comcare Data Quality, Governance & Validation Review":
-    publicTitle: "Data quality, governance & validation review for a federal work health and safety regulator"
+    publicTitle: "Data quality, governance & validation review"
     draft: true
   "DEECA Assurance Mapping & Reporting Dashboard":
-    publicTitle: "Assurance mapping & reporting dashboard for a Victorian government department (energy and environment)"
+    publicTitle: "Assurance mapping & reporting dashboard"
     draft: true
   "DEECA Superannuation Remediation":
-    publicTitle: "Superannuation remediation for a Victorian government department (energy and environment)"
+    publicTitle: "Superannuation remediation"
     draft: true
   "Diamond Offshore Shadow Payroll Automation":
-    publicTitle: "Shadow payroll automation for an offshore drilling contractor"
+    publicTitle: "Shadow payroll automation"
     draft: true
   "Domino's Payroll & Accounts Payable Internal Audit":
-    publicTitle: "Payroll & accounts payable internal audit for an ASX-listed quick-service restaurant group"
+    publicTitle: "Payroll & accounts payable internal audit"
     draft: true
   "Dulux Continuous Controls Monitoring (Hire-to-Retire)":
-    publicTitle: "Continuous controls monitoring (Hire-to-Retire) for an ASX-listed coatings manufacturer"
+    publicTitle: "Continuous controls monitoring (Hire-to-Retire)"
     draft: true
   "Endeavour Group Delegation of Authority Review":
-    publicTitle: "Delegation of authority review for an ASX-listed retail and hospitality group"
+    publicTitle: "Delegation of authority review"
     draft: true
   "Fortescue Payroll Continuous Controls Monitoring":
-    publicTitle: "Payroll continuous controls monitoring for a tier 1 iron ore producer"
+    publicTitle: "Payroll continuous controls monitoring"
     draft: true
   "Fortescue UiPath RPA Implementation":
-    publicTitle: "UiPath RPA implementation for a tier 1 iron ore producer"
+    publicTitle: "UiPath RPA implementation"
     draft: true
   "Fortescue Workforce Analytics Review":
-    publicTitle: "Workforce analytics review for a tier 1 iron ore producer"
+    publicTitle: "Workforce analytics review"
     draft: true
   "Greencross Payroll Remediation":
-    publicTitle: "Payroll remediation for a national veterinary and pet care group"
+    publicTitle: "Payroll remediation"
     draft: true
   "Greencross Rostering Review":
-    publicTitle: "Rostering review for a national veterinary and pet care group"
+    publicTitle: "Rostering review"
     draft: true
   "Griffith University Finance & Payroll Controls Monitoring":
-    publicTitle: "Finance & payroll controls monitoring for an Australian university"
+    publicTitle: "Finance & payroll controls monitoring"
     draft: true
   "Home Affairs Recommendation Follow-up Dashboard":
-    publicTitle: "Recommendation follow-up dashboard for a federal government department"
+    publicTitle: "Recommendation follow-up dashboard"
     draft: true
   "Macmahon Leading Safety Indicator Review":
-    publicTitle: "Leading safety indicator review for an ASX-listed mining contractor"
+    publicTitle: "Leading safety indicator review"
     draft: true
   "Melbourne Water Complaints Management Review":
-    publicTitle: "Complaints management review for a Victorian water utility"
+    publicTitle: "Complaints management review"
     draft: true
   "nbn IT General Controls Identity Reconciliation":
-    publicTitle: "IT general controls identity reconciliation for a national telecommunications infrastructure provider"
+    publicTitle: "IT general controls identity reconciliation"
     draft: true
   "Northern Star Inventory Management Analytics":
-    publicTitle: "Inventory management analytics for a top-10 ASX gold producer"
+    publicTitle: "Inventory management analytics"
     draft: true
   "Northern Star Payroll Monitoring (Snowflake + Power BI)":
-    publicTitle: "Payroll monitoring (Snowflake + Power BI) for a top-10 ASX gold producer"
+    publicTitle: "Payroll monitoring (Snowflake + Power BI)"
     draft: true
   "Northern Star SuccessFactors Implementation Support":
-    publicTitle: "SuccessFactors implementation support for a top-10 ASX gold producer"
+    publicTitle: "SuccessFactors implementation support"
     draft: true
   "Northern Star User Access Management Review":
-    publicTitle: "User access management review for a top-10 ASX gold producer"
+    publicTitle: "User access management review"
     draft: true
   "RACV Rostering Review":
-    publicTitle: "Rostering review for a Victorian motoring and membership organisation"
+    publicTitle: "Rostering review"
     draft: true
   "Ramelius Resources Workforce Analytics & Reporting":
-    publicTitle: "Workforce analytics & reporting for a mid-tier WA gold producer"
+    publicTitle: "Workforce analytics & reporting"
     draft: true
   "Rio Tinto Payroll Accuracy Dashboards":
-    publicTitle: "Payroll accuracy dashboards for a global mining major"
+    publicTitle: "Payroll accuracy dashboards"
     draft: true
   "Silverchain Payroll Analytics & Remediation":
-    publicTitle: "Payroll analytics & remediation for a national home care and health provider"
+    publicTitle: "Payroll analytics & remediation"
     draft: true
   "Silverchain Workforce Analytics Partnership":
-    publicTitle: "Workforce analytics partnership for a national home care and health provider"
+    publicTitle: "Workforce analytics partnership"
     draft: true
   "South32 Leave Entitlement Analytics":
-    publicTitle: "Leave entitlement analytics for a global diversified miner"
+    publicTitle: "Leave entitlement analytics"
     draft: true
   "South32 Payroll Compliance Monitoring":
-    publicTitle: "Payroll compliance monitoring for a global diversified miner"
+    publicTitle: "Payroll compliance monitoring"
     draft: true
   "South32 Training & Competency Analysis":
-    publicTitle: "Training & competency analysis for a global diversified miner"
+    publicTitle: "Training & competency analysis"
     draft: true
   "South32 Wage Entitlement Analytics":
-    publicTitle: "Wage entitlement analytics for a global diversified miner"
+    publicTitle: "Wage entitlement analytics"
     draft: true
   "Together Trustee Fund Recalculations in Python":
-    publicTitle: "Trustee fund recalculations in Python for a superannuation trustee"
+    publicTitle: "Trustee fund recalculations in Python"
     draft: true
   "Transurban Incident Management Internal Audit":
-    publicTitle: "Incident management internal audit for an ASX-listed toll road operator"
+    publicTitle: "Incident management internal audit"
     draft: true
   "UNSW Data Quality, Governance & Validation Review":
-    publicTitle: "Data quality, governance & validation review for a Group of Eight university"
+    publicTitle: "Data quality, governance & validation review"
     draft: true
   "Victorian Department of Education IA Follow-up Dashboards":
-    publicTitle: "IA follow-up dashboards for a Victorian government department (education)"
+    publicTitle: "IA follow-up dashboards"
     draft: true
   "Victorian Department of Jobs & Skills Risk Analytics into IA Planning":
-    publicTitle: "Risk analytics into IA planning for a Victorian government department (jobs and skills)"
+    publicTitle: "Risk analytics into IA planning"
     draft: true
   "WA Mental Health Commission KPI Data Validation Audit":
-    publicTitle: "KPI data validation audit for a WA government health commission"
+    publicTitle: "KPI data validation audit"
     draft: true
   "Water Corporation User Access Management Solution":
-    publicTitle: "User access management solution for a WA state water utility"
+    publicTitle: "User access management solution"
     draft: true
   "Water Corporation Workforce Planning Scenario Analysis":
-    publicTitle: "Workforce planning scenario analysis for a WA state water utility"
+    publicTitle: "Workforce planning scenario analysis"
     draft: true
   "Woodside End-to-End Payroll Review":
-    publicTitle: "End-to-End payroll review for an ASX-listed LNG producer"
+    publicTitle: "End-to-End payroll review"
     draft: true
   "Worley Control Self-Assessment Program":
-    publicTitle: "Control Self-Assessment program for a global engineering and professional services firm"
+    publicTitle: "Control Self-Assessment program"
     draft: true
   "Worley Data Quality, Governance & Validation Review":
-    publicTitle: "Data quality, governance & validation review for a global engineering and professional services firm"
+    publicTitle: "Data quality, governance & validation review"
     draft: true
   "Worley Global Internal Audit Digital Capability":
-    publicTitle: "Global internal audit digital capability for a global engineering and professional services firm"
+    publicTitle: "Global internal audit digital capability"
     draft: true
   "Worley Global Location & Project Audit Analytics":
-    publicTitle: "Global location & project audit analytics for a global engineering and professional services firm"
+    publicTitle: "Global location & project audit analytics"
     draft: true

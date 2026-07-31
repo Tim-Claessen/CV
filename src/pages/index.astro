@@ -1,211 +1,192 @@
 ---
+/**
+ * The front door. Editorial in the same language as the printable CV — display
+ * type, numbered sections, hairlines — but built as a web page: a statement, a
+ * selection of work, what it adds up to, and a way to get in touch. The full
+ * filterable record lives at /work.
+ */
 import Site from '../layouts/Site.astro';
 import {
   config,
-  roles,
+  persona,
   projects,
+  roles,
   allCapabilities,
-  facets,
+  focuses,
   proficiencySegments,
   resolveMode,
   meta,
 } from '../lib/career';
 import '../styles/portfolio.css';
+import '../styles/home.css';
 
 const mode = resolveMode();
 const allProjects = projects(mode);
 const timeline = roles('all', mode);
 const capabilities = allCapabilities(mode);
-const filters = facets(mode);
+const areas = focuses(mode);
 
-const clientCount = new Set(allProjects.map((p) => p.client).filter(Boolean)).size;
-const years = allProjects.map((p) => p.year).filter((y): y is number => y !== null);
-const span = years.length ? Math.max(...years) - Math.min(...years) + 1 : 0;
+// The profile paragraph, promoted typographically: its opening sentence is the
+// hero statement and the rest is the lede. Tim's own CV wording either way — the
+// homepage never invents copy. A sentence ends at a full stop before a capital.
+const profile = persona('all')?.profile ?? '';
+const opening = /^(.+?\.)\s+([\s\S]*)$/.exec(profile);
+const statement = opening?.[1] ?? profile;
+const lede = opening?.[2] ?? '';
 
-/** Facet values are matched against these data- attributes by the filter script. */
-function attr(values: (string | null)[]): string {
-  return values.filter(Boolean).join('||');
-}
+const selected = allProjects.filter((project) => project.featured).slice(0, 6);
+
+/**
+ * Enough to show range without turning the front page into the index. Ordered by
+ * evidence rather than by level: sorting on level alone returns eight identical
+ * meters, which tells a reader nothing.
+ */
+const highlights = (kind: 'skill' | 'technology') =>
+  capabilities
+    .filter((item) => item.kind === kind && item.proficiency !== null)
+    .sort((a, b) => b.evidenceCount - a.evidenceCount || a.name.localeCompare(b.name))
+    .slice(0, 8);
 ---
 
-<Site title={`${config.name} — Work`} active="work" wide>
-  <h1 class="lede">{allProjects.length} projects across {clientCount} organisations.</h1>
-  <p class="lede-sub">
-    Everything, filterable — the full record rather than the two-page version.
-    For a CV, <a href="/cv">read the current one</a> or
-    <a href="/build">build one for a specific role</a>.
-  </p>
+<Site title={`${config.name} — ${config.tagline}`} description={statement}>
+  <section class="hero">
+    <p class="hero-eyebrow">{config.tagline}</p>
+    <h1 class="hero-statement">{statement}</h1>
+    <div class="hero-rule" aria-hidden="true"></div>
+    {lede && <p class="hero-lede">{lede}</p>}
+    <div class="hero-actions">
+      <a class="action action-primary" href="/work">See the work</a>
+      <a class="action" href={`mailto:${config.email}`}>Get in touch</a>
+    </div>
+  </section>
 
-  <div class="stats">
-    <div class="stat"><div class="stat-num">{allProjects.length}</div><div class="stat-label">Projects</div></div>
-    <div class="stat"><div class="stat-num">{clientCount}</div><div class="stat-label">Organisations</div></div>
-    <div class="stat"><div class="stat-num">{span}</div><div class="stat-label">Years</div></div>
-    <div class="stat"><div class="stat-num">{capabilities.length}</div><div class="stat-label">Capabilities</div></div>
-    <div class="stat"><div class="stat-num">{timeline.length}</div><div class="stat-label">Roles</div></div>
-  </div>
+  <section class="home-section" aria-labelledby="selected-heading">
+    <div class="home-head">
+      <span class="home-num">01</span>
+      <h2 class="home-title" id="selected-heading">Selected work</h2>
+      <span class="home-rule" aria-hidden="true"></span>
+    </div>
 
-  <section class="block" aria-labelledby="roles-heading">
-    <h2 class="section-title" id="roles-heading"><span>Roles</span></h2>
-    <div class="timeline">
+    <ol class="entries">
+      {selected.map((project) => (
+        <li class="entry">
+          <a class="entry-link" href={`/projects/${project.slug}`}>
+            <span class="entry-when">{project.year}</span>
+            <span class="entry-body">
+              <span class="entry-client">
+                {project.client ?? 'Multiple organisations'}
+                {project.projectType && <span class="entry-type"> · {project.projectType}</span>}
+              </span>
+              <span class="entry-title">{project.title}</span>
+              <span class="entry-summary">{project.summary}</span>
+              {project.technologies.length > 0 && (
+                <span class="entry-stack">
+                  {project.technologies.slice(0, 4).map((tech) => (
+                    <span class="chip">{tech}</span>
+                  ))}
+                </span>
+              )}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
+
+    <a class="more" href="/work">All {allProjects.length} projects</a>
+  </section>
+
+  <section class="home-section" aria-labelledby="focus-heading">
+    <div class="home-head">
+      <span class="home-num">02</span>
+      <h2 class="home-title" id="focus-heading">What I do</h2>
+      <span class="home-rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="focus-grid">
+      {areas.map((area) => (
+        <a class="focus" href={`/work?type=${encodeURIComponent(area.name)}`}>
+          <span class="focus-count">{area.count}</span>
+          <span class="focus-name">{area.name}</span>
+          <span class="focus-summary" set:html={area.summary} />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="home-section" aria-labelledby="caps-heading">
+    <div class="home-head">
+      <span class="home-num">03</span>
+      <h2 class="home-title" id="caps-heading">Capabilities</h2>
+      <span class="home-rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="cap-columns">
+      {([['Skills', 'skill'], ['Technologies', 'technology']] as const).map(([label, kind]) => (
+        <div class="cap-column">
+          <h3 class="cap-column-title">{label}</h3>
+          <ul class="cap-highlights">
+            {highlights(kind).map((item) => (
+              <li>
+                <a class="cap-highlight" href={`/capabilities/${item.slug}`}>
+                  <span class="cap-highlight-name">{item.name}</span>
+                  <span class="cap-highlight-level">
+                    <span class="cap-highlight-word">{item.proficiency}</span>
+                    <span class="meter" aria-label={item.proficiency ?? ''}>
+                      {[1, 2, 3].map((n) => (
+                        <span class:list={['seg', { on: n <= proficiencySegments(item.proficiency) }]} />
+                      ))}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <a class="more" href="/work#capabilities">All {capabilities.length} capabilities</a>
+  </section>
+
+  <section class="home-section" aria-labelledby="record-heading">
+    <div class="home-head">
+      <span class="home-num">04</span>
+      <h2 class="home-title" id="record-heading">Track record</h2>
+      <span class="home-rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="record">
       {timeline.map((role) => (
-        <article class="tl-role">
-          <div class="tl-when">{role.start} → {role.end}</div>
+        <article class="record-role">
+          <div class="record-when">{role.start} → {role.end}</div>
           <div>
-            <div class="tl-title">
-              {role.title} <span class="tl-employer">· {role.employer}</span>
-            </div>
-            {role.summary && <p class="tl-summary">{role.summary}</p>}
+            <h3 class="record-title">
+              {role.title} <span class="record-employer">{role.employer}</span>
+            </h3>
+            {role.summary && <p class="record-summary">{role.summary}</p>}
           </div>
         </article>
       ))}
     </div>
   </section>
 
-  <section class="block" aria-labelledby="projects-heading">
-    <h2 class="section-title" id="projects-heading">
-      <span>Projects</span>
-      <span class="filter-count" data-count>{allProjects.length} shown</span>
-    </h2>
-
-    <form class="filters no-print" id="project-filters" aria-label="Filter projects">
-      <div class="filter">
-        <label class="filter-label" for="f-search">Search</label>
-        <input type="search" id="f-search" data-filter="search" placeholder="Title or summary…" />
-      </div>
-      {filters.map((facet) => (
-        <div class="filter">
-          <label class="filter-label" for={`f-${facet.key}`}>{facet.label}</label>
-          <select id={`f-${facet.key}`} data-filter={facet.key}>
-            <option value="">All ({facet.values.length})</option>
-            {facet.values.map((option) => (
-              <option value={option.value}>{option.value} ({option.count})</option>
-            ))}
-          </select>
-        </div>
-      ))}
-    </form>
-
-    <div class="filter-bar no-print">
-      <span data-summary>Showing all {allProjects.length} projects</span>
-      <button type="button" class="btn" data-reset>Clear filters</button>
+  <section class="home-section" id="contact" aria-labelledby="contact-heading">
+    <div class="home-head">
+      <span class="home-num">05</span>
+      <h2 class="home-title" id="contact-heading">Get in touch</h2>
+      <span class="home-rule" aria-hidden="true"></span>
     </div>
 
-    <div class="grid" id="project-grid">
-      {allProjects.map((project) => (
-        <a
-          class="card"
-          href={`/projects/${project.slug}`}
-          data-client={project.client ?? ''}
-          data-industry={project.industry ?? ''}
-          data-type={project.projectType ?? ''}
-          data-technology={attr(project.technologies)}
-          data-skill={attr(project.skills)}
-          data-year={project.year ?? ''}
-          data-search={`${project.title} ${project.summary}`.toLowerCase()}
-        >
-          <div class="card-meta">
-            <span class="card-client">{project.client ?? 'Multiple organisations'}</span>
-            <span>{project.year}</span>
-          </div>
-          <div class="card-title">{project.title}</div>
-          <p class="card-desc">{project.summary}</p>
-          {project.technologies.length > 0 && (
-            <div class="chips">
-              {project.technologies.slice(0, 4).map((tech) => <span class="chip">{tech}</span>)}
-              {project.technologies.length > 4 && (
-                <span class="chip">+{project.technologies.length - 4}</span>
-              )}
-            </div>
-          )}
-        </a>
-      ))}
-    </div>
-    <p class="empty" data-empty hidden>No projects match those filters.</p>
+    <dl class="contact-grid">
+      <div><dt>Email</dt><dd><a href={`mailto:${config.email}`}>{config.email}</a></dd></div>
+      <div><dt>LinkedIn</dt><dd><a href={config.linkedinUrl} rel="noopener noreferrer">{config.linkedin}</a></dd></div>
+      <div><dt>GitHub</dt><dd><a href={config.githubUrl} rel="noopener noreferrer">{config.github}</a></dd></div>
+      <div><dt>Based in</dt><dd>{config.location}</dd></div>
+    </dl>
+
+    <p class="colophon">
+      Facts generated from lore on {meta.generated}{meta.source.commit && <> · {meta.source.commit}</>}.
+      Client names are withheld where the engagement isn't mine to name.
+    </p>
   </section>
-
-  <section class="block" aria-labelledby="caps-heading">
-    <h2 class="section-title" id="caps-heading">
-      <span>Capabilities</span>
-      <span>{capabilities.length}</span>
-    </h2>
-    <div class="cap-grid">
-      {capabilities.map((item) => (
-        <a class="cap-link" href={`/capabilities/${item.slug}`}>
-          <span class="cap-link-name">{item.name}</span>
-          <span class="cap-link-count">
-            <span class="meter" aria-label={item.proficiency ?? ''}>
-              {[1, 2, 3].map((n) => (
-                <span class:list={['seg', { on: n <= proficiencySegments(item.proficiency) }]} />
-              ))}
-            </span>
-            {item.evidenceCount > 0 && <> {item.evidenceCount}</>}
-          </span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <p class="lede-sub" style="margin-top:40px;font-size:13px;color:var(--muted)">
-    Generated from lore on {meta.generated}{meta.source.commit && <> · {meta.source.commit}</>}.
-  </p>
 </Site>
-
-<script>
-  // Filtering runs over pre-rendered cards rather than re-rendering them: the whole
-  // set is already in the DOM, so this stays a static page with no framework.
-  const form = document.getElementById('project-filters') as HTMLFormElement | null;
-  const grid = document.getElementById('project-grid');
-  if (form && grid) {
-    const cards = [...grid.querySelectorAll<HTMLElement>('.card')];
-    const empty = document.querySelector<HTMLElement>('[data-empty]');
-    const summary = document.querySelector<HTMLElement>('[data-summary]');
-    const count = document.querySelector<HTMLElement>('[data-count]');
-    const inputs = [...form.querySelectorAll<HTMLSelectElement | HTMLInputElement>('[data-filter]')];
-
-    const apply = () => {
-      const active = inputs
-        .map((input) => ({ key: input.dataset.filter!, value: input.value.trim() }))
-        .filter((f) => f.value !== '');
-
-      let shown = 0;
-      for (const card of cards) {
-        const match = active.every(({ key, value }) => {
-          if (key === 'search') return (card.dataset.search ?? '').includes(value.toLowerCase());
-          // Multi-value attributes are joined with || so a substring match can't
-          // let "SQL" match "Azure SQL".
-          const field = card.dataset[key] ?? '';
-          return field.split('||').includes(value);
-        });
-        card.hidden = !match;
-        if (match) shown += 1;
-      }
-
-      if (empty) empty.hidden = shown > 0;
-      if (count) count.textContent = `${shown} shown`;
-      if (summary) {
-        summary.textContent = active.length
-          ? `Showing ${shown} of ${cards.length} projects`
-          : `Showing all ${cards.length} projects`;
-      }
-
-      const params = new URLSearchParams();
-      for (const { key, value } of active) params.set(key, value);
-      const query = params.toString();
-      history.replaceState(null, '', query ? `?${query}` : location.pathname);
-    };
-
-    // Restore from the URL so a filtered view can be linked or reloaded.
-    const params = new URLSearchParams(location.search);
-    for (const input of inputs) {
-      const value = params.get(input.dataset.filter!);
-      if (value) input.value = value;
-    }
-
-    form.addEventListener('input', apply);
-    document.querySelector('[data-reset]')?.addEventListener('click', () => {
-      for (const input of inputs) input.value = '';
-      apply();
-    });
-    apply();
-  }
-</script>

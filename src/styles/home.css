@@ -1,0 +1,382 @@
+/* ============================================================================
+   HOME — the front door
+   ----------------------------------------------------------------------------
+   Layered on portfolio.css, which owns the tokens and the site chrome. This file
+   owns the homepage only: the editorial voice of the printable CV (display type,
+   numbered sections, accent hairlines) at web scale and web rhythm.
+
+   Section heads deliberately use their own class names rather than cv-theme's
+   .section-* — portfolio.css already means something else by .section-title, and
+   the two stylesheets load together here.
+   ========================================================================== */
+
+/* --- hero ----------------------------------------------------------------- */
+
+.hero {
+  padding: 18px 0 8px;
+  max-width: 46rem;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero-statement {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.2vw, 44px);
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  margin-top: 20px;
+  text-wrap: balance;
+}
+
+/* The 2px ink rule under the CV's masthead, doing the same job here. */
+.hero-rule {
+  height: 2px;
+  background: var(--ink);
+  margin: 30px 0 22px;
+}
+
+.hero-lede {
+  font-size: 16px;
+  line-height: 1.68;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.action {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 11px 20px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper);
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.action:hover { border-color: var(--accent); color: var(--accent-dark); }
+
+.action-primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.action-primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* --- section heads -------------------------------------------------------- */
+
+.home-section { margin-top: 76px; }
+
+.home-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.home-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.home-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.home-rule { flex: 1; height: 1px; background: var(--line); }
+
+.more {
+  display: inline-block;
+  margin-top: 26px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--accent-dark);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-soft);
+  padding-bottom: 2px;
+}
+.more::after { content: " →"; }
+.more:hover { border-color: var(--accent); }
+
+/* --- selected work -------------------------------------------------------- */
+
+.entries { list-style: none; }
+
+.entry { border-top: 1px solid var(--line); }
+.entry:last-child { border-bottom: 1px solid var(--line); }
+
+.entry-link {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 24px;
+  padding: 22px 12px 22px 0;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.18s ease, padding 0.18s ease;
+}
+.entry-link:hover { background: var(--paper-warm); padding-left: 14px; padding-right: 14px; }
+
+.entry-when {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding-top: 5px;
+  position: relative;
+}
+/* The accent tick that marks a role on the printed CV. */
+.entry-when::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -4px;
+  width: 18px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.entry-body { display: block; min-width: 0; }
+
+.entry-client {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.entry-type { color: var(--muted); }
+
+.entry-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-top: 6px;
+}
+.entry-link:hover .entry-title { color: var(--accent-dark); }
+
+.entry-summary {
+  display: block;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--mid);
+  margin-top: 7px;
+  max-width: 66ch;
+}
+
+.entry-stack { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+
+/* --- what I do ------------------------------------------------------------ */
+
+/* Discrete bordered cells rather than a hairline-gap grid: the count of focus
+   areas is whatever lore has, so a trailing empty cell in the last row must read
+   as absence, not as a blank tile. */
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.focus {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 20px 20px 22px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  border-radius: 0 0 3px 3px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.18s ease, box-shadow 0.18s ease;
+}
+.focus:hover { background: var(--paper-warm); box-shadow: 0 6px 22px rgba(120, 70, 40, 0.09); }
+
+.focus-count {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.focus-name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.focus-summary { font-size: 13px; line-height: 1.55; color: var(--mid); }
+
+/* --- capabilities --------------------------------------------------------- */
+
+.cap-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 34px 50px;
+}
+
+.cap-column-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 6px;
+}
+
+.cap-highlights { list-style: none; }
+
+.cap-highlight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+}
+.cap-highlights li:last-child .cap-highlight { border-bottom: 0; }
+.cap-highlight:hover .cap-highlight-name { color: var(--accent-dark); }
+
+.cap-highlight-name { font-size: 14px; font-weight: 500; }
+
+.cap-highlight-level {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+.cap-highlight-level .meter { flex: none; }
+
+.cap-highlight-word {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  min-width: 5.5em;
+  text-align: right;
+}
+
+/* --- track record --------------------------------------------------------- */
+
+.record { display: flex; flex-direction: column; }
+
+.record-role {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 26px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.record-role:first-child { border-top: 1px solid var(--line); }
+
+.record-when {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  padding-top: 5px;
+  white-space: nowrap;
+}
+
+.record-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.record-employer { font-style: italic; color: var(--accent); }
+.record-employer::before { content: "· "; color: var(--muted); font-style: normal; }
+
+.record-summary {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--mid);
+  margin-top: 6px;
+  max-width: 68ch;
+}
+
+/* --- contact -------------------------------------------------------------- */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 22px 30px;
+}
+
+.contact-grid dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.contact-grid dd { font-size: 15px; }
+.contact-grid a { text-decoration: none; border-bottom: 1px solid var(--line); }
+.contact-grid a:hover { color: var(--accent-dark); border-color: var(--accent); }
+
+.colophon {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+/* --- mobile --------------------------------------------------------------- */
+
+@media (max-width: 700px) {
+  .home-section { margin-top: 56px; }
+  .entry-link { grid-template-columns: 1fr; gap: 10px; padding: 20px 0; }
+  .entry-when { padding-top: 12px; }
+  .entry-link:hover { padding-left: 0; padding-right: 0; }
+  .record-role { grid-template-columns: 1fr; gap: 6px; }
+  .record-when { padding-top: 0; }
+  .cap-columns { gap: 26px; }
+}

@@ -33,7 +33,7 @@ const companions = [...alsoUsed.entries()]
 
 <Site title={`${item.name} — Capability`} description={item.description || item.name}>
   <div class="detail-head">
-    <a class="crumb" href="/">← All work</a>
+    <a class="crumb" href="/work#capabilities">← All capabilities</a>
     <h1 class="detail-title">{item.name}</h1>
     <dl class="detail-facts">
       <div><dt>Kind</dt><dd>{item.kind === 'skill' ? 'Skill' : 'Technology'}</dd></div>
@@ -56,9 +56,9 @@ const companions = [...alsoUsed.entries()]
     </dl>
   </div>
 
-  {item.description && (
+  {item.descriptionHtml.length > 0 && (
     <div class="prose">
-      {item.description.split('\n\n').map((para) => <p>{para.replace(/\n/g, ' ')}</p>)}
+      {item.descriptionHtml.map((para) => <p set:html={para} />)}
     </div>
   )}
 

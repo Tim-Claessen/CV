@@ -1,7 +1,8 @@
 ---
 /**
- * Shared shell for the portfolio and builder pages. The printable CV keeps its
- * own page-level markup, because its whole job is to be one A4 document.
+ * Shared shell for the homepage, the work index and the builder. The printable
+ * CV keeps its own page-level markup, because its whole job is to be one A4
+ * document.
  */
 import { config, resolveMode } from '../lib/career';
 
@@ -10,16 +11,37 @@ interface Props {
   description?: string;
   active?: 'work' | 'cv' | 'build';
   wide?: boolean;
+  /**
+   * Unlisted pages (/cv, /build) still build and deploy, but nothing public
+   * links to them and search engines are asked to skip them. Unlisted is not
+   * private: anyone with the URL can still read the page.
+   */
+  unlisted?: boolean;
 }
 
-const { title, description = config.tagline, active, wide = false } = Astro.props;
+const {
+  title,
+  description = config.tagline,
+  active,
+  wide = false,
+  unlisted = false,
+} = Astro.props;
 const mode = resolveMode();
 
 const nav = [
-  { href: '/', label: 'Work', key: 'work' },
+  { href: '/work', label: 'Work', key: 'work' },
+  { href: '/work#capabilities', label: 'Capabilities', key: 'capabilities' },
+  { href: '/#contact', label: 'Contact', key: 'contact' },
+];
+
+// The unlisted pair appears only once you are already on one of them, so the two
+// stay navigable between without any public page advertising either.
+const unlistedNav = [
   { href: '/cv', label: 'CV', key: 'cv' },
   { href: '/build', label: 'Build a CV', key: 'build' },
 ];
+
+const links = unlisted ? [...nav, ...unlistedNav] : nav;
 
 const fontUrl =
   'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap';
@@ -30,6 +52,7 @@ const fontUrl =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {unlisted && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -46,7 +69,7 @@ const fontUrl =
         <span class="site-tagline">{config.tagline}</span>
       </a>
       <nav class="site-nav" aria-label="Sections">
-        {nav.map((item) => (
+        {links.map((item) => (
           <a href={item.href} class:list={['site-nav-link', { on: active === item.key }]}>
             {item.label}
           </a>

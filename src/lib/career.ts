@@ -31,6 +31,7 @@ interface RawClient {
   publicSlug: string;
   publicName: string;
   public: boolean;
+  aliases: string[];
   industry: string | null;
   location: string | null;
   relationship: string | null;
@@ -207,8 +208,124 @@ export const config = readYaml<SiteConfig>({} as SiteConfig, 'config.yaml');
 
 // --- Resolved view ----------------------------------------------------------
 
+// --- Publishing lore prose --------------------------------------------------
+
+/**
+ * lore bodies are written for lore, not for the web. They name clients outright,
+ * cross-reference other entities as [[wikilinks]], and carry lore's own margin
+ * notes. Publishing one means resolving all three:
+ *
+ *   [[wikilinks]]  become links where the target is publishable, and plain public
+ *                  wording where it isn't.
+ *   client names   become "the client" (this project's own) or the client's public
+ *                  descriptor (anyone else's).
+ *   margin notes   a paragraph that is entirely italicised is lore's bookkeeping
+ *                  ("P003 — the 2026 extraction entry was folded in here"). It
+ *                  records an ingest decision, not the engagement. Dropped.
+ *
+ * Identifier matching mirrors scripts/check_public.py exactly — full names and
+ * aliases of four characters or more, on word boundaries. That script reads the
+ * built HTML and is the backstop if this misses one.
+ */
+
+/** Matches MIN_ALIAS in check_public.py: "VIA" would otherwise match "via". */
+const MIN_ALIAS = 4;
+
+function escapeRegExp(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function escapeHtml(text: string): string {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+const nonPublicIdentifiers = career.clients
+  .filter((client) => !client.public)
+  .flatMap((client) =>
+    [client.name, ...(client.aliases ?? [])]
+      .filter((identifier) => identifier.length >= MIN_ALIAS)
+      .map((identifier) => ({ identifier, client })),
+  )
+  // Longest first, so "Silverchain Group" is spent before "Silverchain" can eat
+  // its first word and strand the rest of the phrase in the output.
+  .sort((a, b) => b.identifier.length - a.identifier.length)
+  .map(({ identifier, client }) => ({
+    client,
+    pattern: new RegExp(`(?<![A-Za-z0-9])${escapeRegExp(identifier)}(?![A-Za-z0-9])`, 'gi'),
+  }));
+
+/** "Global energy major" reads as "a global energy major" inside a sentence. */
+function withArticle(descriptor: string): string {
+  const lower = descriptor.charAt(0).toLowerCase() + descriptor.slice(1);
+  return `${/^[aeiou]/i.test(lower) ? 'an' : 'a'} ${lower}`;
+}
+
+function scrubClientNames(text: string, own: string | null, mode: Mode): string {
+  if (mode === 'private') return text;
+  let out = text;
+  for (const { client, pattern } of nonPublicIdentifiers) {
+    out = out.replace(pattern, client.name === own ? 'the client' : withArticle(client.publicName));
+  }
+  // A replacement inherits the sentence position of the name it replaced.
+  return out.replace(/(^|[.!?]\s+)the client/g, (_, lead: string) => `${lead}The client`);
+}
+
+function inline(text: string): string {
+  return escapeHtml(text)
+    // Links in lore bodies point at lore's own docs — keep the label, drop the path.
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+}
+
+const capabilityByName = new Map(
+  [...career.skills, ...career.technologies].map((item) => [item.name, item] as const),
+);
+const projectByName = new Map(career.projects.map((raw) => [raw.name, raw] as const));
+
+function resolveWikilink(label: string, own: string | null, mode: Mode): string {
+  const capability = capabilityByName.get(label);
+  if (capability) {
+    return `<a href="/capabilities/${capability.slug}">${escapeHtml(capability.name)}</a>`;
+  }
+
+  const raw = projectByName.get(label);
+  if (raw) {
+    const override = overrides[raw.name] ?? {};
+    const title = displayTitle(raw, override, mode);
+    if (publishable(raw, override, mode)) {
+      return `<a href="/projects/${slugTable(mode).get(raw.slug)}">${escapeHtml(title)}</a>`;
+    }
+    // Withheld: name it only if an override supplied public wording for it.
+    const withheld = mode === 'public' ? override.publicTitle ?? 'a related engagement' : title;
+    return escapeHtml(withheld);
+  }
+
+  return inline(scrubClientNames(label, own, mode));
+}
+
+function renderProse(text: string, own: string | null, mode: Mode): string {
+  return text
+    .split(/(\[\[[^\]]+\]\])/g)
+    .map((part) => {
+      const link = /^\[\[([^\]]+)\]\]$/.exec(part);
+      return link
+        ? resolveWikilink(link[1], own, mode)
+        : inline(scrubClientNames(part, own, mode));
+    })
+    .join('');
+}
+
+/** Body prose as ready-to-render HTML paragraphs, margin notes removed. */
+function story(raw: RawProject, mode: Mode): string[] {
+  return raw.body
+    .split(/\n{2,}/)
+    .map((para) => para.trim().replace(/\n/g, ' '))
+    .filter((para) => para !== '' && !/^\*[^*]+\*$/.test(para))
+    .map((para) => renderProse(para, raw.client, mode));
+}
+
 export interface Project {
-  /** URL slug. In public mode this derives from the public title, never the lore name. */
+  /** URL slug. In public mode this is composed from public wording, never the lore name. */
   slug: string;
   /** Stable key from lore, used for evidence lookups. Never appears in a URL. */
   loreSlug: string;
@@ -225,7 +342,8 @@ export interface Project {
   end: string;
   year: number | null;
   summary: string;
-  story: string;
+  /** The lore write-up, made publishable: HTML paragraphs, safe to set:html. */
+  story: string[];
   featured: boolean;
   tags: string[];
   draft: boolean;
@@ -261,15 +379,58 @@ function publishable(raw: RawProject, override: ProjectOverride, mode: Mode): bo
   return titleCovered && outcomeCovered;
 }
 
+function anonymised(raw: RawProject, mode: Mode): RawClient | null {
+  const client = raw.client ? clientsByName.get(raw.client) ?? null : null;
+  return mode === 'public' && client !== null && !client.public ? client : null;
+}
+
+function displayTitle(raw: RawProject, override: ProjectOverride, mode: Mode): string {
+  return (mode === 'public' && override.publicTitle) || override.headline || raw.name;
+}
+
+/**
+ * Public slugs are composed, not derived. A public title says what the work was
+ * ("Rostering review") and leaves who it was for to the client line beside it, so
+ * titles repeat across clients and a title-only slug would collide. The client's
+ * publicSlug disambiguates — cv-sync generates it never to encode a real name.
+ *
+ * Built once per mode over lore's own project order, so a slug never moves
+ * because a sibling was edited.
+ */
+const slugTables = new Map<Mode, Map<string, string>>();
+
+function slugTable(mode: Mode): Map<string, string> {
+  const cached = slugTables.get(mode);
+  if (cached) return cached;
+
+  const table = new Map<string, string>();
+  const taken = new Set<string>();
+  for (const raw of career.projects) {
+    const client = anonymised(raw, mode);
+    let slug = raw.slug;
+    if (client) {
+      const override = overrides[raw.name] ?? {};
+      const base = `${slugify(displayTitle(raw, override, mode))}-${client.publicSlug}`;
+      slug = base;
+      for (let n = 2; taken.has(slug); n += 1) slug = `${base}-${n}`;
+    }
+    taken.add(slug);
+    table.set(raw.slug, slug);
+  }
+
+  slugTables.set(mode, table);
+  return table;
+}
+
 function toProject(raw: RawProject, override: ProjectOverride, mode: Mode): Project {
   const client = raw.client ? clientsByName.get(raw.client) ?? null : null;
-  const anonymise = mode === 'public' && client !== null && !client.public;
-  const title = (mode === 'public' && override.publicTitle) || override.headline || raw.name;
+  const anonymise = anonymised(raw, mode) !== null;
+  const title = displayTitle(raw, override, mode);
 
   return {
     // lore names projects after their clients, so the lore slug would put the
-    // client straight in the URL bar. Public URLs derive from the public title.
-    slug: anonymise ? slugify(override.headline || title) : raw.slug,
+    // client straight in the URL bar. Public URLs are composed from public wording.
+    slug: slugTable(mode).get(raw.slug)!,
     loreSlug: raw.slug,
     loreName: raw.name,
     title,
@@ -286,9 +447,7 @@ function toProject(raw: RawProject, override: ProjectOverride, mode: Mode): Proj
     summary:
       override.bullet ||
       ((mode === 'public' && override.publicOutcome) || raw.outcome),
-    // Body prose is written for lore and quotes clients freely, so it is only
-    // ever exposed in private mode. The portfolio shows the outcome line.
-    story: mode === 'private' ? raw.body : '',
+    story: story(raw, mode),
     featured: raw.featured,
     tags: raw.tags,
     draft: Boolean(override.draft),
@@ -423,17 +582,26 @@ export function evidenceFor(kind: 'skill' | 'technology', name: string, mode: Mo
 
 export interface Capability extends RawCapability {
   evidenceCount: number;
+  /** The description as renderable HTML paragraphs — same treatment as a project story. */
+  descriptionHtml: string[];
 }
 
-/** Skills and technologies as one flat list, each with its evidence count. */
 /**
- * Descriptions come from lore bodies, written without a public reader in mind, so
- * one that names a non-public client is withheld rather than published — same
- * fail-closed rule the project bodies follow.
+ * Capability descriptions are lore bodies too, so they go through the same
+ * scrubber. `description` stays plain text for <meta description>; the page
+ * renders `descriptionHtml`.
  */
+function describe(item: RawCapability, mode: Mode): string[] {
+  return item.description
+    .split(/\n{2,}/)
+    .map((para) => para.trim().replace(/\n/g, ' '))
+    .filter((para) => para !== '' && !/^\*[^*]+\*$/.test(para))
+    .map((para) => renderProse(para, null, mode));
+}
+
+/** Plain-text equivalent, for meta tags and anywhere markup would be wrong. */
 function safeDescription(item: RawCapability, mode: Mode): string {
-  if (mode === 'private') return item.description;
-  return item.descriptionLeaks?.length ? '' : item.description;
+  return scrubClientNames(item.description.replace(/\[\[([^\]]+)\]\]/g, '$1'), null, mode);
 }
 
 export function allCapabilities(mode: Mode = resolveMode()): Capability[] {
@@ -446,6 +614,7 @@ export function allCapabilities(mode: Mode = resolveMode()): Capability[] {
     .map((item) => ({
       ...item,
       description: safeDescription(item, mode),
+      descriptionHtml: describe(item, mode),
       evidenceCount: count(item.kind, item.name),
     }))
     .sort((a, b) => b.evidenceCount - a.evidenceCount || a.name.localeCompare(b.name));
@@ -491,6 +660,38 @@ export function facets(mode: Mode = resolveMode()): Facet[] {
     { key: 'skill', label: 'Skill', values: tally((p) => p.skills) },
     { key: 'year', label: 'Year', values: tally((p) => [p.year ? String(p.year) : null]) },
   ].filter((facet) => facet.values.length > 1);
+}
+
+export interface Focus {
+  name: string;
+  slug: string;
+  summary: string;
+  count: number;
+}
+
+/**
+ * lore's project types, as a "what I do" list. Their descriptions are lore bodies
+ * that open with the definition and then trail off into ingest bookkeeping
+ * ("Draft capability proposed during ingest — confirm, rename or cut"), so only
+ * the opening sentence is published. A sentence ends at a full stop followed by a
+ * capital, which keeps "etc. as they come up" in one piece.
+ */
+export function focuses(mode: Mode = resolveMode()): Focus[] {
+  const visible = projects(mode);
+  return projectTypes
+    .map((type) => ({
+      name: type.name,
+      slug: type.slug,
+      summary: renderProse(
+        /^(.+?\.)(?=\s+[A-Z])/.exec(type.description.trim())?.[1] ??
+          type.description.trim().split(/\n{2,}/)[0],
+        null,
+        mode,
+      ),
+      count: visible.filter((project) => project.projectType === type.name).length,
+    }))
+    .filter((focus) => focus.count > 0)
+    .sort((a, b) => b.count - a.count);
 }
 
 export function proficiencySegments(proficiency: Proficiency | null): number {

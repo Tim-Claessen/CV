@@ -27,7 +27,7 @@ const related = projects(mode)
 
 <Site title={`${project.title} — ${project.client ?? 'Project'}`} description={project.summary}>
   <div class="detail-head">
-    <a class="crumb" href="/">← All work</a>
+    <a class="crumb" href="/work">← All work</a>
     <h1 class="detail-title">{project.title}</h1>
     <dl class="detail-facts">
       {project.client && (
@@ -44,15 +44,9 @@ const related = projects(mode)
   </div>
 
   <div class="prose">
-    <p>{project.summary}</p>
-    {project.story
-      ? project.story.split('\n\n').map((para) => <p set:html={para.replace(/\n/g, ' ')} />)
-      : (
-        <p class="callout">
-          The full write-up names the client, so it isn't published here. It's in the
-          private build and in any CV sent directly.
-        </p>
-      )}
+    <p class="prose-lead">{project.summary}</p>
+    {/* Already escaped and anonymised by career.ts — see renderProse there. */}
+    {project.story.map((para) => <p set:html={para} />)}
   </div>
 
   {(project.skills.length > 0 || project.technologies.length > 0) && (

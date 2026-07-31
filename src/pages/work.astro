@@ -1,0 +1,185 @@
+---
+/**
+ * The full record: every publishable project, filterable. The homepage is the
+ * front door and shows a selection; this is the room behind it.
+ */
+import Site from '../layouts/Site.astro';
+import {
+  config,
+  projects,
+  allCapabilities,
+  facets,
+  proficiencySegments,
+  resolveMode,
+  meta,
+} from '../lib/career';
+import '../styles/portfolio.css';
+
+const mode = resolveMode();
+const allProjects = projects(mode);
+const capabilities = allCapabilities(mode);
+const filters = facets(mode);
+
+const clientCount = new Set(allProjects.map((p) => p.client).filter(Boolean)).size;
+
+/** Facet values are matched against these data- attributes by the filter script. */
+function attr(values: (string | null)[]): string {
+  return values.filter(Boolean).join('||');
+}
+---
+
+<Site title={`${config.name} — Work`} active="work" wide>
+  <h1 class="lede">{allProjects.length} projects across {clientCount} organisations.</h1>
+  <p class="lede-sub">
+    Everything, filterable — the full record rather than a selection. Filters are kept
+    in the URL, so a view you build here can be linked.
+  </p>
+
+  <section class="block" aria-labelledby="projects-heading">
+    <h2 class="section-title" id="projects-heading">
+      <span>Projects</span>
+      <span class="filter-count" data-count>{allProjects.length} shown</span>
+    </h2>
+
+    <form class="filters no-print" id="project-filters" aria-label="Filter projects">
+      <div class="filter">
+        <label class="filter-label" for="f-search">Search</label>
+        <input type="search" id="f-search" data-filter="search" placeholder="Title or summary…" />
+      </div>
+      {filters.map((facet) => (
+        <div class="filter">
+          <label class="filter-label" for={`f-${facet.key}`}>{facet.label}</label>
+          <select id={`f-${facet.key}`} data-filter={facet.key}>
+            <option value="">All ({facet.values.length})</option>
+            {facet.values.map((option) => (
+              <option value={option.value}>{option.value} ({option.count})</option>
+            ))}
+          </select>
+        </div>
+      ))}
+    </form>
+
+    <div class="filter-bar no-print">
+      <span data-summary>Showing all {allProjects.length} projects</span>
+      <button type="button" class="btn" data-reset>Clear filters</button>
+    </div>
+
+    <div class="grid" id="project-grid">
+      {allProjects.map((project) => (
+        <a
+          class="card"
+          href={`/projects/${project.slug}`}
+          data-client={project.client ?? ''}
+          data-industry={project.industry ?? ''}
+          data-type={project.projectType ?? ''}
+          data-technology={attr(project.technologies)}
+          data-skill={attr(project.skills)}
+          data-year={project.year ?? ''}
+          data-search={`${project.title} ${project.summary}`.toLowerCase()}
+        >
+          <div class="card-meta">
+            <span class="card-client">{project.client ?? 'Multiple organisations'}</span>
+            <span>{project.year}</span>
+          </div>
+          <div class="card-title">{project.title}</div>
+          <p class="card-desc">{project.summary}</p>
+          {project.technologies.length > 0 && (
+            <div class="chips">
+              {project.technologies.slice(0, 4).map((tech) => <span class="chip">{tech}</span>)}
+              {project.technologies.length > 4 && (
+                <span class="chip">+{project.technologies.length - 4}</span>
+              )}
+            </div>
+          )}
+        </a>
+      ))}
+    </div>
+    <p class="empty" data-empty hidden>No projects match those filters.</p>
+  </section>
+
+  <section class="block" id="capabilities" aria-labelledby="caps-heading">
+    <h2 class="section-title" id="caps-heading">
+      <span>Capabilities</span>
+      <span>{capabilities.length}</span>
+    </h2>
+    <div class="cap-grid">
+      {capabilities.map((item) => (
+        <a class="cap-link" href={`/capabilities/${item.slug}`}>
+          <span class="cap-link-name">{item.name}</span>
+          <span class="cap-link-count">
+            <span class="meter" aria-label={item.proficiency ?? ''}>
+              {[1, 2, 3].map((n) => (
+                <span class:list={['seg', { on: n <= proficiencySegments(item.proficiency) }]} />
+              ))}
+            </span>
+            {item.evidenceCount > 0 && <> {item.evidenceCount}</>}
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <p class="lede-sub" style="margin-top:40px;font-size:13px;color:var(--muted)">
+    Generated from lore on {meta.generated}{meta.source.commit && <> · {meta.source.commit}</>}.
+  </p>
+</Site>
+
+<script>
+  // Filtering runs over pre-rendered cards rather than re-rendering them: the whole
+  // set is already in the DOM, so this stays a static page with no framework.
+  const form = document.getElementById('project-filters') as HTMLFormElement | null;
+  const grid = document.getElementById('project-grid');
+  if (form && grid) {
+    const cards = [...grid.querySelectorAll<HTMLElement>('.card')];
+    const empty = document.querySelector<HTMLElement>('[data-empty]');
+    const summary = document.querySelector<HTMLElement>('[data-summary]');
+    const count = document.querySelector<HTMLElement>('[data-count]');
+    const inputs = [...form.querySelectorAll<HTMLSelectElement | HTMLInputElement>('[data-filter]')];
+
+    const apply = () => {
+      const active = inputs
+        .map((input) => ({ key: input.dataset.filter!, value: input.value.trim() }))
+        .filter((f) => f.value !== '');
+
+      let shown = 0;
+      for (const card of cards) {
+        const match = active.every(({ key, value }) => {
+          if (key === 'search') return (card.dataset.search ?? '').includes(value.toLowerCase());
+          // Multi-value attributes are joined with || so a substring match can't
+          // let "SQL" match "Azure SQL".
+          const field = card.dataset[key] ?? '';
+          return field.split('||').includes(value);
+        });
+        card.hidden = !match;
+        if (match) shown += 1;
+      }
+
+      if (empty) empty.hidden = shown > 0;
+      if (count) count.textContent = `${shown} shown`;
+      if (summary) {
+        summary.textContent = active.length
+          ? `Showing ${shown} of ${cards.length} projects`
+          : `Showing all ${cards.length} projects`;
+      }
+
+      const params = new URLSearchParams();
+      for (const { key, value } of active) params.set(key, value);
+      const query = params.toString();
+      history.replaceState(null, '', query ? `?${query}` : location.pathname);
+    };
+
+    // Restore from the URL so a filtered view can be linked or reloaded.
+    const params = new URLSearchParams(location.search);
+    for (const input of inputs) {
+      const value = params.get(input.dataset.filter!);
+      if (value) input.value = value;
+    }
+
+    form.addEventListener('input', apply);
+    document.querySelector('[data-reset]')?.addEventListener('click', () => {
+      for (const input of inputs) input.value = '';
+      apply();
+    });
+    apply();
+  }
+</script>
