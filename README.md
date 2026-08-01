@@ -116,12 +116,15 @@ src/
   pages/
     index.astro         # homepage
     work.astro          # the full filterable record
+    capabilities/       # index.astro (all skills and tools) + [slug].astro
+    projects/[slug].astro
     cv.astro            # printable CV (unlisted)
     build.astro         # CV builder (unlisted)
   styles/
     cv-theme.css        # the printable CV - print-first
     portfolio.css       # tokens + site chrome, shared by every screen page
     home.css            # the homepage only
+    capabilities.css    # the capabilities index only
     builder.css
 public/
 ```
@@ -180,9 +183,10 @@ Private layers are absent by construction: `/cv-sync` uses a hard allowlist, and
 
 | Route | What it is |
 | --- | --- |
-| `/` | **Homepage** - nameplate, track record, then selected work beside what the work adds up to, capabilities, contact |
-| `/work` | **The full record** - every project, filterable by client, industry, type of work, technology, skill and year, plus every capability. Filters are reflected in the URL, so a filtered view can be linked |
+| `/` | **Homepage** - nameplate, track record, what I do, selected work, contact |
+| `/work` | **The full record** - every project, filterable by client, industry, type of work, technology, skill and year. Filters are reflected in the URL, so a filtered view can be linked |
 | `/projects/<slug>` | Project detail: the write-up, facts, what it used, related work sharing a skill or technology |
+| `/capabilities` | **Every skill and tool**, split practices vs tools, each row showing category, level and the number of projects behind it |
 | `/capabilities/<slug>` | A skill or technology, with the projects that evidence it - derived from lore's backlinks, not hand-maintained |
 | `/cv` | *Unlisted.* The printable two-page CV. Carries lore's `featured:` projects only |
 | `/build` | *Unlisted.* **CV builder** - tick roles, projects and capabilities, edit the preview inline, print to PDF |
@@ -255,7 +259,9 @@ means something else by `.section-title` and both load on the same page.
 - **No nav bar.** The header carries the name and nothing else. Every destination is reachable from the page body: hero buttons, "All N projects", "View N projects" per focus area, breadcrumbs on detail pages. A bar mixing page links with same-page anchors behaved two different ways depending on where you already were, and a bar with one link in it was doing less than the buttons already on the page.
 - **The nameplate folds up.** On the homepage the name is the hero, so the header would say it twice. The header goes sticky and its brand fades in only once the hero nameplate leaves the viewport, watched by an `IntersectionObserver` rather than a scroll handler. The hidden state applies only to a scripted document (`html.js`, set before first paint), so without JS the brand simply stays visible rather than becoming a dead link home.
 - **No footer on the homepage** (`bareFoot`), which ends in its own contact section and would otherwise repeat it.
-- **Capabilities are a counted cloud, not meters.** Nearly every capability is Expert, so three identical segments carried no information. The homepage lists all of them as chips with the number of projects behind each; the meters stay on `/work` and the CV where they sit next to a mixed set.
+- **Capabilities have their own page, and no meters.** Nearly every *skill* is rated Expert, so three identical segments carried no information. `/capabilities` is a four-column table instead: name, category, level, projects. Level earns its place there because technologies do vary across Expert / Proficient / Familiar.
+- **Category is a column, not a heading.** Skills fall into 7 categories, but technologies fall into 18 and eleven of those hold a single item, so grouping would have been mostly headings. The homepage shows no category detail at all - it links out instead.
+- **Nothing on the site mentions lore or when it was generated.** lore is where the facts come from, not something a reader needs to know about. It stays in this README and in code comments; no build stamp, no provenance line, no "generated from" footer.
 - **Print** - lens bar and controls hidden; content fits A4 with the selected lens preserved.
 
 ## Commands
@@ -329,7 +335,10 @@ When working on this repo:
 - **Keep dependencies minimal** - Astro, js-yaml, and TypeScript only. Static output (`output: 'static'`).
 - **Never import CV content back into lore.** The flow is one-way. Where lore lacks something the CV wants, say so; don't backfill it from here.
 - **Respect the persona tagging rules** above when adding or filtering records.
-- **Match existing conventions** - read surrounding components and `data.ts` before changing structure.
+- **Match existing conventions** - read surrounding components and `src/lib/career.ts` before changing structure.
+- **Run `npm run build && npm run check:public` before calling anything done.** It is the only thing standing between a wording change and a client name on the open web.
+- **Never write an em dash**, in copy or in comments. See the design notes above.
+- **Never mention lore, or when the data was generated, on a rendered page.** It belongs in this file and in code comments only.
 
 ### Development server
 

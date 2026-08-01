@@ -4,20 +4,11 @@
  * front door and shows a selection; this is the room behind it.
  */
 import Site from '../layouts/Site.astro';
-import {
-  config,
-  projects,
-  allCapabilities,
-  facets,
-  proficiencySegments,
-  resolveMode,
-  meta,
-} from '../lib/career';
+import { config, projects, facets, resolveMode } from '../lib/career';
 import '../styles/portfolio.css';
 
 const mode = resolveMode();
 const allProjects = projects(mode);
-const capabilities = allCapabilities(mode);
 const filters = facets(mode);
 
 const clientCount = new Set(allProjects.map((p) => p.client).filter(Boolean)).size;
@@ -97,31 +88,7 @@ function attr(values: (string | null)[]): string {
     <p class="empty" data-empty hidden>No projects match those filters.</p>
   </section>
 
-  <section class="block" id="capabilities" aria-labelledby="caps-heading">
-    <h2 class="section-title" id="caps-heading">
-      <span>Capabilities</span>
-      <span>{capabilities.length}</span>
-    </h2>
-    <div class="cap-grid">
-      {capabilities.map((item) => (
-        <a class="cap-link" href={`/capabilities/${item.slug}`}>
-          <span class="cap-link-name">{item.name}</span>
-          <span class="cap-link-count">
-            <span class="meter" aria-label={item.proficiency ?? ''}>
-              {[1, 2, 3].map((n) => (
-                <span class:list={['seg', { on: n <= proficiencySegments(item.proficiency) }]} />
-              ))}
-            </span>
-            {item.evidenceCount > 0 && <> {item.evidenceCount}</>}
-          </span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <p class="lede-sub" style="margin-top:40px;font-size:13px;color:var(--muted)">
-    Generated from lore on {meta.generated}{meta.source.commit && <> · {meta.source.commit}</>}.
-  </p>
+  <a class="more-link" href="/capabilities">Skills and tools, with the projects behind each</a>
 </Site>
 
 <script>

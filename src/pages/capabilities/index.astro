@@ -1,0 +1,58 @@
+---
+/**
+ * Every skill and tool in one place. Category is a column rather than a heading:
+ * skills fall into 7 categories, but technologies fall into 18, eleven of which
+ * hold a single item, so grouping would be mostly headings.
+ *
+ * No proficiency meters. Nearly everything is rated Expert, so three identical
+ * segments carried no information; the level reads as a word and the project
+ * count is what actually separates one row from another.
+ */
+import Site from '../../layouts/Site.astro';
+import { config, allCapabilities, resolveMode } from '../../lib/career';
+import '../../styles/portfolio.css';
+import '../../styles/capabilities.css';
+
+const mode = resolveMode();
+const capabilities = allCapabilities(mode);
+
+const skills = capabilities.filter((item) => item.kind === 'skill');
+const technologies = capabilities.filter((item) => item.kind === 'technology');
+const evidenced = capabilities.filter((item) => item.evidenceCount > 0).length;
+---
+
+<Site title={`${config.name} · Capabilities`} active="capabilities">
+  <h1 class="lede">{capabilities.length} capabilities, {evidenced} of them evidenced by project work.</h1>
+  <p class="lede-sub">
+    Practices and tools, kept apart because they answer different questions. Every row
+    links to the projects that evidence it.
+  </p>
+
+  {([['Skills', 'Practices', skills], ['Technologies', 'Tools', technologies]] as const).map(
+    ([label, kind, items]) => (
+      <section class="block">
+        <h2 class="section-title">
+          <span>{label} · {kind}</span>
+          <span>{items.length}</span>
+        </h2>
+
+        <div class="cap-table">
+          <div class="cap-row cap-row-head" aria-hidden="true">
+            <span>Name</span>
+            <span>Category</span>
+            <span>Level</span>
+            <span class="cap-n">Projects</span>
+          </div>
+          {items.map((item) => (
+            <a class="cap-row" href={`/capabilities/${item.slug}`}>
+              <span class="cap-row-name">{item.name}</span>
+              <span class="cap-row-cat">{item.category ?? 'Other'}</span>
+              <span class="cap-row-level">{item.proficiency ?? ''}</span>
+              <span class="cap-n">{item.evidenceCount || ''}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ),
+  )}
+</Site>

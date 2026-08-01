@@ -12,10 +12,7 @@
 
 /* --- hero ----------------------------------------------------------------- */
 
-.hero {
-  padding: 44px 0 8px;
-  max-width: 46rem;
-}
+.hero { padding: 44px 0 8px; }
 
 /* The printed CV's nameplate, at web scale. It is the thing that folds up into
    the header on scroll, so it needs an id for the observer. */
@@ -46,11 +43,12 @@
   margin: 22px 0 22px;
 }
 
+/* Left aligned, but running the width of the column: capping the measure well
+   inside the container left a ragged column of white space down the right. */
 .hero-lede {
   font-size: 16px;
   line-height: 1.68;
   color: var(--ink-soft);
-  max-width: 62ch;
 }
 
 .hero-actions {
@@ -129,36 +127,24 @@
 .more::after { content: " →"; }
 .more:hover { border-color: var(--accent); }
 
-/* --- selected work beside what I do --------------------------------------- */
-
-/* Two readings of one body of work. The cards need the room, so the focus list
-   takes the narrower column and drops to a single stack on small screens. */
-.split {
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-  gap: 0 46px;
-  align-items: start;
-}
-.split > .home-section { margin-top: 76px; }
-
-.grid-tight { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+/* --- what I do ------------------------------------------------------------ */
 
 .focus-list { list-style: none; }
 
 .focus {
   display: block;
-  padding: 15px 0 17px;
+  padding: 16px 0 18px;
   border-bottom: 1px solid var(--line);
   text-decoration: none;
   color: inherit;
 }
-.focus-list li:first-child .focus { padding-top: 0; }
-.focus-list li:last-child .focus { border-bottom: 0; }
+.focus-list li:first-child .focus { border-top: 1px solid var(--line); }
+.focus-list li:last-child .focus { border-bottom: 1px solid var(--line); }
 
 .focus-name {
   display: block;
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.25;
 }
@@ -166,17 +152,17 @@
 
 .focus-summary {
   display: block;
-  font-size: 13px;
-  line-height: 1.55;
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--mid);
   margin-top: 5px;
 }
 
 /* Spelling out the destination: a bare "30" beside a heading reads as decoration
-   and gives no clue that the card is a link to a filtered view. */
+   and gives no clue that the row is a link to a filtered view. */
 .focus-go {
   display: inline-block;
-  margin-top: 9px;
+  margin-top: 10px;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.04em;
@@ -186,53 +172,6 @@
 }
 .focus-go::after { content: " →"; }
 .focus:hover .focus-go { border-color: var(--accent); }
-
-/* --- capabilities --------------------------------------------------------- */
-
-.caps-hint { font-size: 14px; color: var(--mid); margin-top: -8px; margin-bottom: 22px; }
-
-.caps-group { margin-bottom: 26px; }
-
-.caps-group-title {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  padding-bottom: 7px;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 14px;
-}
-
-.caps-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
-
-.caps-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 8px 7px 13px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--paper);
-  font-size: 13.5px;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-.caps-chip:hover { border-color: var(--accent); color: var(--accent-dark); }
-
-.caps-chip-n {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  min-width: 20px;
-  padding: 2px 6px;
-  border-radius: 999px;
-  background: var(--paper-warm);
-  color: var(--muted);
-  text-align: center;
-}
-.caps-chip:hover .caps-chip-n { background: var(--accent-soft); color: var(--accent-dark); }
 
 /* --- track record --------------------------------------------------------- */
 
@@ -270,7 +209,6 @@
   line-height: 1.6;
   color: var(--mid);
   margin-top: 6px;
-  max-width: 68ch;
 }
 
 /* --- contact -------------------------------------------------------------- */
@@ -296,13 +234,9 @@
 
 /* --- mobile --------------------------------------------------------------- */
 
-@media (max-width: 900px) {
-  .split { grid-template-columns: 1fr; gap: 0; }
-}
-
 @media (max-width: 700px) {
   .hero { padding-top: 26px; }
-  .home-section, .split > .home-section { margin-top: 56px; }
+  .home-section { margin-top: 56px; }
   .record-role { grid-template-columns: 1fr; gap: 6px; }
   .record-when { padding-top: 0; }
 }
