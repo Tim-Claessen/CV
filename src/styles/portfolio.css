@@ -50,7 +50,11 @@ a { color: inherit; }
 
 /* --- chrome --------------------------------------------------------------- */
 
-.site-head {
+/* The band is full width so a sticky header covers what scrolls under it edge to
+   edge; the inner row is what sits on the shell grid. */
+.site-head { border-bottom: 1px solid var(--line); }
+
+.site-head-inner {
   display: flex;
   flex-wrap: wrap;
   gap: 16px 28px;
@@ -59,7 +63,44 @@ a { color: inherit; }
   max-width: var(--shell);
   margin: 0 auto;
   padding: 26px 28px 18px;
-  border-bottom: 1px solid var(--line);
+}
+
+/* The homepage carries the name as its hero, so the header holds it back until
+   the hero has scrolled away. Only the scripted document hides it: without JS
+   the observer never runs, and a permanently invisible brand would be a dead
+   link back to the homepage. */
+.site-head.fold {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250, 247, 241, 0.97);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  transition: border-color 0.28s ease;
+}
+.site-head.fold .site-head-inner { transition: padding 0.28s ease; }
+
+/* Before it folds there is nothing in the bar, so the rule under it would be a
+   line drawn beneath empty space. Once folded the bar also compacts, so it
+   reads as a header rather than as the top of the page. */
+.js .site-head.fold { border-bottom-color: transparent; }
+.js .site-head.fold.showing { border-bottom-color: var(--line); }
+.js .site-head.fold.showing .site-head-inner { padding-top: 13px; padding-bottom: 12px; }
+
+.js .site-head.fold .site-brand {
+  opacity: 0;
+  transform: translateY(5px);
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+.js .site-head.fold.showing .site-brand {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .site-head.fold .site-brand { transition: none; }
 }
 
 .site-brand { text-decoration: none; display: flex; flex-direction: column; gap: 2px; }
@@ -415,7 +456,7 @@ a.chip:hover { border-color: var(--accent); color: var(--accent-dark); }
 
 @media (max-width: 640px) {
   .tl-role { grid-template-columns: 1fr; gap: 4px; }
-  .site-head { padding: 20px 18px 14px; }
+  .site-head-inner { padding: 20px 18px 14px; }
   .site-main { padding: 28px 18px 48px; }
 }
 

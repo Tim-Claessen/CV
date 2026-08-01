@@ -1,9 +1,10 @@
 ---
 /**
  * The front door. Editorial in the same language as the printable CV (display
- * type, numbered sections, hairlines) but built as a web page: what Tim does
- * now, selected work, the role history, and a way to get in touch. The full
- * filterable record lives at /work.
+ * type, numbered sections, hairlines) but built as a web page. The nameplate is
+ * the hero; as it scrolls away it folds up into the sticky header, so the header
+ * carries the name only once the hero no longer does. The full filterable record
+ * lives at /work.
  */
 import Site from '../layouts/Site.astro';
 import {
@@ -13,7 +14,6 @@ import {
   roles,
   allCapabilities,
   focuses,
-  proficiencySegments,
   resolveMode,
 } from '../lib/career';
 import '../styles/portfolio.css';
@@ -25,37 +25,22 @@ const timeline = roles('all', mode);
 const capabilities = allCapabilities(mode);
 const areas = focuses(mode);
 
-// The hero states the job rather than a slogan: whatever lore says is current.
-const current = timeline.filter((role) => role.end === 'present');
 const profile = persona('all')?.profile ?? '';
-
 const selected = allProjects.filter((project) => project.featured).slice(0, 6);
 
-/**
- * Enough to show range without turning the front page into the index. Ordered by
- * evidence rather than by level: sorting on level alone returns eight identical
- * meters, which tells a reader nothing.
- */
-const highlights = (kind: 'skill' | 'technology') =>
-  capabilities
-    .filter((item) => item.kind === kind && item.proficiency !== null)
-    .sort((a, b) => b.evidenceCount - a.evidenceCount || a.name.localeCompare(b.name))
-    .slice(0, 8);
+const skills = capabilities.filter((item) => item.kind === 'skill');
+const technologies = capabilities.filter((item) => item.kind === 'technology');
 ---
 
-<Site title={`${config.name} · ${config.tagline}`} description={profile.split('. ')[0]}>
+<Site
+  title={`${config.name} · ${config.tagline}`}
+  description={profile.split('. ')[0]}
+  foldBrand
+  bareFoot
+>
   <section class="hero">
+    <h1 class="hero-name" id="hero-name">{config.name}</h1>
     <p class="hero-eyebrow">{config.tagline}</p>
-
-    <h1 class="hero-roles">
-      {current.map((role) => (
-        <span class="hero-role">
-          {role.title} <span class="hero-employer">{role.employer}</span>
-        </span>
-      ))}
-    </h1>
-
-    <p class="hero-where">{config.location}</p>
     <div class="hero-rule" aria-hidden="true"></div>
     <p class="hero-lede">{profile}</p>
 
@@ -65,40 +50,9 @@ const highlights = (kind: 'skill' | 'technology') =>
     </div>
   </section>
 
-  <section class="home-section" aria-labelledby="selected-heading">
-    <div class="home-head">
-      <span class="home-num">01</span>
-      <h2 class="home-title" id="selected-heading">Selected work</h2>
-      <span class="home-rule" aria-hidden="true"></span>
-    </div>
-
-    <div class="grid">
-      {selected.map((project) => (
-        <a class="card" href={`/projects/${project.slug}`}>
-          <div class="card-meta">
-            <span class="card-client">{project.client ?? 'Multiple organisations'}</span>
-            <span>{project.year}</span>
-          </div>
-          <div class="card-title">{project.title}</div>
-          <p class="card-desc">{project.summary}</p>
-          {project.technologies.length > 0 && (
-            <div class="chips">
-              {project.technologies.slice(0, 4).map((tech) => <span class="chip">{tech}</span>)}
-              {project.technologies.length > 4 && (
-                <span class="chip">+{project.technologies.length - 4}</span>
-              )}
-            </div>
-          )}
-        </a>
-      ))}
-    </div>
-
-    <a class="more" href="/work">All {allProjects.length} projects</a>
-  </section>
-
   <section class="home-section" aria-labelledby="record-heading">
     <div class="home-head">
-      <span class="home-num">02</span>
+      <span class="home-num">01</span>
       <h2 class="home-title" id="record-heading">Track record</h2>
       <span class="home-rule" aria-hidden="true"></span>
     </div>
@@ -118,23 +72,60 @@ const highlights = (kind: 'skill' | 'technology') =>
     </div>
   </section>
 
-  <section class="home-section" aria-labelledby="focus-heading">
-    <div class="home-head">
-      <span class="home-num">03</span>
-      <h2 class="home-title" id="focus-heading">What I do</h2>
-      <span class="home-rule" aria-hidden="true"></span>
-    </div>
+  {/* Two readings of the same body of work, side by side: the pieces worth
+      showing, and the shape they take across all 59. */}
+  <div class="split">
+    <section class="home-section" aria-labelledby="selected-heading">
+      <div class="home-head">
+        <span class="home-num">02</span>
+        <h2 class="home-title" id="selected-heading">Selected work</h2>
+        <span class="home-rule" aria-hidden="true"></span>
+      </div>
 
-    <div class="focus-grid">
-      {areas.map((area) => (
-        <a class="focus" href={`/work?type=${encodeURIComponent(area.name)}`}>
-          <span class="focus-count">{area.count}</span>
-          <span class="focus-name">{area.name}</span>
-          <span class="focus-summary" set:html={area.summary} />
-        </a>
-      ))}
-    </div>
-  </section>
+      <div class="grid grid-tight">
+        {selected.map((project) => (
+          <a class="card" href={`/projects/${project.slug}`}>
+            <div class="card-meta">
+              <span class="card-client">{project.client ?? 'Multiple organisations'}</span>
+              <span>{project.year}</span>
+            </div>
+            <div class="card-title">{project.title}</div>
+            <p class="card-desc">{project.summary}</p>
+            {project.technologies.length > 0 && (
+              <div class="chips">
+                {project.technologies.slice(0, 3).map((tech) => <span class="chip">{tech}</span>)}
+                {project.technologies.length > 3 && (
+                  <span class="chip">+{project.technologies.length - 3}</span>
+                )}
+              </div>
+            )}
+          </a>
+        ))}
+      </div>
+
+      <a class="more" href="/work">All {allProjects.length} projects</a>
+    </section>
+
+    <section class="home-section" aria-labelledby="focus-heading">
+      <div class="home-head">
+        <span class="home-num">03</span>
+        <h2 class="home-title" id="focus-heading">What I do</h2>
+        <span class="home-rule" aria-hidden="true"></span>
+      </div>
+
+      <ul class="focus-list">
+        {areas.map((area) => (
+          <li>
+            <a class="focus" href={`/work?type=${encodeURIComponent(area.name)}`}>
+              <span class="focus-name">{area.name}</span>
+              <span class="focus-summary" set:html={area.summary} />
+              <span class="focus-go">View {area.count} projects</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
 
   <section class="home-section" aria-labelledby="caps-heading">
     <div class="home-head">
@@ -143,32 +134,23 @@ const highlights = (kind: 'skill' | 'technology') =>
       <span class="home-rule" aria-hidden="true"></span>
     </div>
 
-    <div class="cap-columns">
-      {([['Skills', 'skill'], ['Technologies', 'technology']] as const).map(([label, kind]) => (
-        <div class="cap-column">
-          <h3 class="cap-column-title">{label}</h3>
-          <ul class="cap-highlights">
-            {highlights(kind).map((item) => (
-              <li>
-                <a class="cap-highlight" href={`/capabilities/${item.slug}`}>
-                  <span class="cap-highlight-name">{item.name}</span>
-                  <span class="cap-highlight-level">
-                    <span class="cap-highlight-word">{item.proficiency}</span>
-                    <span class="meter" aria-label={item.proficiency ?? ''}>
-                      {[1, 2, 3].map((n) => (
-                        <span class:list={['seg', { on: n <= proficiencySegments(item.proficiency) }]} />
-                      ))}
-                    </span>
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
+    {/* No proficiency meters here: nearly everything is Expert, so the bars said
+        nothing. The project count is what actually separates one from another. */}
+    <p class="caps-hint">Every skill and tool, with the number of projects behind each.</p>
 
-    <a class="more" href="/work#capabilities">All {capabilities.length} capabilities</a>
+    {([['Skills', skills], ['Technologies', technologies]] as const).map(([label, items]) => (
+      <div class="caps-group">
+        <h3 class="caps-group-title">{label}</h3>
+        <div class="caps-cloud">
+          {items.map((item) => (
+            <a class="caps-chip" href={`/capabilities/${item.slug}`}>
+              {item.name}
+              {item.evidenceCount > 0 && <span class="caps-chip-n">{item.evidenceCount}</span>}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
   </section>
 
   <section class="home-section" id="contact" aria-labelledby="contact-heading">

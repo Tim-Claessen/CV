@@ -180,7 +180,7 @@ Private layers are absent by construction: `/cv-sync` uses a hard allowlist, and
 
 | Route | What it is |
 | --- | --- |
-| `/` | **Homepage** - current roles, selected work, track record, what the work adds up to, capabilities, contact |
+| `/` | **Homepage** - nameplate, track record, then selected work beside what the work adds up to, capabilities, contact |
 | `/work` | **The full record** - every project, filterable by client, industry, type of work, technology, skill and year, plus every capability. Filters are reflected in the URL, so a filtered view can be linked |
 | `/projects/<slug>` | Project detail: the write-up, facts, what it used, related work sharing a skill or technology |
 | `/capabilities/<slug>` | A skill or technology, with the projects that evidence it - derived from lore's backlinks, not hand-maintained |
@@ -250,9 +250,12 @@ means something else by `.section-title` and both load on the same page.
 - **Type** - Fraunces (display), IBM Plex Sans (body), IBM Plex Mono (meta, dates, tags).
 - **Palette** - warm off-white paper, near-black ink, a single clay accent.
 - **Skills** - verbal level plus a 3-segment indicator: Expert = 3/3, Proficient = 2/3, Familiar = 1/3.
-- **Homepage copy is never invented.** The hero states the job rather than a slogan: whichever roles lore marks `end: present`, the location from `config.yaml`, then the `all` persona's profile paragraph. Everything on the page is lore data.
+- **Homepage copy is never invented.** The hero is the nameplate, the tagline from `config.yaml` and the `all` persona's profile paragraph. No slogan. Everything else on the page is lore data.
 - **No em dashes.** Repo-authored copy is written without them. lore's prose has 70-odd, so `deDash()` in `career.ts` converts them on the way out: a dash introducing a list becomes a colon, one introducing a clause becomes a comma. The character survives in exactly one place, the regex that removes it.
-- **Navigation only navigates.** Every nav item goes to a page. Section links live in the page body instead, because a bar that navigated from one page and scrolled on another behaved two different ways depending on where you already were.
+- **No nav bar.** The header carries the name and nothing else. Every destination is reachable from the page body: hero buttons, "All N projects", "View N projects" per focus area, breadcrumbs on detail pages. A bar mixing page links with same-page anchors behaved two different ways depending on where you already were, and a bar with one link in it was doing less than the buttons already on the page.
+- **The nameplate folds up.** On the homepage the name is the hero, so the header would say it twice. The header goes sticky and its brand fades in only once the hero nameplate leaves the viewport, watched by an `IntersectionObserver` rather than a scroll handler. The hidden state applies only to a scripted document (`html.js`, set before first paint), so without JS the brand simply stays visible rather than becoming a dead link home.
+- **No footer on the homepage** (`bareFoot`), which ends in its own contact section and would otherwise repeat it.
+- **Capabilities are a counted cloud, not meters.** Nearly every capability is Expert, so three identical segments carried no information. The homepage lists all of them as chips with the number of projects behind each; the meters stay on `/work` and the CV where they sit next to a mixed set.
 - **Print** - lens bar and controls hidden; content fits A4 with the selected lens preserved.
 
 ## Commands

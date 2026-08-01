@@ -13,43 +13,30 @@
 /* --- hero ----------------------------------------------------------------- */
 
 .hero {
-  padding: 18px 0 8px;
+  padding: 44px 0 8px;
   max-width: 46rem;
+}
+
+/* The printed CV's nameplate, at web scale. It is the thing that folds up into
+   the header on scroll, so it needs an id for the observer. */
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(46px, 8vw, 82px);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144;
 }
 
 .hero-eyebrow {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: clamp(10px, 1.1vw, 12px);
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
-}
-
-/* The hero states the job, not a slogan: current roles, straight from lore. */
-.hero-roles {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 18px;
-  font-family: var(--font-display);
-  font-size: clamp(26px, 3.6vw, 38px);
-  font-weight: 500;
-  line-height: 1.16;
-  letter-spacing: -0.022em;
-  color: var(--ink);
-}
-
-.hero-employer { font-style: italic; color: var(--accent); }
-.hero-employer::before { content: "· "; font-style: normal; color: var(--muted); }
-
-.hero-where {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 /* The 2px ink rule under the CV's masthead, doing the same job here. */
@@ -142,58 +129,71 @@
 .more::after { content: " →"; }
 .more:hover { border-color: var(--accent); }
 
-/* --- what I do ------------------------------------------------------------ */
+/* --- selected work beside what I do --------------------------------------- */
 
-/* Discrete bordered cells rather than a hairline-gap grid: the count of focus
-   areas is whatever lore has, so a trailing empty cell in the last row must read
-   as absence, not as a blank tile. */
-.focus-grid {
+/* Two readings of one body of work. The cards need the room, so the focus list
+   takes the narrower column and drops to a single stack on small screens. */
+.split {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 14px;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 0 46px;
+  align-items: start;
 }
+.split > .home-section { margin-top: 76px; }
+
+.grid-tight { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+
+.focus-list { list-style: none; }
 
 .focus {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  padding: 20px 20px 22px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-top: 2px solid var(--accent);
-  border-radius: 0 0 3px 3px;
+  display: block;
+  padding: 15px 0 17px;
+  border-bottom: 1px solid var(--line);
   text-decoration: none;
   color: inherit;
-  transition: background 0.18s ease, box-shadow 0.18s ease;
 }
-.focus:hover { background: var(--paper-warm); box-shadow: 0 6px 22px rgba(120, 70, 40, 0.09); }
-
-.focus-count {
-  font-family: var(--font-display);
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1;
-  color: var(--accent);
-}
+.focus-list li:first-child .focus { padding-top: 0; }
+.focus-list li:last-child .focus { border-bottom: 0; }
 
 .focus-name {
+  display: block;
   font-family: var(--font-display);
   font-size: 17px;
   font-weight: 500;
   line-height: 1.25;
 }
+.focus:hover .focus-name { color: var(--accent-dark); }
 
-.focus-summary { font-size: 13px; line-height: 1.55; color: var(--mid); }
+.focus-summary {
+  display: block;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--mid);
+  margin-top: 5px;
+}
+
+/* Spelling out the destination: a bare "30" beside a heading reads as decoration
+   and gives no clue that the card is a link to a filtered view. */
+.focus-go {
+  display: inline-block;
+  margin-top: 9px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--accent-dark);
+  border-bottom: 1px solid var(--accent-soft);
+  padding-bottom: 2px;
+}
+.focus-go::after { content: " →"; }
+.focus:hover .focus-go { border-color: var(--accent); }
 
 /* --- capabilities --------------------------------------------------------- */
 
-.cap-columns {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 34px 50px;
-}
+.caps-hint { font-size: 14px; color: var(--mid); margin-top: -8px; margin-bottom: 22px; }
 
-.cap-column-title {
+.caps-group { margin-bottom: 26px; }
+
+.caps-group-title {
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 500;
@@ -202,44 +202,37 @@
   color: var(--accent);
   padding-bottom: 7px;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 6px;
+  margin-bottom: 14px;
 }
 
-.cap-highlights { list-style: none; }
+.caps-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
 
-.cap-highlight {
-  display: flex;
+.caps-chip {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 9px 0;
-  border-bottom: 1px solid var(--line);
+  gap: 8px;
+  padding: 7px 8px 7px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  font-size: 13.5px;
   text-decoration: none;
   color: inherit;
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
-.cap-highlights li:last-child .cap-highlight { border-bottom: 0; }
-.cap-highlight:hover .cap-highlight-name { color: var(--accent-dark); }
+.caps-chip:hover { border-color: var(--accent); color: var(--accent-dark); }
 
-.cap-highlight-name { font-size: 14px; font-weight: 500; }
-
-.cap-highlight-level {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: none;
-}
-.cap-highlight-level .meter { flex: none; }
-
-.cap-highlight-word {
+.caps-chip-n {
   font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 10px;
+  min-width: 20px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--paper-warm);
   color: var(--muted);
-  min-width: 5.5em;
-  text-align: right;
+  text-align: center;
 }
+.caps-chip:hover .caps-chip-n { background: var(--accent-soft); color: var(--accent-dark); }
 
 /* --- track record --------------------------------------------------------- */
 
@@ -303,9 +296,13 @@
 
 /* --- mobile --------------------------------------------------------------- */
 
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; gap: 0; }
+}
+
 @media (max-width: 700px) {
-  .home-section { margin-top: 56px; }
+  .hero { padding-top: 26px; }
+  .home-section, .split > .home-section { margin-top: 56px; }
   .record-role { grid-template-columns: 1fr; gap: 6px; }
   .record-when { padding-top: 0; }
-  .cap-columns { gap: 26px; }
 }

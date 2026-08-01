@@ -17,6 +17,14 @@ interface Props {
    * private: anyone with the URL can still read the page.
    */
   unlisted?: boolean;
+  /**
+   * The homepage carries the name as its hero, so the header would say it twice.
+   * With this set the header goes sticky and the brand only fades in once the
+   * hero nameplate has scrolled away.
+   */
+  foldBrand?: boolean;
+  /** For pages that already end in a contact block, so the footer would repeat it. */
+  bareFoot?: boolean;
 }
 
 const {
@@ -25,14 +33,16 @@ const {
   active,
   wide = false,
   unlisted = false,
+  foldBrand = false,
+  bareFoot = false,
 } = Astro.props;
 const mode = resolveMode();
 
-// Every nav item goes to a page. Mixing page links with same-page anchors made
-// the bar behave two different ways depending on where you already were, so the
-// section links live in the page body instead: the hero has "Get in touch", each
-// section has its own "All N ..." link, and the footer carries the contacts.
-const nav = [{ href: '/work', label: 'Work', key: 'work' }];
+// No public nav. Every destination is reachable from the page body instead: the
+// hero has "See the work" and "Get in touch", each section has its own "All N"
+// link, and detail pages carry a breadcrumb. A bar with one item in it was doing
+// less work than the buttons already on the page.
+const nav: { href: string; label: string; key: string }[] = [];
 
 // The unlisted pair appears only once you are already on one of them, so the two
 // stay navigable between without any public page advertising either.
@@ -59,22 +69,29 @@ const fontUrl =
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href={fontUrl} />
+    {/* Marks the document as scripted before first paint, so the folded brand
+        starts hidden without a flash. Without JS it simply stays visible. */}
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <title>{title}</title>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-head no-print">
-      <a class="site-brand" href="/">
-        <span class="site-name">{config.name}</span>
-        <span class="site-tagline">{config.tagline}</span>
-      </a>
-      <nav class="site-nav" aria-label="Sections">
-        {links.map((item) => (
-          <a href={item.href} class:list={['site-nav-link', { on: active === item.key }]}>
-            {item.label}
-          </a>
-        ))}
-      </nav>
+    <header class:list={['site-head no-print', { fold: foldBrand }]}>
+      <div class="site-head-inner">
+        <a class="site-brand" href="/">
+          <span class="site-name">{config.name}</span>
+          <span class="site-tagline">{config.tagline}</span>
+        </a>
+        {links.length > 0 && (
+          <nav class="site-nav" aria-label="Sections">
+            {links.map((item) => (
+              <a href={item.href} class:list={['site-nav-link', { on: active === item.key }]}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        )}
+      </div>
     </header>
 
     {mode === 'private' && (
@@ -87,11 +104,29 @@ const fontUrl =
       <slot />
     </main>
 
-    <footer class="site-foot no-print">
-      <span>{config.location}</span>
-      <a href={`mailto:${config.email}`}>{config.email}</a>
-      <a href={config.linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href={config.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
-    </footer>
+    {!bareFoot && (
+      <footer class="site-foot no-print">
+        <span>{config.location}</span>
+        <a href={`mailto:${config.email}`}>{config.email}</a>
+        <a href={config.linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href={config.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+      </footer>
+    )}
+
+    {foldBrand && (
+      <script>
+        // The header brand appears only once the hero nameplate has left the
+        // viewport, so the name is never on screen twice. An observer rather
+        // than a scroll handler: no work on frames where nothing crossed.
+        const head = document.querySelector('.site-head.fold');
+        const nameplate = document.getElementById('hero-name');
+        if (head && nameplate) {
+          new IntersectionObserver(
+            ([entry]) => head.classList.toggle('showing', !entry.isIntersecting),
+            { threshold: 0 },
+          ).observe(nameplate);
+        }
+      </script>
+    )}
   </body>
 </html>
