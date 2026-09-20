@@ -23,7 +23,7 @@ To refresh from lore, run `/cv-sync` in the lore repo. It writes `content/career
 
 ## Features
 
-- **Fed from lore** - 59 projects, 9 roles, 19 skills and 32 technologies, with their full link graph, instead of hand-maintained CSVs.
+- **Fed from lore** - 59 projects, 9 roles, 28 skills and 36 technologies, with their full link graph, instead of hand-maintained CSVs.
 - **Persona views** - lenses (`all`, `business`, `data`) filter roles, bullets, projects and skills. A persona is a saved selection of lore entity names, so one list drives both the skills shown and the projects selected.
 - **Client anonymisation** - the public site never names a client marked `public: false` in lore. See below.
 - **Published write-ups** - lore's project bodies render on the public site with client names swapped for "the client" and `[[wikilinks]]` resolved into real links, rather than being withheld.
@@ -259,8 +259,8 @@ means something else by `.section-title` and both load on the same page.
 - **No nav bar.** The header carries the name and nothing else. Every destination is reachable from the page body: hero buttons, "All N projects", "View N projects" per focus area, breadcrumbs on detail pages. A bar mixing page links with same-page anchors behaved two different ways depending on where you already were, and a bar with one link in it was doing less than the buttons already on the page.
 - **The nameplate folds up.** On the homepage the name is the hero, so the header would say it twice. The header goes sticky and its brand fades in only once the hero nameplate leaves the viewport, watched by an `IntersectionObserver` rather than a scroll handler. The hidden state applies only to a scripted document (`html.js`, set before first paint), so without JS the brand simply stays visible rather than becoming a dead link home.
 - **No footer on the homepage** (`bareFoot`), which ends in its own contact section and would otherwise repeat it.
-- **Capabilities have their own page, and no meters.** Nearly every *skill* is rated Expert, so three identical segments carried no information. `/capabilities` is a four-column table instead: name, category, level, projects. Level earns its place there because technologies do vary across Expert / Proficient / Familiar.
-- **Category is a column, not a heading.** Skills fall into 7 categories, but technologies fall into 18 and eleven of those hold a single item, so grouping would have been mostly headings. The homepage shows no category detail at all - it links out instead.
+- **Capabilities have their own page, and no meters.** The original reason was that nearly every *skill* was rated Expert, so three identical segments carried no information. That is no longer true - skills now split 15 Expert to 13 Proficient - but the table has held up on its own merits. `/capabilities` is four columns: name, category, level, projects. Technologies vary the most (10 Expert, 18 Proficient, 8 Familiar), so level earns its place there.
+- **Category is a column, not a heading.** Skills fall into 10 categories, but technologies fall into 21 and thirteen of those hold a single item, so grouping would have been mostly headings. The homepage shows no category detail at all - it links out instead.
 - **Nothing on the site mentions lore or when it was generated.** lore is where the facts come from, not something a reader needs to know about. It stays in this README and in code comments; no build stamp, no provenance line, no "generated from" footer.
 - **Print** - lens bar and controls hidden; content fits A4 with the selected lens preserved.
 
