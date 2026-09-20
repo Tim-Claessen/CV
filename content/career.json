@@ -1,14 +1,14 @@
 {
-  "generated": "2026-07-29",
+  "generated": "2026-09-20",
   "source": {
     "repo": "lore",
-    "commit": "e24ea5f"
+    "commit": "36aa82d"
   },
   "counts": {
     "projects": 59,
     "roles": 9,
-    "skills": 19,
-    "technologies": 32,
+    "skills": 28,
+    "technologies": 36,
     "clients": 38,
     "projectTypes": 6,
     "credentials": 1,
@@ -151,10 +151,14 @@
       "projectType": "Business Process Analytics",
       "employment": null,
       "skills": [
-        "HR"
+        "HR",
+        "Controls Analytics",
+        "Payroll",
+        "Risk"
       ],
       "technologies": [
-        "Kronos"
+        "Kronos",
+        "Power BI"
       ],
       "start": "2025",
       "end": "2025",
@@ -163,7 +167,7 @@
       "tags": [
         "rostering"
       ],
-      "body": "Rostering pattern and compliance review using Kronos data.\n\n*P018 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — thin in the source data, enrich from brain dump.*",
+      "body": "Rostering pattern and compliance review using Kronos data.",
       "leaks": {
         "title": [
           "ampol"
@@ -618,27 +622,36 @@
       "clientPublic": false,
       "projectType": "Intelligent Automation",
       "employment": "Mindfields Senior Consultant",
-      "skills": [],
-      "technologies": [
-        "UiPath"
+      "skills": [
+        "Process Automation",
+        "Accounts Payable",
+        "HR",
+        "Solution Architecture",
+        "Reusable Component Development",
+        "Software Development Lifecycle"
       ],
-      "start": "",
-      "end": "",
+      "technologies": [
+        "UiPath",
+        "SAP ECP",
+        "SAP HCM",
+        "SAP FI",
+        "SAP SuccessFactors"
+      ],
+      "start": "2019-07",
+      "end": "2020-02",
       "outcome": "Six processes automated with sustained post-production performance",
       "featured": true,
       "tags": [
         "rpa",
         "automation"
       ],
-      "body": "Large-scale RPA implementation covering 6 automated processes across Finance, HR, Safety and Tax — as business analyst, solution architect, developer, test manager and project manager. Supported the client's RPA team to scale automation delivery across business functions, designing and implementing automations for invoice processing and employee change-of-condition letters, and supporting automations for fringe benefits tax analysis and journal posting and reversal. Led process assessment, business case, solution architecture, UAT and post-production validation.\n\n*P032 — originally recorded against a confidential label (\"Major WA Mining Company\"); confirmed the real client is Fortescue. Dates still TODO.*",
+      "body": "Large-scale RPA implementation covering 6 automated processes across Finance, HR, Safety and Tax. Supported end-to-end, including; business analyst, solution architect, developer, test manager and project manager. Supported the client's RPA team to scale automation delivery across business functions, designing and implementing automations for invoice processing and employee change-of-condition letters, and supporting automations for fringe benefits tax analysis and journal posting and reversal. Led process assessment, business case, solution architecture, UAT and post-production validation.",
       "leaks": {
         "title": [
           "fortescue"
         ],
         "outcome": [],
-        "body": [
-          "fortescue"
-        ]
+        "body": []
       },
       "publicSafe": false
     },
@@ -1451,12 +1464,20 @@
       "projectType": "Business Process Analytics",
       "employment": "EY Director, Risk Analytics",
       "skills": [
-        "Payroll"
+        "Payroll",
+        "Controls Analytics",
+        "HR",
+        "Risk",
+        "Data Visualisation"
       ],
       "technologies": [
         "SAP HCM",
         "SAP SuccessFactors",
-        "SAP ECP"
+        "SAP ECP",
+        "Power BI",
+        "SQL",
+        "Alteryx",
+        "Microsoft Azure"
       ],
       "start": "2019",
       "end": "present",
@@ -1467,7 +1488,7 @@
         "compliance",
         "people-analytics"
       ],
-      "body": "Multi-year payroll and workforce compliance analytics partnership covering EBA compliance; annual, personal and public holiday leave deductions, accruals and payments; superannuation; payroll tax; and wage code configuration.\n\nWhat started as discrete reviews became an embedded analytics function.\n\n*P001 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — enrich with STAR detail from the brain dump.*",
+      "body": "Multi-year payroll and workforce compliance analytics partnership covering EBA compliance; annual, personal and public holiday leave deductions, accruals and payments; superannuation; payroll tax; and wage code configuration.\n\nWhat started as discrete reviews became an embedded analytics partnership.",
       "leaks": {
         "title": [
           "south32"
@@ -1545,18 +1566,26 @@
       "projectType": "Business Process Analytics",
       "employment": "EY Director, Risk Analytics",
       "skills": [
-        "Payroll"
+        "Payroll",
+        "Controls Analytics",
+        "Superannuation",
+        "Reusable Component Development"
       ],
-      "technologies": [],
-      "start": "",
-      "end": "",
+      "technologies": [
+        "Microsoft Excel",
+        "Alteryx",
+        "Power BI",
+        "Tableau"
+      ],
+      "start": "2020-02",
+      "end": "present",
       "outcome": "Identified material under-payment exposures across multiple clients",
       "featured": true,
       "tags": [
         "superannuation",
         "compliance"
       ],
-      "body": "Led superannuation compliance reviews across more than 20 large Australian employers, testing whether employers had paid the correct superannuation amounts and assessing compliance against legislation, enterprise agreements and employee contracts. Supported remediation of identified underpayments with the Australian Taxation Office.\n\n*P026 — kept as an aggregate; per the brain dump this legacy CV entry is to be split into named clients over time. The [[Government Agency Superannuation Remediation]] engagement has been separated out; name further clients as they are confirmed.*",
+      "body": "Led superannuation compliance reviews across more than 20 large Australian employers, testing whether employers had paid the correct superannuation amounts and assessing compliance against legislation, enterprise agreements and employee contracts. Supported remediation of identified underpayments with the Australian Taxation Office.",
       "leaks": {
         "title": [],
         "outcome": [],
@@ -1635,20 +1664,29 @@
       "employment": "Unified Honey Senior Account Executive",
       "skills": [
         "Data Governance Frameworks",
-        "Data Lineage & Cataloguing"
+        "Data Lineage & Cataloguing",
+        "Data Quality & Validation",
+        "Go-to-Market Strategy",
+        "Reusable Component Development",
+        "Dimensional Modelling",
+        "Data Vault",
+        "AI Agent Development"
       ],
       "technologies": [
-        "Snowflake"
+        "Snowflake",
+        "SQL",
+        "Python",
+        "GitHub"
       ],
-      "start": "",
-      "end": "",
+      "start": "2025-06",
+      "end": "present",
       "outcome": "Selected into the Snowflake Startup Accelerator",
       "featured": true,
       "tags": [
         "startup",
         "go-to-market"
       ],
-      "body": "Contributor to Unified Honey, a Snowflake Native App in the Snowflake Startup Accelerator. Led go-to-market strategy, product positioning, sales collateral, competitive analysis and demo guides; contributed to data governance framework design (lineage, quality rules, semantic definitions).\n\n*P031 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — enrich with STAR detail and dates from brain dump.*",
+      "body": "Contributor to Unified Honey, a Snowflake Native App previously in the Snowflake Startup Accelerator. Led go-to-market strategy, product positioning, sales collateral, competitive analysis and demo guides; contributed to data governance framework design (lineage, quality rules, semantic definitions).",
       "leaks": {
         "title": [],
         "outcome": [],
@@ -1908,8 +1946,8 @@
       "publicSafe": false
     },
     {
-      "name": "Worley Data Quality, Governance & Validation Review",
-      "slug": "worley-data-quality-governance-validation-review",
+      "name": "Worley Data Quality & Governance Review",
+      "slug": "worley-data-quality-governance-review",
       "client": "Worley",
       "clientPublic": false,
       "projectType": "Data Governance & Quality",
@@ -1917,17 +1955,22 @@
       "skills": [
         "Data Governance Frameworks",
         "Data Quality & Validation",
-        "Data Lineage & Cataloguing"
+        "Data Lineage & Cataloguing",
+        "Data Privacy & Protection",
+        "Risk",
+        "Internal Audit"
       ],
-      "technologies": [],
-      "start": "",
-      "end": "",
+      "technologies": [
+        "Microsoft Purview"
+      ],
+      "start": "2024-06",
+      "end": "2024-06",
       "outcome": "",
       "featured": true,
       "tags": [
         "data-governance"
       ],
-      "body": "Led a data quality, governance and validation review across the global enterprise — described internally as the largest of its type undertaken at Worley.\n\n*P012 in [docs/ingest-mapping.md](../../docs/ingest-mapping.md) — enrich with STAR detail and dates from brain dump.*",
+      "body": "Led a data quality and governance review across the global enterprise, described internally as the largest of its type undertaken at Worley.",
       "leaks": {
         "title": [
           "worley"
@@ -1947,26 +1990,33 @@
       "projectType": "Risk & Controls",
       "employment": "EY Director, Risk Analytics",
       "skills": [
-        "Controls Analytics"
+        "Controls Analytics",
+        "Risk",
+        "Internal Audit",
+        "Reusable Component Development",
+        "Learning & Capability Development"
       ],
-      "technologies": [],
-      "start": "",
-      "end": "",
+      "technologies": [
+        "VIA",
+        "Power BI",
+        "SQL",
+        "Alteryx"
+      ],
+      "start": "2023-01",
+      "end": "2024-12",
       "outcome": "Embedded analytics into a global IA function; uplifted maturity from a low base",
       "featured": true,
       "tags": [
         "internal-audit",
         "leadership"
       ],
-      "body": "Digital capability lead for a global internal audit function spanning 100+ countries and 50+ audits per annum. Defined the Internal Audit digital strategy and roadmap, deployed technology and designed custom analytics tools to augment audit delivery, and managed day-to-day analytics delivery across the function. See also the related [[Worley Global Location & Project Audit Analytics]] and [[Worley Control Self-Assessment Program]] engagements.",
+      "body": "Digital capability lead for a global internal audit function spanning 100+ countries and 50+ audits per annum. Defined the Internal Audit digital strategy and roadmap, deployed technology and designed custom analytics tools to augment audit delivery, and managed day-to-day analytics delivery across the function.",
       "leaks": {
         "title": [
           "worley"
         ],
         "outcome": [],
-        "body": [
-          "worley"
-        ]
+        "body": []
       },
       "publicSafe": false
     },
@@ -2022,6 +2072,17 @@
       "descriptionLeaks": []
     },
     {
+      "name": "AI Agent Development",
+      "slug": "ai-agent-development",
+      "kind": "skill",
+      "category": "AI",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [],
+      "description": "Designing and building agentic AI components — tool use, orchestration and evaluation within data products.",
+      "descriptionLeaks": []
+    },
+    {
       "name": "AI in Analytics",
       "slug": "ai-in-analytics",
       "kind": "skill",
@@ -2040,7 +2101,7 @@
       "proficiency": "Expert",
       "featured": true,
       "aliases": [],
-      "description": "Continuous controls monitoring and internal audit analytics — turning controls and audit programs into repeatable, data-driven monitoring. Kept deliberately generic; the specific disciplines live as detail in project prose rather than as separate skill nodes.",
+      "description": "Continuous controls monitoring and the analytics applied within internal audit — turning controls and audit programs into repeatable, data-driven monitoring. The audit discipline itself is [[Internal Audit]]. Kept deliberately generic; the specific disciplines live as detail in project prose rather than as separate skill nodes.",
       "descriptionLeaks": []
     },
     {
@@ -2088,6 +2149,17 @@
       "descriptionLeaks": []
     },
     {
+      "name": "Data Vault",
+      "slug": "data-vault",
+      "kind": "skill",
+      "category": "Data Modelling",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [],
+      "description": "Hub, link and satellite modelling for auditable, source-aligned warehouse design.",
+      "descriptionLeaks": []
+    },
+    {
       "name": "Data Visualisation",
       "slug": "data-visualisation",
       "kind": "skill",
@@ -2132,6 +2204,17 @@
       "descriptionLeaks": []
     },
     {
+      "name": "Go-to-Market Strategy",
+      "slug": "go-to-market-strategy",
+      "kind": "skill",
+      "category": "Commercial",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [],
+      "description": "Product positioning, sales collateral, competitive analysis and demand generation for data products.",
+      "descriptionLeaks": []
+    },
+    {
       "name": "HR",
       "slug": "hr",
       "kind": "skill",
@@ -2140,6 +2223,28 @@
       "featured": true,
       "aliases": [],
       "description": "Workforce and HR analytics — rostering, leave, FIFO arrangements, workforce planning. Kept deliberately generic; the specific disciplines live as detail in project prose rather than as separate skill nodes.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Internal Audit",
+      "slug": "internal-audit",
+      "kind": "skill",
+      "category": "Business Process",
+      "proficiency": "Expert",
+      "featured": false,
+      "aliases": [],
+      "description": "Internal audit delivery — planning, risk and control assessment, fieldwork, evidence validation and reporting. Distinct from [[Controls Analytics]], which is the analytics applied within it.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Learning & Capability Development",
+      "slug": "learning-capability-development",
+      "kind": "skill",
+      "category": "Capability",
+      "proficiency": "Expert",
+      "featured": false,
+      "aliases": [],
+      "description": "Designing and delivering training and capability pathways — curriculum design, reusable training assets and practitioner development.",
       "descriptionLeaks": []
     },
     {
@@ -2163,7 +2268,18 @@
       "proficiency": "Expert",
       "featured": true,
       "aliases": [],
-      "description": "Payroll compliance and processing — leave, tax, wages, hours, superannuation, EBA and award interpretation. Kept deliberately generic; the specific disciplines (superannuation testing, award interpretation, etc.) live as detail in project prose rather than as separate skill nodes.",
+      "description": "Payroll compliance and processing — leave, tax, wages, hours, superannuation, EBA and award interpretation. Kept deliberately generic, with award interpretation and similar disciplines living as detail in project prose. [[Superannuation]] is the exception and is modelled as its own skill.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Process Automation",
+      "slug": "process-automation",
+      "kind": "skill",
+      "category": "Automation",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [],
+      "description": "Robotic and workflow process automation — process assessment, business case, solution design, build, UAT and post-production validation. Kept generic; the engagement detail lives in project prose.",
       "descriptionLeaks": []
     },
     {
@@ -2214,6 +2330,39 @@
       "descriptionLeaks": []
     },
     {
+      "name": "Software Development Lifecycle",
+      "slug": "software-development-lifecycle",
+      "kind": "skill",
+      "category": "Custom Development",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [],
+      "description": "Requirements, design, build, test and release discipline applied to analytics and automation delivery, including UAT and post-production validation.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Solution Architecture",
+      "slug": "solution-architecture",
+      "kind": "skill",
+      "category": "Custom Development",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [],
+      "description": "End-to-end solution design for analytics and automation platforms — component selection, integration points, deployment and operating model.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Superannuation",
+      "slug": "superannuation",
+      "kind": "skill",
+      "category": "Business Process",
+      "proficiency": "Expert",
+      "featured": false,
+      "aliases": [],
+      "description": "Superannuation compliance and remediation — testing paid amounts against legislation, enterprise agreements and employee contracts, quantifying exposures and supporting ATO remediation.",
+      "descriptionLeaks": []
+    },
+    {
       "name": "User Access Management",
       "slug": "user-access-management",
       "kind": "skill",
@@ -2250,6 +2399,22 @@
         "User Access Management"
       ],
       "description": "Directory and account source for access reconciliation — account existence, last-login and privileged-access data matched against HR records in IT general controls testing.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Alteryx",
+      "slug": "alteryx",
+      "kind": "technology",
+      "category": "Data Preparation",
+      "proficiency": "Proficient",
+      "vendor": "Alteryx",
+      "featured": false,
+      "aliases": [],
+      "enables": [
+        "ETL & Pipeline Design",
+        "Data Quality & Validation"
+      ],
+      "description": "Workflow-based data preparation and blending, used for multi-source matching and recalculation pipelines on audit and entitlement work.\n\nProjects that used it arrive via backlinks — never listed here.",
       "descriptionLeaks": []
     },
     {
@@ -2428,6 +2593,22 @@
       ]
     },
     {
+      "name": "Microsoft Purview",
+      "slug": "microsoft-purview",
+      "kind": "technology",
+      "category": "Data Governance Tools",
+      "proficiency": "Proficient",
+      "vendor": "Microsoft",
+      "featured": false,
+      "aliases": [],
+      "enables": [
+        "Data Governance Frameworks",
+        "Data Lineage & Cataloguing"
+      ],
+      "description": "Cataloguing, classification and lineage across an enterprise data estate.\n\nProjects that used it arrive via backlinks — never listed here.",
+      "descriptionLeaks": []
+    },
+    {
       "name": "Oracle EPM",
       "slug": "oracle-epm",
       "kind": "technology",
@@ -2597,6 +2778,21 @@
       "descriptionLeaks": []
     },
     {
+      "name": "SAP FI",
+      "slug": "sap-fi",
+      "kind": "technology",
+      "category": "ERP & Finance Systems",
+      "proficiency": "Proficient",
+      "vendor": "SAP",
+      "featured": false,
+      "aliases": [],
+      "enables": [
+        "Accounts Payable"
+      ],
+      "description": "SAP Financial Accounting — the finance ledger side of SAP, used as a source for invoice, payment and journal analytics.\n\nProjects that used it arrive via backlinks — never listed here.",
+      "descriptionLeaks": []
+    },
+    {
       "name": "SAP HCM",
       "slug": "sap-hcm",
       "kind": "technology",
@@ -2671,6 +2867,21 @@
       "descriptionLeaks": []
     },
     {
+      "name": "Tableau",
+      "slug": "tableau",
+      "kind": "technology",
+      "category": "Data Visualisation Tools",
+      "proficiency": "Proficient",
+      "vendor": "Salesforce",
+      "featured": false,
+      "aliases": [],
+      "enables": [
+        "Data Visualisation"
+      ],
+      "description": "Dashboard and exploratory visualisation work, alongside Power BI as a client-side front end.\n\nProjects that used it arrive via backlinks — never listed here.",
+      "descriptionLeaks": []
+    },
+    {
       "name": "UiPath",
       "slug": "uipath",
       "kind": "technology",
@@ -2691,7 +2902,9 @@
       "proficiency": "Proficient",
       "vendor": "EY",
       "featured": false,
-      "aliases": [],
+      "aliases": [
+        "EY VIA"
+      ],
       "enables": [
         "Controls Analytics"
       ],
@@ -2972,7 +3185,7 @@
       "aliases": [
         "NST"
       ],
-      "summary": "Payroll monitoring, inventory analytics and SuccessFactors support engagements. Projects arrive via backlinks."
+      "summary": "Payroll monitoring, inventory analytics and SuccessFactors support engagements. Projects arrive via backlinks.\n\nStill live as of mid-2026: their Perth office is the client site Tim visits most often, on and off from\nNovember 2025 through to late July 2026."
     },
     {
       "name": "Penrhos College",
@@ -3304,16 +3517,43 @@
     "skill": {
       "HR": [
         "ampol-rostering-review",
+        "fortescue-uipath-rpa-implementation",
         "fortescue-workforce-analytics-review",
         "greencross-rostering-review",
         "racv-rostering-review",
         "ramelius-resources-workforce-analytics-reporting",
         "risk-analytics-resourcing-capability-tracking",
         "silverchain-workforce-analytics-partnership",
+        "south32-payroll-compliance-monitoring",
         "south32-training-competency-analysis",
         "water-corporation-workforce-planning-scenario-analysis"
       ],
+      "Controls Analytics": [
+        "ampol-rostering-review",
+        "compliance-iq-contract-compliance-analytics",
+        "domino-s-payroll-accounts-payable-internal-audit",
+        "dulux-continuous-controls-monitoring-hire-to-retire",
+        "endeavour-group-delegation-of-authority-review",
+        "fortescue-payroll-continuous-controls-monitoring",
+        "griffith-university-finance-payroll-controls-monitoring",
+        "melbourne-water-complaints-management-review",
+        "nbn-it-general-controls-identity-reconciliation",
+        "northern-star-inventory-management-analytics",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "payroll-internal-audit-multiple-clients",
+        "procurement-internal-audit-multiple-clients",
+        "risk-analytics-methodology-delivery-toolset",
+        "south32-payroll-compliance-monitoring",
+        "superannuation-compliance-reviews-20-organisations",
+        "transurban-incident-management-internal-audit",
+        "victorian-department-of-education-ia-follow-up-dashboards",
+        "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
+        "woodside-end-to-end-payroll-review",
+        "worley-global-internal-audit-digital-capability",
+        "worley-global-location-project-audit-analytics"
+      ],
       "Payroll": [
+        "ampol-rostering-review",
         "chevron-analytics-engagement",
         "chevron-long-service-leave-review",
         "deeca-superannuation-remediation",
@@ -3330,45 +3570,43 @@
         "superannuation-compliance-reviews-20-organisations",
         "woodside-end-to-end-payroll-review"
       ],
+      "Risk": [
+        "ampol-rostering-review",
+        "deeca-assurance-mapping-reporting-dashboard",
+        "digital-assurance-mapping-multiple-clients",
+        "griffith-university-finance-payroll-controls-monitoring",
+        "macmahon-leading-safety-indicator-review",
+        "northern-star-inventory-management-analytics",
+        "northern-star-user-access-management-review",
+        "risk-analytics-methodology-delivery-toolset",
+        "south32-payroll-compliance-monitoring",
+        "transurban-incident-management-internal-audit",
+        "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
+        "worley-control-self-assessment-program",
+        "worley-data-quality-governance-review",
+        "worley-global-internal-audit-digital-capability",
+        "worley-global-location-project-audit-analytics"
+      ],
       "Data Governance Frameworks": [
         "comcare-data-quality-governance-validation-review",
         "risk-analytics-knowledge-management-engagement-repository",
         "unified-honey-snowflake-native-app",
         "unsw-data-quality-governance-validation-review",
-        "worley-data-quality-governance-validation-review"
+        "worley-data-quality-governance-review"
       ],
       "Data Quality & Validation": [
         "comcare-data-quality-governance-validation-review",
         "macmahon-leading-safety-indicator-review",
         "risk-analytics-methodology-delivery-toolset",
+        "unified-honey-snowflake-native-app",
         "unsw-data-quality-governance-validation-review",
         "wa-mental-health-commission-kpi-data-validation-audit",
-        "worley-data-quality-governance-validation-review"
-      ],
-      "Controls Analytics": [
-        "compliance-iq-contract-compliance-analytics",
-        "domino-s-payroll-accounts-payable-internal-audit",
-        "dulux-continuous-controls-monitoring-hire-to-retire",
-        "endeavour-group-delegation-of-authority-review",
-        "fortescue-payroll-continuous-controls-monitoring",
-        "griffith-university-finance-payroll-controls-monitoring",
-        "melbourne-water-complaints-management-review",
-        "nbn-it-general-controls-identity-reconciliation",
-        "northern-star-inventory-management-analytics",
-        "northern-star-payroll-monitoring-snowflake-power-bi",
-        "payroll-internal-audit-multiple-clients",
-        "procurement-internal-audit-multiple-clients",
-        "risk-analytics-methodology-delivery-toolset",
-        "transurban-incident-management-internal-audit",
-        "victorian-department-of-education-ia-follow-up-dashboards",
-        "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
-        "woodside-end-to-end-payroll-review",
-        "worley-global-internal-audit-digital-capability",
-        "worley-global-location-project-audit-analytics"
+        "worley-data-quality-governance-review"
       ],
       "Dimensional Modelling": [
         "data-modelling-for-risk-analytics-training",
-        "risk-analytics-learning-capability-program"
+        "risk-analytics-learning-capability-program",
+        "unified-honey-snowflake-native-app"
       ],
       "Entity-Relationship Modelling": [
         "data-modelling-for-risk-analytics-training"
@@ -3381,30 +3619,34 @@
       "AI in Analytics": [
         "data-modelling-for-risk-analytics-training"
       ],
-      "Risk": [
-        "deeca-assurance-mapping-reporting-dashboard",
-        "digital-assurance-mapping-multiple-clients",
-        "griffith-university-finance-payroll-controls-monitoring",
-        "macmahon-leading-safety-indicator-review",
-        "northern-star-inventory-management-analytics",
-        "northern-star-user-access-management-review",
-        "risk-analytics-methodology-delivery-toolset",
-        "transurban-incident-management-internal-audit",
-        "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
-        "worley-control-self-assessment-program",
-        "worley-global-location-project-audit-analytics"
-      ],
       "Data Visualisation": [
         "deeca-assurance-mapping-reporting-dashboard",
         "digital-assurance-mapping-multiple-clients",
         "home-affairs-recommendation-follow-up-dashboard",
         "risk-analytics-learning-capability-program",
         "risk-analytics-pipeline-reporting",
+        "south32-payroll-compliance-monitoring",
         "transurban-incident-management-internal-audit"
       ],
       "Accounts Payable": [
         "domino-s-payroll-accounts-payable-internal-audit",
-        "endeavour-group-delegation-of-authority-review"
+        "endeavour-group-delegation-of-authority-review",
+        "fortescue-uipath-rpa-implementation"
+      ],
+      "Process Automation": [
+        "fortescue-uipath-rpa-implementation"
+      ],
+      "Solution Architecture": [
+        "fortescue-uipath-rpa-implementation"
+      ],
+      "Reusable Component Development": [
+        "fortescue-uipath-rpa-implementation",
+        "superannuation-compliance-reviews-20-organisations",
+        "unified-honey-snowflake-native-app",
+        "worley-global-internal-audit-digital-capability"
+      ],
+      "Software Development Lifecycle": [
+        "fortescue-uipath-rpa-implementation"
       ],
       "User Access Management": [
         "nbn-it-general-controls-identity-reconciliation",
@@ -3414,12 +3656,32 @@
         "northern-star-inventory-management-analytics",
         "procurement-internal-audit-multiple-clients"
       ],
+      "Superannuation": [
+        "superannuation-compliance-reviews-20-organisations"
+      ],
       "Data Lineage & Cataloguing": [
         "unified-honey-snowflake-native-app",
-        "worley-data-quality-governance-validation-review"
+        "worley-data-quality-governance-review"
+      ],
+      "Go-to-Market Strategy": [
+        "unified-honey-snowflake-native-app"
+      ],
+      "Data Vault": [
+        "unified-honey-snowflake-native-app"
+      ],
+      "AI Agent Development": [
+        "unified-honey-snowflake-native-app"
       ],
       "Data Privacy & Protection": [
-        "water-corporation-user-access-management-solution"
+        "water-corporation-user-access-management-solution",
+        "worley-data-quality-governance-review"
+      ],
+      "Internal Audit": [
+        "worley-data-quality-governance-review",
+        "worley-global-internal-audit-digital-capability"
+      ],
+      "Learning & Capability Development": [
+        "worley-global-internal-audit-digital-capability"
       ]
     },
     "technology": {
@@ -3429,14 +3691,8 @@
         "racv-rostering-review",
         "silverchain-workforce-analytics-partnership"
       ],
-      "Snowflake": [
-        "compliance-iq-contract-compliance-analytics",
-        "northern-star-inventory-management-analytics",
-        "northern-star-payroll-monitoring-snowflake-power-bi",
-        "unified-honey-snowflake-native-app",
-        "woodside-end-to-end-payroll-review"
-      ],
       "Power BI": [
+        "ampol-rostering-review",
         "deeca-assurance-mapping-reporting-dashboard",
         "digital-assurance-mapping-multiple-clients",
         "domino-s-payroll-accounts-payable-internal-audit",
@@ -3451,18 +3707,30 @@
         "risk-analytics-learning-capability-program",
         "risk-analytics-pipeline-reporting",
         "risk-analytics-resourcing-capability-tracking",
+        "south32-payroll-compliance-monitoring",
+        "superannuation-compliance-reviews-20-organisations",
         "victorian-department-of-education-ia-follow-up-dashboards",
         "water-corporation-user-access-management-solution",
+        "woodside-end-to-end-payroll-review",
+        "worley-global-internal-audit-digital-capability"
+      ],
+      "Snowflake": [
+        "compliance-iq-contract-compliance-analytics",
+        "northern-star-inventory-management-analytics",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "unified-honey-snowflake-native-app",
         "woodside-end-to-end-payroll-review"
       ],
       "Microsoft Excel": [
         "deeca-assurance-mapping-reporting-dashboard",
         "risk-analytics-methodology-delivery-toolset",
+        "superannuation-compliance-reviews-20-organisations",
         "victorian-department-of-education-ia-follow-up-dashboards"
       ],
       "SAP SuccessFactors": [
         "dulux-continuous-controls-monitoring-hire-to-retire",
         "fortescue-payroll-continuous-controls-monitoring",
+        "fortescue-uipath-rpa-implementation",
         "fortescue-workforce-analytics-review",
         "northern-star-payroll-monitoring-snowflake-power-bi",
         "northern-star-successfactors-implementation-support",
@@ -3474,6 +3742,7 @@
       ],
       "SAP ECP": [
         "fortescue-payroll-continuous-controls-monitoring",
+        "fortescue-uipath-rpa-implementation",
         "northern-star-payroll-monitoring-snowflake-power-bi",
         "northern-star-user-access-management-review",
         "south32-payroll-compliance-monitoring",
@@ -3485,22 +3754,35 @@
       "UiPath": [
         "fortescue-uipath-rpa-implementation"
       ],
+      "SAP HCM": [
+        "fortescue-uipath-rpa-implementation",
+        "silverchain-workforce-analytics-partnership",
+        "south32-payroll-compliance-monitoring"
+      ],
+      "SAP FI": [
+        "fortescue-uipath-rpa-implementation"
+      ],
       "RITEQ": [
         "greencross-rostering-review"
       ],
       "SQL": [
         "griffith-university-finance-payroll-controls-monitoring",
         "northern-star-inventory-management-analytics",
-        "northern-star-payroll-monitoring-snowflake-power-bi"
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "south32-payroll-compliance-monitoring",
+        "unified-honey-snowflake-native-app",
+        "worley-global-internal-audit-digital-capability"
       ],
       "Microsoft Fabric": [
         "griffith-university-finance-payroll-controls-monitoring"
       ],
       "Microsoft Azure": [
-        "griffith-university-finance-payroll-controls-monitoring"
+        "griffith-university-finance-payroll-controls-monitoring",
+        "south32-payroll-compliance-monitoring"
       ],
       "GitHub": [
-        "griffith-university-finance-payroll-controls-monitoring"
+        "griffith-university-finance-payroll-controls-monitoring",
+        "unified-honey-snowflake-native-app"
       ],
       "GitHub Copilot": [
         "griffith-university-finance-payroll-controls-monitoring"
@@ -3536,12 +3818,17 @@
       "Power Automate": [
         "ramelius-resources-workforce-analytics-reporting"
       ],
-      "SAP HCM": [
-        "silverchain-workforce-analytics-partnership",
-        "south32-payroll-compliance-monitoring"
+      "Alteryx": [
+        "south32-payroll-compliance-monitoring",
+        "superannuation-compliance-reviews-20-organisations",
+        "worley-global-internal-audit-digital-capability"
+      ],
+      "Tableau": [
+        "superannuation-compliance-reviews-20-organisations"
       ],
       "Python": [
-        "together-trustee-fund-recalculations-in-python"
+        "together-trustee-fund-recalculations-in-python",
+        "unified-honey-snowflake-native-app"
       ],
       "Qualtrics": [
         "worley-control-self-assessment-program"
@@ -3549,7 +3836,11 @@
       "Microsoft Forms": [
         "worley-control-self-assessment-program"
       ],
+      "Microsoft Purview": [
+        "worley-data-quality-governance-review"
+      ],
       "VIA": [
+        "worley-global-internal-audit-digital-capability",
         "worley-global-location-project-audit-analytics"
       ]
     },
@@ -3670,7 +3961,7 @@
       ],
       "Worley": [
         "worley-control-self-assessment-program",
-        "worley-data-quality-governance-validation-review",
+        "worley-data-quality-governance-review",
         "worley-global-internal-audit-digital-capability",
         "worley-global-location-project-audit-analytics"
       ]
@@ -3714,7 +4005,7 @@
         "unsw-data-quality-governance-validation-review",
         "wa-mental-health-commission-kpi-data-validation-audit",
         "water-corporation-user-access-management-solution",
-        "worley-data-quality-governance-validation-review"
+        "worley-data-quality-governance-review"
       ],
       "Data Platforms & Engineering": [
         "data-modelling-for-risk-analytics-training",
@@ -3769,7 +4060,7 @@
         "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
         "wa-mental-health-commission-kpi-data-validation-audit",
         "woodside-end-to-end-payroll-review",
-        "worley-data-quality-governance-validation-review",
+        "worley-data-quality-governance-review",
         "worley-global-internal-audit-digital-capability",
         "worley-global-location-project-audit-analytics"
       ],

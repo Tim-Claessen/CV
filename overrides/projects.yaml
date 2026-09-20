@@ -50,7 +50,8 @@ projects:
     draft: true
   "Fortescue UiPath RPA Implementation":
     publicTitle: "UiPath RPA implementation"
-    draft: true
+    headline: "UiPath RPA implementation"
+    bullet: "Six processes automated with sustained post-production performance"
   "Fortescue Workforce Analytics Review":
     publicTitle: "Workforce analytics review"
     draft: true
@@ -106,20 +107,28 @@ projects:
     publicTitle: "Leave entitlement analytics"
     draft: true
   "South32 Payroll Compliance Monitoring":
-    publicTitle: "Payroll compliance monitoring"
-    draft: true
+    publicTitle: "Payroll compliance analytics"
+    headline: "Payroll compliance analytics"
+    bullet: "Discrete reviews grown into an embedded analytics partnership; compliance exposures identified and remediated across multiple award and EBA scenarios"
   "South32 Training & Competency Analysis":
     publicTitle: "Training & competency analysis"
     draft: true
   "South32 Wage Entitlement Analytics":
     publicTitle: "Wage entitlement analytics"
     draft: true
+  "Superannuation Compliance Reviews (20+ Organisations)":
+    publicTitle: "Superannuation compliance reviews"
+    headline: "Superannuation compliance reviews"
+    bullet: "Led superannuation compliance reviews across more than 20 large Australian employers, testing against legislation, enterprise agreements and contracts, and supporting remediation with the ATO."
   "Together Trustee Fund Recalculations in Python":
     publicTitle: "Trustee fund recalculations in Python"
     draft: true
   "Transurban Incident Management Internal Audit":
     publicTitle: "Incident management internal audit"
     draft: true
+  "Unified Honey Snowflake Native App":
+    headline: "Snowflake Native App"
+    bullet: "Led go-to-market strategy and positioning for a Snowflake Native App selected into the Snowflake Startup Accelerator, and contributed to its data governance framework design."
   "UNSW Data Quality, Governance & Validation Review":
     publicTitle: "Data quality, governance & validation review"
     draft: true
@@ -144,12 +153,14 @@ projects:
   "Worley Control Self-Assessment Program":
     publicTitle: "Control Self-Assessment program"
     draft: true
-  "Worley Data Quality, Governance & Validation Review":
-    publicTitle: "Data quality, governance & validation review"
-    draft: true
+  "Worley Data Quality & Governance Review":
+    publicTitle: "Data quality and governance review"
+    headline: "Data quality & governance review"
+    bullet: "Led a data quality and governance review across a global enterprise, the largest of its type undertaken there."
   "Worley Global Internal Audit Digital Capability":
     publicTitle: "Global internal audit digital capability"
-    draft: true
+    headline: "Global IA digital capability"
+    bullet: "Led digital capability for a global internal audit function spanning 100+ countries and 50+ audits a year, defining the digital strategy and embedding analytics into audit delivery."
   "Worley Global Location & Project Audit Analytics":
     publicTitle: "Global location & project audit analytics"
     draft: true
