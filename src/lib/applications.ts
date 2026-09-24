@@ -1,7 +1,7 @@
 /**
  * Job applications: one tailored CV per record, rendered at /apply/<slug>.
  *
- * A record lives outside this repo, in lore's applications/ folder, because it
+ * A record lives outside this repo, in lore's job-applications/ folder, because it
  * names the employer and holds the job description, and this repo is public.
  * Each record is a folder with an application.yaml; the folder name is the slug.
  *
@@ -82,7 +82,7 @@ export interface Application {
 }
 
 export function applicationsDir(): string {
-  return resolve(process.env.CV_APPLICATIONS ?? join(process.cwd(), '..', 'lore', 'applications'));
+  return resolve(process.env.CV_APPLICATIONS ?? join(process.cwd(), '..', 'lore', 'job-applications'));
 }
 
 function build(slug: string, raw: RawApplication): Application {

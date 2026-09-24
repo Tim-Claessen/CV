@@ -82,7 +82,7 @@ def render(url: str, out: Path) -> None:
 def applications_dir() -> Path:
     """Mirrors applicationsDir() in src/lib/applications.ts."""
     configured = os.environ.get("CV_APPLICATIONS")
-    return Path(configured).resolve() if configured else (ROOT.parent / "lore" / "applications")
+    return Path(configured).resolve() if configured else (ROOT.parent / "lore" / "job-applications")
 
 
 def export_application(slug: str, build: bool) -> int:

@@ -115,7 +115,7 @@ class EditHandler(SimpleHTTPRequestHandler):
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("slug", help="application folder name in lore/applications/")
+    parser.add_argument("slug", help="application folder name in lore/job-applications/")
     parser.add_argument("--no-build", action="store_true")
     parser.add_argument("--no-open", action="store_true")
     args = parser.parse_args()

@@ -15,7 +15,7 @@ Input: $ARGUMENTS
 
 | What | Where | Why |
 | --- | --- | --- |
-| The application record | `../lore/applications/<yyyy-mm-employer-role>/` | Names the employer and holds the JD. lore is private; this repo is public |
+| The application record | `../lore/job-applications/<yyyy-mm-employer-role>/` | Names the employer and holds the JD. lore is private; this repo is public |
 | Durable career facts | `../lore/knowledge/` | Only via additive edits, then lore's `/cv-sync` |
 | The renderer | `src/lib/applications.ts`, `src/pages/apply/[slug].astro` | Private mode only |
 
@@ -26,7 +26,7 @@ Input: $ARGUMENTS
 - **Point in time.** The record is a snapshot. It stamps `builtAgainst` with `career.json`'s
   `generated` date. Once `status: sent`, it is frozen: its `cv.pdf` is the record, and the
   build no longer renders it.
-- **Light in lore.** `applications/` sits outside `knowledge/`, so lore's own skills never
+- **Light in lore.** `job-applications/` sits outside `knowledge/`, so lore's own skills never
   see it. Name lore entities in plain text, **never `[[wikilinks]]`**, so Obsidian backlinks
   stay clean. Links run from the application to lore, never back.
 - **Embellish additively.** Application wording lives only in `application.yaml`. Never
