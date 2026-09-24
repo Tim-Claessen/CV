@@ -21,6 +21,19 @@ Decisions already made. Breaking one of these is a regression, not a judgement c
 | **Job applications never touch this repo** | Records name the employer and hold the JD, and this repo is public. They live in `lore/applications/`; `/tailor` runs the workflow. No employer names, JD text or tailored wording in commits, comments or examples here |
 | **Run `npm run build && npm run check:public` before finishing** | It reads the built HTML and fails on any non-public client name, whatever the upstream logic thought. It is the last line of defence, and it runs in CI too |
 
+## Making a CV for a job
+
+**Run `/tailor`** (`.claude/commands/tailor.md`). It carries the whole workflow: read the JD,
+map it to evidence in lore, a short interview for anything thin or missing, the rewording
+pass, then render and export. Don't improvise a CV by hand-editing `overrides/` - that layer
+is the site's wording, not one employer's.
+
+**Review in the page, not the file.** `npm run edit -- <slug>` serves the sheet with its text
+editable and saves straight back into the record in lore. Tim reviews there; hand-editing
+`application.yaml` is for structural changes (adding or dropping a bullet or card, reordering,
+choosing capabilities). Never produce a Word or Markdown copy to mark up: edits made outside
+the record get lost.
+
 `README.md` carries the reasoning behind these in full, plus the prose scrubber that makes
 lore write-ups publishable (client names to "the client", `[[wikilinks]]` resolved, lore's
 margin notes dropped).

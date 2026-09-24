@@ -117,8 +117,11 @@ technologies: [<lore technology names>]
 name fits one line, a confidential one can still be named, and a tool can read the way the
 employer knows it ("EY VIA"). Everything else validates against lore and fails the build.
 
-### 5. Render and export
-- Preview: `CV_MODE=private npm run dev`, then open `/apply/<slug>`.
+### 5. Render, review and export
+- **Review in the page: `npm run edit -- <slug>`.** It builds, serves and opens the sheet at
+  `/apply/<slug>/?edit=1` with its text editable, and Save writes back into the record. Start
+  the server for Tim and give him the URL rather than handing him a command to run.
+- Preview only, no editing: `CV_MODE=private npm run dev`, then open `/apply/<slug>`.
 - Export: `python scripts/export_pdf.py --application <slug>`. It builds privately into
   `dist-private/` and writes `cv.pdf` into the application folder.
 - **Read the PDF back every time.** Page count alone doesn't show a clipped name or a
