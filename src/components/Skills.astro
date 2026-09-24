@@ -4,20 +4,30 @@ import { proficiencySegments, type CapabilityGroup } from '../lib/career';
 
 interface Props {
   groups: CapabilityGroup[];
+  num?: string;
+  title?: string;
+  /** One line under the heading, e.g. to say the list is a selection. */
+  note?: string;
 }
 
-const { groups } = Astro.props;
+const { groups, num = '04', title = 'Capabilities', note } = Astro.props;
 ---
 
 <section class="section" aria-labelledby="capabilities-heading">
-  <SectionHead num="04" title="Capabilities" />
-  <div id="capabilities-heading" class="visually-hidden">Capabilities</div>
+  <SectionHead num={num} title={title} />
+  <div id="capabilities-heading" class="visually-hidden">{title}</div>
+  {note && <p class="cap-note">{note}</p>}
   {groups.map((group) => (
     <div class="cap-group">
       <div class="cap-group-title">{group.domain}</div>
       <div class="cap-list cap-list--compact">
-        {group.categories.flatMap((cat) =>
-          cat.items.map((item) => {
+        {group.categories
+          .flatMap((cat) => cat.items)
+          // Flattened, the category sort would interleave levels again.
+          .sort((a, b) =>
+            proficiencySegments(b.proficiency) - proficiencySegments(a.proficiency) ||
+            a.name.localeCompare(b.name))
+          .map((item) => {
             const filled = proficiencySegments(item.proficiency);
             return (
               <div class="cap-item cap-item--compact">
@@ -30,8 +40,7 @@ const { groups } = Astro.props;
                 </span>
               </div>
             );
-          })
-        )}
+          })}
       </div>
     </div>
   ))}

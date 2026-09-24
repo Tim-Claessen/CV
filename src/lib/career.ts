@@ -513,10 +513,27 @@ export interface Role {
   clients: string;
   start: string;
   end: string;
+  /** Reading form of start and end: "Mar 2022 - Present". */
+  period: string;
   summary: string;
   bullets: Bullet[];
   skills: string[];
   technologies: string[];
+}
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/**
+ * lore stores dates as YYYY or YYYY-MM, which reads like system output on a CV
+ * and parses poorly. "2022-03" becomes "Mar 2022", "present" becomes "Present".
+ */
+function readableDate(value: string): string {
+  if (value === 'present') return 'Present';
+  const match = /^(\d{4})(?:-(\d{2}))?/.exec(value);
+  if (!match) return value;
+  const month = match[2] ? MONTHS[Number(match[2]) - 1] : null;
+  return month ? `${month} ${match[1]}` : match[1];
 }
 
 /**
@@ -543,6 +560,7 @@ export function roles(lens = 'all', mode: Mode = resolveMode()): Role[] {
         clients: mode === 'private' ? override.clients ?? '' : override.publicClients ?? '',
         start: raw.start,
         end: raw.end,
+        period: `${readableDate(raw.start)} - ${readableDate(raw.end)}`,
         summary: deDash(override.summary ?? raw.body),
         bullets:
           lens === 'all' ? bullets : bullets.filter((b) => b.personas.includes(lens)),
@@ -565,12 +583,18 @@ export interface CapabilityGroup {
  * lore keeps skills (practices) and technologies (tools) as separate entity
  * types. The CV shows them together under one Capabilities heading, so the
  * split becomes the top-level grouping rather than being flattened away.
+ *
+ * `pick` is an explicit selection that wins over the lens, used by an
+ * application record that chooses its own capabilities.
  */
-export function capabilities(lens = 'all'): CapabilityGroup[] {
+export function capabilities(
+  lens = 'all',
+  pick?: { skills?: string[]; technologies?: string[] },
+): CapabilityGroup[] {
   const chosen = lens === 'all' ? undefined : persona(lens);
   const groups: [string, RawCapability[], string[] | undefined][] = [
-    ['Skills', career.skills, chosen?.skills],
-    ['Technologies', career.technologies, chosen?.technologies],
+    ['Skills', career.skills, pick?.skills ?? chosen?.skills],
+    ['Technologies', career.technologies, pick?.technologies ?? chosen?.technologies],
   ];
   return groups
     .map(([domain, items, wanted]) => {
@@ -581,10 +605,16 @@ export function capabilities(lens = 'all'): CapabilityGroup[] {
         if (!byCategory.has(key)) byCategory.set(key, []);
         byCategory.get(key)!.push(item);
       }
+      // Strongest first, then alphabetical: the CV flattens these groups, so the
+      // reader meets Expert before Familiar rather than lore's own order.
+      const byLevel = (a: RawCapability, b: RawCapability) =>
+        proficiencySegments(b.proficiency) - proficiencySegments(a.proficiency) ||
+        a.name.localeCompare(b.name);
+
       return {
         domain,
         categories: [...byCategory.entries()]
-          .map(([category, list]) => ({ category, items: list }))
+          .map(([category, list]) => ({ category, items: [...list].sort(byLevel) }))
           .sort((a, b) => a.category.localeCompare(b.category)),
       };
     })

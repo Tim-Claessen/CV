@@ -1,10 +1,21 @@
 ---
 import SectionHead from './SectionHead.astro';
-import { credentials, community } from '../lib/career';
+import { credentials, community as allCommunity } from '../lib/career';
+
+interface Props {
+  /** Community entries to drop by name, for a CV that needs the space. */
+  hideCommunity?: string[];
+  /** Both are overridable because an application CV reorders its sections. */
+  num?: string;
+  title?: string;
+}
+
+const { hideCommunity = [], num = '05', title = 'Education' } = Astro.props;
+const community = allCommunity.filter((entry) => !hideCommunity.includes(entry.name));
 ---
 
 <section class="section" aria-labelledby="education-heading">
-  <SectionHead num="05" title="Education" />
+  <SectionHead num={num} title={title} />
   <div class="footer-grid">
     <div>
       <div class="footer-col-title" id="education-heading">Education</div>

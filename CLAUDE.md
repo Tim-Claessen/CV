@@ -18,6 +18,7 @@ Decisions already made. Breaking one of these is a regression, not a judgement c
 | **No nav bar.** The header carries the name and nothing else | A bar mixing page links with same-page anchors behaved two ways depending on where you already were. Destinations live in the page body: hero buttons, "All N projects", "View N projects", breadcrumbs |
 | **Do not link `/cv` or `/build` from a public page** | Both are unlisted and send `noindex`. The layout adds them to the nav only when you are already on one of them |
 | **No proficiency meters on `/capabilities`** | Originally because nearly every skill was Expert, so three identical segments said nothing. Skills now split 15 Expert to 13 Proficient, so that reason has lapsed, but the decision stands: `/capabilities` shows the level as a word plus the project count. Revisit deliberately if you want meters back, don't reintroduce them by accident |
+| **Job applications never touch this repo** | Records name the employer and hold the JD, and this repo is public. They live in `lore/applications/`; `/tailor` runs the workflow. No employer names, JD text or tailored wording in commits, comments or examples here |
 | **Run `npm run build && npm run check:public` before finishing** | It reads the built HTML and fails on any non-public client name, whatever the upstream logic thought. It is the last line of defence, and it runs in CI too |
 
 `README.md` carries the reasoning behind these in full, plus the prose scrubber that makes

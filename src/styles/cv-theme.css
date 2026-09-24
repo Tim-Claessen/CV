@@ -430,6 +430,79 @@ body {
   html { scroll-behavior: auto; }
 }
 
+/* ---------------------------------------------------------------------------
+   14 · APPLICATION CV (/apply/<slug>)
+   One employer, one sheet. Dates line up with the role title they belong to,
+   which means dropping the accent tick that otherwise sits above them and
+   pushes the date down the column. The site CV keeps both.
+   --------------------------------------------------------------------------- */
+.page--apply .role-meta { padding-top: 0; }
+.page--apply .role-meta::before { display: none; }
+.page--apply .role-dates { padding-top: 2px; }
+
+.cap-note {
+  font-size: 12px; line-height: 1.5; color: var(--mid);
+  margin: -6px 0 14px; font-style: italic;
+}
+
+/* Education and community sit inside the page here, not in a footer, so the
+   rules under their column titles read as clutter. */
+.page--apply .footer-col-title { border-bottom: none; padding-bottom: 0; }
+
+/* One capability per cell, at most two lines. The level and the meter are the
+   same size in every cell: the level track is wide enough for the longest word
+   ("PROFICIENT"), which previously overflowed and shunted the meter along, and
+   each segment is a fixed width rather than a share of what is left over. */
+.page--apply .cap-item--compact {
+  grid-template-columns: minmax(0, 1fr) 56px 42px;
+  /* Centred, so the level and meter sit against the middle of a two-line name
+     rather than hanging off its first line. */
+  align-items: center;
+  column-gap: 10px;
+}
+.page--apply .cap-name {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; line-height: 1.3; hyphens: none;
+}
+.page--apply .cap-item--compact .cap-level { min-width: 0; width: 56px; }
+.page--apply .cap-item--compact .cap-meter { width: 42px; gap: 3px; margin-bottom: 0; }
+.page--apply .cap-seg { flex: none; width: 12px; }
+
+@media print {
+  .page--apply .role-dates { padding-top: 0; }
+
+  /* Fuller page: the sections breathe rather than the sheet ending short. */
+  .page--apply .section { margin-bottom: 17pt; }
+  .page--apply .section-head { margin-bottom: 9pt; }
+  .page--apply .header { padding-bottom: 11pt; margin-bottom: 16pt; }
+  .page--apply .name { font-size: 34pt; }
+  /* The tagline is set against the name, so it scales with it. */
+  .page--apply .tagline { font-size: 9.5pt; letter-spacing: 0.22em; margin-top: 7pt; }
+
+  /* Page two carries six cards and the capabilities, and was ending short. */
+  .page--apply .projects { gap: 9pt; }
+  .page--apply .project-card { padding: 8pt 10pt; }
+  .page--apply .project-title { font-size: 10pt; margin-bottom: 4pt; }
+  .page--apply .project-desc { font-size: 8pt; line-height: 1.42; }
+  .page--apply .project-stack { margin-top: 5pt; }
+
+  .page--apply .cap-note { font-size: 7.6pt; margin: -4pt 0 8pt; }
+  .page--apply .cap-group { margin-bottom: 11pt; }
+  /* Three per row fits the page; the trailing columns are kept tight so the
+     name still has room for two lines. Two columns per row reads better but
+     costs a third page. */
+  .page--apply .cap-list--compact { grid-template-columns: repeat(3, 1fr); gap: 7pt 12pt; }
+  .page--apply .cap-item--compact {
+    grid-template-columns: minmax(0, 1fr) 36pt 24pt;
+    column-gap: 6pt;
+    min-height: 20pt;
+  }
+  .page--apply .cap-name { font-size: 7.5pt; }
+  .page--apply .cap-item--compact .cap-level { width: 36pt; font-size: 5.8pt; letter-spacing: 0.1em; }
+  .page--apply .cap-item--compact .cap-meter { width: 24pt; gap: 2pt; margin-bottom: 0; }
+  .page--apply .cap-seg { width: 6.5pt; height: 3.4pt; }
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

@@ -59,6 +59,12 @@ def main() -> int:
             if len(identifier) >= MIN_ALIAS:
                 forbidden[identifier] = client["name"]
 
+    # Application CVs are private-mode only. Pages under apply/ mean a private
+    # build is about to ship, whatever names they happen to contain.
+    if (args.dir / "apply").exists():
+        print(f"FAIL: {args.dir / 'apply'} exists. Application CVs are private-mode only.")
+        return 1
+
     pages = sorted(args.dir.rglob("*.html"))
     if not pages:
         print(f"no HTML found under {args.dir}", file=sys.stderr)

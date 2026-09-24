@@ -3,9 +3,11 @@ import SectionHead from './SectionHead.astro';
 
 interface Props {
   profile: string;
+  /** A floated capital can detach the first letter when a CV is parsed as text. */
+  dropcap?: boolean;
 }
 
-const { profile } = Astro.props;
+const { profile, dropcap = true } = Astro.props;
 const first = profile.charAt(0);
 const rest = profile.slice(1);
 ---
@@ -14,7 +16,7 @@ const rest = profile.slice(1);
   <SectionHead num="01" title="Profile" />
   <div class="profile-wrap">
     <p class="profile" id="profile-heading">
-      <span class="dropcap">{first}</span>{rest}
+      {dropcap ? <><span class="dropcap">{first}</span>{rest}</> : profile}
     </p>
   </div>
 </section>

@@ -23,7 +23,7 @@ To refresh from lore, run `/cv-sync` in the lore repo. It writes `content/career
 
 ## Features
 
-- **Fed from lore** - 59 projects, 9 roles, 28 skills and 36 technologies, with their full link graph, instead of hand-maintained CSVs.
+- **Fed from lore** - 61 projects, 9 roles, 28 skills and 38 technologies, with their full link graph, instead of hand-maintained CSVs.
 - **Persona views** - lenses (`all`, `business`, `data`) filter roles, bullets, projects and skills. A persona is a saved selection of lore entity names, so one list drives both the skills shown and the projects selected.
 - **Client anonymisation** - the public site never names a client marked `public: false` in lore. See below.
 - **Published write-ups** - lore's project bodies render on the public site with client names swapped for "the client" and `[[wikilinks]]` resolved into real links, rather than being withheld.
@@ -111,6 +111,7 @@ scripts/
 cv/                     # committed PDF output
 src/
   lib/career.ts         # merge career.json + overrides, expose typed records
+  lib/applications.ts   # job application records from lore (private mode only)
   components/           # Header, Profile, Experience, Projects, Skills, Education
   layouts/Site.astro    # shared shell: nav, footer, unlisted-route handling
   pages/
@@ -120,6 +121,7 @@ src/
     projects/[slug].astro
     cv.astro            # printable CV (unlisted)
     build.astro         # CV builder (unlisted)
+    apply/[slug].astro  # one tailored CV per job application (private builds only)
   styles/
     cv-theme.css        # the printable CV - print-first
     portfolio.css       # tokens + site chrome, shared by every screen page
@@ -190,6 +192,7 @@ Private layers are absent by construction: `/cv-sync` uses a hard allowlist, and
 | `/capabilities/<slug>` | A skill or technology, with the projects that evidence it - derived from lore's backlinks, not hand-maintained |
 | `/cv` | *Unlisted.* The printable two-page CV. Carries lore's `featured:` projects only |
 | `/build` | *Unlisted.* **CV builder** - tick roles, projects and capabilities, edit the preview inline, print to PDF |
+| `/apply/<slug>` | *Private builds only.* One tailored CV per job application. See [Job applications](#job-applications) |
 
 ### Unlisted routes
 
@@ -223,6 +226,57 @@ clients. For a real application, run it locally:
 ```sh
 CV_MODE=private npm run dev    # then open /build
 ```
+
+## Job applications
+
+The builder is for a quick one-off. A real application gets a **record**: a folder holding
+the job description, the evidence map and interview notes, the tailored wording, and the
+PDF that was actually sent. `/tailor` (in `.claude/commands/`) runs the whole workflow.
+
+```text
+lore/knowledge/ ──/cv-sync──▶ career.json ──┐
+                                            ├──▶ /apply/<slug> ──▶ cv.pdf (back into the record)
+lore/applications/<slug>/application.yaml ──┘      private mode only
+```
+
+**Records live in lore, not here.** They name the employer and hold the JD, and this repo is
+public. They sit in `lore/applications/`, outside `knowledge/`, so none of lore's own tooling
+reads them and `/cv-sync` never carries them into `career.json`. Set `CV_APPLICATIONS` to
+point somewhere else.
+
+| Rule | How it's enforced |
+| --- | --- |
+| Private only | `applications()` returns nothing unless `CV_MODE=private`, so a public build has no `/apply` pages. `check:public` fails if `dist/apply/` exists anyway |
+| Point in time | Only `status: drafting` renders. A sent record is frozen: its PDF is the record. A page shows a no-print banner when lore has been re-synced since `builtAgainst` |
+| Reframe, never invent | Every tailored bullet names the lore project or role it rests on in `evidence:`. The build fails listing every name that doesn't resolve, along with any unknown project, skill or technology |
+| Additive only | Application wording stays in the record. Durable facts the interview turns up go into lore as additions, then `/cv-sync` |
+
+`application.yaml` sets the tagline, profile, per-role title, summary and bullets, project
+order and wording, the capabilities shown, and community entries to leave off. Anything unset
+falls back to `basePersona`. The full schema is in
+[`src/lib/applications.ts`](src/lib/applications.ts) and the `/tailor` command.
+
+A card's `client` and `technologies` are **labels, not facts**: they let a long client name
+fit one line, name a client that can't be named ("Confidential client"), or print a tool the
+way the reader knows it ("EY VIA"). Everything else is validated against lore, and an
+unknown name fails the build.
+
+An application sheet differs from `/cv` deliberately, all of it scoped to `.page--apply`:
+
+| Difference | Why |
+| --- | --- |
+| Education and community sit before the projects, so they fill page one | `/cv` puts them last, which left page one short once the role bullets were trimmed |
+| No drop cap on the profile | A floated capital detaches the first letter when a CV is parsed as text |
+| Dates read "Mar 2022 - Present" and line up with the role title | ISO dates with an arrow read like system output, and the accent tick pushed them down the column |
+| Capabilities are "Selected capabilities", sorted by level then name, in fixed-width cells | The heading says the list is a selection; fixed cells keep every meter the same size |
+
+```sh
+CV_MODE=private npm run dev                                  # preview /apply/<slug>
+python scripts/export_pdf.py --application <slug>            # cv.pdf into the record
+```
+
+The export builds into `dist-private/` (gitignored), so `dist/` always holds the public
+build.
 
 ## Page layout (the `/cv` page)
 
@@ -295,6 +349,7 @@ Renders `/cv`, not `/`.
 - Always overwrites `cv/cv-latest.pdf`.
 - Also writes `cv/archive/cv-YYYY-MM-DD.pdf` (one file per calendar day; re-running overwrites today's file).
 - Persona-specific: `python scripts/export_pdf.py --lens business`
+- One job application: `python scripts/export_pdf.py --application <slug>` builds privately and writes into the record's lore folder, never into `cv/`
 - Skip rebuild: `python scripts/export_pdf.py --no-build`
 - Refuses to run when `CV_MODE=private`. These PDFs are committed to a public repo, so a
   CV naming real clients must come from `/build` locally and stay out of git.

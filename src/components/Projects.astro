@@ -4,13 +4,14 @@ import type { Project } from '../lib/career';
 
 interface Props {
   projects: Project[];
+  num?: string;
 }
 
-const { projects } = Astro.props;
+const { projects, num = '03' } = Astro.props;
 ---
 
 <section class="section page-break-before" aria-labelledby="projects-heading">
-  <SectionHead num="03" title="Selected projects" />
+  <SectionHead num={num} title="Selected projects" />
   <div id="projects-heading" class="visually-hidden">Selected projects</div>
   <div class="projects">
     {projects.map((project) => (

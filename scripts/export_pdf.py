@@ -9,6 +9,10 @@ These PDFs are committed to a public repo, so this refuses to run against a
 private-mode build. A CV with real client names is produced locally from /build
 and never checked in.
 
+--application is the exception, because its output never enters this repo: it
+builds private into dist-private/ (leaving dist/ public), renders /apply/<slug>/
+and writes cv.pdf into that application's own folder in lore.
+
 Setup (once):
     pip install -r requirements.txt
     python -m playwright install chromium
@@ -17,6 +21,7 @@ Usage:
     python scripts/export_pdf.py                 # build + render 'all'
     python scripts/export_pdf.py --lens business # a persona-specific PDF
     python scripts/export_pdf.py --no-build      # skip 'npm run build'
+    python scripts/export_pdf.py --application 2026-09-employer-role
 """
 from __future__ import annotations
 import argparse, datetime, functools, http.server, os, shutil, socket
@@ -25,6 +30,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
+PRIVATE_DIST = ROOT / "dist-private"
 CV = ROOT / "cv"
 ARCHIVE = CV / "archive"
 
@@ -69,15 +75,55 @@ def render(url: str, out: Path) -> None:
                  margin={"top": "14mm", "bottom": "14mm",
                          "left": "14mm", "right": "14mm"})
         browser.close()
-    print("wrote", out.relative_to(ROOT))
+    # An application PDF lands in lore, outside this repo.
+    print("wrote", out.relative_to(ROOT) if out.is_relative_to(ROOT) else out)
+
+
+def applications_dir() -> Path:
+    """Mirrors applicationsDir() in src/lib/applications.ts."""
+    configured = os.environ.get("CV_APPLICATIONS")
+    return Path(configured).resolve() if configured else (ROOT.parent / "lore" / "applications")
+
+
+def export_application(slug: str, build: bool) -> int:
+    folder = applications_dir() / slug
+    if not (folder / "application.yaml").exists():
+        print(f"no application.yaml in {folder}", file=sys.stderr)
+        return 1
+
+    if build:
+        build_env = {**os.environ, "CV_MODE": "private"}
+        sh([npm(), "run", "build", "--", "--outDir", str(PRIVATE_DIST)], env=build_env)
+    page = PRIVATE_DIST / "apply" / slug / "index.html"
+    if not page.exists():
+        print(f"{page} not built. Is the application's status 'drafting'?", file=sys.stderr)
+        return 1
+
+    port = free_port()
+    httpd = serve(PRIVATE_DIST, port)
+    try:
+        render(f"http://127.0.0.1:{port}/apply/{slug}/", folder / "cv.pdf")
+    except PermissionError:
+        # Windows locks an open PDF, and the viewer is usually the one holding it.
+        print(f"cannot write {folder / 'cv.pdf'} - close it in your PDF viewer and retry",
+              file=sys.stderr)
+        return 1
+    finally:
+        httpd.shutdown()
+    return 0
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--lens", default="all",
                     choices=["all", "business", "data"])
+    ap.add_argument("--application", metavar="SLUG",
+                    help="render one drafting application into its lore folder")
     ap.add_argument("--no-build", action="store_true")
     args = ap.parse_args()
+
+    if args.application:
+        return export_application(args.application, build=not args.no_build)
 
     if os.environ.get("CV_MODE") == "private":
         print(

@@ -94,6 +94,9 @@ projects:
   "Ramelius Resources Workforce Analytics & Reporting":
     publicTitle: "Workforce analytics & reporting"
     draft: true
+  "Rio Tinto Cost Allocation AI Proof of Concept":
+    publicTitle: "Cost allocation AI proof of concept"
+    draft: true
   "Rio Tinto Payroll Accuracy Dashboards":
     publicTitle: "Payroll accuracy dashboards"
     draft: true

@@ -1,0 +1,60 @@
+---
+import WebChrome from '../../components/WebChrome.astro';
+import Header from '../../components/Header.astro';
+import Profile from '../../components/Profile.astro';
+import Skills from '../../components/Skills.astro';
+import Experience from '../../components/Experience.astro';
+import Projects from '../../components/Projects.astro';
+import Education from '../../components/Education.astro';
+import { config } from '../../lib/career';
+import { applications, type Application } from '../../lib/applications';
+import '../../styles/cv-theme.css';
+
+// One page per drafting application. applications() is empty in public mode, so
+// the deployed site never has this route: see src/lib/applications.ts.
+export function getStaticPaths() {
+  return applications().map((application) => ({
+    params: { slug: application.slug },
+    props: { application },
+  }));
+}
+
+const { application } = Astro.props as { application: Application };
+
+const title = `${config.name} · CV`;
+const fontUrl =
+  'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={fontUrl} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <WebChrome />
+    {application.stale && (
+      <p class="no-print" style="margin: 1rem auto; max-width: 60rem; padding: 0.5rem 1rem; border: 1px solid currentColor;">
+        Drafted against data from {application.builtAgainst}; lore has been re-synced since.
+        Check the wording still holds, then update builtAgainst.
+      </p>
+    )}
+    {/* Education rides up to page one, where the experience section leaves room:
+        Projects starts page two, so anything before it fills the first page. */}
+    <main class="page page--apply">
+      <Header config={application.tagline ? { ...config, tagline: application.tagline } : config} />
+      {/* No drop cap: an application CV is often read by a parser first. */}
+      <Profile profile={application.profile} dropcap={false} />
+      <Experience roles={application.roles} config={config} />
+      <Education num="03" title="Education and community" hideCommunity={application.hideCommunity} />
+      <Projects projects={application.projects} num="04" />
+      <Skills groups={application.capabilities} num="05" title="Selected capabilities" />
+    </main>
+  </body>
+</html>

@@ -1,14 +1,14 @@
 {
-  "generated": "2026-09-20",
+  "generated": "2026-09-23",
   "source": {
     "repo": "lore",
-    "commit": "36aa82d"
+    "commit": "46afc21"
   },
   "counts": {
-    "projects": 59,
+    "projects": 61,
     "roles": 9,
     "skills": 28,
-    "technologies": 36,
+    "technologies": 38,
     "clients": 38,
     "projectTypes": 6,
     "credentials": 1,
@@ -56,7 +56,7 @@
       "tags": [
         "leadership"
       ],
-      "body": "Lead EY's national Risk Analytics team across Oceania, with direct delivery responsibility on the largest people analytics, payroll compliance and continuous controls engagements in Australia's mining and resources sector.\n\nGrew the team from 3 to 16 across multiple cities: designed the operating model, structured the training program, and led AI adoption and the team's responsible AI use program. Co-led lateral, graduate and senior recruitment for the national Risk Analytics team — defining role requirements, case-study interviews and capability criteria to support the practice's growth.\n\n**Community & wellbeing (EY):** Perth Consulting Group Wellbeing Pillar Lead; Wellbeing Exchange Network Perth Lead; Mental Health First Aid Officer.\n\nClient work delivered under this role arrives via backlinks — not listed here.",
+      "body": "Lead EY's national Risk Analytics team across Oceania, with direct delivery responsibility on the largest people analytics, payroll compliance and continuous controls engagements in Australia's mining and resources sector.\n\nGrew the team from 3 to 16 across multiple cities: designed the operating model, structured the training program, and led AI adoption and the team's responsible AI use program. Co-led lateral, graduate and senior recruitment for the national Risk Analytics team — defining role requirements, case-study interviews and capability criteria to support the practice's growth.\n\n**AI strategy and adoption:** Support AI strategy and delivery for Risk Consulting across Oceania (~300 people), as an Oceania Consulting change champion and previously a Copilot change champion. Run AI training, build proofs of concept, design go-to-market for AI-enabled solutions, and work with clients on AI readiness and implementation, including pitches and demos. The responsible AI side covers data governance, [[Software Development Lifecycle]] considerations, degradation of AI tools over time, model bias, not presenting AI work as human work, human-in-the-loop review, deterministic versus probabilistic approaches, and telling genuine AI use cases apart from automation.\n\n**Community & wellbeing (EY):** Perth Consulting Group Wellbeing Pillar Lead; Wellbeing Exchange Network Perth Lead; Mental Health First Aid Officer.\n\nClient work delivered under this role arrives via backlinks — not listed here.",
       "bodyLeaks": []
     },
     {
@@ -275,10 +275,14 @@
       "projectType": "Business Process Analytics",
       "employment": "EY Director, Risk Analytics",
       "skills": [
-        "Controls Analytics"
+        "Controls Analytics",
+        "AI in Analytics"
       ],
       "technologies": [
-        "Snowflake"
+        "Microsoft Azure",
+        "SQL",
+        "AI Foundry",
+        "Power BI"
       ],
       "start": "2026",
       "end": "present",
@@ -289,11 +293,13 @@
         "commercial-assurance",
         "pursuit"
       ],
-      "body": "Opportunity and Solution Lead developing a contract-compliance analytics proposition (Compliance IQ) covering contract interpretation, data mapping, test design and exception follow-up. Shaped deployment, data-security and operating-model options to suit client technology requirements, developed the proof-of-concept approach, and articulated how analytics, automation and AI could support repeatable commercial assurance. Built around [[Snowflake]] with AI-enabled analysis.",
+      "body": "Opportunity and Solution Lead developing a contract-compliance analytics proposition (Compliance IQ) covering contract interpretation, data mapping, test design and exception follow-up. Shaped deployment, data-security and operating-model options to suit client technology requirements, developed the proof-of-concept approach, and articulated how analytics, automation and AI could support repeatable commercial assurance. Built on the client's Microsoft stack: [[Microsoft Azure]], [[SQL]], [[AI Foundry]] and [[Power BI]].\n\nCompliance IQ tests whether contractors comply with their commercial terms, across a large number of contractors, many of them on projects: infrastructure projects, and a confidential mining client. AI is used throughout: accessing unstructured data (invoices, contract terms, timesheets), drafting the rules and logic to be included in testing, and adding a probabilistic overlay on top of the deterministic rules.",
       "leaks": {
         "title": [],
         "outcome": [],
-        "body": []
+        "body": [
+          "infrastructure"
+        ]
       },
       "publicSafe": true
     },
@@ -961,7 +967,11 @@
       "projectType": "Business Process Analytics",
       "employment": "EY Director, Risk Analytics",
       "skills": [
-        "Controls Analytics"
+        "Controls Analytics",
+        "Payroll",
+        "ETL & Pipeline Design",
+        "Data Visualisation",
+        "Software Development Lifecycle"
       ],
       "technologies": [
         "Power BI",
@@ -980,7 +990,7 @@
         "ccm",
         "snowflake"
       ],
-      "body": "End-to-end payroll monitoring solution with Snowflake back-end and Power BI front-end, integrating SAP ECP, SuccessFactors and Pronto. Framed as a payroll visibility capability focused on payroll accuracy and processing efficiency: facilitated stakeholder workshops covering business drivers, datasets, metrics and business impacts, and delivered real-time reporting to support data-driven decisions by business leaders.\n\n*P006 — the anonymised \"WA Mining real-time payroll monitoring\" CV entry was confirmed as this same Northern Star engagement and folded in here.*",
+      "body": "End-to-end payroll monitoring solution with Snowflake back-end and Power BI front-end, integrating SAP ECP, SuccessFactors and Pronto. Framed as a payroll visibility capability focused on payroll accuracy and processing efficiency: facilitated stakeholder workshops covering business drivers, datasets, metrics and business impacts, and delivered real-time reporting to support data-driven decisions by business leaders.\n\nDelivered across the full lifecycle: requirements gathering, solution design, development, testing, go-live and documentation.\n\n*P006 — the anonymised \"WA Mining real-time payroll monitoring\" CV entry was confirmed as this same Northern Star engagement and folded in here.*",
       "leaks": {
         "title": [
           "northern",
@@ -1169,10 +1179,48 @@
       "tags": [
         "workforce"
       ],
-      "body": "Engagement Lead for the analytics workstream establishing data foundations for workforce planning, workforce management and recruitment reporting. Shaped a phased delivery approach, positioning the initial workforce tracker as the foundation for a broader workforce analytics capability, and defined the discovery questions across HR, recruitment, planning, integration, reporting and workflow requirements. Draws on [[Oracle EPM]], [[JobAdder]] and the Microsoft Power Platform.",
+      "body": "Engagement Lead for the analytics workstream establishing data foundations for workforce planning, workforce management and recruitment reporting. Shaped a phased delivery approach, positioning the initial workforce tracker as the foundation for a broader workforce analytics capability, and defined the discovery questions across HR, recruitment, planning, integration, reporting and workflow requirements. Draws on [[Oracle EPM]], [[JobAdder]] and the Microsoft Power Platform.\n\nThe context was growth: the client plans to hire around 200 staff, and its processes, systems and reporting needed uplifting to support that. Worked on changing the operating model to handle the scale-up, and delivered a temporary reporting solution to carry the business through the transition.",
       "leaks": {
         "title": [
           "ramelius"
+        ],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": false
+    },
+    {
+      "name": "Rio Tinto Cost Allocation AI Proof of Concept",
+      "slug": "rio-tinto-cost-allocation-ai-proof-of-concept",
+      "client": "Rio Tinto",
+      "clientPublic": false,
+      "projectType": "AI Enablement",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Process Automation",
+        "AI in Analytics",
+        "Responsible AI Frameworks",
+        "Solution Architecture"
+      ],
+      "technologies": [
+        "Power Automate",
+        "Power Apps",
+        "Dataverse"
+      ],
+      "start": "2026-08",
+      "end": "present",
+      "outcome": "Human-in-the-loop AI proof of concept for cost allocation on the existing Microsoft stack",
+      "featured": false,
+      "tags": [
+        "ai",
+        "cost-allocation",
+        "human-in-the-loop"
+      ],
+      "body": "AI proof of concept for cost allocation, designed to avoid expensive technology by building on the client's existing Microsoft stack. [[Power Automate]], [[Dataverse]] and [[Power Apps]] form the automation component; the AI component suggests new allocation rules based on allocation history and existing rules, then routes them through a process and workflow for human approval before they are added.\n\nThe design principle is that allocations are never left to a probabilistic model. The AI only ever drafts: new rules that need approval, or allocations that need human review, each with its reasoning and a confidence score.",
+      "leaks": {
+        "title": [
+          "rio",
+          "tinto"
         ],
         "outcome": [],
         "body": []
@@ -1594,6 +1642,39 @@
       "publicSafe": true
     },
     {
+      "name": "Third-Party Vendor Security Assessment Redesign",
+      "slug": "third-party-vendor-security-assessment-redesign",
+      "client": null,
+      "clientPublic": true,
+      "projectType": "AI Enablement",
+      "employment": "EY Director, Risk Analytics",
+      "skills": [
+        "Process Automation",
+        "AI Product Development",
+        "Risk",
+        "Software Development Lifecycle"
+      ],
+      "technologies": [
+        "Microsoft 365 Copilot"
+      ],
+      "start": "2026-07",
+      "end": "2026-07",
+      "outcome": "Cut vendor security assessment effort from 15 hours to at most 7.5",
+      "featured": false,
+      "tags": [
+        "ai",
+        "agents",
+        "third-party-risk"
+      ],
+      "body": "EY performs security checks on a government department's third-party vendors. Redesigned the assessment process, introduced templates, and designed agents and subagents to assist on the tasks where they made sense, cutting processing effort from 15 hours to at most 7.5.\n\nBuilt on [[Microsoft 365 Copilot]] because the budget was very low and it was already available at no extra cost. The platform's limits had to be worked around by hand: poor [[Software Development Lifecycle]] support (no real version control, no separation of dev and prod, limited testing, no change logs), rigid capability and workflow with limited customisation, and a product that changed constantly with poor support for user-developed tools.",
+      "leaks": {
+        "title": [],
+        "outcome": [],
+        "body": []
+      },
+      "publicSafe": true
+    },
+    {
       "name": "Together Trustee Fund Recalculations in Python",
       "slug": "together-trustee-fund-recalculations-in-python",
       "client": "Together Trustee",
@@ -1670,7 +1751,7 @@
         "Reusable Component Development",
         "Dimensional Modelling",
         "Data Vault",
-        "AI Agent Development"
+        "AI Product Development"
       ],
       "technologies": [
         "Snowflake",
@@ -1686,7 +1767,7 @@
         "startup",
         "go-to-market"
       ],
-      "body": "Contributor to Unified Honey, a Snowflake Native App previously in the Snowflake Startup Accelerator. Led go-to-market strategy, product positioning, sales collateral, competitive analysis and demo guides; contributed to data governance framework design (lineage, quality rules, semantic definitions).",
+      "body": "Contributor to Unified Honey, a Snowflake Native App previously in the Snowflake Startup Accelerator. Led go-to-market strategy, product positioning, sales collateral, competitive analysis and demo guides; contributed to data governance framework design (lineage, quality rules, semantic definitions).\n\nThe product is an AI-powered application for data modelling, running natively in [[Snowflake]].",
       "leaks": {
         "title": [],
         "outcome": [],
@@ -2032,7 +2113,9 @@
         "Risk"
       ],
       "technologies": [
-        "VIA"
+        "VIA",
+        "SQL",
+        "Power BI"
       ],
       "start": "2024",
       "end": "2024",
@@ -2042,7 +2125,7 @@
         "internal-audit",
         "analytics"
       ],
-      "body": "Risk Analytics Lead integrating analytics into Worley's recurring location and project audits. Supported alignment of analytics procedures with audit risks, controls and standard audit work programs using [[VIA]] and risk and control matrices, and contributed to the design of repeatable, technology-enabled internal audit and continuous risk-monitoring approaches. Distinct from the [[Worley Control Self-Assessment Program]] and the [[Worley Global Internal Audit Digital Capability]] leadership role.",
+      "body": "Risk Analytics Lead integrating analytics into Worley's recurring location and project audits. Supported alignment of analytics procedures with audit risks, controls and standard audit work programs using [[VIA]] and risk and control matrices, and contributed to the design of repeatable, technology-enabled internal audit and continuous risk-monitoring approaches. Distinct from the [[Worley Control Self-Assessment Program]] and the [[Worley Global Internal Audit Digital Capability]] leadership role.\n\nThe project audits were high-level reviews across the project lifecycle and across various contract types, covering cost, schedule, contracts, commercial controls, stage gates and subcontractor management.",
       "leaks": {
         "title": [
           "worley"
@@ -2072,17 +2155,6 @@
       "descriptionLeaks": []
     },
     {
-      "name": "AI Agent Development",
-      "slug": "ai-agent-development",
-      "kind": "skill",
-      "category": "AI",
-      "proficiency": "Proficient",
-      "featured": false,
-      "aliases": [],
-      "description": "Designing and building agentic AI components — tool use, orchestration and evaluation within data products.",
-      "descriptionLeaks": []
-    },
-    {
       "name": "AI in Analytics",
       "slug": "ai-in-analytics",
       "kind": "skill",
@@ -2091,6 +2163,19 @@
       "featured": true,
       "aliases": [],
       "description": "Practical integration of AI tooling into day-to-day analytics delivery.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "AI Product Development",
+      "slug": "ai-product-development",
+      "kind": "skill",
+      "category": "AI",
+      "proficiency": "Proficient",
+      "featured": false,
+      "aliases": [
+        "AI Agent Development"
+      ],
+      "description": "Shaping and building AI products: agentic components, tool use, orchestration and evaluation within data products.",
       "descriptionLeaks": []
     },
     {
@@ -2402,6 +2487,23 @@
       "descriptionLeaks": []
     },
     {
+      "name": "AI Foundry",
+      "slug": "ai-foundry",
+      "kind": "technology",
+      "category": "AI",
+      "proficiency": null,
+      "vendor": "Microsoft",
+      "featured": false,
+      "aliases": [
+        "Azure AI Foundry"
+      ],
+      "enables": [
+        "AI in Analytics"
+      ],
+      "description": "Microsoft's platform for building and running AI applications on Azure. Used on the contract-compliance analytics build, where the AI layer reads unstructured contract, invoice and timesheet data and drafts testing rules for review.",
+      "descriptionLeaks": []
+    },
+    {
       "name": "Alteryx",
       "slug": "alteryx",
       "kind": "technology",
@@ -2446,6 +2548,26 @@
       ],
       "enables": [],
       "description": "HR and payroll system used as an employee-record source in identity reconciliation and IT general controls work.",
+      "descriptionLeaks": []
+    },
+    {
+      "name": "Claude",
+      "slug": "claude",
+      "kind": "technology",
+      "category": "AI",
+      "proficiency": "Proficient",
+      "vendor": "Anthropic",
+      "featured": true,
+      "aliases": [
+        "Claude Code",
+        "Claude Suite",
+        "Anthropic Claude"
+      ],
+      "enables": [
+        "AI in Analytics",
+        "AI Product Development"
+      ],
+      "description": "Anthropic's Claude, used as a working tool rather than a chat window: Claude Code as a coding agent against real repositories, Cowork sessions for longer pieces of work, and custom skills and slash commands that package a repeatable process (extraction, review, publishing) so it runs the same way every time. Also used for connector-based work against live systems, and for building agentic components into data products.",
       "descriptionLeaks": []
     },
     {
@@ -3561,6 +3683,7 @@
         "domino-s-payroll-accounts-payable-internal-audit",
         "employee-entitlements-remediation-multiple-clients",
         "greencross-payroll-remediation",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
         "payroll-internal-audit-multiple-clients",
         "silverchain-payroll-analytics-remediation",
         "silverchain-workforce-analytics-partnership",
@@ -3580,6 +3703,7 @@
         "northern-star-user-access-management-review",
         "risk-analytics-methodology-delivery-toolset",
         "south32-payroll-compliance-monitoring",
+        "third-party-vendor-security-assessment-redesign",
         "transurban-incident-management-internal-audit",
         "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
         "worley-control-self-assessment-program",
@@ -3603,6 +3727,11 @@
         "wa-mental-health-commission-kpi-data-validation-audit",
         "worley-data-quality-governance-review"
       ],
+      "AI in Analytics": [
+        "compliance-iq-contract-compliance-analytics",
+        "data-modelling-for-risk-analytics-training",
+        "rio-tinto-cost-allocation-ai-proof-of-concept"
+      ],
       "Dimensional Modelling": [
         "data-modelling-for-risk-analytics-training",
         "risk-analytics-learning-capability-program",
@@ -3613,16 +3742,15 @@
       ],
       "ETL & Pipeline Design": [
         "data-modelling-for-risk-analytics-training",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
         "risk-analytics-learning-capability-program",
         "victorian-department-of-education-ia-follow-up-dashboards"
-      ],
-      "AI in Analytics": [
-        "data-modelling-for-risk-analytics-training"
       ],
       "Data Visualisation": [
         "deeca-assurance-mapping-reporting-dashboard",
         "digital-assurance-mapping-multiple-clients",
         "home-affairs-recommendation-follow-up-dashboard",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
         "risk-analytics-learning-capability-program",
         "risk-analytics-pipeline-reporting",
         "south32-payroll-compliance-monitoring",
@@ -3634,10 +3762,13 @@
         "fortescue-uipath-rpa-implementation"
       ],
       "Process Automation": [
-        "fortescue-uipath-rpa-implementation"
+        "fortescue-uipath-rpa-implementation",
+        "rio-tinto-cost-allocation-ai-proof-of-concept",
+        "third-party-vendor-security-assessment-redesign"
       ],
       "Solution Architecture": [
-        "fortescue-uipath-rpa-implementation"
+        "fortescue-uipath-rpa-implementation",
+        "rio-tinto-cost-allocation-ai-proof-of-concept"
       ],
       "Reusable Component Development": [
         "fortescue-uipath-rpa-implementation",
@@ -3646,7 +3777,9 @@
         "worley-global-internal-audit-digital-capability"
       ],
       "Software Development Lifecycle": [
-        "fortescue-uipath-rpa-implementation"
+        "fortescue-uipath-rpa-implementation",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "third-party-vendor-security-assessment-redesign"
       ],
       "User Access Management": [
         "nbn-it-general-controls-identity-reconciliation",
@@ -3656,8 +3789,15 @@
         "northern-star-inventory-management-analytics",
         "procurement-internal-audit-multiple-clients"
       ],
+      "Responsible AI Frameworks": [
+        "rio-tinto-cost-allocation-ai-proof-of-concept"
+      ],
       "Superannuation": [
         "superannuation-compliance-reviews-20-organisations"
+      ],
+      "AI Product Development": [
+        "third-party-vendor-security-assessment-redesign",
+        "unified-honey-snowflake-native-app"
       ],
       "Data Lineage & Cataloguing": [
         "unified-honey-snowflake-native-app",
@@ -3667,9 +3807,6 @@
         "unified-honey-snowflake-native-app"
       ],
       "Data Vault": [
-        "unified-honey-snowflake-native-app"
-      ],
-      "AI Agent Development": [
         "unified-honey-snowflake-native-app"
       ],
       "Data Privacy & Protection": [
@@ -3693,6 +3830,7 @@
       ],
       "Power BI": [
         "ampol-rostering-review",
+        "compliance-iq-contract-compliance-analytics",
         "deeca-assurance-mapping-reporting-dashboard",
         "digital-assurance-mapping-multiple-clients",
         "domino-s-payroll-accounts-payable-internal-audit",
@@ -3712,14 +3850,26 @@
         "victorian-department-of-education-ia-follow-up-dashboards",
         "water-corporation-user-access-management-solution",
         "woodside-end-to-end-payroll-review",
-        "worley-global-internal-audit-digital-capability"
+        "worley-global-internal-audit-digital-capability",
+        "worley-global-location-project-audit-analytics"
       ],
-      "Snowflake": [
+      "Microsoft Azure": [
         "compliance-iq-contract-compliance-analytics",
+        "griffith-university-finance-payroll-controls-monitoring",
+        "south32-payroll-compliance-monitoring"
+      ],
+      "SQL": [
+        "compliance-iq-contract-compliance-analytics",
+        "griffith-university-finance-payroll-controls-monitoring",
         "northern-star-inventory-management-analytics",
         "northern-star-payroll-monitoring-snowflake-power-bi",
+        "south32-payroll-compliance-monitoring",
         "unified-honey-snowflake-native-app",
-        "woodside-end-to-end-payroll-review"
+        "worley-global-internal-audit-digital-capability",
+        "worley-global-location-project-audit-analytics"
+      ],
+      "AI Foundry": [
+        "compliance-iq-contract-compliance-analytics"
       ],
       "Microsoft Excel": [
         "deeca-assurance-mapping-reporting-dashboard",
@@ -3765,20 +3915,8 @@
       "RITEQ": [
         "greencross-rostering-review"
       ],
-      "SQL": [
-        "griffith-university-finance-payroll-controls-monitoring",
-        "northern-star-inventory-management-analytics",
-        "northern-star-payroll-monitoring-snowflake-power-bi",
-        "south32-payroll-compliance-monitoring",
-        "unified-honey-snowflake-native-app",
-        "worley-global-internal-audit-digital-capability"
-      ],
       "Microsoft Fabric": [
         "griffith-university-finance-payroll-controls-monitoring"
-      ],
-      "Microsoft Azure": [
-        "griffith-university-finance-payroll-controls-monitoring",
-        "south32-payroll-compliance-monitoring"
       ],
       "GitHub": [
         "griffith-university-finance-payroll-controls-monitoring",
@@ -3802,6 +3940,12 @@
       "Workday": [
         "nbn-it-general-controls-identity-reconciliation"
       ],
+      "Snowflake": [
+        "northern-star-inventory-management-analytics",
+        "northern-star-payroll-monitoring-snowflake-power-bi",
+        "unified-honey-snowflake-native-app",
+        "woodside-end-to-end-payroll-review"
+      ],
       "Pronto": [
         "northern-star-inventory-management-analytics",
         "northern-star-payroll-monitoring-snowflake-power-bi"
@@ -3813,10 +3957,15 @@
         "ramelius-resources-workforce-analytics-reporting"
       ],
       "Power Apps": [
-        "ramelius-resources-workforce-analytics-reporting"
+        "ramelius-resources-workforce-analytics-reporting",
+        "rio-tinto-cost-allocation-ai-proof-of-concept"
       ],
       "Power Automate": [
-        "ramelius-resources-workforce-analytics-reporting"
+        "ramelius-resources-workforce-analytics-reporting",
+        "rio-tinto-cost-allocation-ai-proof-of-concept"
+      ],
+      "Dataverse": [
+        "rio-tinto-cost-allocation-ai-proof-of-concept"
       ],
       "Alteryx": [
         "south32-payroll-compliance-monitoring",
@@ -3825,6 +3974,9 @@
       ],
       "Tableau": [
         "superannuation-compliance-reviews-20-organisations"
+      ],
+      "Microsoft 365 Copilot": [
+        "third-party-vendor-security-assessment-redesign"
       ],
       "Python": [
         "together-trustee-fund-recalculations-in-python",
@@ -3919,6 +4071,7 @@
         "ramelius-resources-workforce-analytics-reporting"
       ],
       "Rio Tinto": [
+        "rio-tinto-cost-allocation-ai-proof-of-concept",
         "rio-tinto-payroll-accuracy-dashboards"
       ],
       "Silverchain": [
@@ -4034,6 +4187,10 @@
       "Intelligent Automation": [
         "diamond-offshore-shadow-payroll-automation",
         "fortescue-uipath-rpa-implementation"
+      ],
+      "AI Enablement": [
+        "rio-tinto-cost-allocation-ai-proof-of-concept",
+        "third-party-vendor-security-assessment-redesign"
       ]
     },
     "role": {
@@ -4049,6 +4206,7 @@
         "northern-star-payroll-monitoring-snowflake-power-bi",
         "northern-star-user-access-management-review",
         "ramelius-resources-workforce-analytics-reporting",
+        "rio-tinto-cost-allocation-ai-proof-of-concept",
         "risk-analytics-knowledge-management-engagement-repository",
         "risk-analytics-learning-capability-program",
         "risk-analytics-methodology-delivery-toolset",
@@ -4056,6 +4214,7 @@
         "risk-analytics-resourcing-capability-tracking",
         "south32-payroll-compliance-monitoring",
         "superannuation-compliance-reviews-20-organisations",
+        "third-party-vendor-security-assessment-redesign",
         "victorian-department-of-education-ia-follow-up-dashboards",
         "victorian-department-of-jobs-skills-risk-analytics-into-ia-planning",
         "wa-mental-health-commission-kpi-data-validation-audit",
@@ -4079,7 +4238,9 @@
     "unresolved": [
       "community 'Edith Cowan University Consultative Committee' -> [[Edith Cowan University]]",
       "community 'Red Cross Lifeblood Plasma Donor' -> [[Red Cross Lifeblood]]",
-      "community 'WA Police Legacy Public Speaker & Fundraiser' -> [[WA Police Legacy]]"
+      "community 'WA Police Legacy Public Speaker & Fundraiser' -> [[WA Police Legacy]]",
+      "project 'Rio Tinto Cost Allocation AI Proof of Concept' -> [[Dataverse]]",
+      "project 'Third-Party Vendor Security Assessment Redesign' -> [[Microsoft 365 Copilot]]"
     ],
     "notes": []
   }
