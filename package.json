@@ -13,6 +13,7 @@
     "check:public": "python scripts/check_public.py",
     "seed:overrides": "python scripts/seed_overrides.py",
     "pdf": "python scripts/export_pdf.py",
+    "edit": "python scripts/edit_cv.py",
     "astro": "astro"
   },
   "dependencies": {

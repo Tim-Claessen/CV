@@ -440,6 +440,26 @@ body {
 .page--apply .role-meta::before { display: none; }
 .page--apply .role-dates { padding-top: 2px; }
 
+/* The editor's own chrome, screen only: see src/scripts/apply-editor.ts. */
+.is-editable:focus { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.is-editable:hover { background: var(--paper-warm, #f6f1e9); }
+.edit-bar {
+  position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 12px; z-index: 50;
+  padding: 9px 14px; border: 1px solid var(--line); border-radius: 3px;
+  background: var(--paper); box-shadow: 0 8px 28px rgba(60, 40, 25, .16);
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--mid);
+}
+.edit-bar button {
+  font-family: var(--font-mono); font-size: 11.5px; padding: 5px 11px;
+  border: 1px solid var(--line); border-radius: 2px; background: transparent;
+  color: var(--ink); cursor: pointer;
+}
+.edit-bar button:hover { border-color: var(--accent); color: var(--accent); }
+.edit-status[data-tone="ok"] { color: var(--accent); }
+.edit-status[data-tone="bad"] { color: #A03020; }
+.edit-hint { color: var(--muted); }
+
 .cap-note {
   font-size: 12px; line-height: 1.5; color: var(--mid);
   margin: -6px 0 14px; font-style: italic;

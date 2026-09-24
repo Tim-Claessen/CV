@@ -35,3 +35,6 @@ pnpm-debug.log*
 !.env.example
 # local Claude Code settings (machine-specific)
 .claude/settings.local.json
+
+# python bytecode
+__pycache__/

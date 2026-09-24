@@ -135,13 +135,30 @@ employer knows it ("EY VIA"). Everything else validates against lore and fails t
 When Tim sends it, set `status: sent`.
 
 ## The review loop
-Tim edits `application.yaml` directly: it is plain text and holds every word on the page, so
-there is no translation step. Don't build a Word or Markdown copy to mark up. Keep the
-indentation, and wrap long prose under the `>-` like the lines around it.
+Tim reviews in the page, not in the file:
+
+```sh
+npm run edit -- <slug>      # builds, serves, opens /apply/<slug>/?edit=1
+```
+
+The text on the sheet is editable. Save writes the changed values straight back into
+`application.yaml` (comments and folding survive, because the write is line-level) and
+rebuilds, so the page always shows the record rather than the browser's copy. "Save and PDF"
+also re-exports and reports the page count, which is the fastest way to see a change spill to
+three pages.
+
+Editable: tagline, profile, role summaries and bullets, project client, title, summary and
+tool chips. Fixed: names, dates, employers, capabilities, education, and `evidence:`, since
+re-pointing a bullet at a different lore project is a tailoring decision, not a wording one.
+
+Editing the YAML by hand still works and is the right move for structural changes: adding or
+removing a bullet or a card, reordering, or changing which capabilities show. Don't build a
+Word or Markdown copy to mark up.
 
 ## Gotchas, each one hit on the first run
 - **Close the PDF before exporting.** Windows locks an open PDF and the export fails; the
-  script says so rather than throwing a stack trace.
+  script says so rather than throwing a stack trace. Saving from the editor is unaffected;
+  only "Save and PDF" needs the file closed.
 - **An editor holding the file can write a stale buffer back over it.** After Tim edits,
   re-read the record before assuming your own last edit survived, and say so if it didn't.
 - **YAML splits inline lists on commas**, so `[EY Director, Risk Analytics]` is two names and

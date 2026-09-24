@@ -22,6 +22,14 @@ export function getStaticPaths() {
 const { application } = Astro.props as { application: Application };
 
 const title = `${config.name} · CV`;
+
+// The editor maps what is on screen back to keys in application.yaml. Roles and
+// projects render in this order, so their position is the path.
+const editMap = {
+  slug: application.slug,
+  roles: application.roles.map((role) => role.loreName),
+  projects: application.projects.length,
+};
 const fontUrl =
   'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap';
 ---
@@ -39,6 +47,7 @@ const fontUrl =
   </head>
   <body>
     <WebChrome />
+    <script type="application/json" id="edit-map" set:html={JSON.stringify(editMap)}></script>
     {application.stale && (
       <p class="no-print" style="margin: 1rem auto; max-width: 60rem; padding: 0.5rem 1rem; border: 1px solid currentColor;">
         Drafted against data from {application.builtAgainst}; lore has been re-synced since.
@@ -56,5 +65,9 @@ const fontUrl =
       <Projects projects={application.projects} num="04" />
       <Skills groups={application.capabilities} num="05" title="Selected capabilities" />
     </main>
+    {/* Text editing, only with ?edit=1 and only against the local edit server. */}
+    <script>
+      import '../../scripts/apply-editor';
+    </script>
   </body>
 </html>

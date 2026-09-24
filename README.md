@@ -271,12 +271,31 @@ An application sheet differs from `/cv` deliberately, all of it scoped to `.page
 | Capabilities are "Selected capabilities", sorted by level then name, in fixed-width cells | The heading says the list is a selection; fixed cells keep every meter the same size |
 
 ```sh
-CV_MODE=private npm run dev                                  # preview /apply/<slug>
-python scripts/export_pdf.py --application <slug>            # cv.pdf into the record
+npm run edit -- <slug>                             # edit the sheet in the page, save to the record
+CV_MODE=private npm run dev                        # or just preview /apply/<slug>
+python scripts/export_pdf.py --application <slug>  # cv.pdf into the record
 ```
 
 The export builds into `dist-private/` (gitignored), so `dist/` always holds the public
 build.
+
+### Editing in the page
+
+`npm run edit -- <slug>` ([scripts/edit_cv.py](scripts/edit_cv.py)) serves the private build
+and opens `/apply/<slug>/?edit=1`, where the text on the sheet is editable. This is the one
+thing `/build` never did: **Save writes back to the record**, so nothing is lost when the tab
+closes.
+
+| Concern | How it works |
+| --- | --- |
+| Which text | Tagline, profile, role summaries and bullets, project client, title, summary and tool chips. Names, dates, capabilities, education and `evidence:` are fixed |
+| Where it lands | Each node carries its path in `application.yaml`. [scripts/yaml_edit.py](scripts/yaml_edit.py) replaces those lines only, so comments, ordering and `>-` blocks survive |
+| Staying honest | A save that the build rejects is rolled back and reported. A shape the editor doesn't recognise raises rather than guessing |
+| Scope | Binds to 127.0.0.1, writes only inside the one application folder named on the command line, and the page refuses to save without the server answering |
+| Layout | Text only. "Save and PDF" re-exports and reports the page count, so a change that spills to three pages is obvious |
+
+Structural changes (adding or removing a bullet or card, reordering, choosing capabilities)
+are edits to `application.yaml` itself.
 
 ## Page layout (the `/cv` page)
 
