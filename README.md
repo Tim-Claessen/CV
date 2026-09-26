@@ -234,14 +234,14 @@ the job description, the evidence map and interview notes, the tailored wording,
 PDF that was actually sent. `/tailor` (in `.claude/commands/`) runs the whole workflow.
 
 ```text
-lore/knowledge/ ──/cv-sync──▶ career.json ──┐
-                                            ├──▶ /apply/<slug> ──▶ cv.pdf (back into the record)
-lore/job-applications/<slug>/application.yaml ──┘  private mode only
+lore/knowledge/ ──/cv-sync──▶ career.json ───────────┐
+                                                     ├──▶ /apply/<slug> ──▶ cv.pdf (back into the record)
+lore/knowledge/job-applications/<slug>/application.yaml ─┘  private mode only
 ```
 
 **Records live in lore, not here.** They name the employer and hold the JD, and this repo is
-public. They sit in `lore/job-applications/`, outside `knowledge/`, so none of lore's own tooling
-reads them and `/cv-sync` never carries them into `career.json`. Set `CV_APPLICATIONS` to
+public. They sit in `lore/knowledge/job-applications/`, a private folder that lore's tooling
+skips, so `/cv-sync` never carries them into `career.json`. Set `CV_APPLICATIONS` to
 point somewhere else.
 
 | Rule | How it's enforced |
