@@ -11,7 +11,8 @@ and never checked in.
 
 --application is the exception, because its output never enters this repo: it
 builds private into dist-private/ (leaving dist/ public), renders /apply/<slug>/
-and writes cv.pdf into that application's own folder in lore.
+and writes cv.pdf into that application's own folder in lore. With --letter it
+renders /apply/<slug>/letter/ into cover-letter.pdf instead.
 
 Setup (once):
     pip install -r requirements.txt
@@ -22,6 +23,7 @@ Usage:
     python scripts/export_pdf.py --lens business # a persona-specific PDF
     python scripts/export_pdf.py --no-build      # skip 'npm run build'
     python scripts/export_pdf.py --application 2026-09-employer-role
+    python scripts/export_pdf.py --application 2026-09-employer-role --letter
 """
 from __future__ import annotations
 import argparse, datetime, functools, http.server, os, shutil, socket
@@ -85,7 +87,7 @@ def applications_dir() -> Path:
     return Path(configured).resolve() if configured else (ROOT.parent / "lore" / "knowledge" / "job-applications")
 
 
-def export_application(slug: str, build: bool) -> int:
+def export_application(slug: str, build: bool, letter: bool = False) -> int:
     folder = applications_dir() / slug
     if not (folder / "application.yaml").exists():
         print(f"no application.yaml in {folder}", file=sys.stderr)
@@ -94,18 +96,21 @@ def export_application(slug: str, build: bool) -> int:
     if build:
         build_env = {**os.environ, "CV_MODE": "private"}
         sh([npm(), "run", "build", "--", "--outDir", str(PRIVATE_DIST)], env=build_env)
-    page = PRIVATE_DIST / "apply" / slug / "index.html"
+    route = f"apply/{slug}/letter/" if letter else f"apply/{slug}/"
+    out = folder / ("cover-letter.pdf" if letter else "cv.pdf")
+    page = PRIVATE_DIST / route / "index.html"
     if not page.exists():
-        print(f"{page} not built. Is the application's status 'drafting'?", file=sys.stderr)
+        hint = "Is there a cover-letter.md?" if letter else "Is the application's status 'drafting'?"
+        print(f"{page} not built. {hint}", file=sys.stderr)
         return 1
 
     port = free_port()
     httpd = serve(PRIVATE_DIST, port)
     try:
-        render(f"http://127.0.0.1:{port}/apply/{slug}/", folder / "cv.pdf")
+        render(f"http://127.0.0.1:{port}/{route}", out)
     except PermissionError:
         # Windows locks an open PDF, and the viewer is usually the one holding it.
-        print(f"cannot write {folder / 'cv.pdf'} - close it in your PDF viewer and retry",
+        print(f"cannot write {out} - close it in your PDF viewer and retry",
               file=sys.stderr)
         return 1
     finally:
@@ -119,11 +124,13 @@ def main() -> int:
                     choices=["all", "business", "data"])
     ap.add_argument("--application", metavar="SLUG",
                     help="render one drafting application into its lore folder")
+    ap.add_argument("--letter", action="store_true",
+                    help="with --application: render its cover letter instead")
     ap.add_argument("--no-build", action="store_true")
     args = ap.parse_args()
 
     if args.application:
-        return export_application(args.application, build=not args.no_build)
+        return export_application(args.application, build=not args.no_build, letter=args.letter)
 
     if os.environ.get("CV_MODE") == "private":
         print(

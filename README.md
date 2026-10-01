@@ -122,6 +122,7 @@ src/
     cv.astro            # printable CV (unlisted)
     build.astro         # CV builder (unlisted)
     apply/[slug].astro  # one tailored CV per job application (private builds only)
+    apply/[slug]/letter.astro  # its cover letter, when the record has one
   styles/
     cv-theme.css        # the printable CV - print-first
     portfolio.css       # tokens + site chrome, shared by every screen page
@@ -193,6 +194,7 @@ Private layers are absent by construction: `/cv-sync` uses a hard allowlist, and
 | `/cv` | *Unlisted.* The printable two-page CV. Carries lore's `featured:` projects only |
 | `/build` | *Unlisted.* **CV builder** - tick roles, projects and capabilities, edit the preview inline, print to PDF |
 | `/apply/<slug>` | *Private builds only.* One tailored CV per job application. See [Job applications](#job-applications) |
+| `/apply/<slug>/letter` | *Private builds only.* The application's cover letter, when its record has a `cover-letter.md` |
 
 ### Unlisted routes
 
@@ -296,6 +298,20 @@ closes.
 
 Structural changes (adding or removing a bullet or card, reordering, choosing capabilities)
 are edits to `application.yaml` itself.
+
+### Cover letter
+
+A record can also hold a `cover-letter.md`: a YAML block (date, recipient, subject,
+salutation, closing) then paragraphs separated by blank lines. It renders at
+`/apply/<slug>/letter` under the CV's letterhead, on one A4 page, so the two read as a pair
+(styles in section 15 of `cv-theme.css`, scoped to `.page--letter`). It is free text, so
+nothing in it is validated against lore.
+
+`npm run edit -- <slug> --letter` opens it for editing, and each page's edit bar links to the
+other. The body is one editable block where Enter starts a new paragraph; Save sends the
+whole letter and the server rewrites `cover-letter.md` from it. "Save and PDF", or
+`python scripts/export_pdf.py --application <slug> --letter`, writes `cover-letter.pdf` into
+the record.
 
 ## Page layout (the `/cv` page)
 

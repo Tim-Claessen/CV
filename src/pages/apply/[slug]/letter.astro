@@ -1,0 +1,65 @@
+---
+import WebChrome from '../../../components/WebChrome.astro';
+import Header from '../../../components/Header.astro';
+import { config } from '../../../lib/career';
+import { applications, type Application, type Letter } from '../../../lib/applications';
+import '../../../styles/cv-theme.css';
+
+// The cover letter that travels with an application CV, under the same
+// letterhead. Only drafting applications with a cover-letter.md get a page.
+export function getStaticPaths() {
+  return applications()
+    .filter((application) => application.letter)
+    .map((application) => ({
+      params: { slug: application.slug },
+      props: { application },
+    }));
+}
+
+const { application } = Astro.props as { application: Application };
+const letter = application.letter as Letter;
+
+const title = `${config.name} · Cover letter`;
+const editMap = { slug: application.slug, doc: 'letter' };
+const fontUrl =
+  'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={fontUrl} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <WebChrome />
+    <script type="application/json" id="edit-map" set:html={JSON.stringify(editMap)}></script>
+    <main class="page page--apply page--letter">
+      <Header config={application.tagline ? { ...config, tagline: application.tagline } : config} />
+      <div class="letter-meta">
+        <div class="letter-recipient">{letter.recipient.join('\n')}</div>
+        <div class="letter-date">{letter.date}</div>
+      </div>
+      {letter.subject && (
+        <div class="section-head letter-subject-head">
+          <h2 class="section-title letter-subject">{letter.subject}</h2>
+          <div class="section-rule" aria-hidden="true"></div>
+        </div>
+      )}
+      <p class="letter-salutation">{letter.salutation}</p>
+      <div class="letter-body">
+        {letter.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <p class="letter-closing">{letter.closing}</p>
+      <p class="letter-name">{config.name}</p>
+    </main>
+    <script>
+      import '../../../scripts/apply-editor';
+    </script>
+  </body>
+</html>

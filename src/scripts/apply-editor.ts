@@ -9,6 +9,10 @@
  * Without the edit server (a plain private build, or the deployed site, which
  * has no /apply routes at all) the toolbar says so and refuses, rather than
  * letting edits pile up in a page that cannot keep them.
+ *
+ * The cover letter (/apply/<slug>/letter) uses the same bar. Its fields are
+ * free text in cover-letter.md, so Save sends the whole letter rather than
+ * paths, and the body is one editable block: Enter starts a new paragraph.
  */
 type Path = (string | number)[];
 interface Edit { path: Path; value: string; index?: number }
@@ -19,7 +23,14 @@ if (params.get('edit') === '1') setup();
 function setup(): void {
   const raw = document.getElementById('edit-map')?.textContent;
   if (!raw) return;
-  const map = JSON.parse(raw) as { slug: string; roles: string[]; projects: number };
+  const map = JSON.parse(raw) as {
+    slug: string;
+    doc?: 'letter';
+    roles?: string[];
+    projects?: number;
+    letter?: boolean;
+  };
+  const isLetter = map.doc === 'letter';
 
   const originals = new Map<HTMLElement, string>();
 
@@ -33,11 +44,26 @@ function setup(): void {
     originals.set(node, node.innerText.trim());
   };
 
-  mark(document.querySelector('.tagline'), ['tagline']);
-  mark(document.querySelector('.profile'), ['profile']);
+  // The letter's editable fields, by the key they hold in cover-letter.md.
+  const letterFields: Record<string, string> = {
+    recipient: '.letter-recipient',
+    date: '.letter-date',
+    subject: '.letter-subject',
+    salutation: '.letter-salutation',
+    closing: '.letter-closing',
+    paragraphs: '.letter-body',
+  };
+  if (isLetter) {
+    for (const [key, selector] of Object.entries(letterFields)) {
+      mark(document.querySelector(selector), [key]);
+    }
+  } else {
+    mark(document.querySelector('.tagline'), ['tagline']);
+    mark(document.querySelector('.profile'), ['profile']);
+  }
 
   document.querySelectorAll('.role').forEach((role, i) => {
-    const name = map.roles[i];
+    const name = map.roles?.[i];
     if (name === undefined) return;
     mark(role.querySelector('.role-summary'), ['roles', name, 'summary']);
     role.querySelectorAll('.role-bullets li').forEach((li, b) => {
@@ -56,8 +82,16 @@ function setup(): void {
 
   const bar = document.createElement('div');
   bar.className = 'edit-bar no-print';
+  const other = isLetter
+    ? `<a href="../?edit=1">CV</a>`
+    : map.letter
+      ? `<a href="letter/?edit=1">Cover letter</a>`
+      : '';
   bar.innerHTML =
-    '<span class="edit-hint">Editing text. Headings, dates and capabilities are fixed.</span>' +
+    (isLetter
+      ? '<span class="edit-hint">Editing the letter. Enter starts a new paragraph.</span>'
+      : '<span class="edit-hint">Editing text. Headings, dates and capabilities are fixed.</span>') +
+    other +
     '<span class="edit-status" role="status"></span>' +
     '<button type="button" data-act="revert">Revert</button>' +
     '<button type="button" data-act="save">Save</button>' +
@@ -68,6 +102,20 @@ function setup(): void {
   const say = (text: string, tone = ''): void => {
     status.textContent = text;
     status.dataset.tone = tone;
+  };
+
+  // The whole letter as cover-letter.md holds it. Line breaks are the record's
+  // structure here: recipient lines, and one paragraph per block of the body.
+  const letterValue = (): Record<string, string | string[]> => {
+    const value: Record<string, string | string[]> = {};
+    for (const [key, selector] of Object.entries(letterFields)) {
+      const node = document.querySelector(selector) as HTMLElement | null;
+      const text = node?.innerText ?? '';
+      value[key] = key === 'paragraphs' || key === 'recipient'
+        ? text.split(/\n+/).map((line) => line.trim()).filter(Boolean)
+        : text.trim();
+    }
+    return value;
   };
 
   const changed = (): Edit[] =>
@@ -98,10 +146,15 @@ function setup(): void {
     }
     say(edits.length ? `saving ${edits.length}...` : 'exporting...');
     try {
-      if (edits.length) await post('/api/save', { slug: map.slug, edits });
+      if (edits.length) {
+        await post('/api/save', isLetter
+          ? { slug: map.slug, doc: 'letter', letter: letterValue() }
+          : { slug: map.slug, edits });
+      }
       if (thenExport) {
-        const result = await post('/api/export', { slug: map.slug });
-        say(`saved. PDF is ${result.pages} pages`, result.pages === 2 ? 'ok' : 'bad');
+        const result = await post('/api/export', { slug: map.slug, doc: isLetter ? 'letter' : 'cv' });
+        const target = isLetter ? 1 : 2;
+        say(`saved. PDF is ${result.pages} page${result.pages === 1 ? '' : 's'}`, result.pages === target ? 'ok' : 'bad');
         return;
       }
       say('saved, reloading...', 'ok');
@@ -131,7 +184,9 @@ function setup(): void {
     if (!target.isContentEditable) return;
     event.preventDefault();
     const text = event.clipboardData?.getData('text/plain') ?? '';
-    document.execCommand('insertText', false, text.replace(/\s+/g, ' '));
+    // A letter keeps its line breaks: they separate paragraphs and recipient lines.
+    const clean = isLetter ? text.replace(/[ \t]+/g, ' ') : text.replace(/\s+/g, ' ');
+    document.execCommand('insertText', false, clean);
   });
 
   window.addEventListener('beforeunload', (event) => {

@@ -134,6 +134,30 @@ employer knows it ("EY VIA"). Everything else validates against lore and fails t
 
 ### 6. Cover letter (optional)
 `cover-letter.md`, built from the evidence map. The biggest gap gets one honest sentence.
+Tim may draft it elsewhere from a prompt you write into the record (`cover-letter-prompt.md`).
+
+The file is a YAML block, then paragraphs separated by blank lines:
+
+```
+---
+date: 1 October 2026
+recipient: |
+  <team or person>
+  <employer>
+subject: <role title, job ID>
+salutation: Dear <name>,
+closing: Kind regards,
+---
+
+First paragraph.
+
+Second paragraph.
+```
+
+It renders at `/apply/<slug>/letter` under the CV's letterhead, one A4 page. Review it the
+same way: `npm run edit -- <slug> --letter` (each page links to the other), and "Save and PDF"
+writes `cover-letter.pdf` into the record. Export alone:
+`python scripts/export_pdf.py --application <slug> --letter`. Read the PDF back: one page.
 
 When Tim sends it, set `status: sent`.
 

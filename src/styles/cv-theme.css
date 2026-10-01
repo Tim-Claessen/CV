@@ -523,6 +523,52 @@ body {
   .page--apply .cap-seg { width: 6.5pt; height: 3.4pt; }
 }
 
+/* ---------------------------------------------------------------------------
+   15 · COVER LETTER (/apply/<slug>/letter)
+   The CV's letterhead and type on one A4 page, so the two read as a pair.
+   The subject borrows the section heading (italic display, hairline rule).
+   --------------------------------------------------------------------------- */
+.letter-meta {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 28px;
+  margin-bottom: 26px;
+}
+.letter-recipient { white-space: pre-line; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
+.letter-date {
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--mid);
+  white-space: nowrap; padding-top: 2px;
+}
+.letter-subject-head { margin-bottom: 22px; }
+.letter-subject { font-size: 19px; }
+.letter-salutation, .letter-body p, .letter-closing {
+  font-size: 14.5px; line-height: 1.72; color: var(--ink-soft);
+}
+.letter-salutation { margin-bottom: 14px; }
+.letter-body { max-width: 800px; }
+.letter-body p { margin-bottom: 14px; }
+.letter-closing { margin-top: 22px; }
+.letter-name {
+  font-family: var(--font-display); font-weight: 500; font-size: 26px;
+  letter-spacing: -0.02em; color: var(--ink); margin-top: 6px;
+  font-variation-settings: "opsz" 144;
+}
+.edit-bar a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+.edit-bar a:hover { color: var(--accent); border-color: var(--accent); }
+
+@media print {
+  .page--letter .letter-meta { margin-bottom: 18pt; }
+  .page--letter .letter-recipient { font-size: 9.5pt; line-height: 1.5; }
+  .page--letter .letter-date { font-size: 8.5pt; }
+  .page--letter .letter-subject-head { margin-bottom: 14pt; }
+  .page--letter .letter-subject { font-size: 13pt; }
+  .page--letter .letter-salutation,
+  .page--letter .letter-body p,
+  .page--letter .letter-closing { font-size: 10pt; line-height: 1.6; }
+  .page--letter .letter-salutation { margin-bottom: 9pt; }
+  .page--letter .letter-body p { margin-bottom: 9pt; }
+  .page--letter .letter-closing { margin-top: 14pt; }
+  .page--letter .letter-name { font-size: 18pt; margin-top: 4pt; }
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

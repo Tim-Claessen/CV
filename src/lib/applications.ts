@@ -66,6 +66,20 @@ interface RawApplication {
   technologies?: string[];
 }
 
+/**
+ * A cover letter, from cover-letter.md beside the record: a YAML block for the
+ * letter's furniture, then paragraphs separated by blank lines. Rendered at
+ * /apply/<slug>/letter. Free text, so nothing here is validated against lore.
+ */
+export interface Letter {
+  date: string;
+  recipient: string[];
+  subject: string;
+  salutation: string;
+  closing: string;
+  paragraphs: string[];
+}
+
 export interface Application {
   slug: string;
   employer: string;
@@ -79,13 +93,36 @@ export interface Application {
   roles: Role[];
   projects: Project[];
   capabilities: CapabilityGroup[];
+  letter: Letter | null;
 }
 
 export function applicationsDir(): string {
   return resolve(process.env.CV_APPLICATIONS ?? join(process.cwd(), '..', 'lore', 'knowledge', 'job-applications'));
 }
 
-function build(slug: string, raw: RawApplication): Application {
+function readLetter(folder: string): Letter | null {
+  const file = join(folder, 'cover-letter.md');
+  if (!existsSync(file)) return null;
+  const text = readFileSync(file, 'utf-8').replace(/^﻿/, '').replace(/\r\n/g, '\n');
+  const match = text.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  const head = (match ? loadYaml(match[1]) : {}) as Record<string, unknown> | null;
+  const body = match ? match[2] : text;
+  const field = (key: string): string => deDash(String(head?.[key] ?? '').trim());
+  return {
+    date: field('date'),
+    recipient: String(head?.recipient ?? '').split('\n').map((line) => line.trim()).filter(Boolean),
+    subject: field('subject'),
+    salutation: field('salutation'),
+    closing: field('closing'),
+    // One paragraph per blank-line-separated block; line wraps inside it are joined.
+    paragraphs: body
+      .split(/\n\s*\n/)
+      .map((block) => deDash(block.replace(/\s*\n\s*/g, ' ').trim()))
+      .filter(Boolean),
+  };
+}
+
+function build(slug: string, raw: RawApplication, letter: Letter | null): Application {
   const mode = 'private';
   const lens = raw.basePersona ?? 'all';
   const errors: string[] = [];
@@ -173,6 +210,7 @@ function build(slug: string, raw: RawApplication): Application {
       skills: raw.skills?.length ? raw.skills : undefined,
       technologies: raw.technologies?.length ? raw.technologies : undefined,
     }),
+    letter,
   };
 }
 
@@ -192,5 +230,5 @@ export function applications(): Application[] {
       ) as RawApplication,
     }))
     .filter(({ raw }) => raw?.status === 'drafting')
-    .map(({ slug, raw }) => build(slug, raw));
+    .map(({ slug, raw }) => build(slug, raw, readLetter(join(dir, slug))));
 }
