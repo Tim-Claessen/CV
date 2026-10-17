@@ -233,7 +233,7 @@ CV_MODE=private npm run dev    # then open /build
 
 The builder is for a quick one-off. A real application gets a **record**: a folder holding
 the job description, the evidence map and interview notes, the tailored wording, and the
-PDF that was actually sent. `/tailor` (in `.claude/commands/`) runs the whole workflow.
+PDF that was actually sent. `/tailor` (a skill in `.agents/skills/tailor/`) runs the whole workflow.
 
 ```text
 lore/knowledge/ ──/cv-sync──▶ career.json ───────────┐
@@ -415,7 +415,7 @@ Two things are worth knowing if you touch the Pages project:
 
 The site is static - Cloudflare just hosts the files in `dist/`. There is no server. If a
 build fails, open the build log: it is usually a YAML syntax error in `overrides/`, or the
-npm lockfile problem described in [CLAUDE.md](CLAUDE.md).
+npm lockfile problem described in [AGENTS.md](AGENTS.md).
 
 ## For AI agents
 

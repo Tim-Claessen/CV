@@ -1,5 +1,7 @@
 ---
-description: Tailor a CV to a job description as a point-in-time application record
+name: tailor
+description: Tailor a CV to a job description as a point-in-time application record. Run only when Tim asks to tailor a CV or runs /tailor.
+disable-model-invocation: true
 argument-hint: <job description, or the slug of an application in progress>
 ---
 
@@ -9,7 +11,7 @@ Produce a CV for one job application. The job is mostly **rewording**: take what
 already says and phrase it in the job description's terms. A short interview feeds that
 rewording; it doesn't replace it. Nothing is invented to fill a gap.
 
-Input: $ARGUMENTS
+Input: $ARGUMENTS (the job description or application slug Tim gave)
 
 ## Where things live
 
