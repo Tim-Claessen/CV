@@ -4,7 +4,7 @@ Context for AI tools working in this repo. [README.md](README.md) is the authori
 
 ## How Tim likes AI tools to work with him
 
-At the start of a session, read `../lore/knowledge/agents/Claude Code.md` and follow it. It is the source of truth for these preferences; keep it updated there rather than duplicating the guidance here.
+At the start of a session, read `../lore/knowledge/agents/Working With Tim.md` and follow it, then your own tool's entry beside it if there is one (e.g. `Claude Code.md`). They are the source of truth for these preferences; keep it updated there rather than duplicating the guidance here.
 
 ## House rules
 
